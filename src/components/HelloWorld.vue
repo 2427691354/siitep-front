@@ -1,11 +1,10 @@
-<template>
+﻿<template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <h1>{{ data }}</h1>
     <br>
     <h1 style="color: red;">{{ data2 }}</h1>
-    
   </div>
 </template>
 
