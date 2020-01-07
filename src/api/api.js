@@ -10,7 +10,7 @@ export const findLineByExample = (params) => {
    return axios({
         method: 'get',
         url: 'line/findByExample',
-        data: params
+        params: params
     })
 }
 
@@ -19,6 +19,7 @@ export const findLineByLine = (params) => {
    return axios({
         method: 'post',
         url: 'line/findByLine',
-        data: Json.stringify(params)
+        headers:{'Content-Type':'application/json'},
+        data: JSON.stringify(params)
     })
 }

@@ -1,7 +1,5 @@
 ﻿<template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
     <h1>{{ data }}</h1>
     <br>
     <h1 style="color: red;">{{ data2 }}</h1>
@@ -15,26 +13,31 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       data:[],
       data2:[]
     }
   },
   created(){
-    var params = {
-        id: 'gdjt',
+    
+    var params1 = {
+        id: 'gj02',
         name: null,
     };
-    findLineByExample(params).then(res => {
+    findLineByExample(params1).then(res => {
       if (res.status === 200) {
-        this.data = res.data
+        this.data = res.data.data
       } else {
         
       }
     });
-    findLineByExample(params).then(res => {
+
+    var params = {
+        lineid: 'gj01',
+        name: null,
+    };
+    findLineByLine(params).then(res => {
       if (res.status === 200) {
-        this.data2 = res.data
+        this.data2 = res.data.data
       } else {
         
       }
