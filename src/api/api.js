@@ -23,3 +23,23 @@ export const findLineByLine = (params) => {
         data: JSON.stringify(params)
     })
 }
+
+//登录
+export const loginUser = (params) => {
+   return axios({
+        method: 'post',
+        url: 'user/login',
+        headers:{'Content-Type':'application/json'},
+        data: JSON.stringify(params)
+    })
+}
+
+//注册
+export const registerUser = (params) => {
+    return axios({
+         method: 'post',
+         url: 'user/register',
+         headers:{'Content-Type':'application/json'},
+         data: JSON.stringify(params)
+     })
+ }
