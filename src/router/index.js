@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import login from '@/components/login'
 import p1 from '@/views/p1'
 import p2 from '@/views/p2'
 import index from '@/components/index'
@@ -11,6 +12,18 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      
+      path: '/HelloWorld',
+      name: 'HelloWorld',
+      component: HelloWorld,
+    },
+    {
+      
+      path: '/login',
+      name: 'login',
+      component: login,
+    },
     {
       //主页
       path: '/',

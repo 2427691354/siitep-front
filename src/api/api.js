@@ -43,3 +43,12 @@ export const registerUser = (params) => {
          data: JSON.stringify(params)
      })
  }
+
+ //获取站点信息
+ export const selectStationByLineID = (params) => {
+    return axios({
+         method: 'get',
+         url: 'station/selectStationByLineID',
+         params: params
+     })
+ }

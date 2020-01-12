@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="mark">
       <img src="../assets/formal.png" alt />正常
       <img src="../assets/error.png" alt />警告
@@ -7,10 +8,27 @@
     </div>
     <div class="route">
       <div class="main">
+        
       <div class="div1"></div>
-      <img src="../assets/error.png" alt="警告" title="车辆段" />
-      <img src="../assets/formal.png" alt="正常" title="木渎" @click="mudu"/>
-      <img src="../assets/formal.png" alt="正常" title="木渎" />
+
+      
+      <router-link
+        v-for="item in data" :key="item"
+        :to="{
+          path:'/sensor',
+          query:{
+            stationid:item.stationid
+          }
+        }"
+      >
+     
+      <img src="../assets/formal.png" alt="正常" :title="item.stationname" />
+      </router-link>
+      
+
+      <!-- <img src="../assets/error.png" alt="警告" title="车辆段" /> -->
+      <div class="div2"></div>
+      <div class="div3"></div>
       </div>
       
     </div>
@@ -18,7 +36,30 @@
   </div>
 </template>
 <script>
+import { selectStationByLineID } from "@/api/api";
 export default {
+  data(){
+    return{
+      data:[],
+      item:{}
+    }
+  },
+  created(){
+    var params1={
+      lineID:this.$route.query.id,
+      
+    };
+    selectStationByLineID(params1).then(res=>{
+      if(res.status===200){
+        this.data = res.data.data
+        console.log(this.data)
+        console.log(res.data.data)
+      }else{
+
+      }
+    });
+  }
+  ,
   methods: {
     mudu() {
       this.$router.push({ name: "sensorHistorical" });
@@ -62,9 +103,20 @@ export default {
   height: 30px;
   margin-top: -20px;
   margin-left: 50px;
+  margin-bottom: 80px;
 }
 .div1 {
   margin-top: 100px;
+  width: 900px;
+  border-bottom: 3px solid #bababa;
+}
+.div2 {
+  margin-top: -100px;
+  width: 900px;
+  border-bottom: 3px solid #bababa;
+}
+.div3 {
+  margin-top: -100px;
   width: 900px;
   border-bottom: 3px solid #bababa;
 }
