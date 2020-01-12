@@ -29,6 +29,7 @@
       <!-- <img src="../assets/error.png" alt="警告" title="车辆段" /> -->
       <div class="div2"></div>
       <div class="div3"></div>
+      <div class="div4"></div>
       </div>
       
     </div>
@@ -61,10 +62,29 @@ export default {
   }
   ,
   methods: {
-    mudu() {
-      this.$router.push({ name: "sensor" });
+    changeLine(){
+      var params1={
+      lineID:this.$route.query.id,
+      
+    };
+    selectStationByLineID(params1).then(res=>{
+      if(res.status===200){
+        this.data = res.data.data
+        console.log(this.data)
+        console.log(res.data.data)
+      }else{
+
+      }
+    });
     }
-  }
+  },
+   beforeRouteUpdate(to, from, next) {
+    console.log(this.$route.query.sensorID)
+    if (to.fullPath != from.fullPath) {
+      next();
+      this.changeLine();
+    }
+  },
 };
 </script>
 <style  scoped>
@@ -116,6 +136,11 @@ export default {
   border-bottom: 3px solid #bababa;
 }
 .div3 {
+  margin-top: -100px;
+  width: 900px;
+  border-bottom: 3px solid #bababa;
+}
+.div4{
   margin-top: -100px;
   width: 900px;
   border-bottom: 3px solid #bababa;
