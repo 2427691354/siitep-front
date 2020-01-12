@@ -1,9 +1,9 @@
 import axios from 'axios'
-import Router from '../router'
+import Router from 'vue-router'
 
 axios.defaults.baseURL = "/api";
 axios.defaults.crossDomain = true;
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;   //设置cross跨域 并设置访问权限 允许跨域携带cookie信息
 
 // 获取所有线路信息
 export const findLineByExample = (params) => {

@@ -232,15 +232,15 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="13">
-        <!-- 气瓶右 -->
+      <el-col :span="12">
+          <!-- 气瓶右 -->
         <div class="grid-content bg-purple">
           <!-- 右上 -->
           <div class="top">
             <div class="top_left">趋势图</div>
           </div>
           <!-- 右下趋势图 -->
-          <router-view />
+          <router-view/>
         </div>
       </el-col>
     </el-row>

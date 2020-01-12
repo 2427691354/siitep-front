@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 // import echarts from 'echarts'
 // import VCharts from 'v-charts'
 
+import VCharts from 'v-charts'
+Vue.use(VCharts)
 
 
 // Vue.use(VCharts)
