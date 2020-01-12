@@ -9,8 +9,11 @@
       <div class="main">
       <div class="div1"></div>
       <img src="../assets/error.png" alt="警告" title="车辆段" />
-      <img src="../assets/formal.png" alt="正常" title="木渎" @click="mudu"/>
-      <img src="../assets/formal.png" alt="正常" title="木渎" />
+ 
+      
+       <div class="div1"></div>
+       
+        <div class="div1"></div>
       </div>
       
     </div>
@@ -19,9 +22,10 @@
 </template>
 <script>
 export default {
+ 
   methods: {
     mudu() {
-      this.$router.push({ name: "sensorHistorical" });
+      this.$router.push({ name: "sensor" });
     }
   }
 };
