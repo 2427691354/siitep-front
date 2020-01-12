@@ -32,6 +32,7 @@
                     style="padding-left: 30px; color: rgb(255, 255, 255); background-color: rgb(84, 92, 100);"
                   >
                   <router-link
+                  
                     :to="{
                       path:'/p1',
                       query:{
@@ -39,8 +40,9 @@
                       }
                     }"
                   >
+                  <span class="front">
                   <i class="el-icon-place"></i>
-                  轨道交通1号线</router-link>
+                  轨道交通1号线</span></router-link>
                   </el-menu-item>
                 
                   <el-menu-item
@@ -55,8 +57,9 @@
                       }
                     }"
                   >
+                   <span class="front">
                   <i class="el-icon-place"></i>
-                  轨道交通2号线</router-link>
+                  轨道交通2号线</span></router-link>
                   </el-menu-item>
                   <el-menu-item
                     index="2-3"
@@ -71,8 +74,9 @@
                       }
                     }"
                   >
+                   <span class="front">
                   <i class="el-icon-place"></i>
-                  轨道交通4号线</router-link>
+                  轨道交通4号线</span></router-link>
                   </el-menu-item>
                   <el-menu-item
                     index="2-4"
@@ -87,8 +91,9 @@
                       }
                     }"
                   >
+                   <span class="front">
                   <i class="el-icon-place"></i>
-                  轨道交通4号线支线</router-link>
+                  轨道交通4号线支线</span></router-link>
                   </el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
@@ -150,6 +155,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .el-menu-item-group .el-menu-item{
   text-align:left;
 }
@@ -171,5 +177,9 @@ export default {
 }
 .el-main {
   padding: 0px;
+}
+.front{
+  color: white;
+  text-decoration: none;
 }
 </style>
