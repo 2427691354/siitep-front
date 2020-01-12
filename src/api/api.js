@@ -43,3 +43,22 @@ export const registerUser = (params) => {
          data: JSON.stringify(params)
      })
  }
+
+ //获取站内气瓶最新信息
+ export const getSensorNewInfoByStationID = (params) => {
+    return axios({
+         method: 'get',
+         url: 'station/getSensorNewInfoByStationID',
+         params: params
+     })
+ }
+
+//获取气压数据
+export const findWeeklyPressureDataBySensorId = (params) => {
+    return axios({
+         method: 'get',
+         url: 'PressureData/findWeeklyPressureDataBySensorId',
+         params: params
+     })
+ }
+ 
