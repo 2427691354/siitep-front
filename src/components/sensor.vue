@@ -24,8 +24,10 @@
             <div class="main_item_line">
               <!-- 行左 -->
               <div class="main_item left">
-                <div class="main_item_img" >
-                  <img src="../assets/greenSensor-L.png" alt width="50px" />
+                <div class="main_item_img">
+                  <router-link to="/sensorHistorical">
+                    <img src="../assets/greenSensor-L.png" alt width="50px" />
+                  </router-link>
                 </div>
                 <div class="main_item_text">
                   <span class="name">启动瓶X1</span>
@@ -230,10 +232,10 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="15">
-          <!-- 气瓶右 -->
+      <el-col :span="13">
+        <!-- 气瓶右 -->
         <div class="grid-content bg-purple">
-            <!-- 右上 -->
+          <!-- 右上 -->
           <div class="top">
             <div class="top_left">趋势图</div>
           </div>
@@ -254,8 +256,6 @@
 }
 .main_item_img {
   float: left;
- 
- 
 }
 .main_item_text {
   width: 70px;
@@ -270,7 +270,6 @@
 }
 .main_item_line {
   width: 100%;
-  
 }
 .main_item {
   width: 45%;
@@ -282,7 +281,7 @@
   padding: 10px 20px;
   overflow: auto;
   width: 90%;
-  height: 580px;
+  height: 400px;
 }
 .top_right {
   height: 50px;
@@ -312,12 +311,12 @@
 }
 .el-col {
   border-radius: 1px;
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
 .bg-purple {
   background: #ffffff;
-  height: 700px;
+  height: 500px;
 }
 
 .grid-content {
