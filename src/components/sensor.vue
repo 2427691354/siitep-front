@@ -97,11 +97,12 @@ export default {
   },
   created() {
     var params = {
-      stationID: this.$route.query.sensorid //站点名称
+      stationID: this.$route.query.stationid //站点名称
     };
     getSensorNewInfoByStationID(params).then(res => {
       if (res.status === 200) {
         this.sensordata = res.data.data;
+        
         // console.log(res.data.data)
         // console.log(this.sensor[1]);
       } else {
