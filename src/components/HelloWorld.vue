@@ -23,6 +23,7 @@ export default {
         id: 'gj02',
         name: null,
     };
+  
     findLineByExample(params1).then(res => {
       if (res.status === 200) {
         this.data = res.data.data
@@ -33,7 +34,7 @@ export default {
 
     var params = {
         lineid: 'gj01',
-        name: null,
+        name: "轨道交通1号线",
     };
     findLineByLine(params).then(res => {
       if (res.status === 200) {
