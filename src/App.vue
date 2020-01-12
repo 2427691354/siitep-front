@@ -29,34 +29,67 @@
                 <el-menu-item-group>
                   <el-menu-item
                     index="/p1"
-                    @click="goTo('/p1')"
-                   
                     style="padding-left: 30px; color: rgb(255, 255, 255); background-color: rgb(84, 92, 100);"
                   >
+                  <router-link
+                    :to="{
+                      path:'/p1',
+                      query:{
+                        id:'gj01'
+                      }
+                    }"
+                  >
                   <i class="el-icon-place"></i>
-                  轨道交通1号线</el-menu-item>
+                  轨道交通1号线</router-link>
+                  </el-menu-item>
+                
                   <el-menu-item
                     index="/p2"
-                    @click="goTo('/p2')"
-                    
                     style="padding-left: 30px; color: rgb(255, 255, 255); background-color: rgb(84, 92, 100);"
                   >
+                  <router-link
+                    :to="{
+                      path:'/p1',
+                      query:{
+                        id:'gj02'
+                      }
+                    }"
+                  >
                   <i class="el-icon-place"></i>
-                  轨道交通2号线</el-menu-item>
+                  轨道交通2号线</router-link>
+                  </el-menu-item>
                   <el-menu-item
                     index="2-3"
                   
                     style="padding-left: 30px; color: rgb(255, 255, 255); background-color: rgb(84, 92, 100);"
                   >
+                  <router-link
+                    :to="{
+                      path:'/p1',
+                      query:{
+                        id:'gj04'
+                      }
+                    }"
+                  >
                   <i class="el-icon-place"></i>
-                  轨道交通4号线</el-menu-item>
+                  轨道交通4号线</router-link>
+                  </el-menu-item>
                   <el-menu-item
                     index="2-4"
                   
                     style="padding-left: 30px; color: rgb(255, 255, 255); background-color: rgb(84, 92, 100);"
                   >
+                  <router-link
+                    :to="{
+                      path:'/p1',
+                      query:{
+                        id:'gj07'
+                      }
+                    }"
+                  >
                   <i class="el-icon-place"></i>
-                  轨道交通4号线支线</el-menu-item>
+                  轨道交通4号线支线</router-link>
+                  </el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
 

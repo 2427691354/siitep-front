@@ -13,6 +13,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+  
     {
       //主页
       path: '/',

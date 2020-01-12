@@ -44,6 +44,14 @@ export const registerUser = (params) => {
      })
  }
 
+ //获取站点信息
+ export const selectStationByLineID = (params) => {
+    return axios({
+         method: 'get',
+         url: 'station/selectStationByLineID',
+         params: params
+     })
+ }
  //获取站内气瓶最新信息
  export const getSensorNewInfoByStationID = (params) => {
     return axios({

@@ -102,7 +102,7 @@ export default {
     getSensorNewInfoByStationID(params).then(res => {
       if (res.status === 200) {
         this.sensordata = res.data.data;
-        
+    
         // console.log(res.data.data)
         // console.log(this.sensor[1]);
       } else {
