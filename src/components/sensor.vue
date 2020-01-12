@@ -7,7 +7,7 @@
           <!-- 左上 -->
           <div class="top">
             <!-- 左上左 -->
-            <div class="top_left">气瓶（26）</div>
+            <div class="top_left">气瓶（{{this.sensordata.length}}）</div>
             <!-- 左上右 -->
             <div class="top_right">
               <img src="../assets/greenSensor-S.png" alt width="15px" />
@@ -21,230 +21,105 @@
           <!-- 气瓶左主体 -->
           <div class="main">
             <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img" >
-                  <img src="../assets/greenSensor-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">启动瓶X1</span>
-                  <br />
-                  <strong class="allowance">5.931Mpa</strong>
-                </div>
+            <!-- <div class="main_item_line"> -->
+            <!-- 行左 -->
+            <div class="main_item left" v-for="sdata in sensordata" :key="sdata">
+              <div v-if="sdata.ptype==0 && sdata.wtype==0">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img yellow"></div>
+                </router-link>
               </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">启动瓶X2</span>
-                  <br />
-                  <strong class="allowance">5.431Mpa</strong>
-                </div>
+              <div v-else-if="sdata.ptype==0 && sdata.wtype==2">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img green"></div>
+                </router-link>
+              </div>
+              <div v-else-if="sdata.ptype==0 && sdata.wtype==1">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img red"></div>
+                </router-link>
+              </div>
+
+              <div v-else-if="sdata.ptype==1 && sdata.wtype==0">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img yellowc"></div>
+                </router-link>
+              </div>
+              <div v-else-if="sdata.ptype==1 && sdata.wtype==2">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img greenc"></div>
+                </router-link>
+              </div>
+              <div v-else-if="sdata.ptype==1 && sdata.wtype==1">
+                <router-link :to="{path: '/sensorHistorical', query: {deviceID: sdata.deviceID,  sensorID: sdata.sensorID}}">
+                  <div class="main_item_img redc"></div>
+                </router-link>
+              </div>
+
+              <div class="main_item_text">
+                <span class="name">
+                  <div v-if="sdata.ptype==0">启动瓶</div>
+                  <div v-else-if="sdata.ptype==1">储气瓶</div>
+                  {{sdata.sensorID}}</span>
+                <br />
+                <strong class="allowance">{{sdata.parValue}}Mpa</strong>
               </div>
             </div>
+            <!-- 行右 -->
 
             <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">启动瓶X3</span>
-                  <br />
-                  <strong class="allowance">6.044Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">启动瓶X4</span>
-                  <br />
-                  <strong class="allowance">5.806Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- 一行 -->
-            <div class="main_item_line">
-              <!-- 行左 -->
-              <div class="main_item left">
-                <div class="main_item_img">
-                  <img src="../assets/greenSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X5</span>
-                  <br />
-                  <strong class="allowance">16.063Mpa</strong>
-                </div>
-              </div>
-              <!-- 行右 -->
-              <div class="main_item right">
-                <div class="main_item_img">
-                  <img src="../assets/yellowSensor-C-L.png" alt width="50px" />
-                </div>
-                <div class="main_item_text">
-                  <span class="name">储气瓶X6</span>
-                  <br />
-                  <strong class="allowance">13.1Mpa</strong>
-                </div>
-              </div>
-            </div>
+            {{data}}
           </div>
         </div>
       </el-col>
       <el-col :span="12">
-          <!-- 气瓶右 -->
+        <!-- 气瓶右 -->
         <div class="grid-content bg-purple">
-            <!-- 右上 -->
+          <!-- 右上 -->
           <div class="top">
             <div class="top_left">趋势图</div>
           </div>
           <!-- 右下趋势图 -->
-          <router-view/>
+          <router-view />
         </div>
       </el-col>
     </el-row>
   </div>
 </template>
+<script>
+import { getSensorNewInfoByStationID } from "@/api/api";
+export default {
+  data() {
+    return {
+      sensordata: [],
+      sdata: {}
+    };
+  },
+  created() {
+    var params = {
+      stationID: this.$route.query.stationid //站点名称
+    };
+    getSensorNewInfoByStationID(params).then(res => {
+      if (res.status === 200) {
+        this.sensordata = res.data.data;
+        alert(this.$route.query.stationid)
+        // console.log(res.data.data)
+        // console.log(this.sensor[1]);
+      } else {
+      }
+    });
 
+    // for(var i = 0;i<this.sensordata.length;i++){
+    //   if(this.sensordata[i].ptype = "0"){
+    //     this.sensordata[i] = "启动瓶";
+    //   }
+    //   if(this.sensordata[i].ptype = "1"){
+    //     this.sensordata[i] = "储气瓶";
+    //   }
+    // }
+  }
+};
+</script>
 <style  scoped>
 .allowance {
   color: #686766;
@@ -254,8 +129,29 @@
 }
 .main_item_img {
   float: left;
- 
- 
+  width: 50px;
+  height: 60px;
+
+  background-repeat: initial;
+  background-size: cover;
+}
+.green {
+  background-image: url("../assets/greenSensor-L.png");
+}
+.yellow {
+  background-image: url("../assets/yellowSensor-L.png");
+}
+.red {
+  background-image: url("../assets/redSensor-S.png");
+}
+.greenc {
+  background-image: url("../assets/greenSensor-C-L.png");
+}
+.yellowc {
+  background-image: url("../assets/yellowSensor-C-L.png");
+}
+.redc {
+  background-image: url("../assets/yellowSensor-C-L.png");
 }
 .main_item_text {
   width: 70px;
@@ -270,7 +166,6 @@
 }
 .main_item_line {
   width: 100%;
-  
 }
 .main_item {
   width: 45%;

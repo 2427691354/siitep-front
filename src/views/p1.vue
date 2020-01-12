@@ -62,7 +62,7 @@ export default {
   ,
   methods: {
     mudu() {
-      this.$router.push({ name: "sensorHistorical" });
+      this.$router.push({ name: "sensor" });
     }
   }
 };

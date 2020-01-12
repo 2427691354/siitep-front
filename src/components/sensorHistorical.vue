@@ -1,34 +1,76 @@
 <template>
-  <div class="main" >
-    
+  <div class="main">
+    {{this.$route.query.sensorID}}
     <ve-line :data="chartData" :settings="chartSettings" height="400px"></ve-line>
   </div>
 </template>
 <style  scoped>
-
 </style>
 <script>
- import VeLine from 'v-charts/lib/line'
- export default {
- data(){  
-  return {
-   chartData: {
-    columns: ['日期','X1'],
-    rows: [
-     { '日期': '10月1日', 'X1': 6.32},
-     { '日期': '10月2日', 'X1': 9.55 },
-     { '日期': '10月3日', 'X1': 7.88},
-     { '日期': '10月4日', 'X1': 7.63},
-     { '日期': '10月5日', 'X1': 5.65 },
-     { '日期': '10月6日', 'X1': 9.32 }
-    ]
-   },
-   chartSettings: {
-     yAxisName: ['Mpa'],
-   },
+import VeLine from "v-charts/lib/line";
+import { findWeeklyPressureDataBySensorId } from "@/api/api";
+export default {
+  data() {
+    return {
+      data: [],
+      deviceID: this.$route.query.deviceID,
+      sensorID: this.$route.query.sensorID,
+     
+      chartData: {
+        columns: ["stime", "parValue"],
+        rows: []
+      },
+      chartSettings: {
+        yAxisName: ["Mpa"],
+      }
+    };
+  },
+  components: { VeLine },
+  methods: {
+    changeSensor() {
+      var params = {
+        deviceID: this.$route.query.deviceID, //站点名称
+        sensorID: this.$route.query.sensorID
+      };
+      findWeeklyPressureDataBySensorId(params).then(res => {
+        if (res.status === 200) {
+          // this.data = res.data.data;
+          
+          this.chartData.rows = res.data.data.map(obj => {
+            return {
+              stime: obj.stime,
+              parValue: obj.parValue
+            };
+          });
+        } else {
+        }
+      });
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log(this.$route.query.sensorID)
+    if (to.fullPath != from.fullPath) {
+      next();
+      this.changeSensor();
+    }
+  },
+  created(){
+    var params = {
+        deviceID: this.$route.query.deviceID, //站点名称
+        sensorID: this.$route.query.sensorID
+      };
+      findWeeklyPressureDataBySensorId(params).then(res => {
+        if (res.status === 200) {
+          // this.data = res.data.data;
+          this.chartData.rows = res.data.data.map(obj => {
+            return {
+              stime: obj.stime,
+              parValue: obj.parValue
+            };
+          });
+        } else {
+        }
+      });
   }
- },
- components: { VeLine }
-}
-
+};
 </script>

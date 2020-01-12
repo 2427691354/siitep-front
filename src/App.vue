@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <keep-alive>
     <el-container>
       <el-aside width="202px" style="background-color:#EFF1F4;">
         <!-- 左侧导航 -->
@@ -112,7 +113,9 @@
         </div>
       </el-main>
     </el-container>
+    </keep-alive>
   </div>
+  
 </template>
 
 <script>

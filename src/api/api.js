@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Router from '../router'
+import Router from 'vue-router'
 
 axios.defaults.baseURL = "/api";
 axios.defaults.crossDomain = true;
@@ -52,3 +52,21 @@ export const registerUser = (params) => {
          params: params
      })
  }
+ //获取站内气瓶最新信息
+ export const getSensorNewInfoByStationID = (params) => {
+    return axios({
+         method: 'get',
+         url: 'station/getSensorNewInfoByStationID',
+         params: params
+     })
+ }
+
+//获取气压数据
+export const findWeeklyPressureDataBySensorId = (params) => {
+    return axios({
+         method: 'get',
+         url: 'PressureData/findWeeklyPressureDataBySensorId',
+         params: params
+     })
+ }
+ 
