@@ -4,8 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import p1 from '@/views/p1'
 import p2 from '@/views/p2'
 import index from '@/components/index'
-
-
+import sensor from '@/components/sensor'
+import sensorHistorical from '@/components/sensorHistorical'
 
 Vue.use(Router)
 
@@ -27,6 +27,20 @@ export default new Router({
       path: '/p2',
       name: 'p2',
       component: p2,
+
+    },
+    {
+      path: '/sensor',
+      name: 'sensor',
+      component: sensor,
+      children: [
+        {
+          path: '/sensorHistorical',
+          name: 'sensorHistorical',
+          component: sensorHistorical
+        }
+      ]
+
     }
 
   ]

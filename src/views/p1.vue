@@ -3,43 +3,29 @@
     <div class="mark">
       <img src="../assets/formal.png" alt />正常
       <img src="../assets/error.png" alt />警告
+      
     </div>
     <div class="route">
-      <el-steps :active="1">
-        <el-step title="车辆段" icon="el-icon-success"></el-step>
-        <el-step title="木渎" icon="el-icon-warning"></el-step>
-        <el-step title="金枫路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-      </el-steps>
-
-      <el-steps :active="1">
-        <el-step title="车辆段" icon="el-icon-success"></el-step>
-        <el-step title="木渎" icon="el-icon-warning"></el-step>
-        <el-step title="金枫路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-      </el-steps>
-      <el-steps :active="1">
-        <el-step title="车辆段" icon="el-icon-success"></el-step>
-        <el-step title="木渎" icon="el-icon-warning"></el-step>
-        <el-step title="金枫路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-        <el-step title="汾湖路" icon="el-icon-success"></el-step>
-      </el-steps>
+      <div class="main">
+      <div class="div1"></div>
+      <img src="../assets/error.png" alt="警告" title="车辆段" />
+      <img src="../assets/formal.png" alt="正常" title="木渎" @click="mudu"/>
+      <img src="../assets/formal.png" alt="正常" title="木渎" />
+      </div>
+      
     </div>
     <router-view></router-view>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    mudu() {
+      this.$router.push({ name: "sensorHistorical" });
+    }
+  }
+};
+</script>
 <style  scoped>
 .mark {
   width: 1200px;
@@ -67,5 +53,19 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+.main {
+  width: 900px;
+  height: 300px;
+}
+.main img {
+  height: 30px;
+  margin-top: -20px;
+  margin-left: 50px;
+}
+.div1 {
+  margin-top: 100px;
+  width: 900px;
+  border-bottom: 3px solid #bababa;
 }
 </style>

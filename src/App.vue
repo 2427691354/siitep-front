@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="202px">
+      <el-aside width="202px" style="background-color:#EFF1F4;">
         <!-- 左侧导航 -->
         <el-row class="tac">
           <el-col :span="12">
@@ -76,7 +76,6 @@
         <!-- 右侧显示区域 -->
         <div style="border: 1px solid #A6A6A6;  background-color: white">
           <router-view />
-          <!-- <p1></p1> -->
         </div>
       </el-main>
     </el-container>
