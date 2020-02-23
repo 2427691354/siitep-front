@@ -246,12 +246,12 @@ a:hover {
 
 .map {
   position: relative;
-  height: 5.35rem;
+  height: 5.7rem;
   z-index: 9;
 }
 .map4 {
   width: 200%;
-  height: 5.2rem;
+  height: 6rem;
   position: relative;
   left: -50%;
   margin-top: 0.2rem;
