@@ -49,10 +49,16 @@
           <div class="map">
             <div class="map4" id="map_1"></div>
           </div>
-          <div class="boxall" style="height: 2.6rem">
-            <div class="alltitle">停课不停学图片走马灯卡片式轮播</div>
-            <div class="allnav" id="echart5"></div>
-            <div class="boxfoot"></div>
+          <div class="boxallcard" style="height: 2.6rem">
+            <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
+            <div class="allnav" id="echart5">
+              <el-carousel :interval="2000" type="card" height="160px">
+                <el-carousel-item v-for="item in this.img_list" :key="item.img">
+                  <img :src="'/static/img/'+item.img" />
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+            <div class="boxfootcard"></div>
           </div>
         </li>
         <li>
@@ -98,6 +104,13 @@ export default {
         sumIsolated: 0,
         sumHever: 0
       },
+      img_list: [],
+
+
+      // 图片父容器高度
+      bannerHeight: 1000,
+      // 浏览器宽度
+      screenWidth: 0
       playerOptions1: {
         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
@@ -170,11 +183,22 @@ export default {
     Header,videoPlayer
   },
   mounted() {
+    // 首次加载时,需要调用一次
+    this.screenWidth = window.innerWidth;
+    this.setSize();
+    // 窗口大小发生改变时,调用一次
+    window.onresize = () => {
+      this.screenWidth = window.innerWidth;
+      this.setSize();
+    };
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
 
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
+
+    //轮播图
+    this.slideShow();
 
     this.resizeFontsize();
     //			改变横屏竖屏执行效果更换
@@ -186,6 +210,10 @@ export default {
     this.canves();
   },
   methods: {
+    setSize: function() {
+      // 通过浏览器宽度(图片宽度)计算高度
+      this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
     initSum() {
       var self = this;
       self.$http
@@ -198,6 +226,20 @@ export default {
           // window.location.reload();
         })
         .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    slideShow(){
+      var self = this;
+      self.$http
+      .get(this.baseUrl+"/pictures/selectByType?type=1")
+      .then(function(response){
+        var res = response.data;
+        
+        self.img_list = res;
+      })
+      .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
