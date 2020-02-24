@@ -7,7 +7,7 @@
     <div class="mainbox">
       <ul class="clearfix">
         <li>
-          <div class="boxall" style="height: 4.2rem">
+          <div class="boxall" style="height: 3.7rem">
             <div class="alltitle">模块标题样式</div>
             <div class="allnav" id="echart1">
               <video-player
@@ -23,7 +23,7 @@
             <div class="allnav" id="echart2"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 4.2rem;">
+          <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">模块标题样式</div>
             <div class="allnav" id="echart3"></div>
             <div class="boxfoot"></div>
@@ -56,7 +56,7 @@
           </div>
         </li>
         <li>
-          <div class="boxall" style="height:3.4rem">
+          <div class="boxall" style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
             <div class="allnav" id="echart4">
               <video-player
@@ -72,7 +72,7 @@
             <div class="allnav" id="echart5"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3rem">
+          <div class="boxall" style="height: 2.7rem">
             <div class="alltitle">模块标题样式</div>
             <div class="allnav" id="echart6"></div>
             <div class="boxfoot"></div>
@@ -105,9 +105,10 @@ export default {
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
         language: "zh-CN",
+        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         techOrder: ["flash", "html5"], // 兼容顺序
-        height:'270%',
         flash: {
           hls: { withCredentials: false },
           swf: "../../static/video-js.swf" // 引入静态文件swf
@@ -137,9 +138,10 @@ export default {
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
         language: "zh-CN",
+        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         techOrder: ["flash", "html5"], // 兼容顺序
-        height:'205%',
         flash: {
           hls: { withCredentials: false },
           swf: "../../static/video-js.swf" // 引入静态文件swf
