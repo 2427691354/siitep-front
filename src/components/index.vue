@@ -96,9 +96,9 @@ export default {
   data () {
     return {
       statistics: {
-        sumAll: null,
-        sumIsolated: null,
-        sumHever: null
+        sumAll: 0,
+        sumIsolated: 0,
+        sumHever: 0
       }
     };
   },
