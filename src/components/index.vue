@@ -12,8 +12,7 @@
             <div class="allnav" id="echart1">
               <video-player
                 class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                
+                ref="videoPlayer1"
                 :options="playerOptions1"
               ></video-player>
             </div>
@@ -79,7 +78,6 @@
               <video-player
                 class="video-player vjs-custom-skin"
                 ref="videoPlayer"
-                
                 :options="playerOptions2"
               ></video-player>
             </div>
@@ -105,8 +103,8 @@
 <script>
 import "videojs-flash";
 import "video.js/dist/video-js.css";
-import { videoPlayer } from "vue-video-player";
-
+import 'vue-video-player/src/custom-theme.css'
+import { videoPlayer } from 'vue-video-player'
 import Header from "@/components/header";
 export default {
   data() {
@@ -119,7 +117,7 @@ export default {
       },
       playerOptions1: {
         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
-        autoplay: false, //如果true,浏览器准备好时开始回放。
+        autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
@@ -167,8 +165,8 @@ export default {
         sources: [
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
-            type: "rtmp/mp4",
-            src: "../assets/picture/fangyishipin.mp4"
+            type: "video/mp4",
+            src: "http://47.101.33.200:8080/static/fangyishipin.mp4" //url地址
           }
         ],
         poster: "", //你的封面地址
@@ -184,9 +182,12 @@ export default {
     };
   },
   components: {
-    Header
+    Header,videoPlayer
   },
   mounted() {
+    this.$refs.videoPlayer.player.play();
+    this.$refs.videoPlayer1.player.play();
+
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
 
