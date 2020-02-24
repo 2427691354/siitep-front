@@ -36,15 +36,15 @@
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li class="pulll_left counter">1232</li>
-                <li class="pulll_left counter">0</li>
-                <li class="pulll_left counter">13</li>
+                <li class="pulll_left counter">{{statistics.sumAll}}</li>
+                <li class="pulll_left counter">{{statistics.sumIsolated}}</li>
+                <li class="pulll_left counter">{{statistics.sumHever}}</li>
               </ul>
             </div>
             <div class="barbox2">
               <ul class="clearfix">
                 <li class="pulll_left">系部人数</li>
-                <li class="pulll_left">返校人数</li>
+                <li class="pulll_left">发烧人数</li>
                 <li class="pulll_left">隔离人数</li>
               </ul>
             </div>
@@ -95,21 +95,46 @@ import Header from '@/components/header'
 export default {
   data () {
     return {
+      statistics: {
+        sumAll: null,
+        sumIsolated: null,
+        sumHever: null
+      }
     };
   },
   components: {
     Header
   },
   mounted () {
+    // 宏观统计 总人数、隔离人数、发烧人数
+    this.initSum();
+
     this.resizeFontsize();
     //			改变横屏竖屏执行效果更换
     window.addEventListener('orientationchange', this.resizeFontsize());
     //			改变手机大小执行效果更换
     window.addEventListener('resize', this.resizeFontsize());
+
     this.map();
     this.canves();
   },
   methods: {
+    initSum () {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/sum")
+        .then(function (response) {
+          var res = response.data;
+          self.statistics.sumAll = res.sum;
+          self.statistics.sumIsolated = res.sumisolated;
+          self.statistics.sumHever = res.sumhever;
+          // window.location.reload();
+        })
+        .catch(function (error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
     resizeFontsize () {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + 'px';
@@ -517,16 +542,15 @@ export default {
       };
 
       var option = {
-        // backgroundColor: '#404a59',
-        /***  title: {
-              text: '实时行驶车辆',
-              subtext: 'data from PM25.in',
-              sublink: 'http://www.pm25.in',
-              left: 'center',
-              textStyle: {
-                  color: '#fff'
-              }
-          },**/
+        title: {
+          text: '学生地理分布',
+          subtext: '数据来源 苏工院',
+          sublink: '#',
+          left: 'center',
+          textStyle: {
+            color: '#fff'
+          }
+        },
         tooltip: {
           trigger: "item",
           formatter: function (params) {
@@ -537,7 +561,16 @@ export default {
             }
           }
         },
-
+        legend: {
+          data: ["隔离人数", "发烧人数"],
+          icon: "circle",   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
+          orient: 'vertical',
+          right: "30%",
+          bottom: "50%",
+          textStyle: {
+            color: '#fff'
+          }
+        },
         geo: {
           map: "china",
           label: {
@@ -545,7 +578,7 @@ export default {
               show: false
             }
           },
-          roam: false, //禁止其放大缩小
+          roam: false,
           itemStyle: {
             normal: {
               areaColor: "#4c60ff",
@@ -558,7 +591,7 @@ export default {
         },
         series: [
           {
-            name: "消费金额",
+            name: "隔离人数",
             type: "scatter",
             coordinateSystem: "geo",
             data: convertData(data),
@@ -580,42 +613,38 @@ export default {
                 color: "#ffeb7b"
               }
             }
-          }
-
-          /**
-          ,
-              {
-                  name: 'Top 5',
-                  type: 'effectScatter',
-                  coordinateSystem: 'geo',
-                  data: convertData(data.sort(function (a, b) {
-                      return b.value - a.value;
-                  }).slice(0, 6)),
-                  symbolSize: function (val) {
-                      return val[2] / 20;
-                  },
-                  showEffectOn: 'render',
-                  rippleEffect: {
-                      brushType: 'stroke'
-                  },
-                  hoverAnimation: true,
-                  label: {
-                      normal: {
-                          formatter: '{b}',
-                          position: 'right',
-                          show: true
-                      }
-                  },
-                  itemStyle: {
-                      normal: {
-                          color: '#ffd800',
-                          shadowBlur: 10,
-                          shadowColor: 'rgba(0,0,0,.3)'
-                      }
-                  },
-                  zlevel: 1
+          },
+          {
+            name: '发烧人数',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: convertData(data.sort(function (a, b) {
+              return b.value - a.value;
+            }).slice(0, 6)),
+            symbolSize: function (val) {
+              return val[2] / 20;
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+              brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: '{b}',
+                position: 'right',
+                show: false
               }
-          **/
+            },
+            itemStyle: {
+              normal: {
+                color: 'red',
+                shadowBlur: 10,
+                shadowColor: 'rgba(0,0,0,.3)'
+              }
+            },
+            zlevel: 1
+          }
         ]
       };
 
