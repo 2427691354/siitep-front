@@ -20,13 +20,27 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 1.2rem">
-            <div class="alltitle">未带口罩人员截图区域</div>
-            <div class="allnav" id="echart2"></div>
+            <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
+            <div class="allnav" id="echart2" style="padding:12px 0px;">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+              <img src="../assets/picture/未带口罩.png" alt="" style="width:calc(100% / 6 - 3px)">
+            </div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 4.2rem;">
             <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart3"></div>
+            <div class="allnav" id="echart3">
+               <el-tabs v-model="activeName" @tab-click="handleClick" class="tab">
+    <el-tab-pane label="热搜" name="first">热搜</el-tab-pane>
+    <el-tab-pane label="知识" name="second">知识</el-tab-pane>
+    <el-tab-pane label="辟谣" name="third">辟谣</el-tab-pane>
+   
+  </el-tabs>
+            </div>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -52,7 +66,9 @@
           </div>
           <div class="boxall" style="height: 2.6rem">
             <div class="alltitle">停课不停学图片走马灯卡片式轮播</div>
-            <div class="allnav" id="echart5"></div>
+            <div class="allnav" id="echart5">
+              
+            </div>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -95,6 +111,7 @@ import Header from "@/components/header";
 export default {
   data() {
     return {
+      activeName: 'first',
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
@@ -183,6 +200,9 @@ export default {
     this.canves();
   },
   methods: {
+    handleClick(tab, event) {
+        console.log(tab, event);
+      },
     initSum() {
       var self = this;
       self.$http
@@ -1117,4 +1137,7 @@ export default {
   height: 100%;
   object-fit: fill
 }
-</style
+.tab{
+  color: red;
+}
+</style>
