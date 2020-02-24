@@ -9,7 +9,13 @@
         <li>
           <div class="boxall" style="height: 4.2rem">
             <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart1"></div>
+            <div class="allnav" id="echart1">
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer1"
+                :options="playerOptions1"
+              ></video-player>
+            </div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 1.2rem">
@@ -57,8 +63,14 @@
         </li>
         <li>
           <div class="boxall" style="height:3.4rem">
-            <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart4"></div>
+            <div class="alltitle">防疫宣传视频</div>
+            <div class="allnav" id="echart4">
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions2"
+              ></video-player>
+            </div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 3.2rem">
@@ -79,6 +91,10 @@
 </template>
 
 <script>
+import "videojs-flash";
+import "video.js/dist/video-js.css";
+import 'vue-video-player/src/custom-theme.css'
+import { videoPlayer } from 'vue-video-player'
 import Header from "@/components/header";
 export default {
   data() {
@@ -95,10 +111,74 @@ export default {
       bannerHeight: 1000,
       // 浏览器宽度
       screenWidth: 0
+      playerOptions1: {
+        // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: false, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        techOrder: ["flash", "html5"], // 兼容顺序
+        height:'270%',
+        flash: {
+          hls: { withCredentials: false },
+          swf: "../../static/video-js.swf" // 引入静态文件swf
+        },
+        html5: { hls: { withCredentials: false } },
+        sources: [
+          {
+            // 流配置，数组形式，会根据兼容顺序自动切换
+            type: "rtmp/hls",
+            src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc"
+          }
+        ],
+        poster: "", //你的封面地址
+        // width: document.documentElement.clientWidth,
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true //全屏按钮
+        }
+      },
+      playerOptions2: {
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: false, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        techOrder: ["flash", "html5"], // 兼容顺序
+        height:'205%',
+        flash: {
+          hls: { withCredentials: false },
+          swf: "../../static/video-js.swf" // 引入静态文件swf
+        },
+        html5: { hls: { withCredentials: false } },
+        sources: [
+          {
+            // 流配置，数组形式，会根据兼容顺序自动切换
+            type: "video/mp4",
+            src: "http://47.101.33.200:8080/static/fangyishipin.mp4" //url地址
+          }
+        ],
+        poster: "", //你的封面地址
+        // width: document.documentElement.clientWidth,
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true //全屏按钮
+        }
+      }
     };
   },
   components: {
-    Header
+    Header,videoPlayer
   },
   mounted() {
     // 首次加载时,需要调用一次
@@ -109,6 +189,8 @@ export default {
       this.screenWidth = window.innerWidth;
       this.setSize();
     };
+    this.$refs.videoPlayer.player.play();
+    this.$refs.videoPlayer1.player.play();
 
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
@@ -1073,4 +1155,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.myvideo{
+  width:100%;
+  height: 100%;
+  object-fit: fill
+}
 </style

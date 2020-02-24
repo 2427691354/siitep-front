@@ -7,7 +7,8 @@ import Axios from "axios";
 import ElementUI from "element-ui";
 import echarts from "echarts";
 import AMap from "vue-amap";
-
+// import VideoPlayer from "vue-video-player";
+// Vue.use(VideoPlayer);
 Vue.use(ElementUI);
 Vue.use(AMap);
 Vue.prototype.$echarts = echarts;
