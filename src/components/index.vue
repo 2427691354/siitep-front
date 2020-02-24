@@ -21,7 +21,7 @@
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
             <div class="allnav" id="echart2" style="padding:12px 0px;">
-              <img
+              <!-- <img
                 src="../assets/picture/未带口罩.png"
                 alt=""
                 style="width:calc(100% / 6 - 3px)"
@@ -50,7 +50,7 @@
                 src="../assets/picture/未带口罩.png"
                 alt=""
                 style="width:calc(100% / 6 - 3px)"
-              />
+              /> -->
             </div>
             <div class="boxfoot"></div>
           </div>
