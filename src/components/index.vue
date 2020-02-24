@@ -66,11 +66,13 @@
           <div class="boxallcard" style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
             <div class="allnav" id="echart5">
-              <el-carousel :interval="2000" type="card" height="160px">
+
+               <el-carousel :interval="2000" type="card" height="160px">
                 <el-carousel-item v-for="item in this.img_list" :key="item.img">
                   <img :src="'/static/img/'+item.img" />
                 </el-carousel-item>
               </el-carousel>
+             
             </div>
             <div class="boxfootcard"></div>
           </div>
@@ -248,6 +250,7 @@ export default {
           // window.location.reload();
         });
     },
+    
     slideShow(){
       var self = this;
       self.$http
