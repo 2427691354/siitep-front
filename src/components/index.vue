@@ -19,13 +19,54 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 1.2rem">
-            <div class="alltitle">未带口罩人员截图区域</div>
-            <div class="allnav" id="echart2"></div>
+            <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
+            <div class="allnav" id="echart2" style="padding:12px 0px;">
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
+            </div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart3"></div>
+            <div class="allnav" id="echart3">
+              <el-tabs
+                v-model="activeName"
+                @tab-click="handleClick"
+                class="tab"
+              >
+                <el-tab-pane label="热搜" name="first">热搜</el-tab-pane>
+                <el-tab-pane label="知识" name="second">知识</el-tab-pane>
+                <el-tab-pane label="辟谣" name="third">辟谣</el-tab-pane>
+              </el-tabs>
+            </div>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -33,9 +74,9 @@
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li class="pulll_left counter">{{statistics.sumAll}}</li>
-                <li class="pulll_left counter">{{statistics.sumIsolated}}</li>
-                <li class="pulll_left counter">{{statistics.sumHever}}</li>
+                <li class="pulll_left counter">{{ statistics.sumAll }}</li>
+                <li class="pulll_left counter">{{ statistics.sumIsolated }}</li>
+                <li class="pulll_left counter">{{ statistics.sumHever }}</li>
               </ul>
             </div>
             <div class="barbox2">
@@ -87,17 +128,23 @@
 <script>
 import "videojs-flash";
 import "video.js/dist/video-js.css";
-import 'vue-video-player/src/custom-theme.css'
-import { videoPlayer } from 'vue-video-player'
+import "vue-video-player/src/custom-theme.css";
+import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
   data() {
     return {
+      activeName: "first",
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
         sumHever: 0
       },
+      img_list: [],
+      // 图片父容器高度
+      bannerHeight: 1000,
+      // 浏览器宽度
+      screenWidth: 0,
       playerOptions1: {
         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
@@ -105,7 +152,7 @@ export default {
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
         language: "zh-CN",
-        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         techOrder: ["flash", "html5"], // 兼容顺序
@@ -118,7 +165,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/hls",
-            src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc"
+            src: "rtmp://58.200.131.2:1935/livetv/hunantv"
           }
         ],
         poster: "", //你的封面地址
@@ -135,10 +182,10 @@ export default {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
-        loop: false, // 导致视频一结束就重新开始。
+        loop: true, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
         language: "zh-CN",
-        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         techOrder: ["flash", "html5"], // 兼容顺序
@@ -167,7 +214,8 @@ export default {
     };
   },
   components: {
-    Header,videoPlayer
+    Header,
+    videoPlayer
   },
   mounted() {
     this.$refs.videoPlayer.player.play();
@@ -186,6 +234,13 @@ export default {
     this.canves();
   },
   methods: {
+    handleClick(tab, event) {
+      console.log(tab, event);
+    },
+    setSize: function() {
+      // 通过浏览器宽度(图片宽度)计算高度
+      this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
     initSum() {
       var self = this;
       self.$http
@@ -1115,9 +1170,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.myvideo{
-  width:100%;
+.myvideo {
+  width: 100%;
   height: 100%;
-  object-fit: fill
+  object-fit: fill;
 }
-</style
+.tab {
+  color: red;
+}
+</style>
