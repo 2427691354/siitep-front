@@ -21,11 +21,6 @@
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
             <div class="allnav" id="echart2" style="padding:12px 0px;">
-              <!-- <img
-                src="../assets/picture/未带口罩.png"
-                alt=""
-                style="width:calc(100% / 6 - 3px)"
-              />
               <img
                 src="../assets/picture/未带口罩.png"
                 alt=""
@@ -50,7 +45,12 @@
                 src="../assets/picture/未带口罩.png"
                 alt=""
                 style="width:calc(100% / 6 - 3px)"
-              /> -->
+              />
+              <img
+                src="../assets/picture/未带口罩.png"
+                alt=""
+                style="width:calc(100% / 6 - 3px)"
+              />
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -229,6 +229,9 @@ export default {
 
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
+
+    //轮播图
+    this.slideShow();
 
     this.resizeFontsize();
     //			改变横屏竖屏执行效果更换
