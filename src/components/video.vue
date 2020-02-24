@@ -9,7 +9,7 @@
              id="echart1">
           <el-tabs v-model="activeName"
                    @tab-click="handleClick">
-            <el-tab-pane label="用户管理"
+            <el-tab-pane label="excel导入"
                          name="first">
               <el-upload class="upload-demo"
                          ref="upload1"
@@ -28,7 +28,7 @@
                            @click="submitUpload1">excel导入</el-button>
               </el-upload>
             </el-tab-pane>
-            <el-tab-pane label="配置管理"
+            <el-tab-pane label="图片上传"
                          name="second">
               <el-upload class="upload-demo"
                          ref="upload"
@@ -47,6 +47,12 @@
                            @click="submitUpload">图片上传到服务器</el-button>
               </el-upload>
             </el-tab-pane>
+            <el-tab-pane label="防疫知识管理"
+                         name="three">
+            </el-tab-pane>
+            <el-tab-pane label="谣言管理"
+                         name="four">
+            </el-tab-pane>
           </el-tabs>
         </div>
         <div class="boxfoot"></div>
@@ -62,7 +68,8 @@ export default {
   data () {
     return {
       fileList: [],
-      fileList1: []
+      fileList1: [],
+      activeName: 'first'
     };
   },
   components: {
@@ -77,12 +84,20 @@ export default {
     },
     submitUpload () {
       this.$refs.upload.submit();
+      this.$refs.upload.clearFiles();
     },
     submitUpload1 () {
       this.$refs.upload1.submit();
+      this.$refs.upload1.clearFiles();
+    },
+    handleClick (tab, event) {
+      console.log(tab, event);
     },
   }
 };
 </script>
 <style>
+.el-tabs__item {
+  color: #fff;
+}
 </style>
