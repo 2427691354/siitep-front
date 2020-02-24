@@ -214,6 +214,7 @@ export default {
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
 
+    
     //轮播图
     this.slideShow();
 
@@ -250,7 +251,7 @@ export default {
           // window.location.reload();
         });
     },
-    
+
     slideShow(){
       var self = this;
       self.$http
