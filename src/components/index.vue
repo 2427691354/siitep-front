@@ -21,7 +21,7 @@
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
             <div class="allnav" id="echart2" style="padding:12px 0px;">
-              <img
+              <!-- <img
                 src="../assets/picture/未带口罩.png"
                 alt=""
                 style="width:calc(100% / 6 - 3px)"
@@ -50,7 +50,7 @@
                 src="../assets/picture/未带口罩.png"
                 alt=""
                 style="width:calc(100% / 6 - 3px)"
-              />
+              /> -->
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -90,10 +90,16 @@
           <div class="map">
             <div class="map4" id="map_1"></div>
           </div>
-          <div class="boxall" style="height: 2.6rem">
-            <div class="alltitle">停课不停学图片走马灯卡片式轮播</div>
-            <div class="allnav" id="echart5"></div>
-            <div class="boxfoot"></div>
+          <div class="boxallcard" style="height: 2.6rem">
+            <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
+            <div class="allnav" id="echart5">
+              <el-carousel :interval="2000" type="card" height="160px">
+                <el-carousel-item v-for="item in this.img_list" :key="item.img">
+                  <img :src="'/static/img/' + item.img" />
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+            <div class="boxfootcard"></div>
           </div>
         </li>
         <li>
@@ -251,6 +257,19 @@ export default {
           self.statistics.sumIsolated = res.sumisolated;
           self.statistics.sumHever = res.sumhever;
           // window.location.reload();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    slideShow() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/pictures/selectByType?type=1")
+        .then(function(response) {
+          var res = response.data;
+          self.img_list = res;
         })
         .catch(function(error) {
           console.log(error);
