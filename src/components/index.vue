@@ -1174,13 +1174,14 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .myvideo{
   width:100%;
   height: 100%;
   object-fit: fill
 }
-.tab{
-  color: red;
+.el-tabs__item{
+  color: #5bc0de;
+
 }
 </style>
