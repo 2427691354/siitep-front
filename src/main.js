@@ -16,6 +16,7 @@ Vue.prototype.$echarts = echarts;
 Vue.prototype.$http = Axios;
 Vue.config.productionTip = false;
 Vue.prototype.baseUrl = "http://139.196.78.182:8088";
+Vue.prototype.staticUrl = "http://47.101.33.200:8080/static/siitep";
 
 // 引入公共public.js
 import "./assets/css/comon0.css";

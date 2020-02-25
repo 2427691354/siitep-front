@@ -98,7 +98,7 @@
                            height="160px">
                 <el-carousel-item v-for="item in this.img_list"
                                   :key="item.img">
-                  <img :src="'/static/img/' + item.img" />
+                  <img :src="staticUrl+'/img/'+ item.img" />
                 </el-carousel-item>
               </el-carousel>
             </div>
@@ -147,6 +147,7 @@ import Header from "@/components/header";
 export default {
   data () {
     return {
+      staticUrl: this.staticUrl,
       activeName: "first",
       statistics: {
         sumAll: 0,
@@ -211,7 +212,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "video/mp4",
-            src: "http://47.101.33.200:8080/static/fangyishipin.mp4" //url地址
+            src: this.staticUrl + "/video/fangyishipin.mp4" //url地址
           }
         ],
         poster: "", //你的封面地址

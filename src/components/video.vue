@@ -32,7 +32,7 @@
                          name="second">
               <el-upload class="upload-demo"
                          ref="upload"
-                         action="http://localhost:8088/addImage"
+                         action="http://47.101.33.200:8089/addImage"
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList"
