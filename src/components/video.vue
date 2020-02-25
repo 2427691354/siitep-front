@@ -17,7 +17,7 @@
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
-                         action="http://localhost:8088/import"
+                         action="http://localhost:8089/import"
                          :auto-upload="false">
                 <el-button slot="trigger"
                            size="small"
@@ -86,6 +86,9 @@ export default {
       }, {
         value: '2',
         label: '辅导员'
+      }, {
+        value: '3',
+        label: '未戴口罩人员'
       }],
       value: '1'
     };
