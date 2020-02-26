@@ -17,7 +17,7 @@
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
-                         action="http://localhost:8088/import"
+                         action="http://localhost:8089/import"
                          :auto-upload="false">
                 <el-button slot="trigger"
                            size="small"
@@ -28,11 +28,21 @@
                            @click="submitUpload1">excel导入</el-button>
               </el-upload>
             </el-tab-pane>
-            <el-tab-pane label="图片上传"
+            <el-tab-pane label="停学不停课图片上传"
                          name="second">
+              <el-select v-model="value"
+                         size="small"
+                         placeholder="请选择">
+                <el-option v-for="item in options"
+                           :key="item.value"
+                           :label="item.label"
+                           :value="item.value">
+                </el-option>
+              </el-select>
+              <br><br><br>
               <el-upload class="upload-demo"
                          ref="upload"
-                         action="http://localhost:8088/addImage"
+                         :action="'http://47.101.33.200:8089/addImage?type='+this.value"
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList"
@@ -69,7 +79,18 @@ export default {
     return {
       fileList: [],
       fileList1: [],
-      activeName: 'first'
+      activeName: 'second',
+      options: [{
+        value: '1',
+        label: '停学不停课'
+      }, {
+        value: '2',
+        label: '辅导员'
+      }, {
+        value: '3',
+        label: '未戴口罩人员'
+      }],
+      value: '1'
     };
   },
   components: {
