@@ -14,6 +14,7 @@
               <el-upload class="upload-demo"
                          ref="upload1"
                          :limit="1"
+                         :on-success="handleAvatarSuccess"
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
@@ -113,6 +114,9 @@ export default {
     },
     handleClick (tab, event) {
       console.log(tab, event);
+    },
+    handleAvatarSuccess (response, file, fileList) {
+      console.log(response)
     },
   }
 };
