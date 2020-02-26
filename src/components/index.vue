@@ -95,7 +95,7 @@
                  id="echart5">
               <el-carousel :interval="2000"
                            type="card"
-                           height="160px">
+                           height="2rem">
                 <el-carousel-item v-for="item in this.img_list"
                                   :key="item.img">
                   <img :src="staticUrl+'/img/'+ item.img" />
@@ -744,7 +744,7 @@ export default {
         name: "确诊病例",
         type: "map",
         geoIndex: 0,
-        data: this.data_alllist
+        data: [this.data_alllist]
     }
         ]
       };
