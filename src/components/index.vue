@@ -20,13 +20,20 @@
           </div>
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
-            <div class="allnav" id="echart2" style="padding:12px 0px;">
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+            
+              <div id="demo">
+                <div id="indemo">
+                  <div id="demo1">
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                    <img src="../assets/picture/未带口罩.png" border="0" />
+                  </div>
+                  <div id="demo2"></div>
+                </div>
+              
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -98,9 +105,9 @@
               >
                 >
                 <el-table-column prop="name" label="姓名" width="90"></el-table-column>
-                <el-table-column prop="class" label="班级" width="90"></el-table-column>
-                <el-table-column prop="tem" label="体温(℃)" width="80"></el-table-column>
-                <el-table-column prop="status" label="状态(发烧/隔离)"></el-table-column>
+                <el-table-column prop="class" label="班级" width="95"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="75"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
                 <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
@@ -212,7 +219,7 @@ export default {
       resou: null,
       zhishi: null,
       piyao: null,
-      
+
       //
       //学生总人数
       data_alllist: [],
@@ -263,6 +270,7 @@ export default {
     this.slideShow();
     //重点关注学生
     this.focusStu();
+    this.gundong();
   },
   methods: {
     handleClick(tab, event) {
@@ -275,7 +283,7 @@ export default {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    
+
     initHuan() {
       var self = this;
       self.$http
@@ -1356,15 +1364,15 @@ export default {
       );
     },
     //change,play实现表格自动滚动
-    change(){
+    change() {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    play(){
+    play() {
       //每两秒执行一次插入删除操作
-      setInterval(this.change,1000);
+      setInterval(this.change, 1000);
     },
     focusStu() {
       var self = this;
@@ -1382,7 +1390,7 @@ export default {
               } else {
                 res[i].quarantine = "医院";
               }
-            }else{
+            } else {
               res[i].quarantine = "无";
             }
             dd.push({
@@ -1397,7 +1405,24 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-    }
+    },
+    gundong(){
+      var speed = 8;
+        var tab = document.getElementById("demo");
+        var tab1 = document.getElementById("demo1");
+        var tab2 = document.getElementById("demo2");
+        tab2.innerHTML = tab1.innerHTML;
+        function Marquee() {
+            if (tab2.offsetWidth - tab.scrollLeft <= 0)
+                tab.scrollLeft -= tab1.offsetWidth
+            else {
+                tab.scrollLeft++;
+            }
+        }
+        var MyMar = setInterval(Marquee, speed);
+        tab.onmouseover = function () { clearInterval(MyMar) };
+        tab.onmouseout = function () { MyMar = setInterval(Marquee, speed) };
+    },
   },
   beforeDestroy() {
     if (this.timer) {
@@ -1451,5 +1476,32 @@ export default {
     table-layout: fixed;
     border-collapse: separate;
     width: auto!important;
+}
+#demo {
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+}
+
+#demo img {
+  height: 100%;
+}
+
+#indemo {
+  float: left;
+  width: 800%;
+  height: 100%;
+}
+
+#demo1 {
+  float: left;
+  height: 100%;
+  margin-right: 3px;
+}
+
+#demo2 {
+  float: left;
+  height: 100%;
 }
 </style>
