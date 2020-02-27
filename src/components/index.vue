@@ -23,12 +23,17 @@
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img
-                    style="margin-right:2px;"
+                  <!-- <img
                     :src="staticUrl + '/img/' + item.img"
                     v-for="item in this.noMaskList"
                     :key="item.img"
-                  />
+                  /> -->
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
                 </div>
                 <div id="demo2"></div>
               </div>
@@ -38,7 +43,6 @@
           <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
-              
               <Tabs value="name1">
                 <TabPane label="诊断" name="name1" id="resou"></TabPane>
                 <TabPane label="知识" name="name2" id="zhishi"></TabPane>
