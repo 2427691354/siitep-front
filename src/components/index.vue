@@ -87,24 +87,24 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxallinfo" style="height: 3.2rem">
-            <!-- <div class="alltitle">模块标题样式</div> -->
+            <div class="alltitle">重点关注学生信息表</div>
             <div class="allnav" id="echart5">
               <el-table
                 :data="stuInfo"
                 stripe
-                style="width: 100%;font-size: 10px"
+                style="font-size: 10px"
                 :row-style="{height:'0.4rem'}"
                 :cell-style="{padding:'0px'}"
               >
                 >
                 <el-table-column prop="name" label="姓名" width="90"></el-table-column>
-                <el-table-column prop="class" label="班级" width="100"></el-table-column>
-                <el-table-column prop="tem" label="体温" width="70"></el-table-column>
-                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="class" label="班级" width="90"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="80"></el-table-column>
+                <el-table-column prop="status" label="状态(发烧/隔离)"></el-table-column>
                 <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
-            <div class="boxfootinfo"></div>
+            <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 2.7rem">
             <div class="alltitle">模块标题样式</div>
@@ -226,7 +226,7 @@ export default {
     //学生发烧人数
     this.feverNum();
     //表格自动滚动
-    //this.play();
+    this.play();
   },
   mounted() {
     this.$refs.videoPlayer.player.play();
@@ -897,16 +897,16 @@ export default {
       );
     },
     //change,play实现表格自动滚动
-    // change(){
-    //   //把第一条数据插入数组最后一条
-    //   this.tableData.push(this.tableData[0]);
-    //   //删除数组中第一条数据
-    //   this.tableData.shift();
-    // },
-    // play(){
-    //   //每两秒执行一次插入删除操作
-    //   setInterval(this.change,1000);
-    // },
+    change(){
+      //把第一条数据插入数组最后一条
+      this.stuInfo.push(this.stuInfo[0]);
+      //删除数组中第一条数据
+      this.stuInfo.shift();
+    },
+    play(){
+      //每两秒执行一次插入删除操作
+      setInterval(this.change,1000);
+    },
     focusStu() {
       var self = this;
       self.$http
@@ -924,7 +924,7 @@ export default {
                 res[i].quarantine = "医院";
               }
             }else{
-              res[i].quarantine = "";
+              res[i].quarantine = "无";
             }
             dd.push({
               name: res[i].s_name,
