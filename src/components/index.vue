@@ -181,7 +181,7 @@ export default {
         techOrder: ["flash", "html5"], // 兼容顺序
         flash: {
           hls: { withCredentials: false },
-          swf: "../../static/video-js.swf" // 引入静态文件swf
+          swf: "static/video-js.swf" // 引入静态文件swf
         },
         html5: { hls: { withCredentials: false } },
         sources: [
@@ -214,7 +214,7 @@ export default {
         techOrder: ["flash", "html5"], // 兼容顺序
         flash: {
           hls: { withCredentials: false },
-          swf: "../../static/video-js.swf" // 引入静态文件swf
+          swf: "static/video-js.swf" // 引入静态文件swf
         },
         html5: { hls: { withCredentials: false } },
         sources: [
