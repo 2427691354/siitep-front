@@ -91,40 +91,22 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3.2rem">
+          <div class="boxallinfo" style="height: 3.2rem;" >
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="echart5">
+            <div class="allnav" id="echart5" >
               <el-table
                 :data="stuInfo"
                 stripe
-                style="font-size: 10px"
-                :row-style="{ height: '0.4rem' }"
-                :cell-style="{ padding: '0px' }"
+                style="font-size: 10%"
+                :row-style="{height:'0.4rem'}"
+                :cell-style="{padding:'0px'}"
               >
                 >
-                <el-table-column
-                  prop="name"
-                  label="姓名"
-                  width="90"
-                ></el-table-column>
-                <el-table-column
-                  prop="class"
-                  label="班级"
-                  width="90"
-                ></el-table-column>
-                <el-table-column
-                  prop="tem"
-                  label="体温(℃)"
-                  width="80"
-                ></el-table-column>
-                <el-table-column
-                  prop="status"
-                  label="状态(发烧/隔离)"
-                ></el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="隔离地点"
-                ></el-table-column>
+                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
+                <el-table-column prop="class" label="班级" width="95"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="75"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
@@ -1391,7 +1373,7 @@ export default {
           self.stuInfo = dd;
           for (var i = 0; i < res.length; i++) {
             // 判断
-            if (res[i].STATUS == "隔离") {
+            if (res[i].STATUS == "ISOLATION") {
               if (res[i].quarantine == 0) {
                 res[i].quarantine = "在家";
               } else {
@@ -1490,6 +1472,15 @@ export default {
 #echart6 {
   width: 100%;
   height: 100%;
+}
+.el-table__header{
+  padding: 0;
+  height: 5%;
+}
+.el-table__body, .el-table__footer, .el-table__header {
+    table-layout: fixed;
+    border-collapse: separate;
+    width: auto!important;
 }
 #demo {
   overflow: hidden;
