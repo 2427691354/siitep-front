@@ -20,9 +20,13 @@
           </div>
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
-            <div class="allnav" id="echart2">
-             
-               
+            <div class="allnav" id="echart2" style="padding:12px 0px;">
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -43,8 +47,8 @@
             <div class="barbox">
               <ul class="clearfix">
                 <li class="pulll_left counter">{{ statistics.sumAll }}</li>
+                <li class="pulll_left counter">{{ statistics. sumHever}}</li>
                 <li class="pulll_left counter">{{ statistics.sumIsolated }}</li>
-                <li class="pulll_left counter">{{ statistics.sumHever }}</li>
               </ul>
             </div>
             <div class="barbox2">
@@ -61,7 +65,7 @@
           <div class="boxallcard" style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
             <div class="allnav" id="echart5">
-              <el-carousel :interval="2000" type="card" height="160px">
+              <el-carousel :interval="2000" type="card" height="2rem">
                 <el-carousel-item v-for="item in this.img_list" :key="item.img">
                   <img :src="staticUrl+'/img/'+ item.img" />
                 </el-carousel-item>
@@ -83,24 +87,24 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxallinfo" style="height: 3.2rem">
-            <!-- <div class="alltitle">模块标题样式</div> -->
+            <div class="alltitle">重点关注学生信息表</div>
             <div class="allnav" id="echart5">
               <el-table
-                :data="tableData"
-                border
-                style="width: 100%;font-size: 10px"
-                max-height="250"
-                :row-style="{height:'5px'}"
+                :data="stuInfo"
+                stripe
+                style="font-size: 10px"
+                :row-style="{height:'0.4rem'}"
                 :cell-style="{padding:'0px'}"
               >
                 >
-                <el-table-column prop="name" label="姓名" width="80%"></el-table-column>
-                <el-table-column prop="class" label="班级" width="80%"></el-table-column>
-                <el-table-column prop="tem" label="体温" width="80%"></el-table-column>
-                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
+                <el-table-column prop="class" label="班级" width="90"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="80"></el-table-column>
+                <el-table-column prop="status" label="状态(发烧/隔离)"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
-            <div class="boxfootinfo"></div>
+            <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 2.85rem">
             <div id="echart6"></div>
@@ -135,7 +139,6 @@ export default {
       },
       //轮播图图片
       img_list: [],
-
       // 图片父容器高度
       bannerHeight: 1000,
       // 浏览器宽度
@@ -209,64 +212,20 @@ export default {
       resou: null,
       zhishi: null,
       piyao: null,
-      tableData: [
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        }
-      ],
+      
       //
+      //学生总人数
       data_alllist: [],
+      //学生隔离人数
       data_gelilist: [],
+      //学生发烧人数
       data_fashaolist: [],
       lowfever: null,
       normal: null,
       moderatefever: null,
-      highfever: null
+      highfever: null,
+      //重点关注学生信息
+      stuInfo: []
     };
   },
   components: {
@@ -275,28 +234,22 @@ export default {
   },
   created() {
     //学生隔离人数
-    this.geli();
+    this.insulateNum();
     //学生发烧人数
-    this.fashao();
+    this.feverNum();
+    //表格自动滚动
+    this.play();
   },
   mounted() {
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
-
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
-    //学生各省物理分布人数
-    this.allnum();
-
-    //轮播图
-    this.slideShow();
-
     this.resizeFontsize();
-    //			改变横屏竖屏执行效果更换
+    //改变横屏竖屏执行效果更换
     window.addEventListener("orientationchange", this.resizeFontsize());
-    //			改变手机大小执行效果更换
+    //改变手机大小执行效果更换
     window.addEventListener("resize", this.resizeFontsize());
-
     this.map();
     this.canves();
     this.initwordcould1();
@@ -304,6 +257,12 @@ export default {
     this.initwordcould3();
 
     this.initHuan();
+    //学生各省物理分布人数
+    this.allNum();
+    //轮播图
+    this.slideShow();
+    //重点关注学生
+    this.focusStu();
   },
   methods: {
     handleClick(tab, event) {
@@ -791,7 +750,7 @@ export default {
         .then(function(response) {
           var dd = [];
           var res = response.data;
-          // console.log(res);
+          // console.log(res);      *****
           for (var i = 0; i < res.length; i++) {
             dd.push({
               name: res[i].location_province,
@@ -801,7 +760,7 @@ export default {
           self.map(dd);
         });
     },
-    geli() {
+    insulateNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
@@ -811,7 +770,7 @@ export default {
           self.data_gelilist = res;
         });
     },
-    fashao() {
+    feverNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
@@ -863,34 +822,42 @@ export default {
           }
         },
         tooltip: {
-          trigger: "item"
-          // formatter: function(params) {
-          //   if (typeof params.value[2] == "undefined") {
-          //     return params.name + " : " + params.value;
-          //   } else {
-          //     return params.name + " : " + params.value[2];
-          //   }
-          // }
+          trigger: "item",
+          formatter: function(params) {
+            if (typeof params.value[2] == "undefined") {
+              return (
+                option.series[0].name +
+                "<br/>" +
+                params.name +
+                " : " +
+                params.value
+              );
+            } else {
+              return params.name + " : " + params.value[2];
+            }
+          }
         },
         legend: {
           data: ["隔离人数", "发烧人数"],
-          icon: "circle", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
+          icon: "pin", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
           orient: "vertical",
-          right: "30%",
-          bottom: "50%",
+          right: "28%",
+          bottom: "40%",
           textStyle: {
             color: "#fff"
           }
         },
         //是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
         visualMap: {
+          show: false,
           min: 0, //最小值
-          max: 10, //最大值
+          max: 100, //最大值
           left: "25%",
           bottom: "5%",
           calculable: true, //是否显示拖拽用的手柄（手柄能拖拽调整选中范围）。
+          seriesIndex: [0], //不会覆盖其他type颜色
           inRange: {
-            color: ["#e0ffff", "#006edd"] //颜色
+            color: ["#edfbfb", "#b7d6f3", "#40a9ed", "#3598c1", "#215096"] //颜色
           },
           textStyle: {
             color: "#fff"
@@ -916,15 +883,43 @@ export default {
         },
         series: [
           {
-            name: "隔离人数",
-            type: "scatter",
-            data: convertData(this.data_gelilist),
-            coordinateSystem: "geo",
-            symbol: "pin", //气泡
-            symbolSize: 20,
+            name: "学生人数",
+            type: "map",
+            geoIndex: 0,
+            showLegendSymbol: false,
             label: {
               normal: {
-                show: true,
+                show: true
+              },
+              emphasis: {
+                show: false,
+                textStyle: {
+                  color: "#fff"
+                }
+              }
+            },
+            roam: true,
+            itemStyle: {
+              normal: {
+                areaColor: "#031525",
+                borderColor: "#3B5077"
+              },
+              emphasis: {
+                areaColor: "#2B91B7"
+              }
+            },
+            animation: false,
+            data: datalist
+          },
+          {
+            name: "隔离人数",
+            type: "scatter",
+            coordinateSystem: "geo",
+            symbol: "pin", //气泡
+            symbolSize: 30,
+            label: {
+              normal: {
+                show: false,
                 textStyle: {
                   color: "#fff",
                   fontSize: 9
@@ -933,10 +928,11 @@ export default {
             },
             itemStyle: {
               normal: {
-                color: "#F62157" //标志颜色
+                color: "#FF5000" //标志颜色
               }
             },
-            zlevel: 6
+            zlevel: 6,
+            data: convertData(this.data_gelilist)
           },
           {
             name: "发烧人数",
@@ -953,10 +949,15 @@ export default {
               normal: {
                 formatter: "{b}",
                 position: "right",
-                show: true
+                show: true,
+                textStyle: {
+                  color: "#fff"
+                },
+                backgroundColor: "rgba(0,0,0,0.5)"
               }
             },
             itemStyle: {
+              show: true,
               normal: {
                 color: "yellow",
                 shadowBlur: 10,
@@ -964,14 +965,10 @@ export default {
               }
             },
             zlevel: 1
-          },
-          {
-            type: "map",
-            geoIndex: 0,
-            data: datalist
           }
         ]
       };
+      // console.log(convertData(this.data_fashaolist));
       myChart.setOption(option);
       window.addEventListener("resize", function() {
         myChart.resize();
@@ -1357,6 +1354,49 @@ export default {
         },
         false
       );
+    },
+    //change,play实现表格自动滚动
+    change(){
+      //把第一条数据插入数组最后一条
+      this.stuInfo.push(this.stuInfo[0]);
+      //删除数组中第一条数据
+      this.stuInfo.shift();
+    },
+    play(){
+      //每两秒执行一次插入删除操作
+      setInterval(this.change,1000);
+    },
+    focusStu() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getFocusStu")
+        .then(function(response) {
+          var dd = [];
+          var res = response.data;
+          self.stuInfo = dd;
+          for (var i = 0; i < res.length; i++) {
+            // 判断
+            if (res[i].STATUS == "隔离") {
+              if (res[i].quarantine == 0) {
+                res[i].quarantine = "在家";
+              } else {
+                res[i].quarantine = "医院";
+              }
+            }else{
+              res[i].quarantine = "无";
+            }
+            dd.push({
+              name: res[i].s_name,
+              class: res[i].c_name,
+              tem: res[i].temperature,
+              status: res[i].STATUS,
+              address: res[i].quarantine
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
   beforeDestroy() {
