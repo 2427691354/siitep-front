@@ -102,26 +102,11 @@
                 :cell-style="{ padding: '0px' }"
               >
                 >
-                <el-table-column
-                  prop="name"
-                  label="姓名"
-                  width="90"
-                ></el-table-column>
-                <el-table-column
-                  prop="class"
-                  label="班级"
-                  width="95"
-                ></el-table-column>
-                <el-table-column
-                  prop="tem"
-                  label="体温(℃)"
-                  width="75"
-                ></el-table-column>
+                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
+                <el-table-column prop="class" label="班级" width="95"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="75"></el-table-column>
                 <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="隔离地点"
-                ></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
