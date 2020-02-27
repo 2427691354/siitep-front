@@ -19,7 +19,7 @@
 body {
   padding: 0px;
   margin: 0px;
-  color: #222;
+  /* color: #222; */
   font-family: "微软雅黑";
 }
 body {
@@ -31,8 +31,7 @@ body {
 li {
   list-style-type: none;
 }
-table {
-}
+
 i {
   margin: 0px;
   padding: 0px;
@@ -108,12 +107,10 @@ a:hover {
 .allnav {
   height: calc(100% - 30px);
 }
-
 .mainbox {
   padding: 0.1rem 0.1rem 0rem 0.1rem;
 }
-.mainbox > ul {
-}
+
 .mainbox > ul > li {
   float: left;
   padding: 0 0.1rem;
@@ -145,9 +142,37 @@ a:hover {
   /* border-top: 2px solid #02a6b5; */
   top: 0;
 }
+.boxallinfo{
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  /* padding: 0 0.2rem 0.4rem 0.15rem; */
+  background: rgba(255, 255, 255, 0.08) url(../images/line.png);
+  background-size: 100% auto;
+  position: relative;
+  margin-bottom: 0.15rem;
+  z-index: 10;
+}
+.boxallinfo:before,
+.boxallinfo:after {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  content: "";
+  border-top: 2px solid #02a6b5;
+  top: 0;
+}
+.boxallinfo:before,
+.boxfoot:before {
+  border-left: 2px solid #02a6b5;
+  left: 0;
+}
+.boxallinfo:after,
+.boxfoot:after {
+  border-right: 2px solid #02a6b5;
+  right: 0;
+}
 .boxall {
   border: 1px solid rgba(25, 186, 139, 0.17);
-  padding: 0 0.2rem 0.4rem 0.15rem;
+  padding: 0 0.2rem 0rem 0.15rem;
   background: rgba(255, 255, 255, 0.08) url(../images/line.png);
   background-size: 100% auto;
   position: relative;
@@ -500,9 +525,57 @@ a:hover {
 }
 .el-carousel {
   position: relative;
-  padding-top: 9px;
+  padding-top: 8px;
 }
 .el-carousel__item img{
   width: 100%;
   height: inherit;
+}
+.el-table{
+  height: inherit;
+  width: auto;
+  background-color:transparent!important;
+  color: #FFF!important;
+  font-size: 0.15rem!important;
+}
+.el-table__header{
+  padding: 0;
+  height: 5%;
+}
+.el-table thead {
+  color: #fff!important;
+  background-color: #1B3565;
+  font-weight: 500;
+}
+/* 设置table header的背景颜色 */
+.el-table th, .el-table tr ,.el-table td{
+  background-color: transparent!important;
+  padding: 5px 0px!important;
+  text-align: center!important;
+}
+
+.el-table td, .el-table th.is-leaf {
+  border-bottom: 0px solid #05a4b8!important;
+}
+/* .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+  border-right: 1px solid #05a4b8!important;
+} */
+.el-table--border, .el-table--group {
+  border: 1px solid #05a4b8!important;
+}
+/* .el-table--group::after{
+  content: '';
+  position: absolute;
+  background-color: #05a4b8!important;
+  /* z-index: 1; */
+/* } */ 
+.el-table::after{
+  width: 0%!important;
+  height: 0%!important;
+
+}
+.el-table::before{
+  width: 0%!important;
+  height: 0%!important;
+
 }
