@@ -20,16 +20,15 @@
           </div>
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
-
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img src="../assets/picture/未带口罩.png" border="0" />
-                  <img src="../assets/picture/未带口罩.png" border="0" />
-                  <img src="../assets/picture/未带口罩.png" border="0" />
-                  <img src="../assets/picture/未带口罩.png" border="0" />
-                  <img src="../assets/picture/未带口罩.png" border="0" />
-                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img
+                    style="margin-right:2px;"
+                    :src="staticUrl + '/img/' + item.img"
+                    v-for="item in this.noMaskList"
+                    :key="item.img"
+                  />
                 </div>
                 <div id="demo2"></div>
               </div>
@@ -92,22 +91,37 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3.2rem;" >
+          <div class="boxallinfo" style="height: 3.2rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="echart5" >
+            <div class="allnav" id="echart5">
               <el-table
                 :data="stuInfo"
                 stripe
                 style="font-size: 10%"
-                :row-style="{height:'0.4rem'}"
-                :cell-style="{padding:'0px'}"
+                :row-style="{ height: '0.4rem' }"
+                :cell-style="{ padding: '0px' }"
               >
                 >
-                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
-                <el-table-column prop="class" label="班级" width="95"></el-table-column>
-                <el-table-column prop="tem" label="体温(℃)" width="75"></el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                  width="90"
+                ></el-table-column>
+                <el-table-column
+                  prop="class"
+                  label="班级"
+                  width="95"
+                ></el-table-column>
+                <el-table-column
+                  prop="tem"
+                  label="体温(℃)"
+                  width="75"
+                ></el-table-column>
                 <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column prop="address" label="隔离地点"></el-table-column>
+                <el-table-column
+                  prop="address"
+                  label="隔离地点"
+                ></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
@@ -218,7 +232,6 @@ export default {
       resou: null,
       zhishi: null,
       piyao: null,
-
       //
       //学生总人数
       data_alllist: [],
@@ -245,6 +258,8 @@ export default {
     this.feverNum();
     //表格自动滚动
     this.play();
+    // 获取未带口罩的图片
+    this.noMaskList();
   },
   mounted() {
     this.$refs.videoPlayer.player.play();
@@ -273,7 +288,7 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab, event);
+      // console.log(tab, event);
     },
     handleClick2(row) {
       alert(row);
@@ -282,14 +297,12 @@ export default {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-
     initHuan() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
         .then(function(response) {
           var res = response.data;
-          console.log(res[0]);
           self.lowfever = res[0].lowfever;
           self.normal = res[0].normal;
           self.moderatefever = res[0].moderatefever;
@@ -754,7 +767,6 @@ export default {
         .then(function(response) {
           var dd = [];
           var res = response.data;
-          // console.log(res);      *****
           for (var i = 0; i < res.length; i++) {
             dd.push({
               name: res[i].location_province,
@@ -770,7 +782,6 @@ export default {
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
         .then(function(response) {
           var res = response.data;
-          // console.log(res);
           self.data_gelilist = res;
         });
     },
@@ -781,9 +792,7 @@ export default {
         .then(function(response) {
           var res = response.data;
           self.data_fashaolist = res;
-          // console.log(res);
         });
-      // console.log(res);
     },
     resizeFontsize() {
       var width = document.documentElement.clientWidth;
@@ -972,7 +981,6 @@ export default {
           }
         ]
       };
-      // console.log(convertData(this.data_fashaolist));
       myChart.setOption(option);
       window.addEventListener("resize", function() {
         myChart.resize();
@@ -1422,6 +1430,18 @@ export default {
       tab.onmouseout = function() {
         MyMar = setInterval(Marquee, speed);
       };
+    },
+    noMaskList() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/pictures/selectByType?type=3")
+        .then(function(response) {
+          var res = response.data;
+          self.noMaskList = res;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
   beforeDestroy() {
@@ -1468,14 +1488,16 @@ export default {
   width: 100%;
   height: 100%;
 }
-.el-table__header{
+.el-table__header {
   padding: 0;
   height: 5%;
 }
-.el-table__body, .el-table__footer, .el-table__header {
-    table-layout: fixed;
-    border-collapse: separate;
-    width: auto!important;
+.el-table__body,
+.el-table__footer,
+.el-table__header {
+  table-layout: fixed;
+  border-collapse: separate;
+  width: auto !important;
 }
 #demo {
   overflow: hidden;
