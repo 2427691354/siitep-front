@@ -917,7 +917,7 @@ export default {
           self.stuInfo = dd;
           for (var i = 0; i < res.length; i++) {
             // 判断
-            if (res[i].STATUS == "隔离") {
+            if (res[i].STATUS == "ISOLATION") {
               if (res[i].quarantine == 0) {
                 res[i].quarantine = "在家";
               } else {
