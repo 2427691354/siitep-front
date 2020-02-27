@@ -38,7 +38,7 @@
           <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
-              
+
               <Tabs value="name1">
                 <TabPane label="诊断" name="name1" id="resou"></TabPane>
                 <TabPane label="知识" name="name2" id="zhishi"></TabPane>
