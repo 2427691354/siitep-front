@@ -20,20 +20,19 @@
           </div>
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
-            
-              <div id="demo">
-                <div id="indemo">
-                  <div id="demo1">
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                    <img src="../assets/picture/未带口罩.png" border="0" />
-                  </div>
-                  <div id="demo2"></div>
+
+            <div id="demo">
+              <div id="indemo">
+                <div id="demo1">
+                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img src="../assets/picture/未带口罩.png" border="0" />
+                  <img src="../assets/picture/未带口罩.png" border="0" />
                 </div>
-              
+                <div id="demo2"></div>
+              </div>
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -41,7 +40,7 @@
             <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
               <Tabs value="name1">
-                <TabPane label="热搜" name="name1" id="resou"></TabPane>
+                <TabPane label="诊断" name="name1" id="resou"></TabPane>
                 <TabPane label="知识" name="name2" id="zhishi"></TabPane>
                 <TabPane label="辟谣" name="name3" id="piyao"></TabPane>
               </Tabs>
@@ -54,7 +53,7 @@
             <div class="barbox">
               <ul class="clearfix">
                 <li class="pulll_left counter">{{ statistics.sumAll }}</li>
-                <li class="pulll_left counter">{{ statistics. sumHever}}</li>
+                <li class="pulll_left counter">{{ statistics.sumHever }}</li>
                 <li class="pulll_left counter">{{ statistics.sumIsolated }}</li>
               </ul>
             </div>
@@ -74,7 +73,7 @@
             <div class="allnav" id="echart5">
               <el-carousel :interval="2000" type="card" height="2rem">
                 <el-carousel-item v-for="item in this.img_list" :key="item.img">
-                  <img :src="staticUrl+'/img/'+ item.img" />
+                  <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
             </div>
@@ -169,8 +168,8 @@ export default {
         sources: [
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
-            type: "rtmp/hls",
-            src: "rtmp://58.200.131.2:1935/livetv/hunantv"
+            type: "rtmp/mp4",
+            src: "rtmp://139.224.68.139:1935/play/mask.mp4"
           }
         ],
         poster: "", //你的封面地址
@@ -588,7 +587,6 @@ export default {
     },
     wordCould1() {
       var wordcould = echarts.init(document.getElementById("resou"));
-      console.log("resou");
       const option = {
         // backgroundColor: "#fff",
         // tooltip: {
@@ -643,7 +641,6 @@ export default {
     },
     wordCould2() {
       var wordcould = echarts.init(document.getElementById("zhishi"));
-      console.log("zhishi");
       const option = {
         // backgroundColor: "#fff",
         // tooltip: {
@@ -698,7 +695,6 @@ export default {
     },
     wordCould3() {
       var wordcould = echarts.init(document.getElementById("piyao"));
-      console.log("piyao");
       const option = {
         // backgroundColor: "#fff",
         // tooltip: {
@@ -1406,23 +1402,27 @@ export default {
           console.log(error);
         });
     },
-    gundong(){
+    gundong() {
       var speed = 8;
-        var tab = document.getElementById("demo");
-        var tab1 = document.getElementById("demo1");
-        var tab2 = document.getElementById("demo2");
-        tab2.innerHTML = tab1.innerHTML;
-        function Marquee() {
-            if (tab2.offsetWidth - tab.scrollLeft <= 0)
-                tab.scrollLeft -= tab1.offsetWidth
-            else {
-                tab.scrollLeft++;
-            }
+      var tab = document.getElementById("demo");
+      var tab1 = document.getElementById("demo1");
+      var tab2 = document.getElementById("demo2");
+      tab2.innerHTML = tab1.innerHTML;
+      function Marquee() {
+        if (tab2.offsetWidth - tab.scrollLeft <= 0)
+          tab.scrollLeft -= tab1.offsetWidth;
+        else {
+          tab.scrollLeft++;
         }
-        var MyMar = setInterval(Marquee, speed);
-        tab.onmouseover = function () { clearInterval(MyMar) };
-        tab.onmouseout = function () { MyMar = setInterval(Marquee, speed) };
-    },
+      }
+      var MyMar = setInterval(Marquee, speed);
+      tab.onmouseover = function() {
+        clearInterval(MyMar);
+      };
+      tab.onmouseout = function() {
+        MyMar = setInterval(Marquee, speed);
+      };
+    }
   },
   beforeDestroy() {
     if (this.timer) {
