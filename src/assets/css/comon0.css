@@ -549,7 +549,7 @@ a:hover {
 /* 设置table header的背景颜色 */
 .el-table th, .el-table tr ,.el-table td{
   background-color: transparent!important;
-  padding: 5px 0px!important;
+  padding: 4px 0px!important;
   text-align: center!important;
 }
 
