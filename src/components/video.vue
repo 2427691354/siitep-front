@@ -9,15 +9,23 @@
              id="echart1">
           <el-tabs v-model="activeName"
                    @tab-click="handleClick">
+
             <el-tab-pane label="excel导入"
                          name="first">
+              <el-date-picker v-model="value1"
+                              size="small"
+                              type="date"
+                              placeholder="选择日期">
+              </el-date-picker>
+              <br><br><br>
               <el-upload class="upload-demo"
                          ref="upload1"
                          :limit="1"
+                         :on-success="handleAvatarSuccess"
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
-                         action="http://localhost:8089/import"
+                         :action="'http://localhost:8089/import?date='+this.tableSuffix"
                          :auto-upload="false">
                 <el-button slot="trigger"
                            size="small"
@@ -90,11 +98,16 @@ export default {
         value: '3',
         label: '未戴口罩人员'
       }],
-      value: '1'
+      value: '1',
+      tableSuffix: '',
+      value1: null,
     };
   },
   components: {
     Header
+  },
+  created () {
+    this.defaultDate();
   },
   methods: {
     handleRemove (file, fileList) {
@@ -108,11 +121,32 @@ export default {
       this.$refs.upload.clearFiles();
     },
     submitUpload1 () {
+      this.tableSuffix = this.formatDate(this.value1)
       this.$refs.upload1.submit();
       this.$refs.upload1.clearFiles();
     },
     handleClick (tab, event) {
       console.log(tab, event);
+    },
+    handleAvatarSuccess (response, file, fileList) {
+      console.log(response)
+    },
+    defaultDate () {
+      let date = new Date()
+      let year = date.getFullYear().toString()   //'2019'
+      let month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()  //'04'
+      let da = date.getDate() < 10 ? '0' + date.getDate().toString() : date.getDate().toString()  //'12'
+      let end = year + '-' + month + '-' + da
+      this.tableSuffix = month + da
+      this.value1 = end
+    },
+    formatDate (datetime) {
+      var datetime = new Date(datetime)
+      // 获取年月日时分秒值  slice(-2)过滤掉大于10日期前面的0
+      var month = ("0" + (datetime.getMonth() + 1)).slice(-2);
+      var date = ("0" + datetime.getDate()).slice(-2);
+      // 返回
+      return month + date;
     },
   }
 };

@@ -47,8 +47,8 @@
             <div class="barbox">
               <ul class="clearfix">
                 <li class="pulll_left counter">{{ statistics.sumAll }}</li>
+                <li class="pulll_left counter">{{ statistics. sumHever}}</li>
                 <li class="pulll_left counter">{{ statistics.sumIsolated }}</li>
-                <li class="pulll_left counter">{{ statistics.sumHever }}</li>
               </ul>
             </div>
             <div class="barbox2">
