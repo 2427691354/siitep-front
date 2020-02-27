@@ -107,6 +107,7 @@ a:hover {
 .allnav {
   height: calc(100% - 30px);
 }
+
 .mainbox {
   padding: 0.1rem 0.1rem 0rem 0.1rem;
 }
@@ -537,11 +538,9 @@ a:hover {
   background-color:transparent!important;
   color: #FFF!important;
   font-size: 0.15rem!important;
+  
 }
-.el-table__header{
-  padding: 0;
-  height: 5%;
-}
+
 .el-table thead {
   color: #fff!important;
   background-color: #1B3565;
@@ -550,7 +549,7 @@ a:hover {
 /* 设置table header的背景颜色 */
 .el-table th, .el-table tr ,.el-table td{
   background-color: transparent!important;
-  padding: 5px 0px!important;
+  padding: 3px 0px!important;
   text-align: center!important;
 }
 
@@ -577,5 +576,4 @@ a:hover {
 .el-table::before{
   width: 0%!important;
   height: 0%!important;
-
 }
