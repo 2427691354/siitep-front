@@ -8,7 +8,7 @@
       <ul class="clearfix">
         <li>
           <div class="boxall" style="height: 3.7rem">
-            <div class="alltitle">模块标题样式</div>
+            <div class="alltitle">实时监控</div>
             <div class="allnav" id="echart1">
               <video-player
                 class="video-player vjs-custom-skin"
@@ -20,23 +20,14 @@
           </div>
           <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
-            <div class="allnav" id="echart2" style="padding:12px 0px;">
-              <img
-                src="../assets/picture/未带口罩.png"
-                alt
-                style="width:calc(100% / 6 - 3px)"
-                @click="wordCould1()"
-              />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
-              <img src="../assets/picture/未带口罩.png" alt style="width:calc(100% / 6 - 3px)" />
+            <div class="allnav" id="echart2">
+             
+               
             </div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 4.7rem;">
-            <div class="alltitle">模块标题样式</div>
+            <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
               <Tabs value="name1">
                 <TabPane label="热搜" name="name1" id="resou"></TabPane>
@@ -91,36 +82,29 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo"
-               style="height: 3.2rem">
+          <div class="boxallinfo" style="height: 3.2rem">
             <!-- <div class="alltitle">模块标题样式</div> -->
-            <div class="allnav"
-                 id="echart5">
-              <el-table :data="tableData"
-                        border
-                        style="width: 100%;font-size: 10px"
-                        max-height="250"
-                        :row-style="{height:'5px'}"
-                        :cell-style="{padding:'0px'}">
+            <div class="allnav" id="echart5">
+              <el-table
+                :data="tableData"
+                border
+                style="width: 100%;font-size: 10px"
+                max-height="250"
+                :row-style="{height:'5px'}"
+                :cell-style="{padding:'0px'}"
+              >
                 >
-                <el-table-column prop="name"
-                                 label="姓名"
-                                 width="80%"></el-table-column>
-                <el-table-column prop="class"
-                                 label="班级"
-                                 width="80%"></el-table-column>
-                <el-table-column prop="tem"
-                                 label="体温"
-                                 width="80%"></el-table-column>
-                <el-table-column prop="status"
-                                 label="状态"></el-table-column>
+                <el-table-column prop="name" label="姓名" width="80%"></el-table-column>
+                <el-table-column prop="class" label="班级" width="80%"></el-table-column>
+                <el-table-column prop="tem" label="体温" width="80%"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
               </el-table>
             </div>
             <div class="boxfootinfo"></div>
           </div>
-          <div class="boxall" style="height: 2.7rem">
-            <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart6"></div>
+          <div class="boxall" style="height: 2.85rem">
+            <div id="echart6"></div>
+
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -279,19 +263,23 @@ export default {
       data_alllist: [],
       data_gelilist: [],
       data_fashaolist: [],
+      lowfever: null,
+      normal: null,
+      moderatefever: null,
+      highfever: null
     };
   },
   components: {
     Header,
     videoPlayer
   },
-  created () {
+  created() {
     //学生隔离人数
     this.geli();
     //学生发烧人数
     this.fashao();
   },
-  mounted () {
+  mounted() {
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
 
@@ -314,17 +302,203 @@ export default {
     this.initwordcould1();
     this.initwordcould2();
     this.initwordcould3();
+
+    this.initHuan();
   },
   methods: {
-    handleClick (tab, event) {
+    handleClick(tab, event) {
       console.log(tab, event);
     },
-    handleClick2 (row) {
+    handleClick2(row) {
       alert(row);
     },
-    setSize: function () {
+    setSize: function() {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
+    
+    initHuan() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
+        .then(function(response) {
+          var res = response.data;
+          console.log(res[0]);
+          self.lowfever = res[0].lowfever;
+          self.normal = res[0].normal;
+          self.moderatefever = res[0].moderatefever;
+          self.highfever = res[0].highfever;
+          self.drawHuan();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    drawHuan() {
+      var huan = echarts.init(document.getElementById("echart6"));
+      const option = {
+        // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
+        color: ["#00d881", "#00f5d5", "#b2c0fb", "#b2a2fb"],
+        data: ["正常", "低热", "中等热度", "高热"],
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        grid: {
+          left: 0, // right: 0,
+          bottom: 0,
+          top: 0,
+          containLabel: true
+        },
+        title: {
+          text: "体温等级",
+          textStyle: {
+            color: "#fff",
+            fontSize: 16
+          },
+          subtext: "所占百分比",
+          top: "50%",
+          left: "center"
+        },
+        legend: {
+          orient: "vertical",
+          top: "0%",
+          right: "0%",
+          textStyle: {
+            color: "#fff",
+            fontSize: 13
+          },
+          icon: "roundRect"
+        },
+        series: [
+          // 主要展示层的
+          {
+            radius: ["45%", "67%"],
+            center: ["50%", "60%"],
+            type: "pie",
+            label: {
+              normal: {
+                show: true,
+                position: "outside"
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  fontSize: "15"
+                  // fontWeight: 'bold'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                show: true,
+                length: 20,
+                length2: 35
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            name: "体温等级比例",
+            data: [
+              {
+                value: this.normal,
+                name: "正常",
+                label: {
+                  normal: {
+                    formatter: "正常{d}%",
+
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.lowfever,
+                name: "低热",
+                label: {
+                  normal: {
+                    formatter: "低热{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.moderatefever,
+                name: "中等热度",
+                label: {
+                  normal: {
+                    formatter: "中等热度{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.highfever,
+                name: "高热",
+                label: {
+                  normal: {
+                    formatter: "高热{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              }
+            ]
+          }, // 边框的设置
+          {
+            radius: ["68%", "62%"],
+            center: ["50%", "60%"],
+            type: "pie",
+            hoverAnimation: false,
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            animation: true,
+            tooltip: {
+              show: false
+            },
+            data: [
+              {
+                value: 1,
+                itemStyle: {
+                  color: "rgba(250,250,250,0.3)"
+                }
+              }
+            ]
+          }
+        ]
+      };
+
+      huan.setOption(option);
     },
     initSum() {
       var self = this;
@@ -360,7 +534,6 @@ export default {
       self.$http
         .get(this.baseUrl + "/prevent/selectFromDiagnosisTitle")
         .then(function(response) {
-          console.log(response.data);
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -376,10 +549,9 @@ export default {
               })
             );
           });
-          console.log(newres);
+
           self.resou = newres.slice(0, 50);
 
-          console.log(self.resou);
           self.wordCould1();
         })
         .catch(function(error) {
@@ -392,7 +564,6 @@ export default {
       self.$http
         .get(this.baseUrl + "/prevent/selectFromGuideTitle")
         .then(function(response) {
-          console.log(response.data);
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -408,9 +579,9 @@ export default {
               })
             );
           });
-          console.log(newres);
+
           self.zhishi = newres.slice(0, 50);
-          console.log(self.zhishi);
+
           self.wordCould2();
         })
         .catch(function(error) {
@@ -423,7 +594,6 @@ export default {
       self.$http
         .get(this.baseUrl + "/prevent/selectRumorTitle")
         .then(function(response) {
-          console.log(response.data);
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -439,9 +609,9 @@ export default {
               })
             );
           });
-          console.log(newres);
+
           self.piyao = newres.slice(0, 50);
-          console.log(self.piyao);
+
           self.wordCould3();
         })
         .catch(function(error) {
@@ -560,7 +730,6 @@ export default {
       wordcould.setOption(option);
     },
     wordCould3() {
-     
       var wordcould = echarts.init(document.getElementById("piyao"));
       console.log("piyao");
       const option = {
@@ -615,68 +784,69 @@ export default {
       };
       wordcould.setOption(option);
     },
-    allnum () {
+    allnum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
-          var dd = []
+        .then(function(response) {
+          var dd = [];
           var res = response.data;
           // console.log(res);
           for (var i = 0; i < res.length; i++) {
             dd.push({
-              "name": res[i].location_province,
-              "value": res[i].count
-            })
+              name: res[i].location_province,
+              value: res[i].count
+            });
           }
-          self.map(dd)
+          self.map(dd);
         });
     },
-    geli () {
+    geli() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
+          // console.log(res);
           self.data_gelilist = res;
         });
     },
-    fashao () {
+    fashao() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.data_fashaolist = res;
           // console.log(res);
         });
-      console.log(res);
+      // console.log(res);
     },
-    resizeFontsize () {
+    resizeFontsize() {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    map (datalist) {
+    map(datalist) {
       var myChart = this.$echarts.init(document.getElementById("map_1"));
 
-      var geoCoordMap = {}
+      var geoCoordMap = {};
       var mapFeatures = this.$echarts.getMap("china").geoJson.features;
-      mapFeatures.forEach(function (v) {
+      mapFeatures.forEach(function(v) {
         // 地区名称
         var name = v.properties.name;
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
 
-      var convertData = function (data) {
+      var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].location_province];
           if (geoCoord) {
             res.push({
               name: data[i].location_province,
-              value: geoCoord.concat(data[i].count),
+              value: geoCoord.concat(data[i].count)
             });
           }
         }
@@ -693,7 +863,7 @@ export default {
           }
         },
         tooltip: {
-          trigger: "item",
+          trigger: "item"
           // formatter: function(params) {
           //   if (typeof params.value[2] == "undefined") {
           //     return params.name + " : " + params.value;
@@ -749,24 +919,24 @@ export default {
             name: "隔离人数",
             type: "scatter",
             data: convertData(this.data_gelilist),
-            coordinateSystem: 'geo',
-            symbol: 'pin', //气泡
+            coordinateSystem: "geo",
+            symbol: "pin", //气泡
             symbolSize: 20,
             label: {
               normal: {
                 show: true,
                 textStyle: {
-                  color: '#fff',
-                  fontSize: 9,
+                  color: "#fff",
+                  fontSize: 9
                 }
               }
             },
             itemStyle: {
               normal: {
-                color: '#F62157', //标志颜色
+                color: "#F62157" //标志颜色
               }
             },
-            zlevel: 6,
+            zlevel: 6
           },
           {
             name: "发烧人数",
@@ -774,23 +944,23 @@ export default {
             coordinateSystem: "geo",
             data: convertData(this.data_fashaolist),
             symbolSize: 20,
-            showEffectOn: 'render',
+            showEffectOn: "render",
             rippleEffect: {
-              brushType: 'stroke'
+              brushType: "stroke"
             },
             hoverAnimation: true,
             label: {
               normal: {
-                formatter: '{b}',
-                position: 'right',
+                formatter: "{b}",
+                position: "right",
                 show: true
               }
             },
             itemStyle: {
               normal: {
-                color: 'yellow',
+                color: "yellow",
                 shadowBlur: 10,
-                shadowColor: 'yellow'
+                shadowColor: "yellow"
               }
             },
             zlevel: 1
@@ -1203,21 +1373,19 @@ export default {
   height: 100%;
   object-fit: fill;
 }
-.ivu-tabs-tab{
-  color:#02a6b5
+.ivu-tabs-tab {
+  color: #02a6b5;
 }
 
-.ivu-tabs-tabpane{
+.ivu-tabs-tabpane {
   width: 100%;
   height: 100%;
-
 }
-.ivu-tabs-content{
-  height:calc(90% - 15px);
-
+.ivu-tabs-content {
+  height: calc(87% - 15px);
 }
-.ivu-tabs{
-  height: 100%;
+.ivu-tabs {
+  height: 93%;
 }
 #resou {
   width: 100%;
@@ -1231,4 +1399,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+#echart6 {
+  width: 100%;
+  height: 100%;
+}
+
 </style>
