@@ -31,8 +31,7 @@ body {
 li {
   list-style-type: none;
 }
-table {
-}
+
 i {
   margin: 0px;
   padding: 0px;
@@ -111,8 +110,7 @@ a:hover {
 .mainbox {
   padding: 0.1rem 0.1rem 0rem 0.1rem;
 }
-.mainbox > ul {
-}
+
 .mainbox > ul > li {
   float: left;
   padding: 0 0.1rem;
@@ -174,7 +172,7 @@ a:hover {
 }
 .boxall {
   border: 1px solid rgba(25, 186, 139, 0.17);
-  padding: 0 0.2rem 0.4rem 0.15rem;
+  padding: 0 0.2rem 0rem 0.15rem;
   background: rgba(255, 255, 255, 0.08) url(../images/line.png);
   background-size: 100% auto;
   position: relative;

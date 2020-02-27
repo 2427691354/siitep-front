@@ -8,7 +8,7 @@
       <ul class="clearfix">
         <li>
           <div class="boxall" style="height: 3.7rem">
-            <div class="alltitle">模块标题样式</div>
+            <div class="alltitle">实时监控</div>
             <div class="allnav" id="echart1">
               <video-player
                 class="video-player vjs-custom-skin"
@@ -31,13 +31,13 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 4.7rem;">
-            <div class="alltitle">模块标题样式</div>
+            <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
-              <el-tabs v-model="activeName" @tab-click="handleClick" class="tab">
-                <el-tab-pane label="热搜" name="first">热搜</el-tab-pane>
-                <el-tab-pane label="知识" name="second">知识</el-tab-pane>
-                <el-tab-pane label="辟谣" name="third">辟谣</el-tab-pane>
-              </el-tabs>
+              <Tabs value="name1">
+                <TabPane label="热搜" name="name1" id="resou"></TabPane>
+                <TabPane label="知识" name="name2" id="zhishi"></TabPane>
+                <TabPane label="辟谣" name="name3" id="piyao"></TabPane>
+              </Tabs>
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -106,9 +106,9 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.7rem">
-            <div class="alltitle">模块标题样式</div>
-            <div class="allnav" id="echart6"></div>
+          <div class="boxall" style="height: 2.85rem">
+            <div id="echart6"></div>
+
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -119,6 +119,9 @@
 </template>
 
 <script>
+import echarts from "echarts";
+import "echarts-wordcloud/dist/echarts-wordcloud";
+import "echarts-wordcloud/dist/echarts-wordcloud.min";
 import "videojs-flash";
 import "video.js/dist/video-js.css";
 import "vue-video-player/src/custom-theme.css";
@@ -128,7 +131,7 @@ export default {
   data() {
     return {
       staticUrl: this.staticUrl,
-      activeName: "first",
+      activeName: "second",
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
@@ -206,12 +209,21 @@ export default {
           fullscreenToggle: true //全屏按钮
         }
       },
+      resou: null,
+      zhishi: null,
+      piyao: null,
+      
+      //
       //学生总人数
       data_alllist: [],
       //学生隔离人数
       data_gelilist: [],
       //学生发烧人数
       data_fashaolist: [],
+      lowfever: null,
+      normal: null,
+      moderatefever: null,
+      highfever: null,
       //重点关注学生信息
       stuInfo: []
     };
@@ -240,6 +252,11 @@ export default {
     window.addEventListener("resize", this.resizeFontsize());
     this.map();
     this.canves();
+    this.initwordcould1();
+    this.initwordcould2();
+    this.initwordcould3();
+
+    this.initHuan();
     //学生各省物理分布人数
     this.allNum();
     //轮播图
@@ -257,6 +274,190 @@ export default {
     setSize: function() {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
+    
+    initHuan() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
+        .then(function(response) {
+          var res = response.data;
+          console.log(res[0]);
+          self.lowfever = res[0].lowfever;
+          self.normal = res[0].normal;
+          self.moderatefever = res[0].moderatefever;
+          self.highfever = res[0].highfever;
+          self.drawHuan();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    drawHuan() {
+      var huan = echarts.init(document.getElementById("echart6"));
+      const option = {
+        // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
+        color: ["#00d881", "#00f5d5", "#b2c0fb", "#b2a2fb"],
+        data: ["正常", "低热", "中等热度", "高热"],
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        grid: {
+          left: 0, // right: 0,
+          bottom: 0,
+          top: 0,
+          containLabel: true
+        },
+        title: {
+          text: "体温等级",
+          textStyle: {
+            color: "#fff",
+            fontSize: 16
+          },
+          subtext: "所占百分比",
+          top: "50%",
+          left: "center"
+        },
+        legend: {
+          orient: "vertical",
+          top: "0%",
+          right: "0%",
+          textStyle: {
+            color: "#fff",
+            fontSize: 13
+          },
+          icon: "roundRect"
+        },
+        series: [
+          // 主要展示层的
+          {
+            radius: ["45%", "67%"],
+            center: ["50%", "60%"],
+            type: "pie",
+            label: {
+              normal: {
+                show: true,
+                position: "outside"
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  fontSize: "15"
+                  // fontWeight: 'bold'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                show: true,
+                length: 20,
+                length2: 35
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            name: "体温等级比例",
+            data: [
+              {
+                value: this.normal,
+                name: "正常",
+                label: {
+                  normal: {
+                    formatter: "正常{d}%",
+
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.lowfever,
+                name: "低热",
+                label: {
+                  normal: {
+                    formatter: "低热{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.moderatefever,
+                name: "中等热度",
+                label: {
+                  normal: {
+                    formatter: "中等热度{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              },
+              {
+                value: this.highfever,
+                name: "高热",
+                label: {
+                  normal: {
+                    formatter: "高热{d}%",
+                    textStyle: {
+                      color: "#fff",
+
+                      fontSize: 15
+                    }
+                  }
+                }
+              }
+            ]
+          }, // 边框的设置
+          {
+            radius: ["68%", "62%"],
+            center: ["50%", "60%"],
+            type: "pie",
+            hoverAnimation: false,
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            animation: true,
+            tooltip: {
+              show: false
+            },
+            data: [
+              {
+                value: 1,
+                itemStyle: {
+                  color: "rgba(250,250,250,0.3)"
+                }
+              }
+            ]
+          }
+        ]
+      };
+
+      huan.setOption(option);
     },
     initSum() {
       var self = this;
@@ -287,7 +488,262 @@ export default {
           // window.location.reload();
         });
     },
-    allNum() {
+    initwordcould1() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/prevent/selectFromDiagnosisTitle")
+        .then(function(response) {
+          var res = response.data;
+          var newres = [];
+          res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
+          res = res.map(obj => {
+            return {
+              name: obj.name
+            };
+          });
+          res.map((item, index) => {
+            newres.push(
+              Object.assign({}, item, {
+                value: Math.round(Math.random() * 2000)
+              })
+            );
+          });
+
+          self.resou = newres.slice(0, 50);
+
+          self.wordCould1();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    initwordcould2() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/prevent/selectFromGuideTitle")
+        .then(function(response) {
+          var res = response.data;
+          var newres = [];
+          res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
+          res = res.map(obj => {
+            return {
+              name: obj.name
+            };
+          });
+          res.map((item, index) => {
+            newres.push(
+              Object.assign({}, item, {
+                value: Math.round(Math.random() * 2000)
+              })
+            );
+          });
+
+          self.zhishi = newres.slice(0, 50);
+
+          self.wordCould2();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    initwordcould3() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/prevent/selectRumorTitle")
+        .then(function(response) {
+          var res = response.data;
+          var newres = [];
+          res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
+          res = res.map(obj => {
+            return {
+              name: obj.name
+            };
+          });
+          res.map((item, index) => {
+            newres.push(
+              Object.assign({}, item, {
+                value: Math.round(Math.random() * 2000)
+              })
+            );
+          });
+
+          self.piyao = newres.slice(0, 50);
+
+          self.wordCould3();
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    wordCould1() {
+      var wordcould = echarts.init(document.getElementById("resou"));
+      console.log("resou");
+      const option = {
+        // backgroundColor: "#fff",
+        // tooltip: {
+        //   pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+        // },
+        series: [
+          {
+            type: "wordCloud",
+            //用来调整词之间的距离
+            gridSize: 10,
+            //用来调整字的大小范围
+            // Text size range which the value in data will be mapped to.
+            // Default to have minimum 12px and maximum 60px size.
+            sizeRange: [14, 60],
+            // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
+            //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
+            // rotationRange: [-45, 0, 45, 90],
+            // rotationRange: [ 0,90],
+            rotationRange: [0, 0],
+            //随机生成字体颜色
+            // maskImage: maskImage,
+            textStyle: {
+              normal: {
+                color: function() {
+                  return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                  );
+                }
+              }
+            },
+            //位置相关设置
+            // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+            // Default to be put in the center and has 75% x 80% size.
+            left: "center",
+            top: "center",
+            right: null,
+            bottom: null,
+            width: "100%",
+            height: "100%",
+            //数据
+            data: this.resou
+          }
+        ]
+      };
+      wordcould.setOption(option);
+    },
+    wordCould2() {
+      var wordcould = echarts.init(document.getElementById("zhishi"));
+      console.log("zhishi");
+      const option = {
+        // backgroundColor: "#fff",
+        // tooltip: {
+        //   pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+        // },
+        series: [
+          {
+            type: "wordCloud",
+            //用来调整词之间的距离
+            gridSize: 10,
+            //用来调整字的大小范围
+            // Text size range which the value in data will be mapped to.
+            // Default to have minimum 12px and maximum 60px size.
+            sizeRange: [14, 60],
+            // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
+            //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
+            // rotationRange: [-45, 0, 45, 90],
+            // rotationRange: [ 0,90],
+            rotationRange: [0, 0],
+            //随机生成字体颜色
+            // maskImage: maskImage,
+            textStyle: {
+              normal: {
+                color: function() {
+                  return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                  );
+                }
+              }
+            },
+            //位置相关设置
+            // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+            // Default to be put in the center and has 75% x 80% size.
+            left: "center",
+            top: "center",
+            right: null,
+            bottom: null,
+            width: "100%",
+            height: "100%",
+            //数据
+            data: this.zhishi
+          }
+        ]
+      };
+      wordcould.setOption(option);
+    },
+    wordCould3() {
+      var wordcould = echarts.init(document.getElementById("piyao"));
+      console.log("piyao");
+      const option = {
+        // backgroundColor: "#fff",
+        // tooltip: {
+        //   pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+        // },
+        series: [
+          {
+            type: "wordCloud",
+            //用来调整词之间的距离
+            gridSize: 10,
+            //用来调整字的大小范围
+            // Text size range which the value in data will be mapped to.
+            // Default to have minimum 12px and maximum 60px size.
+            sizeRange: [14, 60],
+            // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
+            //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
+            // rotationRange: [-45, 0, 45, 90],
+            // rotationRange: [ 0,90],
+            rotationRange: [0, 0],
+            //随机生成字体颜色
+            // maskImage: maskImage,
+            textStyle: {
+              normal: {
+                color: function() {
+                  return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                  );
+                }
+              }
+            },
+            //位置相关设置
+            // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+            // Default to be put in the center and has 75% x 80% size.
+            left: "center",
+            top: "center",
+            right: null,
+            bottom: null,
+            width: "100%",
+            height: "100%",
+            //数据
+            data: this.piyao
+          }
+        ]
+      };
+      wordcould.setOption(option);
+    },
+    allnum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
@@ -310,6 +766,7 @@ export default {
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
         .then(function(response) {
           var res = response.data;
+          // console.log(res);
           self.data_gelilist = res;
         });
     },
@@ -322,6 +779,7 @@ export default {
           self.data_fashaolist = res;
           // console.log(res);
         });
+      // console.log(res);
     },
     resizeFontsize() {
       var width = document.documentElement.clientWidth;
@@ -339,6 +797,7 @@ export default {
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
+
       var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
@@ -948,13 +1407,41 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .myvideo {
   width: 100%;
   height: 100%;
   object-fit: fill;
 }
-.tab {
-  color: red;
+.ivu-tabs-tab {
+  color: #02a6b5;
 }
+
+.ivu-tabs-tabpane {
+  width: 100%;
+  height: 100%;
+}
+.ivu-tabs-content {
+  height: calc(87% - 15px);
+}
+.ivu-tabs {
+  height: 93%;
+}
+#resou {
+  width: 100%;
+  height: 100%;
+}
+#piyao {
+  width: 100%;
+  height: 100%;
+}
+#zhishi {
+  width: 100%;
+  height: 100%;
+}
+#echart6 {
+  width: 100%;
+  height: 100%;
+}
+
 </style>
