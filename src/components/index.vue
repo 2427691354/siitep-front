@@ -90,18 +90,18 @@
             <!-- <div class="alltitle">模块标题样式</div> -->
             <div class="allnav" id="echart5">
               <el-table
-                :data="tableData"
-                border
+                :data="stuInfo"
+                stripe
                 style="width: 100%;font-size: 10px"
-                max-height="250"
-                :row-style="{height:'5px'}"
+                :row-style="{height:'0.4rem'}"
                 :cell-style="{padding:'0px'}"
               >
                 >
-                <el-table-column prop="name" label="姓名" width="80%"></el-table-column>
-                <el-table-column prop="class" label="班级" width="80%"></el-table-column>
-                <el-table-column prop="tem" label="体温" width="80%"></el-table-column>
+                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
+                <el-table-column prop="class" label="班级" width="100"></el-table-column>
+                <el-table-column prop="tem" label="体温" width="70"></el-table-column>
                 <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfootinfo"></div>
@@ -136,7 +136,6 @@ export default {
       },
       //轮播图图片
       img_list: [],
-
       // 图片父容器高度
       bannerHeight: 1000,
       // 浏览器宽度
@@ -207,62 +206,14 @@ export default {
           fullscreenToggle: true //全屏按钮
         }
       },
-      tableData: [
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        },
-        {
-          name: "王小虎",
-          class: "软件18C1",
-          tem: "36.7",
-          status: "正常"
-        }
-      ],
       //学生总人数
       data_alllist: [],
       //学生隔离人数
       data_gelilist: [],
       //学生发烧人数
-      data_fashaolist: []
+      data_fashaolist: [],
+      //重点关注学生信息
+      stuInfo: []
     };
   },
   components: {
@@ -274,28 +225,27 @@ export default {
     this.insulateNum();
     //学生发烧人数
     this.feverNum();
+    //表格自动滚动
+    //this.play();
   },
   mounted() {
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
-
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
-
     this.resizeFontsize();
-    //			改变横屏竖屏执行效果更换
+    //改变横屏竖屏执行效果更换
     window.addEventListener("orientationchange", this.resizeFontsize());
-    //			改变手机大小执行效果更换
+    //改变手机大小执行效果更换
     window.addEventListener("resize", this.resizeFontsize());
-
     this.map();
     this.canves();
-    
     //学生各省物理分布人数
     this.allNum();
-
     //轮播图
     this.slideShow();
+    //重点关注学生
+    this.focusStu();
   },
   methods: {
     handleClick(tab, event) {
@@ -344,7 +294,7 @@ export default {
         .then(function(response) {
           var dd = [];
           var res = response.data;
-          // console.log(res);
+          // console.log(res);      *****
           for (var i = 0; i < res.length; i++) {
             dd.push({
               name: res[i].location_province,
@@ -432,15 +382,15 @@ export default {
           data: ["隔离人数", "发烧人数"],
           icon: "pin", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
           orient: "vertical",
-          right: "30%",
-          bottom: "50%",
+          right: "28%",
+          bottom: "40%",
           textStyle: {
             color: "#fff"
           }
         },
         //是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
         visualMap: {
-          show: true,
+          show: false,
           min: 0, //最小值
           max: 100, //最大值
           left: "25%",
@@ -540,7 +490,11 @@ export default {
               normal: {
                 formatter: "{b}",
                 position: "right",
-                show: true
+                show: true,
+                textStyle: {
+                  color: "#fff"
+                },
+                backgroundColor: "rgba(0,0,0,0.5)"
               }
             },
             itemStyle: {
@@ -555,7 +509,7 @@ export default {
           }
         ]
       };
-      console.log(convertData(this.data_fashaolist));
+      // console.log(convertData(this.data_fashaolist));
       myChart.setOption(option);
       window.addEventListener("resize", function() {
         myChart.resize();
@@ -941,6 +895,49 @@ export default {
         },
         false
       );
+    },
+    //change,play实现表格自动滚动
+    // change(){
+    //   //把第一条数据插入数组最后一条
+    //   this.tableData.push(this.tableData[0]);
+    //   //删除数组中第一条数据
+    //   this.tableData.shift();
+    // },
+    // play(){
+    //   //每两秒执行一次插入删除操作
+    //   setInterval(this.change,1000);
+    // },
+    focusStu() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getFocusStu")
+        .then(function(response) {
+          var dd = [];
+          var res = response.data;
+          self.stuInfo = dd;
+          for (var i = 0; i < res.length; i++) {
+            // 判断
+            if (res[i].STATUS == "隔离") {
+              if (res[i].quarantine == 0) {
+                res[i].quarantine = "在家";
+              } else {
+                res[i].quarantine = "医院";
+              }
+            }else{
+              res[i].quarantine = "";
+            }
+            dd.push({
+              name: res[i].s_name,
+              class: res[i].c_name,
+              tem: res[i].temperature,
+              status: res[i].STATUS,
+              address: res[i].quarantine
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
   beforeDestroy() {
