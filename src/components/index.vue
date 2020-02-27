@@ -86,13 +86,13 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3.2rem">
+          <div class="boxallinfo" style="height: 3.2rem;" >
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="echart5">
+            <div class="allnav" id="echart5" >
               <el-table
                 :data="stuInfo"
                 stripe
-                style="font-size: 10px"
+                style="font-size: 10%"
                 :row-style="{height:'0.4rem'}"
                 :cell-style="{padding:'0px'}"
               >
@@ -743,7 +743,7 @@ export default {
       };
       wordcould.setOption(option);
     },
-    allnum() {
+    allNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
@@ -1443,5 +1443,13 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+.el-table__header{
+  padding: 0;
+  height: 5%;
+}
+.el-table__body, .el-table__footer, .el-table__header {
+    table-layout: fixed;
+    border-collapse: separate;
+    width: auto!important;
+}
 </style>
