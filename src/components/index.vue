@@ -53,8 +53,8 @@
           </div>
         </li>
         <li>
-          <div class="bar">
-            <div class="barbox">
+          <div class="bar" style="height:105.53px;">
+            <div class="barbox" style="height:65px;">
               <ul class="clearfix">
                 <li class="pulll_left counter">{{ statistics.sumAll }}</li>
                 <li class="pulll_left counter">{{ statistics.sumHever }}</li>
@@ -70,7 +70,15 @@
             </div>
           </div>
           <div class="map">
+            <div class="insulate" id="polo_1">
+              <div class="boxfoot"></div>
+            </div>
+            
+            <div class="fever" id="polo_2">
+              <div class="boxfoot"></div>
+            </div>
             <div class="map4" id="map_1"></div>
+            
           </div>
           <div class="boxallcard" style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
@@ -96,7 +104,7 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3.2rem;">
+          <div class="boxallinfo" style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
             <div class="allnav" id="echart5">
               <el-table
@@ -106,27 +114,11 @@
                 :row-style="{ height: '0.4rem' }"
                 :cell-style="{ padding: '0px' }"
               >
-                >
-                <el-table-column
-                  prop="name"
-                  label="姓名"
-                  width="90"
-                ></el-table-column>
-                <el-table-column
-                  prop="class"
-                  label="班级"
-                  width="95"
-                ></el-table-column>
-                <el-table-column
-                  prop="tem"
-                  label="体温(℃)"
-                  width="75"
-                ></el-table-column>
+                <el-table-column prop="name" label="姓名" width="90"></el-table-column>
+                <el-table-column prop="class" label="班级" width="95"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)" width="75"></el-table-column>
                 <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="隔离地点"
-                ></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
@@ -194,12 +186,7 @@ export default {
         poster: "", //你的封面地址
         // width: document.documentElement.clientWidth,
         notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
-        controlBar: {
-          timeDivider: true,
-          durationDisplay: true,
-          remainingTimeDisplay: false,
-          fullscreenToggle: true //全屏按钮
-        }
+        controlBar: false
       },
       playerOptions2: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
@@ -290,6 +277,10 @@ export default {
     //重点关注学生
     this.focusStu();
     this.gundong();
+    //隔离人数折线图
+    this.insulatePolo();
+    //发烧人数折线图
+    this.feverPolo();
   },
   methods: {
     handleClick(tab, event) {
@@ -812,6 +803,7 @@ export default {
       mapFeatures.forEach(function(v) {
         // 地区名称
         var name = v.properties.name;
+        // console.log(name);
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
@@ -834,6 +826,7 @@ export default {
           text: "学生地理分布",
           subtext: "数据来源 苏工院",
           sublink: "#",
+          top: "5%",
           left: "center",
           textStyle: {
             color: "#fff"
@@ -926,7 +919,7 @@ export default {
                 areaColor: "#2B91B7"
               }
             },
-            animation: false,
+            animation: true,
             data: datalist
           },
           {
@@ -987,6 +980,20 @@ export default {
         ]
       };
       myChart.setOption(option);
+
+      var index = 0;
+      var myTime = setInterval(function() {
+        myChart.dispatchAction({
+          type: "showTip",
+          seriesIndex: 0,
+          dataIndex: index
+        });
+        index++;
+        if (index > datalist.length) {
+          index = 0;
+        }
+      }, 2000);
+
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1394,6 +1401,7 @@ export default {
           for (var i = 0; i < res.length; i++) {
             // 判断
             if (res[i].STATUS == "ISOLATION") {
+              res[i].STATUS = "隔离";
               if (res[i].quarantine == 0) {
                 res[i].quarantine = "在家";
               } else {
@@ -1401,6 +1409,9 @@ export default {
               }
             } else {
               res[i].quarantine = "无";
+            }
+            if(res[i].s_name[0]!= "undefined"){
+              res[i].s_name = res[i].s_name[0] + "**";
             }
             dd.push({
               name: res[i].s_name,
@@ -1447,6 +1458,279 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    insulatePolo() {
+      var myChart = this.$echarts.init(document.getElementById("polo_1"));
+      var option = {
+        grid: {
+          left: "5%",
+          right: "10%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true
+        },
+        tooltip: {
+          show: true,
+          trigger: "item"
+        },
+        legend: {
+          show: true,
+          x: "center",
+          y: "8",
+          icon: "stack",
+          itemWidth: 10,
+          itemHeight: 10,
+          textStyle: {
+            color: "#1bb4f6"
+          },
+          data: ["隔离人数"]
+        },
+        xAxis: [
+          {
+            type: "category",
+            boundaryGap: false,
+            axisLabel: {
+              color: "#30eee9",
+              fontSize: 10
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "#397cbc"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#195384"
+              }
+            },
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
+            ]
+          }
+        ],
+        yAxis: [
+          {
+            type: "value",
+            // name: "信息量",
+            min: 0,
+            max: 5,
+            axisLabel: {
+              formatter: "{value}",
+              textStyle: {
+                color: "#2ad1d2",
+                fontSize: 10
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#27b4c2"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#11366e"
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: "隔离人数",
+            type: "line",
+            stack: "总量",
+            symbol: "circle",
+            symbolSize: 4,
+            itemStyle: {
+              normal: {
+                color: "#0092f6",
+                lineStyle: {
+                  color: "#0092f6",
+                  width: 1
+                },
+                areaStyle: {
+                  //color: '#94C9EC'
+                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "rgba(7,44,90,0.3)"
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(0,146,246,0.9)"
+                    }
+                  ])
+                }
+              }
+            },
+            markPoint: {
+              itemStyle: {
+                normal: {
+                  color: "red"
+                }
+              }
+            },
+            data: [1, 1, 1, 1, 0, 2, 2, 1, 1, 2, 2, 0]
+          }
+        ]
+      };
+      myChart.setOption(option);
+      window.addEventListener("resize", function() {
+        myChart.resize();
+      });
+    },
+    feverPolo() {
+      var myChart = this.$echarts.init(document.getElementById("polo_2"));
+      var option = {
+        grid: {
+          left: "5%",
+          right: "10%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true
+        },
+        tooltip: {
+          show: true,
+          trigger: "item"
+        },
+        legend: {
+          show: true,
+          x: "center",
+          y: "8",
+          icon: "stack",
+          itemWidth: 10,
+          itemHeight: 10,
+          textStyle: {
+            color: "#1bb4f6"
+          },
+          data: ["发烧人数"]
+        },
+        xAxis: [
+          {
+            type: "category",
+            boundaryGap: false,
+            axisLabel: {
+              color: "#30eee9",
+              fontSize: 10
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "#397cbc"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#195384"
+              }
+            },
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
+            ]
+          }
+        ],
+        yAxis: [
+          {
+            type: "value",
+            // name: "人数",
+            min: 0,
+            max: 5,
+            axisLabel: {
+              formatter: "{value}",
+              textStyle: {
+                color: "#2ad1d2",
+                fontSize: 10
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#27b4c2"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#11366e"
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: "发烧人数",
+            type: "line",
+            stack: "总量",
+            symbol: "circle",
+            symbolSize: 4,
+
+            itemStyle: {
+              normal: {
+                color: "#00d4c7",
+                lineStyle: {
+                  color: "#00d4c7",
+                  width: 1
+                },
+                areaStyle: {
+                  //color: '#94C9EC'
+                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "rgba(7,44,90,0.3)"
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(0,212,199,0.9)"
+                    }
+                  ])
+                }
+              }
+            },
+            data: [0, 1, 1, 2, 0, 0, 0, 1, 1, 1, 0, 0]
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+      window.addEventListener("resize", function() {
+        myChart.resize();
+      });
     }
   },
   beforeDestroy() {
@@ -1530,5 +1814,8 @@ export default {
 #demo2 {
   float: left;
   height: 100%;
+}
+element.style {
+  margin-top: 35px;
 }
 </style>
