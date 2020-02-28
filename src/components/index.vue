@@ -48,7 +48,7 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 4.7rem;">
-            <div class="alltitle">防疫知识</div>
+            <div class="alltitle">战“疫”频道</div>
             <div class="allnav" id="echart3">
               <Tabs v-model="activename" type="card">
                 <TabPane label="诊　断" name="name1" id="resou"></TabPane>
