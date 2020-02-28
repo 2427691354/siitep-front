@@ -9,10 +9,10 @@
              id="echart1">
           <el-tabs v-model="activeName"
                    @tab-click="handleClick">
-
             <el-tab-pane label="excel导入"
                          name="first">
               <el-date-picker v-model="value1"
+                              @change="cangeTime()"
                               size="small"
                               type="date"
                               placeholder="选择日期">
@@ -25,7 +25,8 @@
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
-                         :action="'http://localhost:8089/import?date='+this.tableSuffix"
+                         :action="'http://localhost:8089/import?date='+this.tableSuffix+'&date2='
+                         +this.tableSuffix2"
                          :auto-upload="false">
                 <el-button slot="trigger"
                            size="small"
@@ -36,7 +37,7 @@
                            @click="submitUpload1">excel导入</el-button>
               </el-upload>
             </el-tab-pane>
-            <el-tab-pane label="停学不停课图片上传"
+            <el-tab-pane label="图片上传"
                          name="second">
               <el-select v-model="value"
                          size="small"
@@ -71,6 +72,12 @@
             <el-tab-pane label="谣言管理"
                          name="four">
             </el-tab-pane>
+            <el-tab-pane label="辅导员信息管理"
+                         name="five">
+            </el-tab-pane>
+            <el-tab-pane label="课程安排"
+                         name="six">
+            </el-tab-pane>
           </el-tabs>
         </div>
         <div class="boxfoot"></div>
@@ -92,14 +99,12 @@ export default {
         value: '1',
         label: '停学不停课'
       }, {
-        value: '2',
-        label: '辅导员'
-      }, {
         value: '3',
         label: '未戴口罩人员'
       }],
       value: '1',
       tableSuffix: '',
+      tableSuffix2: '',
       value1: null,
     };
   },
@@ -121,7 +126,6 @@ export default {
       this.$refs.upload.clearFiles();
     },
     submitUpload1 () {
-      this.tableSuffix = this.formatDate(this.value1)
       this.$refs.upload1.submit();
       this.$refs.upload1.clearFiles();
     },
@@ -142,12 +146,27 @@ export default {
     },
     formatDate (datetime) {
       var datetime = new Date(datetime)
+
       // 获取年月日时分秒值  slice(-2)过滤掉大于10日期前面的0
       var month = ("0" + (datetime.getMonth() + 1)).slice(-2);
       var date = ("0" + datetime.getDate()).slice(-2);
       // 返回
       return month + date;
     },
+    formatDate2 (datetime) {
+      var datetime = new Date(datetime)
+
+      // 获取年月日时分秒值  slice(-2)过滤掉大于10日期前面的0
+      var year = datetime.getFullYear();
+      var month = ("0" + (datetime.getMonth() + 1)).slice(-2);
+      var date = ("0" + datetime.getDate()).slice(-2);
+      // 返回
+      return year + "-" + month + "-" + date + " 12:00:00";
+    },
+    cangeTime () {
+      this.tableSuffix = this.formatDate(this.value1)
+      this.tableSuffix2 = this.formatDate2(this.value1)
+    }
   }
 };
 </script>
