@@ -23,19 +23,26 @@
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <!-- <img
+                  <img
                     :src="staticUrl + '/img/' + item.img"
-                    v-for="item in this.noMaskList"
+                    v-for="item in this.noMask"
                     :key="item.img"
-                  /> -->
-                  <img src="../assets/picture/未带口罩.png" />>
-                  <img src="../assets/picture/未带口罩.png" />>
-                  <img src="../assets/picture/未带口罩.png" />>
-                  <img src="../assets/picture/未带口罩.png" />>
-                  <img src="../assets/picture/未带口罩.png" />>
-                  <img src="../assets/picture/未带口罩.png" />>
+                  />
+                  
+                  <!-- <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" /> -->
                 </div>
-                <div id="demo2"></div>
+                <div id="demo2">
+                  <img
+                    :src="staticUrl + '/img/' + item.img"
+                    v-for="item in this.noMask"
+                    :key="item.img"
+                  />
+                  </div>
               </div>
             </div>
             <div class="boxfoot"></div>
@@ -43,10 +50,15 @@
           <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">防疫知识</div>
             <div class="allnav" id="echart3">
-              <Tabs value="name1">
+              <Tabs v-model="activename" type="card">
                 <TabPane label="诊断" name="name1" id="resou"></TabPane>
                 <TabPane label="知识" name="name2" id="zhishi"></TabPane>
-                <TabPane label="辟谣" name="name3" id="piyao"></TabPane>
+                <TabPane label="辟谣" name="name3" class="piyao">
+                  <ul>
+                    <li class="piyao_list" v-for="item in this.piyao" :key="item">{{item.title}}</li>
+                  
+                  </ul>
+                </TabPane>
               </Tabs>
             </div>
             <div class="boxfoot"></div>
@@ -57,8 +69,11 @@
             <div class="barbox">
               <ul class="clearfix">
                 <li class="pulll_left counter">{{ statistics.sumAll }}</li>
-                <li class="pulll_left counter">{{ statistics.sumHever }}</li>
-                <li class="pulll_left counter">{{ statistics.sumIsolated }}</li>
+                <li class="pulll_left counter">
+                  <div class="fashaorenshu">{{ statistics.sumHever }}</div>
+                  <div class="fashaorenshu" id="fashao"></div>
+                </li>
+                <li class="pulll_left counter" >{{ statistics.sumIsolated }}</li>
               </ul>
             </div>
             <div class="barbox2">
@@ -156,7 +171,7 @@ export default {
   data() {
     return {
       staticUrl: this.staticUrl,
-      activeName: "second",
+      activename: "name1",
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
@@ -194,12 +209,13 @@ export default {
         poster: "", //你的封面地址
         // width: document.documentElement.clientWidth,
         notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
-        controlBar: {
-          timeDivider: true,
-          durationDisplay: true,
-          remainingTimeDisplay: false,
-          fullscreenToggle: true //全屏按钮
-        }
+        // controlBar: {
+        //   timeDivider: false,
+        //   durationDisplay: false,
+        //   remainingTimeDisplay: false,
+        //   fullscreenToggle: false //全屏按钮
+        // }
+        controls:false,
       },
       playerOptions2: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
@@ -236,7 +252,7 @@ export default {
       },
       resou: null,
       zhishi: null,
-      piyao: null,
+      piyao:null,
       //
       //学生总人数
       data_alllist: [],
@@ -249,7 +265,10 @@ export default {
       moderatefever: null,
       highfever: null,
       //重点关注学生信息
-      stuInfo: []
+      stuInfo: [],
+
+      noMask:[],
+      noMaskCount:null,
     };
   },
   components: {
@@ -289,9 +308,29 @@ export default {
     this.slideShow();
     //重点关注学生
     this.focusStu();
-    this.gundong();
+    // this.gundong();
+    //选项卡自动播放
+    
+    this.tabxunhuan()
   },
   methods: {
+    tabchange(){
+      if(this.activename == "name1"){
+        this.activename = "name2"
+      }else if(this.activename == "name2"){
+        this.activename = "name3"
+      }else if(this.activename == "name3"){
+        this.activename = "name1"
+        
+      }
+    },
+  tabxunhuan(){
+    setInterval(this.tabchange, 5000);
+  },
+  tabclear(){
+    
+    clearInterval(this.tabxunhuan)
+  },
     handleClick(tab, event) {
       // console.log(tab, event);
     },
@@ -320,11 +359,11 @@ export default {
         });
     },
     drawHuan() {
-      var huan = echarts.init(document.getElementById("echart6"));
+      var huan = echarts.init(document.getElementById("fashao"));
       const option = {
         // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
-        color: ["#00d881", "#00f5d5", "#b2c0fb", "#b2a2fb"],
-        data: ["正常", "低热", "中等热度", "高热"],
+        color: ["#1ABDE6", "#EE6911", "#EE1111"],
+        data: [ "低热", "中热", "高热"],
         tooltip: {
           trigger: "item",
           formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -335,31 +374,36 @@ export default {
           top: 0,
           containLabel: true
         },
-        title: {
-          text: "体温等级",
-          textStyle: {
-            color: "#fff",
-            fontSize: 16
-          },
-          subtext: "所占百分比",
-          top: "50%",
-          left: "center"
-        },
+        // title: {
+        //   text: "体温等级",
+        //   textStyle: {
+        //     color: "#fff",
+        //     fontSize: 16
+        //   },
+        //   subtext: "所占百分比",
+        //   top: "50%",
+        //   left: "center"
+        // },
         legend: {
           orient: "vertical",
           top: "0%",
           right: "0%",
           textStyle: {
-            color: "#fff",
-            fontSize: 13
+            color: "rgba(255, 255, 255, 0.7)",
+            fontSize: 10
           },
-          icon: "roundRect"
+          icon: "circle",
+          itemWidth: 8,  // 设置宽度
+
+        itemHeight: 8, // 设置高度
+
+        itemGap: 1 // 设置间距
         },
         series: [
           // 主要展示层的
           {
-            radius: ["45%", "67%"],
-            center: ["50%", "60%"],
+            radius: ["55%", "75%"],
+            center: ["28%", "50%"],
             type: "pie",
             label: {
               normal: {
@@ -386,47 +430,73 @@ export default {
             },
             name: "体温等级比例",
             data: [
-              {
-                value: this.normal,
-                name: "正常",
-                label: {
-                  normal: {
-                    formatter: "正常{d}%",
+              // {
+              //   value: this.normal,
+              //   name: "正常",
+              //   label: {
+              //     normal: {
+              //       show: false,
+              //       formatter: "正常{d}%",
+              //       position: 'center',
+              //       textStyle: {
+              //         color: "#fff",
 
-                    textStyle: {
-                      color: "#fff",
-
-                      fontSize: 15
-                    }
-                  }
-                }
-              },
+              //         fontSize: 10
+              //       }
+              //     },
+              //     emphasis: {
+              //       show: true,
+              //       // textStyle: {
+              //       //     fontSize: '30',
+              //       //     fontWeight: 'bold'
+              //       // }
+              //   }
+              //   }
+              // },
               {
                 value: this.lowfever,
                 name: "低热",
                 label: {
                   normal: {
-                    formatter: "低热{d}%",
+                    show: false,
+                    formatter: "低热\n{d}%",
+                    position: 'center',
                     textStyle: {
                       color: "#fff",
 
-                      fontSize: 15
+                      fontSize: 10
                     }
-                  }
+                  },
+                  emphasis: {
+                    show: true,
+                    // textStyle: {
+                    //     fontSize: '30',
+                    //     fontWeight: 'bold'
+                    // }
+                }
                 }
               },
               {
                 value: this.moderatefever,
-                name: "中等热度",
+                name: "中热",
                 label: {
                   normal: {
-                    formatter: "中等热度{d}%",
+                    show: false,
+                    formatter: "中热\n{d}%",
+                    position: 'center',
                     textStyle: {
                       color: "#fff",
 
-                      fontSize: 15
+                      fontSize: 10
                     }
-                  }
+                  },
+                  emphasis: {
+                    show: true,
+                    // textStyle: {
+                    //     fontSize: '30',
+                    //     fontWeight: 'bold'
+                    // }
+                }
                 }
               },
               {
@@ -434,20 +504,29 @@ export default {
                 name: "高热",
                 label: {
                   normal: {
-                    formatter: "高热{d}%",
+                    show: false,
+                    formatter: "高热\n{d}%",
+                    position: 'center',
                     textStyle: {
                       color: "#fff",
 
-                      fontSize: 15
+                      fontSize: 10
                     }
-                  }
+                  },
+                  emphasis: {
+                    show: true,
+                    // textStyle: {
+                    //     fontSize: '30',
+                    //     fontWeight: 'bold'
+                    // }
+                }
                 }
               }
             ]
           }, // 边框的设置
           {
-            radius: ["68%", "62%"],
-            center: ["50%", "60%"],
+            radius: ["75%", "73%"],
+            center: ["28%", "50%"],
             type: "pie",
             hoverAnimation: false,
             label: {
@@ -529,7 +608,7 @@ export default {
           res.map((item, index) => {
             newres.push(
               Object.assign({}, item, {
-                value: Math.round(Math.random() * 2000)
+                value: Math.round(Math.random() * 10000)
               })
             );
           });
@@ -559,7 +638,7 @@ export default {
           res.map((item, index) => {
             newres.push(
               Object.assign({}, item, {
-                value: Math.round(Math.random() * 2000)
+                value: Math.round(Math.random() * 10000)
               })
             );
           });
@@ -579,24 +658,11 @@ export default {
         .get(this.baseUrl + "/prevent/selectRumorTitle")
         .then(function(response) {
           var res = response.data;
-          var newres = [];
-          res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
-          res = res.map(obj => {
-            return {
-              name: obj.name
-            };
-          });
-          res.map((item, index) => {
-            newres.push(
-              Object.assign({}, item, {
-                value: Math.round(Math.random() * 2000)
-              })
-            );
-          });
+         
+          self.piyao = res.slice(0,20);
+          
 
-          self.piyao = newres.slice(0, 50);
-
-          self.wordCould3();
+          // self.wordCould3();
         })
         .catch(function(error) {
           console.log(error);
@@ -631,11 +697,11 @@ export default {
                 color: function() {
                   return (
                     "rgb(" +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ")"
                   );
                 }
@@ -685,11 +751,11 @@ export default {
                 color: function() {
                   return (
                     "rgb(" +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ")"
                   );
                 }
@@ -739,11 +805,11 @@ export default {
                 color: function() {
                   return (
                     "rgb(" +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ", " +
-                    Math.round(Math.random() * 255) +
+                    (Math.round(Math.random() * (240 - 100)) + 100) +
                     ")"
                   );
                 }
@@ -1421,7 +1487,13 @@ export default {
       var tab1 = document.getElementById("demo1");
       var tab2 = document.getElementById("demo2");
       tab2.innerHTML = tab1.innerHTML;
+      // console.log(tab.offsetHeight);
+      tab1.style.width = this.noMaskCount*(tab.offsetHeight+3)+"px"
+      // console.log(this.noMaskCount)
+      // console.log(this.noMaskCount*(tab.offsetHeight+3))
       function Marquee() {
+        // console.log(tab2.offsetWidth)
+        // console.log(tab.scrollLeft)
         if (tab2.offsetWidth - tab.scrollLeft <= 0)
           tab.scrollLeft -= tab1.offsetWidth;
         else {
@@ -1442,7 +1514,9 @@ export default {
         .get(this.baseUrl + "/pictures/selectByType?type=3")
         .then(function(response) {
           var res = response.data;
-          self.noMaskList = res;
+          self.noMask = res;
+          self.noMaskCount = res.length;
+          self.gundong();
         })
         .catch(function(error) {
           console.log(error);
@@ -1463,9 +1537,14 @@ export default {
   height: 100%;
   object-fit: fill;
 }
-.ivu-tabs-tab {
-  color: #02a6b5;
+
+.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab{
+  width: 67.6%;
+  text-align: center; 
+  border: 1px solid rgba(25, 186, 139, 0.17);
+   background: rgba(255, 255, 255, 0.08) url('../assets/images/line.png');
 }
+
 
 .ivu-tabs-tabpane {
   width: 100%;
@@ -1513,22 +1592,78 @@ export default {
 
 #demo img {
   height: 100%;
+  margin-right: 3px;
+  
 }
 
 #indemo {
   float: left;
-  width: 800%;
+  width: 400%;
   height: 100%;
+ 
 }
 
 #demo1 {
   float: left;
   height: 100%;
-  margin-right: 3px;
+  width: 28.9%;
+
+
 }
 
 #demo2 {
   float: left;
+  width: 28.9%;
   height: 100%;
+
 }
+.piyao{
+  
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+.piyao:hover{
+        overflow-y: scroll;
+        }
+.piyao ul{
+  
+  height: 100%;
+  width: 100%;
+}
+.piyao_list{
+  
+  height:calc(100% / 8);
+  width: 100%;
+  padding-left: 5px;
+   font-size: 0.17rem;
+  color: azure;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08) url('../assets/images/line.png');
+  margin-bottom: 1.2%;
+  padding-top:1%; 
+ 
+  list-style-position:inside;
+  list-style-image: url('../assets/images/icon1.png');
+}
+
+.fashaorenshu{
+  
+      font-size: 0.7rem;
+    color: #ffeb7b;
+    font-family: electronicFont;
+    font-weight: bold;
+    width: 35%;
+    float: left;
+    height: 100%;
+}
+#fashao{
+  
+  width: 65%;
+  height: 100%;
+  float: left;
+  height: 1.07rem
+}
+
 </style>
