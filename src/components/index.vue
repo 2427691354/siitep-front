@@ -23,12 +23,17 @@
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img
-                    style="margin-right:2px;"
+                  <!-- <img
                     :src="staticUrl + '/img/' + item.img"
                     v-for="item in this.noMaskList"
                     :key="item.img"
-                  />
+                  /> -->
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
+                  <img src="../assets/picture/未带口罩.png" />>
                 </div>
                 <div id="demo2"></div>
               </div>
@@ -168,7 +173,7 @@ export default {
         techOrder: ["flash", "html5"], // 兼容顺序
         flash: {
           hls: { withCredentials: false },
-          swf: "../../static/video-js.swf" // 引入静态文件swf
+          swf: "static/video-js.swf" // 引入静态文件swf
         },
         html5: { hls: { withCredentials: false } },
         sources: [
@@ -196,7 +201,7 @@ export default {
         techOrder: ["flash", "html5"], // 兼容顺序
         flash: {
           hls: { withCredentials: false },
-          swf: "../../static/video-js.swf" // 引入静态文件swf
+          swf: "static/video-js.swf" // 引入静态文件swf
         },
         html5: { hls: { withCredentials: false } },
         sources: [
