@@ -19,15 +19,13 @@
               </el-date-picker>
               <br><br><br>
               <el-upload class="upload-demo"
-                         ref="upload1"
                          :limit="1"
+                         :before-upload="beforeAvatarUpload"
                          :on-success="handleAvatarSuccess"
                          :on-preview="handlePreview"
                          :on-remove="handleRemove"
                          :file-list="fileList1"
-                         :action="'http://localhost:8089/import?date='+this.tableSuffix+'&date2='
-                         +this.tableSuffix2"
-                         :auto-upload="false">
+                         action="#">
                 <el-button slot="trigger"
                            size="small"
                            type="primary">选择excel</el-button>
@@ -106,6 +104,8 @@ export default {
       tableSuffix: '',
       tableSuffix2: '',
       value1: null,
+      files: [],
+      fileName: ""
     };
   },
   components: {
@@ -122,12 +122,14 @@ export default {
       console.log(file);
     },
     submitUpload () {
-      this.$refs.upload.submit();
-      this.$refs.upload.clearFiles();
+      this.uuu();
+      // this.$refs.upload.submit();
+      // this.$refs.upload.clearFiles();
     },
     submitUpload1 () {
-      this.$refs.upload1.submit();
-      this.$refs.upload1.clearFiles();
+      this.uuu();
+      // this.$refs.upload1.submit();
+      // this.$refs.upload1.clearFiles();
     },
     handleClick (tab, event) {
       console.log(tab, event);
@@ -143,6 +145,7 @@ export default {
       let end = year + '-' + month + '-' + da
       this.tableSuffix = month + da
       this.value1 = end
+      this.tableSuffix2 = end
     },
     formatDate (datetime) {
       var datetime = new Date(datetime)
@@ -166,7 +169,94 @@ export default {
     cangeTime () {
       this.tableSuffix = this.formatDate(this.value1)
       this.tableSuffix2 = this.formatDate2(this.value1)
-    }
+    },
+    uuu () {
+      const _this = this;
+      var formData = new FormData();
+      //filename是键，file是值，就是要传的文件
+
+      console.log(_this.fileList1)
+      formData.append("file", _this.fileList1[0]);
+      formData.append("date", this.tableSuffix);
+      formData.append("date2", this.tableSuffix2);
+
+      let requestConfig = {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      };
+      _this.$http
+        .post("http://localhost:8089/import", formData, requestConfig)
+        .then(res => {
+          // if (res.success) {
+          //   const result = res.result;
+          //   if (result.errorCount == 0 && result.successCount > 0) {
+          //     _this.$message({
+          //       message: `导入成功,成功${result.successCount}条`,
+          //       type: "success"
+          //     });
+          //     _this.closeFileUpload();
+          //     _this.Refresh();
+          //   } else if (result.errorCount > 0 && result.successCount >= 0) {
+          //     _this.Refresh();
+          //     _this.tableData = result.uploadErrors;
+          //     _this.successCount = result.successCount;
+          //     _this.innerVisible = true;
+          //   } else if (result.errorCount == 0 && result.successCount == 0) {
+          //     _this.$message({
+          //       message: `上传文件中数据为空`,
+          //       type: "error"
+          //     });
+          //   }
+          // }
+          const content = res.data;
+          const blob = new Blob([content]);
+          const fileName = `xxx.xlsx`;
+          if ("download" in document.createElement("a")) {
+            // 非IE下载
+            const elink = document.createElement("a");
+            elink.download = fileName;
+            elink.style.display = "none";
+            elink.href = URL.createObjectURL(blob);
+            document.body.appendChild(elink);
+            elink.click();
+            URL.revokeObjectURL(elink.href); // 释放URL 对象
+            document.body.removeChild(elink);
+          } else {
+            // IE10+下载
+            navigator.msSaveBlob(blob, fileName);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    beforeAvatarUpload (file) {
+
+      var fileName = new Array()
+      fileName = file.name.split('.');
+      const extension = fileName[fileName.length - 1] === 'xls'
+      const extension2 = fileName[fileName.length - 1] === 'xlsx'
+      const isLt2M = file.size / 1024 / 1024 < 10
+      if (!extension && !extension2) {
+        this.$message({
+          message: '上传模板只能是xls、xlsx格式!',
+          type: 'warning'
+        });
+        //                    console.log('上传模板只能是xls、xlsx格式!')
+      }
+      if (!isLt2M) {
+        this.$message({
+          message: '上传模板大小不能超过 10MB!',
+          type: 'warning'
+        });
+        //                    console.log('上传模板大小不能超过 10MB!')
+      }
+      if (extension || extension2 && isLt2M == true) {
+        this.fileList1.push(file)
+      }
+      return false;
+    },
   }
 };
 </script>
