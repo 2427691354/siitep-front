@@ -226,6 +226,7 @@ a:hover {
 .bar {
   background: rgba(101, 132, 226, 0.1);
   padding: 0.15rem;
+  height: 100%;
 }
 .barbox li,
 .barbox2 li {
