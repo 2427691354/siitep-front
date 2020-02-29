@@ -125,7 +125,7 @@ a:hover {
   padding: 0;
 }
 /* 轮播图背景边框去掉 */
-.boxallcard{
+.boxallcard {
   /* border: 1px solid rgba(25, 186, 139, 0.17); */
   padding: 0 0.2rem 0.4rem 0.15rem;
   /* background: rgba(255, 255, 255, 0.08) url(../images/line.png);
@@ -135,7 +135,7 @@ a:hover {
   z-index: 10;
 }
 .boxallcard:before,
-.boxallcard:after{
+.boxallcard:after {
   position: absolute;
   width: 0.1rem;
   height: 0.1rem;
@@ -143,7 +143,7 @@ a:hover {
   /* border-top: 2px solid #02a6b5; */
   top: 0;
 }
-.boxallinfo{
+.boxallinfo {
   border: 1px solid rgba(25, 186, 139, 0.17);
   /* padding: 0 0.2rem 0.4rem 0.15rem; */
   background: rgba(255, 255, 255, 0.08) url(../images/line.png);
@@ -230,7 +230,7 @@ a:hover {
 }
 .barbox li,
 .barbox2 li {
-  width: 33.33%;
+  width: 25%;
   text-align: center;
   position: relative;
   z-index: 100;
@@ -273,6 +273,15 @@ a:hover {
   right: 0;
   top: 25%;
 }
+.barbox li:nth-child(3):before {
+  position: absolute;
+  content: "";
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  right: 0;
+  top: 25%;
+}
 
 .barbox {
   border: 1px solid rgba(25, 186, 139, 0.17);
@@ -304,7 +313,7 @@ a:hover {
   padding-top: 1.5rem;
   z-index: 5;
 }
-.insulate{
+.insulate {
   width: 3.7rem;
   height: 1.6rem;
   margin-left: 0.15rem;
@@ -317,7 +326,7 @@ a:hover {
   z-index: 10;
 }
 .insulate:before,
-.insulate:after{
+.insulate:after {
   position: absolute;
   width: 0.1rem;
   height: 0.1rem;
@@ -335,10 +344,10 @@ a:hover {
   border-right: 2px solid #02a6b5;
   right: 0;
 }
-.fever{
+.fever {
   width: 3.7rem;
   height: 1.6rem;
-  margin-left: 4.10rem;
+  margin-left: 4.1rem;
   border: 1px solid rgba(25, 186, 139, 0.17);
   /* padding: 0 0.2rem 0rem 0.15rem; */
   background: rgba(255, 255, 255, 0.08) url(../images/line.png);
@@ -348,7 +357,7 @@ a:hover {
   z-index: 10;
 }
 .fever:before,
-.fever:after{
+.fever:after {
   position: absolute;
   width: 0.1rem;
   height: 0.1rem;
@@ -593,52 +602,54 @@ a:hover {
   position: relative;
   padding-top: 20px;
 }
-.el-carousel__item img{
+.el-carousel__item img {
   width: 100%;
   height: inherit;
 }
-.el-table{
+.el-table {
   height: inherit;
-  width: 100%!important;
-  background-color:transparent!important;
-  color: #DCDCDC!important;
-  font-size: 0.15rem!important;
-  
+  width: 100% !important;
+  background-color: transparent !important;
+  color: #dcdcdc !important;
+  font-size: 0.15rem !important;
 }
 
 .el-table thead {
-  color: #DCDCDC!important;
-  background-color: #1B3565;
+  color: #dcdcdc !important;
+  background-color: #1b3565;
   font-weight: 500;
 }
 /* 设置table header的背景颜色 */
-.el-table th, .el-table tr ,.el-table td{
-  background-color: transparent!important;
-  padding: 4px 0px!important;
-  text-align: center!important;
+.el-table th,
+.el-table tr,
+.el-table td {
+  background-color: transparent !important;
+  padding: 4px 0px !important;
+  text-align: center !important;
 }
 
-.el-table td, .el-table th.is-leaf {
-  border-bottom: 0px solid #05a4b8!important;
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: 0px solid #05a4b8 !important;
 }
 /* .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
   border-right: 1px solid #05a4b8!important;
 } */
-.el-table--border, .el-table--group {
-  border: 1px solid #05a4b8!important;
+.el-table--border,
+.el-table--group {
+  border: 1px solid #05a4b8 !important;
 }
 /* .el-table--group::after{
   content: '';
   position: absolute;
   background-color: #05a4b8!important;
   /* z-index: 1; */
-/* } */ 
-.el-table::after{
-  width: 0%!important;
-  height: 0%!important;
-
+/* } */
+.el-table::after {
+  width: 0% !important;
+  height: 0% !important;
 }
-.el-table::before{
-  width: 0%!important;
-  height: 0%!important;
+.el-table::before {
+  width: 0% !important;
+  height: 0% !important;
 }
