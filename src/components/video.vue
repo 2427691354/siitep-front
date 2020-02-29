@@ -11,6 +11,7 @@
                    @tab-click="handleClick">
             <el-tab-pane label="excel导入"
                          name="first">
+              <span style="color:#fff;font-size:0.2rem;">数据日期：</span>
               <el-date-picker v-model="value1"
                               @change="cangeTime()"
                               size="small"
@@ -19,6 +20,7 @@
               </el-date-picker>
               <br><br><br>
               <el-upload class="upload-demo"
+                         ref="upload1"
                          :limit="1"
                          :before-upload="beforeAvatarUpload"
                          :on-success="handleAvatarSuccess"
@@ -92,7 +94,7 @@ export default {
     return {
       fileList: [],
       fileList1: [],
-      activeName: 'second',
+      activeName: 'first',
       options: [{
         value: '1',
         label: '停学不停课'
@@ -122,12 +124,13 @@ export default {
       console.log(file);
     },
     submitUpload () {
-      this.uuu();
-      // this.$refs.upload.submit();
-      // this.$refs.upload.clearFiles();
+      this.$refs.upload.submit();
+      this.$refs.upload.clearFiles();
     },
     submitUpload1 () {
       this.uuu();
+
+      this.$refs.upload1.clearFiles();
       // this.$refs.upload1.submit();
       // this.$refs.upload1.clearFiles();
     },
@@ -171,66 +174,97 @@ export default {
       this.tableSuffix2 = this.formatDate2(this.value1)
     },
     uuu () {
-      const _this = this;
+      var xhr = new XMLHttpRequest();
       var formData = new FormData();
-      //filename是键，file是值，就是要传的文件
-
-      console.log(_this.fileList1)
-      formData.append("file", _this.fileList1[0]);
+      formData.append("file", this.fileList1[0]);
       formData.append("date", this.tableSuffix);
       formData.append("date2", this.tableSuffix2);
-
-      let requestConfig = {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      };
-      _this.$http
-        .post("http://localhost:8089/import", formData, requestConfig)
-        .then(res => {
-          // if (res.success) {
-          //   const result = res.result;
-          //   if (result.errorCount == 0 && result.successCount > 0) {
-          //     _this.$message({
-          //       message: `导入成功,成功${result.successCount}条`,
-          //       type: "success"
-          //     });
-          //     _this.closeFileUpload();
-          //     _this.Refresh();
-          //   } else if (result.errorCount > 0 && result.successCount >= 0) {
-          //     _this.Refresh();
-          //     _this.tableData = result.uploadErrors;
-          //     _this.successCount = result.successCount;
-          //     _this.innerVisible = true;
-          //   } else if (result.errorCount == 0 && result.successCount == 0) {
-          //     _this.$message({
-          //       message: `上传文件中数据为空`,
-          //       type: "error"
-          //     });
-          //   }
-          // }
-          const content = res.data;
-          const blob = new Blob([content]);
-          const fileName = `xxx.xlsx`;
-          if ("download" in document.createElement("a")) {
+      xhr.open('post', "http://47.101.33.200:8089/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
+      xhr.responseType = 'blob';
+      xhr.onload = function (e) {
+        if (this.status == 200) {
+          var blob = this.response;
+          var filename = "异常数据（修改重新再次上传）.xls";
+          if (window.navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, filename);
+          } else {
             // 非IE下载
             const elink = document.createElement("a");
-            elink.download = fileName;
+            elink.download = filename;
             elink.style.display = "none";
             elink.href = URL.createObjectURL(blob);
             document.body.appendChild(elink);
             elink.click();
             URL.revokeObjectURL(elink.href); // 释放URL 对象
             document.body.removeChild(elink);
-          } else {
-            // IE10+下载
-            navigator.msSaveBlob(blob, fileName);
           }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+
+        }
+      };
+      xhr.send(formData);
+
     },
+    // uuu () {
+    //   const _this = this;
+    //   var formData = new FormData();
+    //   //filename是键，file是值，就是要传的文件
+
+    //   console.log(_this.fileList1)
+    //   formData.append("file", _this.fileList1[0]);
+    //   formData.append("date", this.tableSuffix);
+    //   formData.append("date2", this.tableSuffix2);
+
+    //   let requestConfig = {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data"
+    //     }
+    //   };
+    //   _this.$http
+    //     .post("http://localhost:8089/import", formData, requestConfig)
+    //     .then(res => {
+    //       // if (res.success) {
+    //       //   const result = res.result;
+    //       //   if (result.errorCount == 0 && result.successCount > 0) {
+    //       //     _this.$message({
+    //       //       message: `导入成功,成功${result.successCount}条`,
+    //       //       type: "success"
+    //       //     });
+    //       //     _this.closeFileUpload();
+    //       //     _this.Refresh();
+    //       //   } else if (result.errorCount > 0 && result.successCount >= 0) {
+    //       //     _this.Refresh();
+    //       //     _this.tableData = result.uploadErrors;
+    //       //     _this.successCount = result.successCount;
+    //       //     _this.innerVisible = true;
+    //       //   } else if (result.errorCount == 0 && result.successCount == 0) {
+    //       //     _this.$message({
+    //       //       message: `上传文件中数据为空`,
+    //       //       type: "error"
+    //       //     });
+    //       //   }
+    //       // }
+    //       const content = res.data;
+    //       const blob = new Blob([content], { type: 'application/vnd.ms-excel' });
+    //       const fileName = `xxx.xls`;
+    //       if ("download" in document.createElement("a")) {
+    //         // 非IE下载
+    //         const elink = document.createElement("a");
+    //         elink.download = fileName;
+    //         elink.style.display = "none";
+    //         elink.href = URL.createObjectURL(blob);
+    //         document.body.appendChild(elink);
+    //         elink.click();
+    //         URL.revokeObjectURL(elink.href); // 释放URL 对象
+    //         document.body.removeChild(elink);
+    //       } else {
+    //         // IE10+下载
+    //         navigator.msSaveBlob(blob, fileName);
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // },
     beforeAvatarUpload (file) {
 
       var fileName = new Array()
