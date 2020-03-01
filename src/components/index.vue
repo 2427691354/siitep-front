@@ -110,7 +110,6 @@
                  id="polo_1">
               <div class="boxfoot"></div>
             </div>
-
             <div class="cityNum"
                  id="polo_2">
               <div class="boxfoot"></div>
@@ -1722,7 +1721,6 @@ export default {
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
           }
-          console.log(self.Num_js);
           self.stuInsz();
         });
       self.$http
