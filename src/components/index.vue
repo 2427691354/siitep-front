@@ -306,7 +306,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "video/mp4",
-            src: this.staticUrl + "/video/fangyishipin.mp4" //url地址
+            src: this.staticUrl + "/video/1.mp4" //url地址
           }
         ],
         poster: "", //你的封面地址
@@ -2341,8 +2341,7 @@ export default {
           self.stuInfo = dd;
           for (var i = 0; i < res.length; i++) {
             // 判断
-            if (res[i].STATUS == "ISOLATION") {
-              res[i].STATUS = "隔离";
+            if (res[i].STATUS == "隔离") {
               if (res[i].quarantine == 0) {
                 res[i].quarantine = "在家";
               } else {
