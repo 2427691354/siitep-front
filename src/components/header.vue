@@ -1,8 +1,8 @@
 <template>
   <div class="head">
-    <h1>校园疫情可疑排查与监测系统</h1>
+    <h1>校园疫情防控与网络教学可视化平台</h1>
     <div class="weather">
-      <!-- <img src="../assets/picture/weather.png" /> -->
+      <img src="../assets/images/time4.png" alt="时间截止"/>
       <span>数据更新截止：</span>
       <span id="showTime">{{deadLine}}</span>
     </div>
@@ -91,6 +91,22 @@ export default {
   text-align: center;
   font-size: 0.4rem;
   line-height: 0.8rem;
+  padding-top: 0.1rem;
+  background-image: -webkit-gradient(
+    linear,
+    left 0,
+    right 0,
+    from(rgb(11, 115, 241)),
+    to(rgb(88, 245, 216))
+  );
+
+  /*必需加前缀 -webkit- 才支持这个text值 */
+
+  -webkit-background-clip: text;
+
+  /*text-fill-color会覆盖color所定义的字体颜色： */
+
+  -webkit-text-fill-color: transparent;
 }
 .head h1 img {
   width: 1.5rem;
@@ -105,14 +121,17 @@ export default {
   line-height: 0.75rem;
 }
 .weather img {
-  width: 0.37rem;
+  width: 0.3rem;
   display: inline-block;
   vertical-align: middle;
+  padding-top: 0.04rem;
+  padding-right: 0.05rem;
 }
 .weather span {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.18rem;
-  padding-right: 0.1rem;
+  /* color: rgba(255, 255, 255, 0.7); */
+  color: #00E6FD;
+  font-size: 0.17rem;
+  vertical-align: middle;
+  padding-right: 0.01rem;
 }
-
 </style>
