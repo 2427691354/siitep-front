@@ -294,6 +294,8 @@ export default {
       data_gelilist: [],
       //学生发烧人数
       data_fashaolist: [],
+      //重点疫区
+      keyarea:[],
 
       lowfever: null,
       normal: null,
@@ -4082,16 +4084,33 @@ export default {
     },
     allNum() {
       var self = this;
+      var dd = [];
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
         .then(function(response) {
-          var dd = [];
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
-            dd.push({
-              name: res[i].location_province,
-              value: res[i].count
-            });
+              dd.push({
+                name: res[i].location_province,
+                value: res[i].count
+              });
+          }
+          self.map(dd);
+        });
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getStuInProvince")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            if(res[i].location_province == "湖北" || res[i].location_province == "河南"
+              || res[i].location_province == "浙江" ||res[i].location_province == "安徽"
+            ){
+              self.keyarea.push({
+                location_province: res[i].location_province,
+                count: res[i].count
+              });
+            }
+              
           }
           self.map(dd);
         });
@@ -4276,7 +4295,6 @@ export default {
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-
       var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
@@ -4318,7 +4336,7 @@ export default {
           }
         },
         legend: {
-          data: ["隔离人数", "发烧人数"],
+          data: ["隔离人数", "发烧人数","重点疫区"],
           icon: "pin", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
           orient: "vertical",
           right: "15%",
@@ -4397,7 +4415,7 @@ export default {
             type: "scatter",
             coordinateSystem: "geo",
             symbol: "pin", //气泡
-            symbolSize: 30,
+            symbolSize: 25,
             label: {
               normal: {
                 show: false,
@@ -4409,7 +4427,7 @@ export default {
             },
             itemStyle: {
               normal: {
-                color: "#FF5000" //标志颜色
+                color: "#AD45F2" //标志颜色
               }
             },
             zlevel: 6,
@@ -4420,7 +4438,39 @@ export default {
             type: "effectScatter",
             coordinateSystem: "geo",
             data: convertData(this.data_fashaolist),
-            symbolSize: 20,
+            symbolSize: 10,
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "right",
+                show: false,
+                textStyle: {
+                  color: "#fff"
+                },
+                backgroundColor: "rgba(0,0,0,0.5)"
+              }
+            },
+            itemStyle: {
+              show: true,
+              normal: {
+                color: "yellow",
+                shadowBlur: 10,
+                shadowColor: "yellow"
+              }
+            },
+            zlevel: 1
+          },
+          {
+            name: "重点疫区",
+            type: "effectScatter",
+            data: convertData(this.keyarea),
+            coordinateSystem: "geo",
+            symbolSize: 15,
             showEffectOn: "render",
             rippleEffect: {
               brushType: "stroke"
@@ -4440,17 +4490,18 @@ export default {
             itemStyle: {
               show: true,
               normal: {
-                color: "yellow",
+                color: "#FF5000",
                 shadowBlur: 10,
-                shadowColor: "yellow"
+                shadowColor: "#FF5000"
               }
             },
-            zlevel: 1
+            zlevel: 10,
+            
           }
         ]
       };
       myChart.setOption(option);
-
+      console.log(convertData(this.keyarea));
       var index = 0;
       var myTime = setInterval(function() {
         myChart.dispatchAction({
@@ -5035,7 +5086,7 @@ export default {
             type: "value",
             // name: "人数",
             min: 0,
-            max: 1300,
+            max: 1200,
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -5100,6 +5151,7 @@ export default {
           {
             name: "江苏人数趋势",
             type: "bar",
+            //双Y轴时使用
             yAxisIndex: 1,
             barWidth: 15,
             itemStyle: {
