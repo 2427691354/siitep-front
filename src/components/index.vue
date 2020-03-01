@@ -970,6 +970,8 @@ export default {
         yAxis: {
           type: "category",
           boundaryGap: true,
+          //数组倒置
+          inverse:true,
           axisTick: {
             //y轴刻度线
             show: false
