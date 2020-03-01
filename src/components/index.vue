@@ -969,6 +969,8 @@ export default {
         yAxis: {
           type: "category",
           boundaryGap: true,
+          //倒序
+          inverse:true,
           axisTick: {
             //y轴刻度线
             show: false
@@ -1720,6 +1722,7 @@ export default {
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
           }
+          console.log(self.Num_js);
           self.stuInsz();
         });
       self.$http
@@ -1786,7 +1789,7 @@ export default {
             type: "value",
             // name: "人数",
             min: 0,
-            max: 200,
+            max: 1000,
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -1846,9 +1849,9 @@ export default {
             symbolSize: 6,
             itemStyle: {
               normal: {
-                color: "#0092f6",
+                color: "#4169E1",
                 lineStyle: {
-                  color: "#0092f6",
+                  color: "#4169E1",
                   width: 1
                 },
                 areaStyle: {
