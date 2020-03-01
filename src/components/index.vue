@@ -27,9 +27,11 @@
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img :src="staticUrl + '/img/' + item.img"
-                       v-for="item in this.noMask"
-                       :key="item.img" />
+                  <img
+                    :src="staticUrl + '/img/' + item.img"
+                    v-for="item in this.noMask"
+                    :key="item.img"
+                  />
 
                   <!-- <img src="../assets/picture/未带口罩.png" />
                   <img src="../assets/picture/未带口罩.png" />
@@ -39,9 +41,11 @@
                   <img src="../assets/picture/未带口罩.png" />-->
                 </div>
                 <div id="demo2">
-                  <img :src="staticUrl + '/img/' + item.img"
-                       v-for="item in this.noMask"
-                       :key="item.img" />
+                  <img
+                    :src="staticUrl + '/img/' + item.img"
+                    v-for="item in this.noMask"
+                    :key="item.img"
+                  />
                 </div>
               </div>
             </div>
@@ -64,9 +68,11 @@
                          name="name3"
                          class="piyao">
                   <ul>
-                    <li class="piyao_list"
-                        v-for="item in this.piyao"
-                        :key="item.title">{{item.title}}</li>
+                    <li
+                      class="piyao_list"
+                      v-for="item in this.piyao"
+                      :key="item.title"
+                    >【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -125,7 +131,7 @@
               <el-carousel :interval="2000"
                            type="card"
                            height="2rem">
-                <el-carousel-item v-for="item in this.img_list">
+                <el-carousel-item v-for="item in this.img_list" :key="item.img">
                   <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
@@ -170,8 +176,54 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 2.85rem">
+          <div class="boxall" style="height: 2.85rem">
+            <div class="kebiaotitle">
+              <div class="select">
+                <el-dropdown @command="handleCommand1">
+                <span class="el-dropdown-link">
+                  18级
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="rj18c2">软件18C2</el-dropdown-item>
+                  <el-dropdown-item command="rj18c1">软件18C1</el-dropdown-item>
+                  <el-dropdown-item command="dsj18c1">大数据18C1</el-dropdown-item>
+                  <el-dropdown-item command="dl18c1">动联18C1</el-dropdown-item>
+                  <el-dropdown-item command="wl18c1">网络18C1</el-dropdown-item>
+                  <el-dropdown-item command="wl18d1">网络18D1</el-dropdown-item>
+                  <el-dropdown-item command="xg18h1">信管18H1</el-dropdown-item>
+                  <el-dropdown-item command="xx18d1">信息18D1</el-dropdown-item>
+                  <el-dropdown-item command="yjs18c1">云计算18C1</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+
+              <el-dropdown @command="handleCommand2">
+                <span class="el-dropdown-link">
+                  19级
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="rj19c1">软件19C1</el-dropdown-item>
+                  <el-dropdown-item command="rj19c2">软件19C2</el-dropdown-item>
+                  <el-dropdown-item command="dsj19c1">大数据19C1</el-dropdown-item>
+                  <el-dropdown-item command="dl19c1">动联19C1</el-dropdown-item>
+                  <el-dropdown-item command="wl19c1">网络19C1</el-dropdown-item>
+                  <el-dropdown-item command="wl19d1">网络19D1</el-dropdown-item>
+                  <el-dropdown-item command="xx19c1">信息19C1</el-dropdown-item>
+                  <el-dropdown-item command="xx19d1">信息19D1</el-dropdown-item>
+                  <el-dropdown-item command="yjs19c1">云计算19C1</el-dropdown-item>
+                  <el-dropdown-item command="yjs19c2">云计算19C2</el-dropdown-item>
+                  <el-dropdown-item command="jqr19c1">机器人19C1</el-dropdown-item>
+                  <el-dropdown-item command="jqr19c2">机器人19C2</el-dropdown-item>
+                  
+                  
+                </el-dropdown-menu>
+              </el-dropdown>
+              </div>
+              <div class="select">{{this.class}}课程表</div>
+              <div class="zhiban">值班老师:{{this.zhiban}}</div>
+              
+            </div>
             <div id="echart6"></div>
 
             <div class="boxfoot"></div>
@@ -291,6 +343,439 @@ export default {
 
       noMask: [],
       noMaskCount: null,
+      rj18c2: [
+        [1, 4, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 5, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 6, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 7, 1, "伊雯雯", "框架编程技术", "5-8"],
+
+        [2, 0, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 1, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 2, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 3, 1, "郝爱语", "软件质量保证与测试", "1-4"]
+      ],
+      rj19c1: [
+        [0, 0, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 1, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 2, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 3, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+
+        [0, 4, 1, "朱东", "关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "朱东", "关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 1, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 2, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 3, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+
+        [3, 4, 1, "刘文军", "JAVA面向对象编程", "5-6"],
+        [3, 5, 1, "刘文军", "JAVA面向对象编程", "5-6"],
+
+        [4, 0, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 1, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 2, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 3, 1, "吴阅帆", "Linux系统管理C", "1-4"]
+      ],
+      dsj18c1: [
+        [0, 0, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 1, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 2, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 3, 1, "黄金晶", "软件工程与建模", "1-4"],
+
+        [1, 0, 1, "艾旭升", "大数据实时应用开发", "1-2"],
+        [1, 1, 1, "艾旭升", "大数据实时应用开发", "1-2"],
+
+        [2, 0, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 1, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 2, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 3, 1, "李良", "数据可视化编程和操作", "1-4"],
+
+        [3, 0, 1, "郝爱语", "大数据应用测试技术和工具", "1-2"],
+        [3, 1, 1, "郝爱语", "大数据应用测试技术和工具", "1-2"]
+      ],
+      dsj19c1: [
+        [0, 0, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 1, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 2, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 3, 1, "艾旭升", " Linux系统管理C", "1-4"],
+
+        [0, 4, 1, "杨小英", "关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "杨小英", "关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 1, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 2, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 3, 1, "杨小英", "Web前端技术基础", "1-4"],
+
+        [2, 0, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "杨小英", "关系数据库基础与应用", "1-4"]
+      ],
+      dl18c1: [
+        [0, 4, 1, "雷晖", " 框架编程技术", "5-6"],
+        [0, 5, 1, "雷晖", " 框架编程技术", "5-6"],
+
+        [2, 0, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 1, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 2, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 3, 1, "罗颖", " 微信小程序开发", "1-4"],
+
+        [3, 2, 1, "李春华", " Linux系统管理B", "3-4"],
+        [3, 3, 1, "李春华", " Linux系统管理B", "3-4"]
+      ],
+      dl19c1: [
+        [0, 0, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 1, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 2, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 3, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+
+        [1, 0, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 1, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 2, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 3, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+
+        [2, 0, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 1, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 2, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 3, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+
+        [4, 0, 1, "李春华", " Linux系统管理C", "1-2"],
+        [4, 1, 1, "李春华", " Linux系统管理C", "1-2"],
+        [4, 4, 1, "李春华", " Linux系统管理C", "5-6"],
+        [4, 5, 1, "李春华", " Linux系统管理C", "5-6"]
+      ],
+      rj18c1: [
+        [0, 0, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 1, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 2, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 3, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+
+        [1, 0, 1, "王喜", " 框架编程技术", "1-2"],
+        [1, 1, 1, "王喜", " 框架编程技术", "1-2"],
+
+        [3, 0, 1, "王喜", " 框架编程技术", "1-2"],
+        [3, 1, 1, "王喜", " 框架编程技术", "1-2"]
+      ],
+      rj19c2: [
+        [0, 0, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 1, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 2, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 3, 1, "栾咏红", " Java程序设计", "1-4"],
+
+        [0, 4, 1, "胡霞", " 关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "胡霞", " 关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 1, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 2, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 3, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+
+        [1, 4, 1, "吴阅帆", " Linux系统管理C", "5-6"],
+        [1, 5, 1, "吴阅帆", " Linux系统管理C", "5-6"],
+
+        [3, 4, 1, "栾咏红", " JAVA面向对象编程", "5-6"],
+        [3, 5, 1, "栾咏红", " JAVA面向对象编程", "5-6"],
+
+        [3, 0, 1, "吴阅帆", " Linux系统管理C", "1-2"],
+        [3, 1, 1, "吴阅帆", " Linux系统管理C", "1-2"],
+
+        [4, 0, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 1, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 2, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 3, 1, "胡霞", " 关系数据库基础与应用", "1-4"]
+      ],
+      wl18c1: [
+        [0, 0, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 1, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 2, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 3, 1, "刘宝莲", " AutoCAD A", "1-4"],
+
+        [0, 4, 1, "刘文军", " Python程序设计A", "5-6"],
+        [0, 5, 1, "刘文军", " Python程序设计A", "5-6"],
+
+        [1, 0, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 1, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 2, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 3, 1, "王东海", " 网络安全技术", "1-4"],
+
+        [2, 0, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 1, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 2, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 3, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+
+        [3, 0, 1, "王东海", " 综合布线技术", "1-2"],
+        [3, 1, 1, "王东海", " 综合布线技术", "1-2"],
+        [3, 2, 1, "刘文军", " Python程序设计A", "3-4"],
+        [3, 3, 1, "刘文军", " Python程序设计A", "3-4"]
+      ],
+      wl18d1: [
+        [0, 0, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 1, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 2, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 3, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+
+        [2, 0, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 1, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 2, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 3, 1, "王东海", " 网络安全技术", "1-4"],
+
+        [3, 0, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 1, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 2, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 3, 1, "时荣", " WEB安全渗透", "1-4"],
+
+        [4, 0, 1, "刘宝莲", " 综合布线技术", "1-2"],
+        [4, 1, 1, "刘宝莲", " 综合布线技术", "1-2"]
+      ],
+      wl19c1: [
+        [0, 0, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 1, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 2, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 3, 1, "何亮", "  Linux系统管理C", "1-4"],
+
+        [0, 4, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 5, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 6, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 7, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+
+        [1, 0, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 1, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 2, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 3, 1, "陈园园", " Web前端技术基础", "1-4"],
+
+        [2, 0, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 1, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 2, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 3, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+
+        [3, 0, 1, "孙伟", " 关系数据库基础与应用", "1-2"],
+        [3, 1, 1, "孙伟", " 关系数据库基础与应用", "1-2"],
+
+        [3, 4, 1, "何亮", " Linux系统管理C", "5-6"],
+        [3, 5, 1, "何亮", " Linux系统管理C", "5-6"]
+      ],
+      wl19d1: [
+        [0, 0, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 1, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 2, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 3, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+
+        [0, 4, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 5, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 6, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 7, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+
+        [1, 0, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 1, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 2, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 3, 1, "何亮", " Linux系统管理C", "1-4"],
+
+        [2, 0, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 1, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 2, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 3, 1, "密海英", " Web前端技术基础", "1-4"],
+
+        [3, 4, 1, "罗颖", " 关系数据库基础与应用", "5-6"],
+        [3, 5, 1, "罗颖", " 关系数据库基础与应用", "5-6"]
+      ],
+      xg18h1: [
+        [0, 0, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 1, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 2, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 3, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+
+        [0, 4, 1, "吴阅帆", " 客户关系管理B", "5-6"],
+        [0, 5, 1, "吴阅帆", " 客户关系管理B", "5-6"],
+
+        [1, 0, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 1, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 2, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 3, 1, "黄金晶", " 软件工程与建模", "1-4"],
+
+        [2, 0, 1, "沈茜", " 虚拟现实项目开发", "1-2"],
+        [2, 1, 1, "沈茜", " 虚拟现实项目开发", "1-2"],
+
+        [3, 4, 1, "李良", " 金融数据分析A", "5-6"],
+        [3, 5, 1, "李良", " 金融数据分析A", "5-6"]
+      ],
+      xx18d1: [
+        [0, 0, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 1, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 2, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 3, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+
+        [1, 4, 1, "沈茜", " 虚拟现实项目开发", "5-6"],
+        [1, 5, 1, "沈茜", " 虚拟现实项目开发", "5-6"],
+
+        [2, 0, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 1, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 2, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 3, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+
+        [3, 0, 1, "芮文艳", " 网站运营及维护", "1-2"],
+        [3, 1, 1, "芮文艳", " 网站运营及维护", "1-2"],
+
+        [2, 4, 1, "李良", " 金融数据分析A", "5-6"],
+        [2, 5, 1, "李良", " 金融数据分析A", "5-6"]
+      ],
+      xx19c1: [
+        [0, 0, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 1, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 2, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 3, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 1, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 2, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 3, 1, "陈瑾", " Linux系统管理C", "1-4"],
+
+        [2, 0, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+
+        [3, 0, 1, "陈莉莉", " Web前端技术基础", "1-2"],
+        [3, 1, 1, "陈莉莉", " Web前端技术基础", "1-2"],
+
+        [4, 0, 1, "盛永华", " 毕业设计与顶岗实习", "1-4"],
+        [4, 1, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [4, 2, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [4, 3, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"]
+      ],
+      xx19d1: [
+        [0, 0, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 1, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 2, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 3, 1, "密海英", " Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 1, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 2, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 3, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+
+        [1, 4, 1, "朱东", " 三维物件建模（3dsMax）", "5-6"],
+        [1, 5, 1, "朱东", " 三维物件建模（3dsMax）", "5-6"],
+
+        [2, 0, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 1, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 2, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 3, 1, "陈瑾", " Linux系统管理C", "1-4"],
+
+        [3, 0, 1, "密海英", " Web前端技术基础", "1-2"],
+        [3, 1, 1, "密海英", " Web前端技术基础", "1-2"]
+      ],
+      yjs18c1: [
+        [0, 0, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 1, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 2, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 3, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+
+        [1, 0, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 1, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 2, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 3, 1, "张伟华", " Android云应用开发", "1-4"],
+
+        [1, 4, 1, "王喜", " 毕业设计与顶岗实习", "5-6"],
+        [1, 5, 1, "王喜", " 毕业设计与顶岗实习", "5-6"],
+
+        [2, 0, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 1, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 2, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 3, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+
+        [3, 0, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 1, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 2, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 3, 1, "顾红燕", " 路由与交换技术", "1-4"],
+
+        [3, 4, 1, "伊雯雯", " Java Web云应用开发", "5-6"],
+        [3, 5, 1, "伊雯雯", " Java Web云应用开发", "5-6"],
+
+        [4, 0, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 1, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 2, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 3, 1, "李文俊", " 云计算网络技术与应用", "1-4"]
+      ],
+      yjs19c1: [
+        [0, 0, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 1, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 2, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 3, 1, "李文俊", "  Linux系统管理C", "1-4"],
+
+        [1, 0, 1, "李良", " Python程序设计", "1-4"],
+        [1, 1, 1, "李良", " Python程序设计", "1-4"],
+        [1, 2, 1, "李良", " Python程序设计", "1-4"],
+        [1, 3, 1, "李良", " Python程序设计", "1-4"],
+
+        [1, 4, 1, "张佳磊", " Web前端技术基础", "5-6"],
+        [1, 5, 1, "张佳磊", " Web前端技术基础", "5-6"],
+
+        [2, 0, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+
+        [4, 0, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 1, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 2, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 3, 1, "张佳磊", " Web前端技术基础", "1-4"]
+      ],
+      yjs19c2: [
+        [0, 0, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 1, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 2, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 3, 1, "陈园园", "  Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 1, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 2, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 3, 1, "孙伟", " Python程序设计", "1-4"],
+
+        [2, 0, 1, "陈园园", " Web前端技术基础", "1-2"],
+        [2, 1, 1, "陈园园", " Web前端技术基础", "1-2"],
+        [2, 2, 1, "方一新", " 关系数据库基础与应用", "3-4"],
+        [2, 3, 1, "方一新", " 关系数据库基础与应用", "3-4"],
+
+        [3, 4, 1, "李春华", " Linux系统管理C", "5-6"],
+        [3, 5, 1, "李春华", " Linux系统管理C", "5-6"],
+
+        [4, 0, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 1, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 2, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 3, 1, "方一新", " 关系数据库基础与应用", "1-4"]
+      ],
+      jqr19c1: [
+        [1, 0, 1, "雷晖", " VC++程序设计", "1-2"],
+        [1, 1, 1, "雷晖", " VC++程序设计", "1-2"],
+
+        [3, 2, 1, "雷晖", " VC++程序设计", "3-4"],
+        [3, 3, 1, "雷晖", " VC++程序设计", "3-4"]
+      ],
+      jqr19c2: [
+        [2, 0, 1, "雷晖", " VC++程序设计", "1-2"],
+        [2, 1, 1, "雷晖", " VC++程序设计", "1-2"],
+
+        [4, 4, 1, "雷晖", " VC++程序设计", "5-6"],
+        [4, 5, 1, "雷晖", " VC++程序设计", "5-6"]
+      ],
+
+      kebiaodays: ["周一", "周二", "周三", "周四", "周五"],
+      kebiaojieci: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      kebiaodata: [
+        [1, 4, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 5, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 6, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 7, 1, "伊雯雯", "框架编程技术", "5-8"],
+
+        [2, 0, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 1, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 2, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 3, 1, "郝爱语", "软件质量保证与测试", "1-4"]
+      ],
+      //值班老师
+      zhiban:null,
+      class:'软件18C2',
 
       //学生在苏人数
       Num_suzhou: [],
@@ -321,6 +806,10 @@ export default {
     this.noMaskList();
   },
   mounted () {
+    //课表
+    this.drawKebiao();
+     //值班老师
+    this.initzhiban();
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
     // 宏观统计 总人数、隔离人数、发烧人数
@@ -345,14 +834,230 @@ export default {
     this.focusStu();
     // this.gundong();
     //选项卡自动播放
+
     this.tabxunhuan();
-    //每天在苏人数\在江苏人数
-    this.suzhouStu();
-    //
-    this.eachpro();
+    //隔离人数折线图
+    this.insulatePolo();
+    //发烧人数折线图
+    this.feverPolo();
+    
+   
+
   },
   methods: {
-    tabchange () {
+    initzhiban(){
+       var self = this;
+      self.$http
+        .get(this.baseUrl + "/duty/dutyteacher")
+        .then(function(response) {
+         
+         
+          
+
+          self.zhiban = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    handleCommand1(command) {
+        this.kebiaodata = eval("this."+command);
+        // if(command = "rj18c2")
+        //   this.class = "软件18C2";
+        switch(command){
+          case "rj18c2":
+            this.class = "软件18C2";
+            break;
+          case "rj18c1":
+              this.class = "软件18C1";
+              break;
+          case "dsj18c1":
+              this.class = "大数据18C1";
+              break;
+          case "dl18c1":
+              this.class = "动联18C1";
+              break;
+          case "wl18c1":
+              this.class = "网络18C1";
+              break;
+          case "wl18d1":
+              this.class = "网络18D1";
+              break;
+          case "xg18h1":
+            this.class = "信管18H1";
+            break;
+          case "xx18d1":
+            this.class = "信息18D1";
+            break;
+          case "yjs18c1":
+            this.class = "云计算18C1";
+            break;
+        };
+        this.drawKebiao();
+      },
+    handleCommand2(command) {
+        this.kebiaodata = eval("this."+command);
+        switch(command){
+          case "rj19c2":
+            this.class = "软件19C2";
+            break;
+          case "rj19c1":
+              this.class = "软件16C1";
+              break;
+          case "dsj19c1":
+              this.class = "大数据19C1";
+              break;
+          case "dl19c1":
+              this.class = "动联19C1";
+              break;
+          case "wl19c1":
+              this.class = "网络19C1";
+              break;
+          case "wl19d1":
+              this.class = "网络19D1";
+              break;
+          case "xx19d1":
+            this.class = "信息19D1";
+            break;
+          case "xx19c1":
+            this.class = "信息19C1";
+            break;
+          case "yjs19c1":
+            this.class = "云计算19C1";
+            break;
+          case "yjs19c2":
+            this.class = "云计算19C2";
+            break;
+          case "jqr19c1":
+            this.class = "机器人19C1";
+            break;
+          case "jqr19c2":
+            this.class = "机器人19C2";
+            break;
+        }
+        this.drawKebiao();
+      },
+    drawKebiao() {
+      var kebiao = echarts.init(document.getElementById("echart6"));
+      const option = {
+        color: "rgba(39,180,194,0.8)",
+        tooltip: {
+          position: "top",
+          trigger: "item",
+          formatter: function(value) {
+            let res =
+              "课程信息<br/>" +
+              "上课时间:" +
+              value.name +
+              "<br/>节次:" +
+              value.data[5] +
+              "<br/>任课教师：" +
+              value.data[3] +
+              "<br/>课程名称：" +
+              value.data[4];
+            return res;
+          },
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        animation: false,
+        grid: {
+          height: "63%",
+          width: "93%",
+          y: "7%",
+          x: "5%"
+        },
+        xAxis: {
+          type: "category",
+          data: this.kebiaodays,
+          splitArea: {
+            show: true
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          },
+          axisLabel: {
+            color: "#27b4c2"
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          }
+        },
+        yAxis: {
+          name: "节次",
+          nameLocation: "start",
+          inverse: true,
+          nameTextStyle: {
+            color: "#27b4c2",
+
+            padding: -12
+          },
+          type: "category",
+          data: this.kebiaojieci,
+          splitArea: {
+            show: true
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          },
+          axisLabel: {
+            color: "#27b4c2"
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          }
+        },
+        // visualMap: {
+        //     min: 0,
+        //     max: 10,
+        //     calculable: true,
+        //     orient: 'vertical',
+        //     left: 'right',
+        //     top: 'top',
+        //     itemWidth:'12',                           //图形的宽度，即长条的宽度。
+        //     itemHeight:'40',                         //图形的高度，即长条的高度。
+        //     textStyle: {
+        //       color:'#27b4c2'
+        //     },
+
+        // },
+        series: [
+          {
+            name: "课程信息",
+            type: "heatmap",
+            data: this.kebiaodata,
+            label: {
+              show: true,
+
+              formatter: function(value) {
+                let res = value.data[3];
+
+                return res;
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            }
+          }
+        ]
+      };
+
+      kebiao.setOption(option);
+    },
+    tabchange() {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -361,13 +1066,13 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan () {
+    tabxunhuan() {
       setInterval(this.tabchange, 5000);
     },
-    tabclear () {
+    tabclear() {
       clearInterval(this.tabxunhuan);
     },
-    handleClick (tab, event) {
+    handleClick(tab, event) {
       // console.log(tab, event);
     },
     handleClick2 (row) {
@@ -1678,7 +2383,7 @@ export default {
       var tab2 = document.getElementById("demo2");
       tab2.innerHTML = tab1.innerHTML;
       // console.log(tab.offsetHeight);
-      tab1.style.width = this.noMaskCount * (tab.offsetHeight + 3.5) + "px";
+      tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
       // console.log(this.noMaskCount)
       // console.log(this.noMaskCount*(tab.offsetHeight+3))
       function Marquee () {
@@ -1977,7 +2682,7 @@ export default {
 
 #indemo {
   float: left;
-  width: 400%;
+  width: 800%;
   height: 100%;
 }
 
@@ -2035,7 +2740,42 @@ export default {
   float: left;
   height: 0.75rem;
 }
-
+.el-dropdown-link {
+    cursor: pointer;
+    color: #1bb4f6;
+    font-size: 0.15rem;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+  .select{
+ 
+    width: 33.3%;
+    float: left;
+    height: 100%;
+  }
+  .select{
+   
+    width: 33.3%;
+    float: left;
+    height: 100%;
+  }
+  .zhiban{
+    
+    width: 33.3%;
+    float: left;
+    height: 100%;
+  color: #1bb4f6;
+    font-size: 0.16rem;
+  }
+  .kebiaotitle{
+    height: 17%;
+    text-align: center;
+    font-size: 0.2rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.5rem;
+  }
 element.style {
   margin-top: 35px;
 }
