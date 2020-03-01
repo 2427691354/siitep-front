@@ -3,8 +3,8 @@
     <h1>校园疫情可疑排查与监测系统</h1>
     <div class="weather">
       <!-- <img src="../assets/picture/weather.png" /> -->
-      <span>数据更新截取：</span>
-      <span id="showTime">{{headInfo.currentTime}}</span>
+      <span>数据更新截止：</span>
+      <span id="showTime">{{deadLine}}</span>
     </div>
   </div>
 </template>
@@ -13,55 +13,56 @@
 export default {
   data() {
     return {
-      headInfo: {
-        weather: "",
-        timer: "", //定义一个定时器的变量
-        currentTime: "" // 获取当前时间
-      },
+      // headInfo: {
+      //   weather: "",
+      //   timer: "", //定义一个定时器的变量
+      //   currentTime: "" // 获取当前时间
+      // },
       deadLine: ""
     };
   },
   created() {
-    this.getWeather();
-    this.getTime();
+    // this.getWeather();
+    // this.getTime();
     this.getDeadline();
   },
   methods: {
-    getWeather() {
-      var self = this;
-      //加载天气查询插件
-      AMap.plugin("AMap.Weather", function() {
-        //创建天气查询实例
-        var weather = new AMap.Weather();
-        //执行实时天气信息查询
-        weather.getLive("泰州市", (err, data) => {
-          self.headInfo.weather = data.weather;
-        });
-      });
-    },
-    getTime() {
-      var self = this; //声明一个变量指向Vue实例this，保证作用域一致
-      this.timer = setInterval(function() {
-        self.headInfo.currentTime = //修改数据date
-          new Date().getFullYear() +
-          "-" +
-          (new Date().getMonth() + 1) +
-          " " +
-          new Date().getDate() +
-          " " +
-          new Date().getHours() +
-          ":" +
-          new Date().getMinutes() +
-          ":" +
-          new Date().getSeconds();
-      }, 1000);
-    },
+    // getWeather() {
+    //   var self = this;
+    //   //加载天气查询插件
+    //   AMap.plugin("AMap.Weather", function() {
+    //     //创建天气查询实例
+    //     var weather = new AMap.Weather();
+    //     //执行实时天气信息查询
+    //     weather.getLive("泰州市", (err, data) => {
+    //       self.headInfo.weather = data.weather;
+    //     });
+    //   });
+    // },
+    // getTime() {
+    //   var self = this; //声明一个变量指向Vue实例this，保证作用域一致
+    //   this.timer = setInterval(function() {
+    //     self.headInfo.currentTime = //修改数据date
+    //       new Date().getFullYear() +
+    //       "-" +
+    //       (new Date().getMonth() + 1) +
+    //       " " +
+    //       new Date().getDate() +
+    //       " " +
+    //       new Date().getHours() +
+    //       ":" +
+    //       new Date().getMinutes() +
+    //       ":" +
+    //       new Date().getSeconds();
+    //   }, 1000);
+    // },
     getDeadline() {
       var self = this;
       self.$http
-        .get(this.baseUrl + "")
+        .get(this.baseUrl + "/dayrpt/getNewTime")
         .then(function(response) {
           var res = response.data;
+          self.deadLine = res;
         })
         .catch(function(error) {
           console.log(error);
