@@ -1,35 +1,29 @@
 <template>
   <div>
-    <div class="canvas"
-         style="opacity: .2">
-      <canvas id="canv"
-              width="1920"
-              height="572"></canvas>
+    <div class="canvas" style="opacity: .2">
+      <canvas id="canv" width="1920" height="572"></canvas>
     </div>
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
         <li>
-          <div class="boxall"
-               style="height: 3.7rem">
+          <div class="boxall" style="height: 3.7rem">
             <div class="alltitle">实时监控</div>
-            <div class="allnav"
-                 id="echart1">
-              <video-player class="video-player vjs-custom-skin"
-                            ref="videoPlayer1"
-                            :options="playerOptions1"></video-player>
+            <div class="allnav" id="echart1">
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer1"
+                :options="playerOptions1"
+              ></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 1.2rem">
+          <div class="boxall" style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img :src="staticUrl + '/img/' + item.img"
-                       v-for="item in this.noMask"
-                       :key="item.img" />
+                  <img :src="staticUrl2 + item.img" v-for="item in this.noMask" :key="item.title" />
 
                   <!-- <img src="../assets/picture/未带口罩.png" />
                   <img src="../assets/picture/未带口罩.png" />
@@ -39,34 +33,25 @@
                   <img src="../assets/picture/未带口罩.png" />-->
                 </div>
                 <div id="demo2">
-                  <img :src="staticUrl + '/img/' + item.img"
-                       v-for="item in this.noMask"
-                       :key="item.img" />
+                  <img :src="staticUrl2  + item.img" v-for="item in this.noMask" :key="item.title" />
                 </div>
               </div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 4.7rem;">
+          <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">战“疫”频道</div>
-            <div class="allnav"
-                 id="echart3">
-              <Tabs v-model="activename"
-                    type="card">
-                <TabPane label="诊　断"
-                         name="name1"
-                         id="resou"></TabPane>
-                <TabPane label="知　识"
-                         name="name2"
-                         id="zhishi"></TabPane>
-                <TabPane label="辟　谣"
-                         name="name3"
-                         class="piyao">
+            <div class="allnav" id="echart3">
+              <Tabs v-model="activename" type="card">
+                <TabPane label="诊　断" name="name1" id="resou"></TabPane>
+                <TabPane label="知　识" name="name2" id="zhishi"></TabPane>
+                <TabPane label="辟　谣" name="name3" class="piyao">
                   <ul>
-                    <li class="piyao_list"
-                        v-for="item in this.piyao"
-                        :key="item.title">{{item.title}}</li>
+                    <li
+                      class="piyao_list"
+                      v-for="item in this.piyao"
+                      :key="item.title"
+                    >【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -78,55 +63,44 @@
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
-                <li class="pulll_left counter"
-                    style="width:30%;">
+                <li
+                  class="pulll_left counter"
+                  style="width:30%;"
+                >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
+                <li class="pulll_left counter" style="width:30%;">
                   <div class="fashaorenshu">{{ statistics.sumHever }}</div>
-                  <div class="fashaorenshu"
-                       id="fashao"></div>
+                  <div class="fashaorenshu" id="fashao"></div>
                 </li>
-                <li class="pulll_left counter"
-                    style="width:10%;">{{ statistics.sumIsolated }}</li>
-                <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <li class="pulll_left counter" style="width:10%;">{{ statistics.sumIsolated }}</li>
+                <li
+                  class="pulll_left counter"
+                  style="width:30%;"
+                >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
               </ul>
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left"
-                    style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left"
-                    style="width:30%;">发烧人数</li>
-                <li class="pulll_left"
-                    style="width:10%;">隔离人数</li>
-                <li class="pulll_left"
-                    style="width:30%;">返苏人数（江苏-苏州）</li>
+                <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
+                <li class="pulll_left" style="width:30%;">发烧人数</li>
+                <li class="pulll_left" style="width:10%;">隔离人数</li>
+                <li class="pulll_left" style="width:30%;">返苏人数（江苏-苏州）</li>
               </ul>
             </div>
           </div>
           <div class="map">
-            <div class="suzhouNum"
-                 id="polo_1">
+            <div class="suzhouNum" id="polo_1">
               <div class="boxfoot"></div>
             </div>
-
-            <div class="cityNum"
-                 id="polo_2">
+            <div class="cityNum" id="polo_2">
               <div class="boxfoot"></div>
             </div>
-            <div class="map4"
-                 id="map_1"></div>
+            <div class="map4" id="map_1"></div>
           </div>
-          <div class="boxallcard"
-               style="height: 2.6rem">
+          <div class="boxallcard" style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
-            <div class="allnav"
-                 id="echart5">
-              <el-carousel :interval="2000"
-                           type="card"
-                           height="2rem">
-                <el-carousel-item v-for="item in this.img_list">
+            <div class="allnav" id="echart5">
+              <el-carousel :interval="2000" type="card" height="2rem">
+                <el-carousel-item v-for="item in this.img_list" :key="item.img">
                   <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
@@ -135,44 +109,81 @@
           </div>
         </li>
         <li>
-          <div class="boxall"
-               style="height:3.7rem">
+          <div class="boxall" style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
-            <div class="allnav"
-                 id="echart4">
-              <video-player class="video-player vjs-custom-skin"
-                            ref="videoPlayer"
-                            :options="playerOptions2"></video-player>
+            <div class="allnav" id="echart4">
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions2"
+              ></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo"
-               style="height: 3rem;">
+          <div class="boxallinfo" style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav"
-                 id="echart5"
-                 style="height:2.4rem">
-              <el-table :data="stuInfo"
-                        stripe
-                        style="font-size: 10%"
-                        :row-style="{ height: '0.4rem' }"
-                        :cell-style="{ padding: '0px' }">
-                <el-table-column prop="name"
-                                 label="姓名"></el-table-column>
-                <el-table-column prop="class"
-                                 label="班级"></el-table-column>
-                <el-table-column prop="tem"
-                                 label="体温(℃)"></el-table-column>
-                <el-table-column prop="status"
-                                 label="状态"></el-table-column>
-                <el-table-column prop="address"
-                                 label="隔离地点"></el-table-column>
+            <div class="allnav" id="echart5" style="height:2.4rem">
+              <el-table
+                :data="stuInfo"
+                stripe
+                style="font-size: 10%"
+                :row-style="{ height: '0.4rem' }"
+                :cell-style="{ padding: '0px' }"
+              >
+                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column prop="class" label="班级"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 2.85rem">
+          <div class="boxall" style="height: 2.85rem">
+            <div class="kebiaotitle">
+              <div class="select">
+                <el-dropdown @command="handleCommand1">
+                  <span class="el-dropdown-link">
+                    18级
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="rj18c2">软件18C2</el-dropdown-item>
+                    <el-dropdown-item command="rj18c1">软件18C1</el-dropdown-item>
+                    <el-dropdown-item command="dsj18c1">大数据18C1</el-dropdown-item>
+                    <el-dropdown-item command="dl18c1">动联18C1</el-dropdown-item>
+                    <el-dropdown-item command="wl18c1">网络18C1</el-dropdown-item>
+                    <el-dropdown-item command="wl18d1">网络18D1</el-dropdown-item>
+                    <el-dropdown-item command="xg18h1">信管18H1</el-dropdown-item>
+                    <el-dropdown-item command="xx18d1">信息18D1</el-dropdown-item>
+                    <el-dropdown-item command="yjs18c1">云计算18C1</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+
+                <el-dropdown @command="handleCommand2">
+                  <span class="el-dropdown-link">
+                    19级
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="rj19c1">软件19C1</el-dropdown-item>
+                    <el-dropdown-item command="rj19c2">软件19C2</el-dropdown-item>
+                    <el-dropdown-item command="dsj19c1">大数据19C1</el-dropdown-item>
+                    <el-dropdown-item command="dl19c1">动联19C1</el-dropdown-item>
+                    <el-dropdown-item command="wl19c1">网络19C1</el-dropdown-item>
+                    <el-dropdown-item command="wl19d1">网络19D1</el-dropdown-item>
+                    <el-dropdown-item command="xx19c1">信息19C1</el-dropdown-item>
+                    <el-dropdown-item command="xx19d1">信息19D1</el-dropdown-item>
+                    <el-dropdown-item command="yjs19c1">云计算19C1</el-dropdown-item>
+                    <el-dropdown-item command="yjs19c2">云计算19C2</el-dropdown-item>
+                    <el-dropdown-item command="jqr19c1">机器人19C1</el-dropdown-item>
+                    <el-dropdown-item command="jqr19c2">机器人19C2</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </div>
+              <div class="select">{{this.class}}课程表</div>
+              <div class="zhiban">值班老师:{{this.zhiban}}</div>
+            </div>
             <div id="echart6"></div>
 
             <div class="boxfoot"></div>
@@ -194,9 +205,10 @@ import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
-  data () {
+  data() {
     return {
       staticUrl: this.staticUrl,
+      staticUrl2: this.staticUrl2,
       activename: "name1",
       statistics: {
         sumAll: 0,
@@ -259,7 +271,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "video/mp4",
-            src: this.staticUrl + "/video/fangyishipin.mp4" //url地址
+            src: this.staticUrl + "/video/1.mp4" //url地址
           }
         ],
         poster: "", //你的封面地址
@@ -282,6 +294,8 @@ export default {
       data_gelilist: [],
       //学生发烧人数
       data_fashaolist: [],
+      //重点疫区
+      keyarea:[],
 
       lowfever: null,
       normal: null,
@@ -292,6 +306,439 @@ export default {
 
       noMask: [],
       noMaskCount: null,
+      rj18c2: [
+        [1, 4, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 5, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 6, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 7, 1, "伊雯雯", "框架编程技术", "5-8"],
+
+        [2, 0, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 1, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 2, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 3, 1, "郝爱语", "软件质量保证与测试", "1-4"]
+      ],
+      rj19c1: [
+        [0, 0, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 1, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 2, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+        [0, 3, 1, "芮文艳", "JavaScript程序设计", "1-4"],
+
+        [0, 4, 1, "朱东", "关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "朱东", "关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 1, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 2, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+        [1, 3, 1, "刘文军", "JAVA面向对象编程", "1-4"],
+
+        [3, 4, 1, "刘文军", "JAVA面向对象编程", "5-6"],
+        [3, 5, 1, "刘文军", "JAVA面向对象编程", "5-6"],
+
+        [4, 0, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 1, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 2, 1, "吴阅帆", "Linux系统管理C", "1-4"],
+        [4, 3, 1, "吴阅帆", "Linux系统管理C", "1-4"]
+      ],
+      dsj18c1: [
+        [0, 0, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 1, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 2, 1, "黄金晶", "软件工程与建模", "1-4"],
+        [0, 3, 1, "黄金晶", "软件工程与建模", "1-4"],
+
+        [1, 0, 1, "艾旭升", "大数据实时应用开发", "1-2"],
+        [1, 1, 1, "艾旭升", "大数据实时应用开发", "1-2"],
+
+        [2, 0, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 1, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 2, 1, "李良", "数据可视化编程和操作", "1-4"],
+        [2, 3, 1, "李良", "数据可视化编程和操作", "1-4"],
+
+        [3, 0, 1, "郝爱语", "大数据应用测试技术和工具", "1-2"],
+        [3, 1, 1, "郝爱语", "大数据应用测试技术和工具", "1-2"]
+      ],
+      dsj19c1: [
+        [0, 0, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 1, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 2, 1, "艾旭升", " Linux系统管理C", "1-4"],
+        [0, 3, 1, "艾旭升", " Linux系统管理C", "1-4"],
+
+        [0, 4, 1, "杨小英", "关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "杨小英", "关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 1, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 2, 1, "杨小英", "Web前端技术基础", "1-4"],
+        [1, 3, 1, "杨小英", "Web前端技术基础", "1-4"],
+
+        [2, 0, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "杨小英", "关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "杨小英", "关系数据库基础与应用", "1-4"]
+      ],
+      dl18c1: [
+        [0, 4, 1, "雷晖", " 框架编程技术", "5-6"],
+        [0, 5, 1, "雷晖", " 框架编程技术", "5-6"],
+
+        [2, 0, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 1, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 2, 1, "罗颖", " 微信小程序开发", "1-4"],
+        [2, 3, 1, "罗颖", " 微信小程序开发", "1-4"],
+
+        [3, 2, 1, "李春华", " Linux系统管理B", "3-4"],
+        [3, 3, 1, "李春华", " Linux系统管理B", "3-4"]
+      ],
+      dl19c1: [
+        [0, 0, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 1, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 2, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+        [0, 3, 1, "张伟华", " 关系数据库基础与应用", "1-4"],
+
+        [1, 0, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 1, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 2, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+        [1, 3, 1, "栾咏红", " 面向对象程序设计（JAVA）", "1-4"],
+
+        [2, 0, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 1, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 2, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [2, 3, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+
+        [4, 0, 1, "李春华", " Linux系统管理C", "1-2"],
+        [4, 1, 1, "李春华", " Linux系统管理C", "1-2"],
+        [4, 4, 1, "李春华", " Linux系统管理C", "5-6"],
+        [4, 5, 1, "李春华", " Linux系统管理C", "5-6"]
+      ],
+      rj18c1: [
+        [0, 0, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 1, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 2, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+        [0, 3, 1, "郝爱语", " 软件质量保证与测试", "1-4"],
+
+        [1, 0, 1, "王喜", " 框架编程技术", "1-2"],
+        [1, 1, 1, "王喜", " 框架编程技术", "1-2"],
+
+        [3, 0, 1, "王喜", " 框架编程技术", "1-2"],
+        [3, 1, 1, "王喜", " 框架编程技术", "1-2"]
+      ],
+      rj19c2: [
+        [0, 0, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 1, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 2, 1, "栾咏红", " Java程序设计", "1-4"],
+        [0, 3, 1, "栾咏红", " Java程序设计", "1-4"],
+
+        [0, 4, 1, "胡霞", " 关系数据库基础与应用", "5-6"],
+        [0, 5, 1, "胡霞", " 关系数据库基础与应用", "5-6"],
+
+        [1, 0, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 1, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 2, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+        [1, 3, 1, "芮文艳", " JavaScript程序设计", "1-4"],
+
+        [1, 4, 1, "吴阅帆", " Linux系统管理C", "5-6"],
+        [1, 5, 1, "吴阅帆", " Linux系统管理C", "5-6"],
+
+        [3, 4, 1, "栾咏红", " JAVA面向对象编程", "5-6"],
+        [3, 5, 1, "栾咏红", " JAVA面向对象编程", "5-6"],
+
+        [3, 0, 1, "吴阅帆", " Linux系统管理C", "1-2"],
+        [3, 1, 1, "吴阅帆", " Linux系统管理C", "1-2"],
+
+        [4, 0, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 1, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 2, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [4, 3, 1, "胡霞", " 关系数据库基础与应用", "1-4"]
+      ],
+      wl18c1: [
+        [0, 0, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 1, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 2, 1, "刘宝莲", " AutoCAD A", "1-4"],
+        [0, 3, 1, "刘宝莲", " AutoCAD A", "1-4"],
+
+        [0, 4, 1, "刘文军", " Python程序设计A", "5-6"],
+        [0, 5, 1, "刘文军", " Python程序设计A", "5-6"],
+
+        [1, 0, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 1, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 2, 1, "王东海", " 网络安全技术", "1-4"],
+        [1, 3, 1, "王东海", " 网络安全技术", "1-4"],
+
+        [2, 0, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 1, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 2, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+        [2, 3, 1, "顾红燕", " 云计算架构技术与实践", "1-4"],
+
+        [3, 0, 1, "王东海", " 综合布线技术", "1-2"],
+        [3, 1, 1, "王东海", " 综合布线技术", "1-2"],
+        [3, 2, 1, "刘文军", " Python程序设计A", "3-4"],
+        [3, 3, 1, "刘文军", " Python程序设计A", "3-4"]
+      ],
+      wl18d1: [
+        [0, 0, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 1, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 2, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+        [0, 3, 1, "顾红艳", " 云计算架构技术与实践", "1-4"],
+
+        [2, 0, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 1, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 2, 1, "王东海", " 网络安全技术", "1-4"],
+        [2, 3, 1, "王东海", " 网络安全技术", "1-4"],
+
+        [3, 0, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 1, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 2, 1, "时荣", " WEB安全渗透", "1-4"],
+        [3, 3, 1, "时荣", " WEB安全渗透", "1-4"],
+
+        [4, 0, 1, "刘宝莲", " 综合布线技术", "1-2"],
+        [4, 1, 1, "刘宝莲", " 综合布线技术", "1-2"]
+      ],
+      wl19c1: [
+        [0, 0, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 1, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 2, 1, "何亮", "  Linux系统管理C", "1-4"],
+        [0, 3, 1, "何亮", "  Linux系统管理C", "1-4"],
+
+        [0, 4, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 5, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 6, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+        [0, 7, 1, "孙伟", "  关系数据库基础与应用", "5-8"],
+
+        [1, 0, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 1, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 2, 1, "陈园园", " Web前端技术基础", "1-4"],
+        [1, 3, 1, "陈园园", " Web前端技术基础", "1-4"],
+
+        [2, 0, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 1, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 2, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [2, 3, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+
+        [3, 0, 1, "孙伟", " 关系数据库基础与应用", "1-2"],
+        [3, 1, 1, "孙伟", " 关系数据库基础与应用", "1-2"],
+
+        [3, 4, 1, "何亮", " Linux系统管理C", "5-6"],
+        [3, 5, 1, "何亮", " Linux系统管理C", "5-6"]
+      ],
+      wl19d1: [
+        [0, 0, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 1, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 2, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+        [0, 3, 1, "朱亮", " Windows Server配置与管理", "1-4"],
+
+        [0, 4, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 5, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 6, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+        [0, 7, 1, "罗颖", " 关系数据库基础与应用", "5-8"],
+
+        [1, 0, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 1, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 2, 1, "何亮", " Linux系统管理C", "1-4"],
+        [1, 3, 1, "何亮", " Linux系统管理C", "1-4"],
+
+        [2, 0, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 1, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 2, 1, "密海英", " Web前端技术基础", "1-4"],
+        [2, 3, 1, "密海英", " Web前端技术基础", "1-4"],
+
+        [3, 4, 1, "罗颖", " 关系数据库基础与应用", "5-6"],
+        [3, 5, 1, "罗颖", " 关系数据库基础与应用", "5-6"]
+      ],
+      xg18h1: [
+        [0, 0, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 1, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 2, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+        [0, 3, 1, "汤晓燕", " WEB应用程序开发(ASP.NET)", "1-4"],
+
+        [0, 4, 1, "吴阅帆", " 客户关系管理B", "5-6"],
+        [0, 5, 1, "吴阅帆", " 客户关系管理B", "5-6"],
+
+        [1, 0, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 1, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 2, 1, "黄金晶", " 软件工程与建模", "1-4"],
+        [1, 3, 1, "黄金晶", " 软件工程与建模", "1-4"],
+
+        [2, 0, 1, "沈茜", " 虚拟现实项目开发", "1-2"],
+        [2, 1, 1, "沈茜", " 虚拟现实项目开发", "1-2"],
+
+        [3, 4, 1, "李良", " 金融数据分析A", "5-6"],
+        [3, 5, 1, "李良", " 金融数据分析A", "5-6"]
+      ],
+      xx18d1: [
+        [0, 0, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 1, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 2, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+        [0, 3, 1, "沈茜", " 客户端脚本框架应用", "1-4"],
+
+        [1, 4, 1, "沈茜", " 虚拟现实项目开发", "5-6"],
+        [1, 5, 1, "沈茜", " 虚拟现实项目开发", "5-6"],
+
+        [2, 0, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 1, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 2, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+        [2, 3, 1, "汤晓燕", " WEB应用程序开发（ASP.NET）A", "1-4"],
+
+        [3, 0, 1, "芮文艳", " 网站运营及维护", "1-2"],
+        [3, 1, 1, "芮文艳", " 网站运营及维护", "1-2"],
+
+        [2, 4, 1, "李良", " 金融数据分析A", "5-6"],
+        [2, 5, 1, "李良", " 金融数据分析A", "5-6"]
+      ],
+      xx19c1: [
+        [0, 0, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 1, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 2, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+        [0, 3, 1, "陈莉莉", " Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 1, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 2, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [1, 3, 1, "陈瑾", " Linux系统管理C", "1-4"],
+
+        [2, 0, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "胡霞", " 关系数据库基础与应用", "1-4"],
+
+        [3, 0, 1, "陈莉莉", " Web前端技术基础", "1-2"],
+        [3, 1, 1, "陈莉莉", " Web前端技术基础", "1-2"],
+
+        [4, 0, 1, "盛永华", " 毕业设计与顶岗实习", "1-4"],
+        [4, 1, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [4, 2, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [4, 3, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"]
+      ],
+      xx19d1: [
+        [0, 0, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 1, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 2, 1, "密海英", " Web前端技术基础", "1-4"],
+        [0, 3, 1, "密海英", " Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 1, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 2, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+        [1, 3, 1, "盛永华", " 三维物件建模（3dsMax）", "1-4"],
+
+        [1, 4, 1, "朱东", " 三维物件建模（3dsMax）", "5-6"],
+        [1, 5, 1, "朱东", " 三维物件建模（3dsMax）", "5-6"],
+
+        [2, 0, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 1, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 2, 1, "陈瑾", " Linux系统管理C", "1-4"],
+        [2, 3, 1, "陈瑾", " Linux系统管理C", "1-4"],
+
+        [3, 0, 1, "密海英", " Web前端技术基础", "1-2"],
+        [3, 1, 1, "密海英", " Web前端技术基础", "1-2"]
+      ],
+      yjs18c1: [
+        [0, 0, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 1, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 2, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+        [0, 3, 1, "伊雯雯", " Java Web云应用开发", "1-4"],
+
+        [1, 0, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 1, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 2, 1, "张伟华", " Android云应用开发", "1-4"],
+        [1, 3, 1, "张伟华", " Android云应用开发", "1-4"],
+
+        [1, 4, 1, "王喜", " 毕业设计与顶岗实习", "5-6"],
+        [1, 5, 1, "王喜", " 毕业设计与顶岗实习", "5-6"],
+
+        [2, 0, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 1, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 2, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [2, 3, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+
+        [3, 0, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 1, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 2, 1, "顾红燕", " 路由与交换技术", "1-4"],
+        [3, 3, 1, "顾红燕", " 路由与交换技术", "1-4"],
+
+        [3, 4, 1, "伊雯雯", " Java Web云应用开发", "5-6"],
+        [3, 5, 1, "伊雯雯", " Java Web云应用开发", "5-6"],
+
+        [4, 0, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 1, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 2, 1, "李文俊", " 云计算网络技术与应用", "1-4"],
+        [4, 3, 1, "李文俊", " 云计算网络技术与应用", "1-4"]
+      ],
+      yjs19c1: [
+        [0, 0, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 1, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 2, 1, "李文俊", "  Linux系统管理C", "1-4"],
+        [0, 3, 1, "李文俊", "  Linux系统管理C", "1-4"],
+
+        [1, 0, 1, "李良", " Python程序设计", "1-4"],
+        [1, 1, 1, "李良", " Python程序设计", "1-4"],
+        [1, 2, 1, "李良", " Python程序设计", "1-4"],
+        [1, 3, 1, "李良", " Python程序设计", "1-4"],
+
+        [1, 4, 1, "张佳磊", " Web前端技术基础", "5-6"],
+        [1, 5, 1, "张佳磊", " Web前端技术基础", "5-6"],
+
+        [2, 0, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 1, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 2, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+        [2, 3, 1, "黄金晶", " 关系数据库基础与应用", "1-4"],
+
+        [4, 0, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 1, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 2, 1, "张佳磊", " Web前端技术基础", "1-4"],
+        [4, 3, 1, "张佳磊", " Web前端技术基础", "1-4"]
+      ],
+      yjs19c2: [
+        [0, 0, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 1, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 2, 1, "陈园园", "  Web前端技术基础", "1-4"],
+        [0, 3, 1, "陈园园", "  Web前端技术基础", "1-4"],
+
+        [1, 0, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 1, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 2, 1, "孙伟", " Python程序设计", "1-4"],
+        [1, 3, 1, "孙伟", " Python程序设计", "1-4"],
+
+        [2, 0, 1, "陈园园", " Web前端技术基础", "1-2"],
+        [2, 1, 1, "陈园园", " Web前端技术基础", "1-2"],
+        [2, 2, 1, "方一新", " 关系数据库基础与应用", "3-4"],
+        [2, 3, 1, "方一新", " 关系数据库基础与应用", "3-4"],
+
+        [3, 4, 1, "李春华", " Linux系统管理C", "5-6"],
+        [3, 5, 1, "李春华", " Linux系统管理C", "5-6"],
+
+        [4, 0, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 1, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 2, 1, "方一新", " 关系数据库基础与应用", "1-4"],
+        [4, 3, 1, "方一新", " 关系数据库基础与应用", "1-4"]
+      ],
+      jqr19c1: [
+        [1, 0, 1, "雷晖", " VC++程序设计", "1-2"],
+        [1, 1, 1, "雷晖", " VC++程序设计", "1-2"],
+
+        [3, 2, 1, "雷晖", " VC++程序设计", "3-4"],
+        [3, 3, 1, "雷晖", " VC++程序设计", "3-4"]
+      ],
+      jqr19c2: [
+        [2, 0, 1, "雷晖", " VC++程序设计", "1-2"],
+        [2, 1, 1, "雷晖", " VC++程序设计", "1-2"],
+
+        [4, 4, 1, "雷晖", " VC++程序设计", "5-6"],
+        [4, 5, 1, "雷晖", " VC++程序设计", "5-6"]
+      ],
+
+      kebiaodays: ["周一", "周二", "周三", "周四", "周五"],
+      kebiaojieci: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      kebiaodata: [
+        [1, 4, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 5, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 6, 1, "伊雯雯", "框架编程技术", "5-8"],
+        [1, 7, 1, "伊雯雯", "框架编程技术", "5-8"],
+
+        [2, 0, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 1, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 2, 1, "郝爱语", "软件质量保证与测试", "1-4"],
+        [2, 3, 1, "郝爱语", "软件质量保证与测试", "1-4"]
+      ],
+      //值班老师
+      zhiban: null,
+      class: "软件18C2",
 
       //学生在苏人数
       Num_suzhou: [],
@@ -304,14 +751,13 @@ export default {
       provinces: [],
       //人数
       pronum: []
-
     };
   },
   components: {
     Header,
     videoPlayer
   },
-  created () {
+  created() {
     //学生隔离人数
     this.insulateNum();
     //学生发烧人数
@@ -321,7 +767,11 @@ export default {
     // 获取未带口罩的图片
     this.noMaskList();
   },
-  mounted () {
+  mounted() {
+    //课表
+    this.drawKebiao();
+    //值班老师
+    this.initzhiban();
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
     // 宏观统计 总人数、隔离人数、发烧人数
@@ -346,14 +796,224 @@ export default {
     this.focusStu();
     // this.gundong();
     //选项卡自动播放
+
     this.tabxunhuan();
-    //每天在苏人数\在江苏人数
+    //隔离人数折线图
     this.suzhouStu();
-    //
+    //发烧人数折线图
     this.eachpro();
+
   },
   methods: {
-    tabchange () {
+    initzhiban() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/duty/dutyteacher")
+        .then(function(response) {
+          self.zhiban = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+          // window.location.reload();
+        });
+    },
+    handleCommand1(command) {
+      this.kebiaodata = eval("this." + command);
+      // if(command = "rj18c2")
+      //   this.class = "软件18C2";
+      switch (command) {
+        case "rj18c2":
+          this.class = "软件18C2";
+          break;
+        case "rj18c1":
+          this.class = "软件18C1";
+          break;
+        case "dsj18c1":
+          this.class = "大数据18C1";
+          break;
+        case "dl18c1":
+          this.class = "动联18C1";
+          break;
+        case "wl18c1":
+          this.class = "网络18C1";
+          break;
+        case "wl18d1":
+          this.class = "网络18D1";
+          break;
+        case "xg18h1":
+          this.class = "信管18H1";
+          break;
+        case "xx18d1":
+          this.class = "信息18D1";
+          break;
+        case "yjs18c1":
+          this.class = "云计算18C1";
+          break;
+      }
+      this.drawKebiao();
+    },
+    handleCommand2(command) {
+      this.kebiaodata = eval("this." + command);
+      switch (command) {
+        case "rj19c2":
+          this.class = "软件19C2";
+          break;
+        case "rj19c1":
+          this.class = "软件16C1";
+          break;
+        case "dsj19c1":
+          this.class = "大数据19C1";
+          break;
+        case "dl19c1":
+          this.class = "动联19C1";
+          break;
+        case "wl19c1":
+          this.class = "网络19C1";
+          break;
+        case "wl19d1":
+          this.class = "网络19D1";
+          break;
+        case "xx19d1":
+          this.class = "信息19D1";
+          break;
+        case "xx19c1":
+          this.class = "信息19C1";
+          break;
+        case "yjs19c1":
+          this.class = "云计算19C1";
+          break;
+        case "yjs19c2":
+          this.class = "云计算19C2";
+          break;
+        case "jqr19c1":
+          this.class = "机器人19C1";
+          break;
+        case "jqr19c2":
+          this.class = "机器人19C2";
+          break;
+      }
+      this.drawKebiao();
+    },
+    drawKebiao() {
+      var kebiao = echarts.init(document.getElementById("echart6"));
+      const option = {
+        color: "rgba(39,180,194,0.8)",
+        tooltip: {
+          position: "top",
+          trigger: "item",
+          formatter: function(value) {
+            let res =
+              "课程信息<br/>" +
+              "上课时间:" +
+              value.name +
+              "<br/>节次:" +
+              value.data[5] +
+              "<br/>任课教师：" +
+              value.data[3] +
+              "<br/>课程名称：" +
+              value.data[4];
+            return res;
+          },
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        animation: false,
+        grid: {
+          height: "63%",
+          width: "93%",
+          y: "7%",
+          x: "5%"
+        },
+        xAxis: {
+          type: "category",
+          data: this.kebiaodays,
+          splitArea: {
+            show: true
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          },
+          axisLabel: {
+            color: "#27b4c2"
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          }
+        },
+        yAxis: {
+          name: "节次",
+          nameLocation: "start",
+          inverse: true,
+          nameTextStyle: {
+            color: "#27b4c2",
+
+            padding: -12
+          },
+          type: "category",
+          data: this.kebiaojieci,
+          splitArea: {
+            show: true
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          },
+          axisLabel: {
+            color: "#27b4c2"
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#1bb4f6"
+            }
+          }
+        },
+        // visualMap: {
+        //     min: 0,
+        //     max: 10,
+        //     calculable: true,
+        //     orient: 'vertical',
+        //     left: 'right',
+        //     top: 'top',
+        //     itemWidth:'12',                           //图形的宽度，即长条的宽度。
+        //     itemHeight:'40',                         //图形的高度，即长条的高度。
+        //     textStyle: {
+        //       color:'#27b4c2'
+        //     },
+
+        // },
+        series: [
+          {
+            name: "课程信息",
+            type: "heatmap",
+            data: this.kebiaodata,
+            label: {
+              show: true,
+
+              formatter: function(value) {
+                let res = value.data[3];
+
+                return res;
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            }
+          }
+        ]
+      };
+
+      kebiao.setOption(option);
+    },
+    tabchange() {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -362,27 +1022,27 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan () {
+    tabxunhuan() {
       setInterval(this.tabchange, 5000);
     },
-    tabclear () {
+    tabclear() {
       clearInterval(this.tabxunhuan);
     },
-    handleClick (tab, event) {
+    handleClick(tab, event) {
       // console.log(tab, event);
     },
-    handleClick2 (row) {
+    handleClick2(row) {
       alert(row);
     },
-    setSize: function () {
+    setSize: function() {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    initHuan () {
+    initHuan() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.lowfever = res[0].lowfever;
           self.normal = res[0].normal;
@@ -390,12 +1050,12 @@ export default {
           self.highfever = res[0].highfever;
           self.drawHuan();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    drawHuan () {
+    drawHuan() {
       var huan = echarts.init(document.getElementById("fashao"));
       const option = {
         // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
@@ -588,11 +1248,11 @@ export default {
 
       huan.setOption(option);
     },
-    initSum () {
+    initSum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/sum")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.statistics.sumAll = res.sum;
           self.statistics.sumIsolated = res.sumisolated;
@@ -601,29 +1261,29 @@ export default {
           self.statistics.stuinJiang = res.stuinJiang;
           // window.location.reload();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    slideShow () {
+    slideShow() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=1")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.img_list = res;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould1 () {
+    initwordcould1() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromDiagnosisTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -644,16 +1304,16 @@ export default {
 
           self.wordCould1();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould2 () {
+    initwordcould2() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromGuideTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -674,28 +1334,28 @@ export default {
 
           self.wordCould2();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould3 () {
+    initwordcould3() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectRumorTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
 
           self.piyao = res.slice(0, 20);
 
           // self.wordCould3();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    wordCould1 () {
+    wordCould1() {
       var wordcould = echarts.init(document.getElementById("resou"));
       const option = {
         // backgroundColor: "#fff",
@@ -720,7 +1380,7 @@ export default {
             // maskImage: maskImage,
             textStyle: {
               normal: {
-                color: function () {
+                color: function() {
                   return (
                     "rgb(" +
                     (Math.round(Math.random() * (240 - 100)) + 100) +
@@ -749,7 +1409,7 @@ export default {
       };
       wordcould.setOption(option);
     },
-    wordCould2 () {
+    wordCould2() {
       var wordcould = echarts.init(document.getElementById("zhishi"));
       const option = {
         // backgroundColor: "#fff",
@@ -774,7 +1434,7 @@ export default {
             // maskImage: maskImage,
             textStyle: {
               normal: {
-                color: function () {
+                color: function() {
                   return (
                     "rgb(" +
                     (Math.round(Math.random() * (240 - 100)) + 100) +
@@ -803,7 +1463,7 @@ export default {
       };
       wordcould.setOption(option);
     },
-    wordCould3 () {
+    wordCould3() {
       var wordcould = echarts.init(document.getElementById("piyao"));
       const option = {
         // backgroundColor: "#fff",
@@ -828,7 +1488,7 @@ export default {
             // maskImage: maskImage,
             textStyle: {
               normal: {
-                color: function () {
+                color: function() {
                   return (
                     "rgb(" +
                     (Math.round(Math.random() * (240 - 100)) + 100) +
@@ -857,27 +1517,44 @@ export default {
       };
       wordcould.setOption(option);
     },
-    allNum () {
+    allNum() {
       var self = this;
+      var dd = [];
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
-          var dd = [];
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
-            dd.push({
-              name: res[i].location_province,
-              value: res[i].count
-            });
+              dd.push({
+                name: res[i].location_province,
+                value: res[i].count
+              });
+          }
+          self.map(dd);
+        });
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getStuInProvince")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            if(res[i].location_province == "湖北" || res[i].location_province == "河南"
+              || res[i].location_province == "浙江" ||res[i].location_province == "安徽"
+            ){
+              self.keyarea.push({
+                location_province: res[i].location_province,
+                count: res[i].count
+              });
+            }
+              
           }
           self.map(dd);
         });
     },
-    eachpro () {
+    eachpro() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
+        .then(function(response) {
           //冒泡排序根据count从大到小
           var res = response.data;
           var j, k, temp;
@@ -904,7 +1581,7 @@ export default {
           self.proBar();
         });
     },
-    proBar () {
+    proBar() {
       var myChart = this.$echarts.init(document.getElementById("polo_2"));
       var color = [
         "#2EC7E6",
@@ -927,7 +1604,7 @@ export default {
           left: "center",
           textStyle: {
             color: "#fff",
-            fontSize: '150%'
+            fontSize: "150%"
           }
         },
         tooltip: {
@@ -935,7 +1612,7 @@ export default {
           axisPointer: {
             type: "shadow"
           },
-          formatter: function (objs, index) {
+          formatter: function(objs, index) {
             let obj = objs[0];
             return `${obj.name}<br/>${obj.marker}${obj.seriesName} : ${obj.value}`;
           }
@@ -950,7 +1627,7 @@ export default {
         xAxis: {
           type: "value",
           splitLine: {
-            show: false,
+            show: false
           },
           axisLabel: {
             show: false
@@ -958,7 +1635,7 @@ export default {
           axisLine: {
             show: false, //隐藏y轴坐标轴线
             lineStyle: {
-              color: "#00D4C7",
+              color: "#00D4C7"
               // rotate:20
             }
           },
@@ -969,8 +1646,8 @@ export default {
         yAxis: {
           type: "category",
           boundaryGap: true,
-          //倒置
-          inverse:true,
+          //倒序
+          inverse: true,
           axisTick: {
             //y轴刻度线
             show: false
@@ -978,7 +1655,7 @@ export default {
           axisLabel: {
             //y轴文本旋转角度
             // rotate: 30
-            fontSize: '150%'
+            fontSize: "150%"
           },
           axisLine: {
             show: false,
@@ -996,14 +1673,14 @@ export default {
             label: {
               normal: {
                 show: true,
-                position: 'right',
+                position: "right",
                 textStyle: {
-                  color: '#ffffff',
-                  fontSize: '12',
+                  color: "#ffffff",
+                  fontSize: "12"
                 }
               }
             },
-            data: this.pronum.map(function (item, i) {
+            data: this.pronum.map(function(item, i) {
               return {
                 value: item,
                 itemStyle: {
@@ -1015,46 +1692,46 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    insulateNum () {
+    insulateNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.data_gelilist = res;
         });
     },
-    feverNum () {
+    feverNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.data_fashaolist = res;
         });
     },
-    resizeFontsize () {
+    resizeFontsize() {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    map (datalist) {
+    map(datalist) {
       var myChart = this.$echarts.init(document.getElementById("map_1"));
       var geoCoordMap = {};
       var mapFeatures = this.$echarts.getMap("china").geoJson.features;
-      mapFeatures.forEach(function (v) {
+      mapFeatures.forEach(function(v) {
         // 地区名称
         var name = v.properties.name;
         // console.log(name);
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-
-      var convertData = function (data) {
+console.log(this.keyarea)
+      var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].location_province];
@@ -1080,7 +1757,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: function (params) {
+          formatter: function(params) {
             if (typeof params.value[2] == "undefined") {
               return (
                 option.series[0].name +
@@ -1095,14 +1772,14 @@ export default {
           }
         },
         legend: {
-          data: ["隔离人数", "发烧人数"],
+          data: ["隔离人数", "发烧人数","重点疫区"],
           icon: "pin", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
           orient: "vertical",
           right: "15%",
           bottom: "40%",
           textStyle: {
             color: "#dcdcdc",
-            fontSize: '150%'
+            fontSize: "150%"
           }
         },
         //是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
@@ -1174,7 +1851,7 @@ export default {
             type: "scatter",
             coordinateSystem: "geo",
             symbol: "pin", //气泡
-            symbolSize: 30,
+            symbolSize: 25,
             label: {
               normal: {
                 show: false,
@@ -1186,7 +1863,7 @@ export default {
             },
             itemStyle: {
               normal: {
-                color: "#FF5000" //标志颜色
+                color: "#AD45F2" //标志颜色
               }
             },
             zlevel: 6,
@@ -1197,7 +1874,39 @@ export default {
             type: "effectScatter",
             coordinateSystem: "geo",
             data: convertData(this.data_fashaolist),
-            symbolSize: 20,
+            symbolSize: 10,
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "right",
+                show: false,
+                textStyle: {
+                  color: "#fff"
+                },
+                backgroundColor: "rgba(0,0,0,0.5)"
+              }
+            },
+            itemStyle: {
+              show: true,
+              normal: {
+                color: "yellow",
+                shadowBlur: 10,
+                shadowColor: "yellow"
+              }
+            },
+            zlevel: 1
+          },
+          {
+            name: "重点疫区",
+            type: "effectScatter",
+            data: convertData(this.keyarea),
+            coordinateSystem: "geo",
+            symbolSize: 15,
             showEffectOn: "render",
             rippleEffect: {
               brushType: "stroke"
@@ -1217,19 +1926,20 @@ export default {
             itemStyle: {
               show: true,
               normal: {
-                color: "yellow",
+                color: "#FF5000",
                 shadowBlur: 10,
-                shadowColor: "yellow"
+                shadowColor: "#FF5000"
               }
             },
-            zlevel: 1
+            zlevel: 10,
+            
           }
         ]
       };
       myChart.setOption(option);
-
+      console.log(convertData(this.keyarea));
       var index = 0;
-      var myTime = setInterval(function () {
+      var myTime = setInterval(function() {
         myChart.dispatchAction({
           type: "showTip",
           seriesIndex: 0,
@@ -1237,14 +1947,14 @@ export default {
         });
         index++;
         if (index > 34) {
-          index = 0
+          index = 0;
         }
       }, 2000);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    canves () {
+    canves() {
       var num = 200;
       var w = window.innerWidth;
       var h = window.innerHeight;
@@ -1252,18 +1962,18 @@ export default {
       var _x = 0;
       var _y = 0;
       var _z = 150;
-      var dtr = function (d) {
+      var dtr = function(d) {
         return (d * Math.PI) / 180;
       };
 
-      var rnd = function () {
+      var rnd = function() {
         return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
       };
-      var dist = function (p1, p2, p3) {
+      var dist = function(p1, p2, p3) {
         return Math.sqrt(
           Math.pow(p2.x - p1.x, 2) +
-          Math.pow(p2.y - p1.y, 2) +
-          Math.pow(p2.z - p1.z, 2)
+            Math.pow(p2.y - p1.y, 2) +
+            Math.pow(p2.z - p1.z, 2)
         );
       };
 
@@ -1295,7 +2005,7 @@ export default {
           y: h / 2,
           z: 0
         },
-        upd: function () {
+        upd: function() {
           cam.dist.x = cam.dest.x - cam.obj.x;
           cam.dist.y = cam.dest.y - cam.obj.y;
           cam.dist.z = cam.dest.z - cam.obj.z;
@@ -1309,22 +2019,22 @@ export default {
             Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-              cam.dist.y * cam.dist.y +
-              cam.dist.z * cam.dist.z
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
             );
           cam.ang.stheta =
             -cam.dist.y /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-              cam.dist.y * cam.dist.y +
-              cam.dist.z * cam.dist.z
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
             );
         }
       };
 
       var trans = {
         parts: {
-          sz: function (p, sz) {
+          sz: function(p, sz) {
             return {
               x: p.x * sz.x,
               y: p.y * sz.y,
@@ -1332,21 +2042,21 @@ export default {
             };
           },
           rot: {
-            x: function (p, rot) {
+            x: function(p, rot) {
               return {
                 x: p.x,
                 y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
                 z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
               };
             },
-            y: function (p, rot) {
+            y: function(p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
                 y: p.y,
                 z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
               };
             },
-            z: function (p, rot) {
+            z: function(p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
                 y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
@@ -1354,7 +2064,7 @@ export default {
               };
             }
           },
-          pos: function (p, pos) {
+          pos: function(p, pos) {
             return {
               x: p.x + pos.x,
               y: p.y + pos.y,
@@ -1363,21 +2073,21 @@ export default {
           }
         },
         pov: {
-          plane: function (p) {
+          plane: function(p) {
             return {
               x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
               y: p.y,
               z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
             };
           },
-          theta: function (p) {
+          theta: function(p) {
             return {
               x: p.x,
               y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
               z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
             };
           },
-          set: function (p) {
+          set: function(p) {
             return {
               x: p.x - cam.obj.x,
               y: p.y - cam.obj.y,
@@ -1385,7 +2095,7 @@ export default {
             };
           }
         },
-        persp: function (p) {
+        persp: function(p) {
           return {
             x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
             y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
@@ -1393,7 +2103,7 @@ export default {
             p: cam.dist.z / p.z
           };
         },
-        disp: function (p, disp) {
+        disp: function(p, disp) {
           return {
             x: p.x + disp.x,
             y: -p.y + disp.y,
@@ -1401,7 +2111,7 @@ export default {
             p: p.p
           };
         },
-        steps: function (_obj_, sz, rot, pos, disp) {
+        steps: function(_obj_, sz, rot, pos, disp) {
           var _args = trans.parts.sz(_obj_, sz);
           _args = trans.parts.rot.x(_args, rot);
           _args = trans.parts.rot.y(_args, rot);
@@ -1416,9 +2126,9 @@ export default {
         }
       };
 
-      (function () {
+      (function() {
         "use strict";
-        var threeD = function (param) {
+        var threeD = function(param) {
           this.transIn = {};
           this.transOut = {};
           this.transIn.vtx = param.vtx;
@@ -1427,7 +2137,7 @@ export default {
           this.transIn.pos = param.pos;
         };
 
-        threeD.prototype.vupd = function () {
+        threeD.prototype.vupd = function() {
           this.transOut = trans.steps(
             this.transIn.vtx,
             this.transIn.sz,
@@ -1437,7 +2147,7 @@ export default {
           );
         };
 
-        var Build = function () {
+        var Build = function() {
           this.vel = 0.04;
           this.lim = 360;
           this.diff = 200;
@@ -1447,7 +2157,7 @@ export default {
           this.go();
         };
 
-        Build.prototype.go = function () {
+        Build.prototype.go = function() {
           this.canvas = document.getElementById("canv");
           this.canvas.width = window.innerWidth;
           this.canvas.height = window.innerHeight;
@@ -1473,7 +2183,7 @@ export default {
           };
         };
 
-        Build.prototype.add = function () {
+        Build.prototype.add = function() {
           this.varr.push(
             new threeD({
               vtx: {
@@ -1505,12 +2215,12 @@ export default {
           });
         };
 
-        Build.prototype.upd = function () {
+        Build.prototype.upd = function() {
           cam.obj.x += (this.toX - cam.obj.x) * 0.05;
           cam.obj.y += (this.toY - cam.obj.y) * 0.05;
         };
 
-        Build.prototype.draw = function () {
+        Build.prototype.draw = function() {
           this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
           cam.upd();
           this.rotObj.x += 0.1;
@@ -1560,16 +2270,16 @@ export default {
             this.$.closePath();
           }
         };
-        Build.prototype.anim = function () {
-          window.requestAnimationFrame = (function () {
+        Build.prototype.anim = function() {
+          window.requestAnimationFrame = (function() {
             return (
               window.requestAnimationFrame ||
-              function (callback, element) {
+              function(callback, element) {
                 window.setTimeout(callback, 1000 / 60);
               }
             );
           })();
-          var anim = function () {
+          var anim = function() {
             this.upd();
             this.draw();
             window.requestAnimationFrame(anim);
@@ -1577,19 +2287,19 @@ export default {
           window.requestAnimationFrame(anim);
         };
 
-        Build.prototype.run = function () {
+        Build.prototype.run = function() {
           this.anim();
 
           window.addEventListener(
             "mousemove",
-            function (e) {
+            function(e) {
               this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
             }.bind(this)
           );
           window.addEventListener(
             "touchmove",
-            function (e) {
+            function(e) {
               e.preventDefault();
               this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
@@ -1597,7 +2307,7 @@ export default {
           );
           window.addEventListener(
             "mousedown",
-            function (e) {
+            function(e) {
               for (var i = 0; i < 100; i++) {
                 this.add();
               }
@@ -1605,7 +2315,7 @@ export default {
           );
           window.addEventListener(
             "touchstart",
-            function (e) {
+            function(e) {
               e.preventDefault();
               for (var i = 0; i < 100; i++) {
                 this.add();
@@ -1618,7 +2328,7 @@ export default {
       })();
       window.addEventListener(
         "resize",
-        function () {
+        function() {
           canvas.width = w = window.innerWidth;
           canvas.height = h = window.innerHeight;
         },
@@ -1626,28 +2336,27 @@ export default {
       );
     },
     //change,play实现表格自动滚动
-    change () {
+    change() {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    play () {
+    play() {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
     },
-    focusStu () {
+    focusStu() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFocusStu")
-        .then(function (response) {
+        .then(function(response) {
           var dd = [];
           var res = response.data;
           self.stuInfo = dd;
           for (var i = 0; i < res.length; i++) {
             // 判断
-            if (res[i].STATUS == "ISOLATION") {
-              res[i].STATUS = "隔离";
+            if (res[i].STATUS == "隔离") {
               if (res[i].quarantine == 0) {
                 res[i].quarantine = "在家";
               } else {
@@ -1668,21 +2377,21 @@ export default {
             });
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
-    gundong () {
+    gundong() {
       var speed = 8;
       var tab = document.getElementById("demo");
       var tab1 = document.getElementById("demo1");
       var tab2 = document.getElementById("demo2");
       tab2.innerHTML = tab1.innerHTML;
       // console.log(tab.offsetHeight);
-      tab1.style.width = this.noMaskCount * (tab.offsetHeight + 3.5) + "px";
+      tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
       // console.log(this.noMaskCount)
       // console.log(this.noMaskCount*(tab.offsetHeight+3))
-      function Marquee () {
+      function Marquee() {
         // console.log(tab2.offsetWidth)
         // console.log(tab.scrollLeft)
         if (tab2.offsetWidth - tab.scrollLeft <= 0)
@@ -1692,42 +2401,41 @@ export default {
         }
       }
       var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function () {
+      tab.onmouseover = function() {
         clearInterval(MyMar);
       };
-      tab.onmouseout = function () {
+      tab.onmouseout = function() {
         MyMar = setInterval(Marquee, speed);
       };
     },
-    noMaskList () {
+    noMaskList() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=3")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.noMask = res;
           self.noMaskCount = res.length;
           self.gundong();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
-    suzhouStu () {
+    suzhouStu() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?province=江苏")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
           }
-          console.log(self.Num_js);
           self.stuInsz();
         });
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?city=苏州")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_suzhou.push(res[i].stuinSuZhou);
@@ -1736,7 +2444,7 @@ export default {
           self.stuInsz();
         });
     },
-    stuInsz () {
+    stuInsz() {
       var myChart = this.$echarts.init(document.getElementById("polo_1"));
       var option = {
         grid: {
@@ -1747,7 +2455,7 @@ export default {
           containLabel: true
         },
         tooltip: {
-          show: true,
+          show: true
         },
         legend: {
           show: true,
@@ -1758,7 +2466,7 @@ export default {
           itemHeight: 6,
           textStyle: {
             color: "#dcdcdc",
-            fontSize: '150%'
+            fontSize: "150%"
           },
           data: ["苏州人数趋势", "江苏人数趋势"]
         },
@@ -1778,7 +2486,7 @@ export default {
             },
             axisLine: {
               lineStyle: {
-                color: '#01FCE3'
+                color: "#01FCE3"
               }
             },
             data: this.days
@@ -1788,13 +2496,11 @@ export default {
           {
             type: "value",
             // name: "人数",
-            min: 0,
-            max: 200,
             axisLabel: {
               formatter: "{value}",
               textStyle: {
                 color: "#2ad1d2",
-                fontSize: '150%'
+                fontSize: "150%"
               }
             },
             axisLine: {
@@ -1821,7 +2527,7 @@ export default {
               formatter: "{value}",
               textStyle: {
                 color: "#2ad1d2",
-                fontSize: '150%'
+                fontSize: "150%"
               }
             },
             axisLine: {
@@ -1838,7 +2544,7 @@ export default {
                 color: "#11366e"
               }
             }
-          },
+          }
         ],
         series: [
           {
@@ -1886,14 +2592,15 @@ export default {
             barWidth: 15,
             itemStyle: {
               normal: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                  offset: 0,
-                  color: "#00FFE3"
-                },
-                {
-                  offset: 1,
-                  color: "#4693EC"
-                }
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "#00FFE3"
+                  },
+                  {
+                    offset: 1,
+                    color: "#4693EC"
+                  }
                 ])
               }
             },
@@ -1902,12 +2609,12 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -1982,7 +2689,7 @@ export default {
 
 #indemo {
   float: left;
-  width: 400%;
+  width: 800%;
   height: 100%;
 }
 
@@ -2040,7 +2747,39 @@ export default {
   float: left;
   height: 0.75rem;
 }
-
+.el-dropdown-link {
+  cursor: pointer;
+  color: #1bb4f6;
+  font-size: 0.15rem;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.select {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+}
+.select {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+}
+.zhiban {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+  color: #1bb4f6;
+  font-size: 0.16rem;
+}
+.kebiaotitle {
+  height: 17%;
+  text-align: center;
+  font-size: 0.2rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.5rem;
+}
 element.style {
   margin-top: 35px;
 }

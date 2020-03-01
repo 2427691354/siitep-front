@@ -20,6 +20,7 @@ Vue.prototype.$http = Axios;
 Vue.config.productionTip = false;
 Vue.prototype.baseUrl = "http://139.196.78.182:8088";
 Vue.prototype.staticUrl = "http://47.101.33.200:8080/static/siitep";
+Vue.prototype.staticUrl2 = "http://139.224.68.139:8080/jietu2/";
 // Vue.prototype.baseUrl = "http://localhost:8088";
 
 // 引入公共public.js

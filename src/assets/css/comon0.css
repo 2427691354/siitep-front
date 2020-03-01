@@ -314,7 +314,7 @@ a:hover {
   z-index: 5;
 }
 .suzhouNum {
-  width: 5.1rem;
+  width: 5rem;
   height: 1.8rem;
   /* margin-left: 0.15rem; */
   margin-top: 4.05rem;
@@ -346,9 +346,9 @@ a:hover {
   right: 0;
 }
 .cityNum {
-  width: 2.71rem;
+  width: 2.73rem;
   height: 5.7rem;
-  margin-left: 5.2rem;
+  margin-left: 5.18rem;
   margin-top: 0.15rem;
   border: 1px solid rgba(25, 186, 139, 0.17);
   /* padding: 0 0.2rem 0rem 0.15rem; */
@@ -602,10 +602,9 @@ a:hover {
 }
 .el-carousel {
   position: relative;
-  padding-top: 0.5rem;
+  padding-top: 0.35rem;
 }
 .el-carousel__item img {
   width: 100%;
   height: inherit;
 }
-
