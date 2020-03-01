@@ -27,11 +27,9 @@
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img
-                    :src="staticUrl + '/img/' + item.img"
-                    v-for="item in this.noMask"
-                    :key="item.img"
-                  />
+                  <img :src="staticUrl2 + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
 
                   <!-- <img src="../assets/picture/未带口罩.png" />
                   <img src="../assets/picture/未带口罩.png" />
@@ -41,11 +39,9 @@
                   <img src="../assets/picture/未带口罩.png" />-->
                 </div>
                 <div id="demo2">
-                  <img
-                    :src="staticUrl + '/img/' + item.img"
-                    v-for="item in this.noMask"
-                    :key="item.img"
-                  />
+                  <img :src="staticUrl2  + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
                 </div>
               </div>
             </div>
@@ -68,11 +64,9 @@
                          name="name3"
                          class="piyao">
                   <ul>
-                    <li
-                      class="piyao_list"
-                      v-for="item in this.piyao"
-                      :key="item.title"
-                    >【谣】{{item.title}}</li>
+                    <li class="piyao_list"
+                        v-for="item in this.piyao"
+                        :key="item.title">【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -131,7 +125,8 @@
               <el-carousel :interval="2000"
                            type="card"
                            height="2rem">
-                <el-carousel-item v-for="item in this.img_list" :key="item.img">
+                <el-carousel-item v-for="item in this.img_list"
+                                  :key="item.img">
                   <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
@@ -176,53 +171,53 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.85rem">
+          <div class="boxall"
+               style="height: 2.85rem">
             <div class="kebiaotitle">
               <div class="select">
                 <el-dropdown @command="handleCommand1">
-                <span class="el-dropdown-link">
-                  18级
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="rj18c2">软件18C2</el-dropdown-item>
-                  <el-dropdown-item command="rj18c1">软件18C1</el-dropdown-item>
-                  <el-dropdown-item command="dsj18c1">大数据18C1</el-dropdown-item>
-                  <el-dropdown-item command="dl18c1">动联18C1</el-dropdown-item>
-                  <el-dropdown-item command="wl18c1">网络18C1</el-dropdown-item>
-                  <el-dropdown-item command="wl18d1">网络18D1</el-dropdown-item>
-                  <el-dropdown-item command="xg18h1">信管18H1</el-dropdown-item>
-                  <el-dropdown-item command="xx18d1">信息18D1</el-dropdown-item>
-                  <el-dropdown-item command="yjs18c1">云计算18C1</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                  <span class="el-dropdown-link">
+                    18级
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="rj18c2">软件18C2</el-dropdown-item>
+                    <el-dropdown-item command="rj18c1">软件18C1</el-dropdown-item>
+                    <el-dropdown-item command="dsj18c1">大数据18C1</el-dropdown-item>
+                    <el-dropdown-item command="dl18c1">动联18C1</el-dropdown-item>
+                    <el-dropdown-item command="wl18c1">网络18C1</el-dropdown-item>
+                    <el-dropdown-item command="wl18d1">网络18D1</el-dropdown-item>
+                    <el-dropdown-item command="xg18h1">信管18H1</el-dropdown-item>
+                    <el-dropdown-item command="xx18d1">信息18D1</el-dropdown-item>
+                    <el-dropdown-item command="yjs18c1">云计算18C1</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
 
-              <el-dropdown @command="handleCommand2">
-                <span class="el-dropdown-link">
-                  19级
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="rj19c1">软件19C1</el-dropdown-item>
-                  <el-dropdown-item command="rj19c2">软件19C2</el-dropdown-item>
-                  <el-dropdown-item command="dsj19c1">大数据19C1</el-dropdown-item>
-                  <el-dropdown-item command="dl19c1">动联19C1</el-dropdown-item>
-                  <el-dropdown-item command="wl19c1">网络19C1</el-dropdown-item>
-                  <el-dropdown-item command="wl19d1">网络19D1</el-dropdown-item>
-                  <el-dropdown-item command="xx19c1">信息19C1</el-dropdown-item>
-                  <el-dropdown-item command="xx19d1">信息19D1</el-dropdown-item>
-                  <el-dropdown-item command="yjs19c1">云计算19C1</el-dropdown-item>
-                  <el-dropdown-item command="yjs19c2">云计算19C2</el-dropdown-item>
-                  <el-dropdown-item command="jqr19c1">机器人19C1</el-dropdown-item>
-                  <el-dropdown-item command="jqr19c2">机器人19C2</el-dropdown-item>
-                  
-                  
-                </el-dropdown-menu>
-              </el-dropdown>
+                <el-dropdown @command="handleCommand2">
+                  <span class="el-dropdown-link">
+                    19级
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="rj19c1">软件19C1</el-dropdown-item>
+                    <el-dropdown-item command="rj19c2">软件19C2</el-dropdown-item>
+                    <el-dropdown-item command="dsj19c1">大数据19C1</el-dropdown-item>
+                    <el-dropdown-item command="dl19c1">动联19C1</el-dropdown-item>
+                    <el-dropdown-item command="wl19c1">网络19C1</el-dropdown-item>
+                    <el-dropdown-item command="wl19d1">网络19D1</el-dropdown-item>
+                    <el-dropdown-item command="xx19c1">信息19C1</el-dropdown-item>
+                    <el-dropdown-item command="xx19d1">信息19D1</el-dropdown-item>
+                    <el-dropdown-item command="yjs19c1">云计算19C1</el-dropdown-item>
+                    <el-dropdown-item command="yjs19c2">云计算19C2</el-dropdown-item>
+                    <el-dropdown-item command="jqr19c1">机器人19C1</el-dropdown-item>
+                    <el-dropdown-item command="jqr19c2">机器人19C2</el-dropdown-item>
+
+                  </el-dropdown-menu>
+                </el-dropdown>
               </div>
               <div class="select">{{this.class}}课程表</div>
               <div class="zhiban">值班老师:{{this.zhiban}}</div>
-              
+
             </div>
             <div id="echart6"></div>
 
@@ -248,6 +243,7 @@ export default {
   data () {
     return {
       staticUrl: this.staticUrl,
+      staticUrl2: this.staticUrl2,
       activename: "name1",
       statistics: {
         sumAll: 0,
@@ -774,8 +770,8 @@ export default {
         [2, 3, 1, "郝爱语", "软件质量保证与测试", "1-4"]
       ],
       //值班老师
-      zhiban:null,
-      class:'软件18C2',
+      zhiban: null,
+      class: '软件18C2',
 
       //学生在苏人数
       Num_suzhou: [],
@@ -808,7 +804,7 @@ export default {
   mounted () {
     //课表
     this.drawKebiao();
-     //值班老师
+    //值班老师
     this.initzhiban();
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
@@ -837,115 +833,110 @@ export default {
 
     this.tabxunhuan();
     //隔离人数折线图
-    this.insulatePolo();
+    this.suzhouStu();
     //发烧人数折线图
-    this.feverPolo();
-    
-   
+    this.eachpro()
 
   },
   methods: {
-    initzhiban(){
-       var self = this;
+    initzhiban () {
+      var self = this;
       self.$http
         .get(this.baseUrl + "/duty/dutyteacher")
-        .then(function(response) {
-         
-         
-          
+        .then(function (response) {
 
           self.zhiban = response.data;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    handleCommand1(command) {
-        this.kebiaodata = eval("this."+command);
-        // if(command = "rj18c2")
-        //   this.class = "软件18C2";
-        switch(command){
-          case "rj18c2":
-            this.class = "软件18C2";
-            break;
-          case "rj18c1":
-              this.class = "软件18C1";
-              break;
-          case "dsj18c1":
-              this.class = "大数据18C1";
-              break;
-          case "dl18c1":
-              this.class = "动联18C1";
-              break;
-          case "wl18c1":
-              this.class = "网络18C1";
-              break;
-          case "wl18d1":
-              this.class = "网络18D1";
-              break;
-          case "xg18h1":
-            this.class = "信管18H1";
-            break;
-          case "xx18d1":
-            this.class = "信息18D1";
-            break;
-          case "yjs18c1":
-            this.class = "云计算18C1";
-            break;
-        };
-        this.drawKebiao();
-      },
-    handleCommand2(command) {
-        this.kebiaodata = eval("this."+command);
-        switch(command){
-          case "rj19c2":
-            this.class = "软件19C2";
-            break;
-          case "rj19c1":
-              this.class = "软件16C1";
-              break;
-          case "dsj19c1":
-              this.class = "大数据19C1";
-              break;
-          case "dl19c1":
-              this.class = "动联19C1";
-              break;
-          case "wl19c1":
-              this.class = "网络19C1";
-              break;
-          case "wl19d1":
-              this.class = "网络19D1";
-              break;
-          case "xx19d1":
-            this.class = "信息19D1";
-            break;
-          case "xx19c1":
-            this.class = "信息19C1";
-            break;
-          case "yjs19c1":
-            this.class = "云计算19C1";
-            break;
-          case "yjs19c2":
-            this.class = "云计算19C2";
-            break;
-          case "jqr19c1":
-            this.class = "机器人19C1";
-            break;
-          case "jqr19c2":
-            this.class = "机器人19C2";
-            break;
-        }
-        this.drawKebiao();
-      },
-    drawKebiao() {
+    handleCommand1 (command) {
+      this.kebiaodata = eval("this." + command);
+      // if(command = "rj18c2")
+      //   this.class = "软件18C2";
+      switch (command) {
+        case "rj18c2":
+          this.class = "软件18C2";
+          break;
+        case "rj18c1":
+          this.class = "软件18C1";
+          break;
+        case "dsj18c1":
+          this.class = "大数据18C1";
+          break;
+        case "dl18c1":
+          this.class = "动联18C1";
+          break;
+        case "wl18c1":
+          this.class = "网络18C1";
+          break;
+        case "wl18d1":
+          this.class = "网络18D1";
+          break;
+        case "xg18h1":
+          this.class = "信管18H1";
+          break;
+        case "xx18d1":
+          this.class = "信息18D1";
+          break;
+        case "yjs18c1":
+          this.class = "云计算18C1";
+          break;
+      };
+      this.drawKebiao();
+    },
+    handleCommand2 (command) {
+      this.kebiaodata = eval("this." + command);
+      switch (command) {
+        case "rj19c2":
+          this.class = "软件19C2";
+          break;
+        case "rj19c1":
+          this.class = "软件16C1";
+          break;
+        case "dsj19c1":
+          this.class = "大数据19C1";
+          break;
+        case "dl19c1":
+          this.class = "动联19C1";
+          break;
+        case "wl19c1":
+          this.class = "网络19C1";
+          break;
+        case "wl19d1":
+          this.class = "网络19D1";
+          break;
+        case "xx19d1":
+          this.class = "信息19D1";
+          break;
+        case "xx19c1":
+          this.class = "信息19C1";
+          break;
+        case "yjs19c1":
+          this.class = "云计算19C1";
+          break;
+        case "yjs19c2":
+          this.class = "云计算19C2";
+          break;
+        case "jqr19c1":
+          this.class = "机器人19C1";
+          break;
+        case "jqr19c2":
+          this.class = "机器人19C2";
+          break;
+      }
+      this.drawKebiao();
+    },
+    drawKebiao () {
       var kebiao = echarts.init(document.getElementById("echart6"));
       const option = {
         color: "rgba(39,180,194,0.8)",
         tooltip: {
           position: "top",
           trigger: "item",
-          formatter: function(value) {
+          formatter: function (value) {
             let res =
               "课程信息<br/>" +
               "上课时间:" +
@@ -1039,7 +1030,7 @@ export default {
             label: {
               show: true,
 
-              formatter: function(value) {
+              formatter: function (value) {
                 let res = value.data[3];
 
                 return res;
@@ -1057,7 +1048,7 @@ export default {
 
       kebiao.setOption(option);
     },
-    tabchange() {
+    tabchange () {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -1066,13 +1057,13 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan() {
+    tabxunhuan () {
       setInterval(this.tabchange, 5000);
     },
-    tabclear() {
+    tabclear () {
       clearInterval(this.tabxunhuan);
     },
-    handleClick(tab, event) {
+    handleClick (tab, event) {
       // console.log(tab, event);
     },
     handleClick2 (row) {
@@ -2741,41 +2732,38 @@ export default {
   height: 0.75rem;
 }
 .el-dropdown-link {
-    cursor: pointer;
-    color: #1bb4f6;
-    font-size: 0.15rem;
-  }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
-  .select{
- 
-    width: 33.3%;
-    float: left;
-    height: 100%;
-  }
-  .select{
-   
-    width: 33.3%;
-    float: left;
-    height: 100%;
-  }
-  .zhiban{
-    
-    width: 33.3%;
-    float: left;
-    height: 100%;
+  cursor: pointer;
   color: #1bb4f6;
-    font-size: 0.16rem;
-  }
-  .kebiaotitle{
-    height: 17%;
-    text-align: center;
-    font-size: 0.2rem;
+  font-size: 0.15rem;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.select {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+}
+.select {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+}
+.zhiban {
+  width: 33.3%;
+  float: left;
+  height: 100%;
+  color: #1bb4f6;
+  font-size: 0.16rem;
+}
+.kebiaotitle {
+  height: 17%;
+  text-align: center;
+  font-size: 0.2rem;
   color: #fff;
   text-align: center;
   line-height: 0.5rem;
-  }
+}
 element.style {
   margin-top: 35px;
 }
