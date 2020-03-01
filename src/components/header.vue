@@ -87,7 +87,7 @@ export default {
   z-index: 100;
 }
 .head h1 {
-  color: #fff;
+  /* color: #fff; */
   text-align: center;
   font-size: 0.4rem;
   line-height: 0.8rem;
@@ -96,16 +96,12 @@ export default {
     linear,
     left 0,
     right 0,
-    from(rgb(11, 115, 241)),
-    to(rgb(88, 245, 216))
+    from(rgb(8, 115, 245)),
+    to(rgb(120, 245, 222))
   );
-
   /*必需加前缀 -webkit- 才支持这个text值 */
-
   -webkit-background-clip: text;
-
   /*text-fill-color会覆盖color所定义的字体颜色： */
-
   -webkit-text-fill-color: transparent;
 }
 .head h1 img {
