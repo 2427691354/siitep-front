@@ -66,7 +66,7 @@
                   <ul>
                     <li class="piyao_list"
                         v-for="item in this.piyao"
-                        :key="item">{{item.title}}</li>
+                        :key="item.title">{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -126,8 +126,7 @@
               <el-carousel :interval="2000"
                            type="card"
                            height="2rem">
-                <el-carousel-item v-for="item in this.img_list"
-                                  :key="item.img">
+                <el-carousel-item v-for="item in this.img_list">
                   <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
@@ -970,8 +969,6 @@ export default {
         yAxis: {
           type: "category",
           boundaryGap: true,
-          //数组倒置
-          inverse:true,
           axisTick: {
             //y轴刻度线
             show: false
