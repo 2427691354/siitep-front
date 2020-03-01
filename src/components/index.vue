@@ -969,7 +969,7 @@ export default {
         yAxis: {
           type: "category",
           boundaryGap: true,
-          //倒序
+          //倒置
           inverse:true,
           axisTick: {
             //y轴刻度线
@@ -1789,7 +1789,7 @@ export default {
             type: "value",
             // name: "人数",
             min: 0,
-            max: 1000,
+            max: 200,
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -1816,7 +1816,7 @@ export default {
             type: "value",
             // name: "人数",
             min: 0,
-            max: 1300,
+            max: 1200,
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -1881,6 +1881,8 @@ export default {
           {
             name: "江苏人数趋势",
             type: "bar",
+            //双Y轴时使用
+            yAxisIndex: 1,
             barWidth: 15,
             itemStyle: {
               normal: {
