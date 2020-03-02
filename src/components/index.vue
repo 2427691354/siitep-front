@@ -994,10 +994,8 @@ export default {
             data: this.kebiaodata,
             label: {
               show: true,
-
               formatter: function(value) {
                 let res = value.data[3];
-
                 return res;
               }
             },
@@ -1532,6 +1530,7 @@ export default {
           }
           self.map(dd);
         });
+        //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
         .then(function(response) {
@@ -1730,7 +1729,6 @@ export default {
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-console.log(this.keyarea)
       var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
@@ -2780,9 +2778,9 @@ console.log(this.keyarea)
   text-align: center;
   line-height: 0.5rem;
 }
-element.style {
-  margin-top: 35px;
-}
+// element.style {
+//   margin-top: 35px;
+// }
 
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-container {
   height: 0.4rem;
