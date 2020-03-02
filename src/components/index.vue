@@ -3472,6 +3472,7 @@ export default {
         },
         animation: false,
         grid: {
+          containLabel:true,
           height: "67%",
           // top: "-2%",
           width: "93%",
