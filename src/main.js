@@ -6,17 +6,29 @@ import router from "./router";
 import Axios from "axios";
 import ElementUI from "element-ui";
 import echarts from "echarts";
-import AMap from "vue-amap";
+// import AMap from "vue-amap";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
+
+// Vue.use(AMap);
+// AMap.initAMapApiLoader({
+//   key: "e2086e71a75a5ee57a2c1f6a155d2e51", //刚刚开发者申请哪里的key
+//   plugin: [
+//     "AMap.Scale",
+//     "AMap.OverView",
+//     "AMap.ToolBar",
+//     "AMap.MapType",
+//     "AMap.ControlBar"
+//   ]
+// });
 // import VideoPlayer from "vue-video-player";
 // Vue.use(VideoPlayer);
 Vue.use(ViewUI);
 Vue.use(ElementUI);
 Vue.use(AMap);
-Vue.prototype.$echarts = echarts;
 
 Vue.prototype.$http = Axios;
+Vue.prototype.AMap = AMap;
 Vue.config.productionTip = false;
 Vue.prototype.baseUrl = "http://139.196.78.182:8088";
 Vue.prototype.staticUrl = "http://47.101.33.200:8080/static/siitep";
