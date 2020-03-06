@@ -3918,7 +3918,7 @@ export default {
       const option = {
         color: "rgba(39,180,194,0.8)",
         textStyle: {
-          fontSize: "150%"
+          fontSize: "180%"
         },
         tooltip: {
           position: "right",
