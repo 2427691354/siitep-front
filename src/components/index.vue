@@ -212,9 +212,10 @@
                   </el-dropdown-menu>
                 </el-dropdown>
               </div>
-              <div class="select">{{this.class}}课程情况
+              <div class="select"
+                   style="width:51%;float:left">{{this.class}}课程情况（第三周）
               </div>
-              <div class="zhiban">值班老师&nbsp;: &nbsp;<span style="font-weight:1000;">{{this.zhiban}}</span></div>
+              <div class="zhiban">值班&nbsp;: &nbsp;<span style="font-weight:1000;">{{this.zhiban}}</span></div>
 
             </div>
             <div id="echart6"></div>
@@ -3644,6 +3645,7 @@ export default {
         });
     },
     drawHuan () {
+      var self = this;
       var huan = echarts.init(document.getElementById("fashao"));
       const option = {
         // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
@@ -3728,7 +3730,7 @@ export default {
               //   }
               // },
               {
-                value: this.lowfever,
+                value: self.lowfever,
                 name: "低热",
                 label: {
                   normal: {
@@ -3756,7 +3758,7 @@ export default {
                 label: {
                   normal: {
                     formatter: function (params) {
-                      return params.percent;
+                      return self.statistics.sumHever;
                     },
                     position: 'center',
                     show: true,
@@ -3767,7 +3769,7 @@ export default {
                 },
               },
               {
-                value: this.highfever,
+                value: self.highfever,
                 name: "高热",
                 label: {
                   normal: {
@@ -4165,7 +4167,7 @@ export default {
         });
     },
     proBar () {
-      var myChart = this.$echarts.init(document.getElementById("polo_2"));
+      var myChart = echarts.init(document.getElementById("polo_2"));
       var color = [
         "#2EC7E6",
         "#FF5500",
@@ -4303,9 +4305,9 @@ export default {
       //width/(效果图片宽度/文本字体大小(100))
     },
     map (datalist) {
-      var myChart = this.$echarts.init(document.getElementById("map_1"));
+      var myChart = echarts.init(document.getElementById("map_1"));
       var geoCoordMap = {};
-      var mapFeatures = this.$echarts.getMap("china").geoJson.features;
+      var mapFeatures = echarts.getMap("china").geoJson.features;
       mapFeatures.forEach(function (v) {
         // 地区名称
         var name = v.properties.name;
@@ -5013,6 +5015,7 @@ export default {
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
           }
+          console.log(self.Num_js)
           self.stuInsz();
         });
       self.$http
@@ -5027,7 +5030,7 @@ export default {
         });
     },
     stuInsz () {
-      var myChart = this.$echarts.init(document.getElementById("polo_1"));
+      var myChart = echarts.init(document.getElementById("polo_1"));
       var option = {
         grid: {
           left: "1%",
@@ -5330,7 +5333,7 @@ export default {
   font-size: 12px;
 }
 .select {
-  width: 34%;
+  width: 25%;
   float: left;
   height: 100%;
 }
@@ -5340,7 +5343,7 @@ export default {
   height: 100%;
 }
 .zhiban {
-  width: 28%;
+  width: 22%;
   float: left;
   height: 100%;
   color: #1bb4f6;
