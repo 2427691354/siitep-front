@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Index from "@/components/index";
 import Video from "@/components/video";
+import onlineCourse from "@/components/onlineCourse";
 Vue.use(Router);
 
 export default new Router({
@@ -15,6 +16,11 @@ export default new Router({
       path: "/video",
       name: "Video",
       component: Video
+    },
+    {
+      path: "/onlineCourse",
+      name: "onlineCourse",
+      component: onlineCourse
     }
   ]
 });
