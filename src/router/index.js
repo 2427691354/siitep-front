@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Index from "@/components/index";
 import Video from "@/components/video";
 import xx from "@/components/xx";
+import epidemic from "@/components/epidemic";
 
 Vue.use(Router);
 
@@ -22,6 +23,10 @@ export default new Router({
       path: "/xx",
       name: "xx",
       component: xx
+    },{
+      path: "/e",
+      name: "epidemic",
+      component: epidemic
     }
   ]
 });
