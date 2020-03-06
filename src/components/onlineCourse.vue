@@ -6,7 +6,7 @@
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width:30%">
           <div class="boxall" style="height: 4.8rem">
             <div class="alltitle">值班教师表</div>
             <div class="todayteacher">
@@ -81,8 +81,8 @@
             <div class="allnav" id="kebiao"></div>
             <div class="boxfoot"></div>
           </div>
-        </li>
-        <li>
+        </li >
+        <li style="width:40%">
           <div class="bar" style="height: 1.6rem;margin-bottom:0.15rem;">
             <div class="barbox" style="height: 1rem">
               <ul class="clearfix">
@@ -218,7 +218,7 @@
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width:30%">
           <div class="boxall" style="height:3.2rem">
             <div class="alltitle">授课平台分析</div>
             <div class="allnav" id="main8"></div>
