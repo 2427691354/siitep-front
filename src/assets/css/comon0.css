@@ -315,9 +315,9 @@ a:hover {
 }
 .suzhouNum {
   width: 5rem;
-  height: 1.8rem;
+  height: 1.7rem;
   /* margin-left: 0.15rem; */
-  margin-top: 4.05rem;
+  margin-top: 4rem;
   border: 1px solid rgba(25, 186, 139, 0.17);
   /* padding: 0 0.2rem 0rem 0.15rem; */
   background: rgba(255, 255, 255, 0.08) url(../images/line.png);
@@ -347,7 +347,7 @@ a:hover {
 }
 .cityNum {
   width: 2.73rem;
-  height: 5.7rem;
+  height: 5.54rem;
   margin-left: 5.18rem;
   margin-top: 0.15rem;
   border: 1px solid rgba(25, 186, 139, 0.17);
