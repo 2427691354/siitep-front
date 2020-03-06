@@ -4116,6 +4116,7 @@ export default {
           }
           self.map(dd);
         });
+        //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
         .then(function (response) {
