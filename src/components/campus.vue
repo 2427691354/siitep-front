@@ -4,68 +4,169 @@
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width: 20%;">
-          <div class="boxall"
-               style="height: 3.7rem">
+          <div class="boxall" style="height: 3.7rem">
             <div class="alltitle">发烧/隔离人数趋势变化（一周）</div>
+            <div id="all_Num"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 2.9rem">
-            <div class="alltitle">苏城码颜色占比（绿码、黄码、红码、未注册）</div>
+          <div class="boxall" style="height: 2.9rem">
+            <div class="alltitle">苏城码颜色占比</div>
+            <div class="allnav" id="main8"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3.0rem;">
+          <div class="boxall" style="height: 3.0rem;">
             <div class="alltitle">返校/返苏人数趋势变化（一周）</div>
-
+            <div id="allLine"></div>
             <div class="boxfoot"></div>
           </div>
         </li>
         <li style="width: 50%;">
-          <div class="boxall"
-               style="height: 1rem;">
+          <div class="boxall" style="height: 1rem;">
             <div class="alltitle">宏观指标（全校人数 返校人数 隔离人数 今日检测人数）</div>
             <div class="boxfoot"></div>
           </div>
           <div style="height: 6.5rem;padding:0rem;margin-bottom:0.15rem">
-            <div class="allnav"
-                 style="height: 100%;"
-                 id="echart1">
-              <div id="container"
-                   style="width:100%;height: 100%;resize:both;"></div>
+            <div class="allnav" style="height: 100%;" id="echart1">
+              <div id="container" style="width:100%;height: 100%;resize:both;"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
 
-          <div class="boxall"
-               style="height: 2.1rem;">
-            <div class="alltitle">辅导员信息滚动</div>
-
+          <div class="boxall" style="height: 2.1rem;">
+            <div class="alltitle">辅导员信息</div>
+            <div class="allnav">
+              <div id="lunbo">
+                <div id="inlunbo">
+                  <div id="inlunbo1">
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        居晓玮
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        韩雪芳
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        彭 薇
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        薛慧敏
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                  </div>
+                  <div id="inlunbo2">
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        居晓玮
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        韩雪芳
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        彭 薇
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        薛慧敏
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="boxfoot"></div>
           </div>
         </li>
         <li style="width: 30%;">
-          <div class="boxall"
-               style="height: 3.7rem">
-            <div class="alltitle"
-                 @click="changeZhibosrc">实时监控</div>
+          <div class="boxall" style="height: 3.7rem">
+            <div class="alltitle" @click="changeZhibosrc">实时监控</div>
             <div class="jiankong">
-              <video-player class="video-player vjs-custom-skin"
-                            ref="videoPlayer"
-                            :options="playerOptions"></video-player>
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions"
+              ></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 1.2rem">
+          <div class="boxall" style="height: 1.2rem">
             <div class="alltitle">未带口罩截图</div>
 
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 4.7rem;">
+          <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">发烧学生信息表</div>
-
+            <el-table
+              :data="stuInfo"
+              stripe
+              style="font-size: 10%"
+              :row-style="{ height: '0.4rem' }"
+              :cell-style="{ padding: '0px' }"
+            >
+              <el-table-column prop="name" label="姓名"></el-table-column>
+              <el-table-column prop="class" label="班级"></el-table-column>
+              <el-table-column prop="tem" label="体温(℃)"></el-table-column>
+              <el-table-column prop="status" label="状态"></el-table-column>
+              <el-table-column prop="address" label="隔离地点"></el-table-column>
+            </el-table>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -83,7 +184,7 @@ import "video.js/dist/video-js.css";
 import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 export default {
-  data () {
+  data() {
     return {
       zhiboSrc: "rtmp://139.224.68.139:1935/play/mask.mp4",
       //视频流配置
@@ -107,7 +208,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/mp4",
-            src: 'rtmp://139.224.68.139:1935/play/mask.mp4'
+            src: "rtmp://139.224.68.139:1935/play/mask.mp4"
           }
         ],
         poster: "", //你的封面地址
@@ -115,17 +216,44 @@ export default {
         notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: false
       },
+      Num_geli: [],
+      Num_fashao: [],
+      days2: [],
+
+      Num_suzhou: [],
+      Num_js: [],
+      days: [],
+
+      //重点关注学生信息
+      stuInfo: [],
+
+      //上课平台
+      pingtai: [[12, 13, 11, 7, 9, 11, 4]]
     };
   },
   components: {
     Header,
     videoPlayer
   },
-  mounted () {
+  created() {
+    //表格自动滚动
+    this.play();
+  },
+  mounted() {
     this.mapInit();
+    //隔离、发烧人数趋势
+    this.trendNum();
+    //返苏、在江苏人数趋势
+    this.suzhouStu();
+    //重点关注学生
+    this.focusStu();
+    //辅导员信息滚动
+    this.gundong();
+    //绘制雷达图
+    this.drawLeida();
   },
   methods: {
-    mapInit () {
+    mapInit() {
       var green = "#7ce757";
       var orange = "#ffb034";
       var blue = "#3fbeff";
@@ -258,7 +386,7 @@ export default {
           parseFloat(d[p].housingLatitude)
         ];
       }
-      var convertData = function (data) {
+      var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].name];
@@ -277,8 +405,8 @@ export default {
       };
       var myChart = echarts.init(document.getElementById("container"));
       myChart.setOption({
-        backgroundColor: 'rgba(0,0,0,0)',//canvas的背景颜色
-        environment: '../images/bg.png',//背景星空图,
+        backgroundColor: "rgba(0,0,0,0)", //canvas的背景颜色
+        environment: "../images/bg.png", //背景星空图,
         amap: {
           zoom: 18,
           pitch: 50,
@@ -288,7 +416,7 @@ export default {
           // mapStyle: 'amap://styles/light',
           center: [120.58962822, 31.21960967],
           features: ["bg", "point", "road"],
-          viewMode: "3D",
+          viewMode: "3D"
 
           // layers: [new AMap.TileLayer({}), buildingLayer]
         },
@@ -307,15 +435,17 @@ export default {
         .getComponent("amap")
         .getLayer();
 
-
-      map.addControl(new AMap.ControlBar({
-        showZoomBar: false, // 显示 zoom条控件
-        // showControlButton:true,// 可以取消 倾斜旋转角度的按钮
-        position: { //控件的定位
-          right: '2%',
-          top: '80%'
-        }
-      }));
+      map.addControl(
+        new AMap.ControlBar({
+          showZoomBar: false, // 显示 zoom条控件
+          // showControlButton:true,// 可以取消 倾斜旋转角度的按钮
+          position: {
+            //控件的定位
+            right: "2%",
+            top: "80%"
+          }
+        })
+      );
 
       map.add(buildingLayer);
       new AMap.Polygon({
@@ -334,7 +464,7 @@ export default {
         map: map
       });
 
-      AMap.event.addListener(map, "zoomend", function () {
+      AMap.event.addListener(map, "zoomend", function() {
         console.log("当前缩放级别：" + map.getZoom());
         console.log("俯视视角" + map.getPitch());
         console.log("俯视视角" + map.getPitch());
@@ -345,7 +475,7 @@ export default {
           type: "effectScatter",
           coordinateSystem: "amap",
           data: convertData(data),
-          symbol: 'image://static/img/ca_red.png',
+          symbol: "image://static/img/ca_red.png",
           symbolSize: 5,
           showEffectOn: "render",
           rippleEffect: {
@@ -356,7 +486,7 @@ export default {
           hoverAnimation: true,
           label: {
             normal: {
-              formatter: function (params) {
+              formatter: function(params) {
                 if (params.data.obj.elevatorBrakeList.length > 0) {
                   // return (
                   //   "{fline| " +
@@ -405,7 +535,7 @@ export default {
           type: "scatter",
           coordinateSystem: "amap",
           data: convertData(data1),
-          symbol: 'image://static/img/ca_green.png',
+          symbol: "image://static/img/ca_green.png",
           symbolSize: 20,
           showEffectOn: "render",
           rippleEffect: {
@@ -416,7 +546,7 @@ export default {
           hoverAnimation: true,
           label: {
             normal: {
-              formatter: function (params) {
+              formatter: function(params) {
                 return (
                   "{fline| " +
                   params.data.name +
@@ -451,7 +581,7 @@ export default {
         series: series
       });
       //下面是确保高德地图渲染的时候，echarts同时也需要再次渲染一次，保持位置的同步
-      layer.render = function () {
+      layer.render = function() {
         myChart.setOption({
           series: series
         });
@@ -462,7 +592,7 @@ export default {
        * @param gg_lat
        * @returns {{bd_lat: number, bd_lng: number}}
        */
-      function bd_encrypt (gg_lng, gg_lat) {
+      function bd_encrypt(gg_lng, gg_lat) {
         var X_PI = (Math.PI * 3000.0) / 180.0;
         var x = gg_lng,
           y = gg_lat;
@@ -503,10 +633,507 @@ export default {
     //     })
     //   );
     // }
-    changeZhibosrc () {
+    changeZhibosrc() {
       this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
       console.log(this.zhiboSrc);
-    }
+    },
+    trendNum() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getFeverTrend")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            self.Num_fashao.push(res[i].stuFeverTrend);
+            self.days2.push(res[i].time.substring(6) + "日");
+          }
+          console.log(self.Num_fashao);
+          self.totalNum();
+        });
+
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getStuIsolated")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            self.Num_geli.push(res[i].stuFeverTrend);
+          }
+          self.totalNum();
+        });
+    },
+    totalNum() {
+      var myChart = echarts.init(document.getElementById("all_Num"));
+      // Generate data
+      var option = {
+        tooltip: {
+          trigger: "axis",
+          backgroundColor: "rgba(255,255,255,0.1)",
+          axisPointer: {
+            type: "shadow",
+            label: {
+              show: true,
+              backgroundColor: "#7B7DDC"
+            }
+          }
+        },
+        legend: {
+          data: ["隔离人数趋势", "发烧人数趋势"],
+          textStyle: {
+            color: "#B4B4B4"
+          },
+          top: "1%"
+        },
+        grid: {
+          left: 0,
+          right: 0,
+          top: "10%",
+          bottom: "3%",
+          containLabel: true
+        },
+        xAxis: {
+          data: this.days2,
+          axisLine: {
+            lineStyle: {
+              color: "#03C5BC"
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        yAxis: [
+          {
+            splitLine: { show: false },
+            axisLine: {
+              lineStyle: {
+                color: "#03C5BC"
+              }
+            },
+
+            axisLabel: {
+              formatter: "{value} "
+            }
+          },
+          {
+            splitLine: { show: false },
+            axisLine: {
+              lineStyle: {
+                color: "#03C5BC"
+              }
+            },
+            axisLabel: {
+              formatter: "{value} "
+            }
+          }
+        ],
+        series: [
+          {
+            name: "隔离人数趋势",
+            type: "line",
+            smooth: true,
+            showAllSymbol: true,
+            symbol: "emptyCircle",
+            symbolSize: 8,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color: "#F02FC2"
+              }
+            },
+            data: this.Num_geli
+          },
+
+          {
+            name: "发烧人数趋势",
+            type: "bar",
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#956FD4" },
+                  { offset: 1, color: "#3EACE5" }
+                ])
+              }
+            },
+            data: this.Num_fashao
+          }
+        ]
+      };
+      myChart.setOption(option);
+      window.addEventListener("resize", function() {
+        myChart.resize();
+      });
+    },
+    suzhouStu() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getStuInSuZhou?province=江苏")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            self.Num_js.push(res[i].stuinSuZhou);
+          }
+          self.stuInsz();
+        });
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getStuInSuZhou?city=苏州")
+        .then(function(response) {
+          var res = response.data;
+          for (var i = 0; i < res.length; i++) {
+            self.Num_suzhou.push(res[i].stuinSuZhou);
+            self.days.push(res[i].time.substring(6) + "日");
+          }
+          self.stuInsz();
+        });
+    },
+    stuInsz() {
+      var myChart = echarts.init(document.getElementById("allLine"));
+      var option = {
+        tooltip: {
+          //提示框组件
+          trigger: "axis",
+          formatter: "{b}<br />{a0}: {c0}<br />{a1}: {c1}",
+          axisPointer: {
+            type: "shadow",
+            label: {
+              backgroundColor: "#333"
+            }
+          },
+          textStyle: {
+            color: "#fff",
+            fontStyle: "normal",
+            fontFamily: "微软雅黑",
+            fontSize: "150%"
+          }
+        },
+        grid: {
+          left: 0,
+          right: 0,
+          top: "10%",
+          bottom: "3%",
+          // padding: "0 0 10 0",
+          containLabel: true
+        },
+        legend: {
+          data: ["苏州人数趋势", "江苏人数趋势"],
+          textStyle: {
+            color: "#B4B4B4"
+          },
+          top: "1%"
+        },
+        xAxis: [
+          {
+            type: "category",
+            boundaryGap: true, //坐标轴两边留白
+            data: this.days,
+            axisLabel: {
+              //坐标轴刻度标签的相关设置。
+              interval: 0, //设置为 1，表示『隔一个标签显示一个标签』
+              margin: 15,
+              textStyle: {
+                color: "#03C5BC",
+                fontStyle: "normal",
+                fontFamily: "微软雅黑",
+                fontSize: "150%"
+              }
+            },
+            axisTick: {
+              //坐标轴刻度相关设置。
+              show: true
+            },
+            axisLine: {
+              //坐标轴轴线相关设置
+              lineStyle: {
+                color: "#03C5BC"
+                //	opacity:0.5
+              }
+            },
+            splitLine: {
+              //坐标轴在 grid 区域中的分隔线。
+              show: false
+            }
+          }
+        ],
+        yAxis: [
+          {
+            splitLine: { show: false },
+            axisLine: {
+              lineStyle: {
+                color: "#03C5BC"
+              }
+            },
+
+            axisLabel: {
+              formatter: "{value} "
+            }
+          },
+          {
+            splitLine: { show: false },
+            axisLine: {
+              lineStyle: {
+                color: "#03C5BC"
+              }
+            },
+            axisLabel: {
+              formatter: "{value} "
+            }
+          }
+        ],
+        series: [
+          {
+            name: "苏州人数趋势",
+            type: "line",
+            smooth: true,
+            showAllSymbol: true,
+            symbol: "emptyCircle",
+            symbolSize: 8,
+            itemStyle: {
+              //图形样式
+              normal: {
+                barBorderRadius: [5, 5, 0, 0],
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 1,
+                      color: "rgba(127, 128, 225, 0.7)"
+                    },
+                    {
+                      offset: 0.9,
+                      color: "rgba(72, 73, 181, 0.7)"
+                    },
+                    {
+                      offset: 0.25,
+                      color: "rgba(226, 99, 74, 0.7)"
+                    },
+                    {
+                      offset: 0,
+                      color: "rgba(253, 200, 106, 0.7)"
+                    }
+                  ],
+                  false
+                )
+              }
+            },
+            data: this.Num_suzhou
+          },
+          {
+            name: "江苏人数趋势",
+            type: "bar",
+            data: this.Num_js,
+            yAxisIndex: 1,
+            barWidth: 10,
+            barGap: 0.5, //柱间距离
+            label: {
+              //图形上的文本标签
+              normal: {
+                show: false,
+                position: "top",
+                textStyle: {
+                  color: "#a8aab0",
+                  fontStyle: "normal",
+                  fontFamily: "微软雅黑",
+                  fontSize: "150%"
+                }
+              }
+            },
+            itemStyle: {
+              //图形样式
+              normal: {
+                barBorderRadius: [5, 5, 0, 0],
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 1,
+                      color: "rgba(127, 128, 225, 0.7)"
+                    },
+                    {
+                      offset: 0.9,
+                      color: "rgba(72, 73, 181, 0.7)"
+                    },
+                    {
+                      offset: 0.31,
+                      color: "rgba(0, 208, 208, 0.7)"
+                    },
+                    {
+                      offset: 0.15,
+                      color: "rgba(0, 208, 208, 0.7)"
+                    },
+                    {
+                      offset: 0,
+                      color: "rgba(104, 253, 255, 0.7)"
+                    }
+                  ],
+                  false
+                )
+              }
+            }
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+      window.addEventListener("resize", function() {
+        myChart.resize();
+      });
+    },
+    focusStu() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/dayrpt/getFocusStu")
+        .then(function(response) {
+          var dd = [];
+          var res = response.data;
+          self.stuInfo = dd;
+          for (var i = 0; i < res.length; i++) {
+            // 判断
+            if (res[i].STATUS == "隔离") {
+              if (res[i].quarantine == 0) {
+                res[i].quarantine = "在家";
+              } else {
+                res[i].quarantine = "医院";
+              }
+            } else {
+              res[i].quarantine = "无";
+            }
+            if (res[i].s_name[0] != "undefined") {
+              res[i].s_name = res[i].s_name[0] + "**";
+            }
+            dd.push({
+              name: res[i].s_name,
+              class: res[i].c_name,
+              tem: res[i].temperature,
+              status: res[i].STATUS,
+              address: res[i].quarantine
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    //change,play实现表格自动滚动
+    change() {
+      //把第一条数据插入数组最后一条
+      this.stuInfo.push(this.stuInfo[0]);
+      //删除数组中第一条数据
+      this.stuInfo.shift();
+    },
+    play() {
+      //每两秒执行一次插入删除操作
+      setInterval(this.change, 1000);
+    },
+    //辅导员信息滚动
+    gundong() {
+      var speed = 12;
+      var tab = document.getElementById("lunbo");
+      var tab1 = document.getElementById("inlunbo1");
+      var tab2 = document.getElementById("inlunbo1");
+      tab2.innerHTML = tab1.innerHTML;
+      function Marquee() {
+        if (tab2.offsetWidth - tab.scrollLeft <= 0)
+          tab.scrollLeft -= tab1.offsetWidth;
+        else {
+          tab.scrollLeft++;
+        }
+      }
+      var MyMar = setInterval(Marquee, speed);
+      tab.onmouseover = function() {
+        clearInterval(MyMar);
+      };
+      tab.onmouseout = function() {
+        MyMar = setInterval(Marquee, speed);
+      };
+    },
+    //绘制雷达图
+    drawLeida() {
+      var leida = echarts.init(document.getElementById("main8"));
+      const option = {
+        grid: {},
+
+        legend: {
+          bottom: 5,
+          itemGap: 20,
+          textStyle: {
+            color: "#fff",
+            fontSize: 14
+          },
+          selectedMode: "single"
+        },
+        tooltip: {
+          trigger: "item",
+          show: true
+        },
+        radar: {
+          center: ["50%", "50%"], //偏移位置
+          indicator: [
+            { name: "职教云", max: 15 },
+            { name: "腾讯会议", max: 15 },
+            { name: "企业微信", max: 15 },
+            { name: "蓝墨云班课", max: 15 },
+            { name: "QQ直播", max: 15 },
+            { name: "教学平台", max: 15 }
+          ],
+
+          shape: "circle",
+          splitNumber: 5,
+          name: {
+            textStyle: {
+              color: "#51cede",
+              padding: -10
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: [
+                "rgba(20, 157, 192, 0.2)",
+                "rgba(20, 157, 192, 0.3)"
+              ].reverse()
+            }
+          },
+          splitArea: {
+            areaStyle: {
+              color: "transparent"
+            }
+          },
+
+          axisLine: {
+            lineStyle: {
+              color: "rgba(20, 127, 192, 0.4)"
+            }
+          }
+        },
+        series: [
+          {
+            name: "授课平台",
+            type: "radar",
+            lineStyle: {
+              normal: {
+                width: 1,
+                opacity: 0.5
+              }
+            },
+            data: this.pingtai,
+            symbol: "none",
+            itemStyle: {
+              color: "#00CED1"
+            },
+            areaStyle: {
+              opacity: 0.15
+            }
+          }
+        ]
+      };
+      leida.setOption(option);
+    },
   }
 };
 </script>
@@ -530,5 +1157,103 @@ export default {
 .jiankong {
   height: 3rem;
   width: 100%;
+}
+#all_Num {
+  width: 3.5rem;
+  height: 3.2rem;
+}
+#allLine {
+  width: 3.5rem;
+  height: 2.5rem;
+}
+.el-table {
+  height: 4rem;
+  width: 100% !important;
+  background-color: transparent !important;
+  color: #00d4c7 !important;
+  font-size: 160% !important;
+}
+
+.el-table thead {
+  color: #dcdcdc !important;
+  background-color: #1b3565;
+}
+/* 设置table header的背景颜色 */
+.el-table th,
+.el-table tr,
+.el-table td {
+  background-color: transparent !important;
+  padding: 4px 0 !important;
+  text-align: center !important;
+}
+
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: 0px solid #05a4b8 !important;
+}
+
+.el-table--border,
+.el-table--group {
+  border: 1px solid #05a4b8 !important;
+}
+
+.el-table::after {
+  width: 0% !important;
+  height: 0% !important;
+}
+.el-table::before {
+  width: 0% !important;
+  height: 0% !important;
+}
+.el-table .cell {
+  line-height: 100% !important;
+  padding-left: 0 !important;
+}
+#lunbo {
+  overflow: hidden;
+  /* margin-top: 3%; */
+  width: 100%;
+  height: 85%;
+}
+#inlunbo {
+  float: left;
+  width: 560%;
+  height: 100%;
+}
+
+#inlunbo1 {
+  float: left;
+  height: 100%;
+  width: 25%;
+}
+
+#inlunbo2 {
+  float: left;
+  height: 100%;
+  width: 25%;
+}
+.lunboborder {
+  width: 32.5%;
+  height: 100%;
+  margin-right: 0.8%;
+  float: left;
+  background: rgba(16, 54, 87, 0.5);
+  border: 1px solid #345f92;
+}
+.lunboimg {
+  width: 55%;
+  height: 100%;
+  float: left;
+}
+.lunbotext {
+  width: 45%;
+  height: 100%;
+  padding: 7% 3%;
+  float: left;
+  font-size: 0.19rem;
+  color: #519ebe;
+}
+#main8 {
+  padding-bottom: 0.2rem;
 }
 </style>
