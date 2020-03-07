@@ -81,14 +81,16 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data () {
     return {
-      zhiboSrc:"rtmp://139.224.68.139:1935/play/mask.mp4",
+      zhiboSrc:"rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+      // "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       //视频流配置
        playerOptions: {
-        // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        isVideo:true,//强制刷新使用 
         language: "zh-CN",
         aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
@@ -103,7 +105,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/mp4",
-            src: this.zhiboSrc
+            src: "rtmp://139.224.68.139:1935/play/mask.mp4"
           }
         ],
         poster: "", //你的封面地址
@@ -119,6 +121,8 @@ export default {
   },
   mounted () {
     this.mapInit();
+    // this.initZhibosrc();
+    // this.test();
   },
   methods: {
     mapInit () {
@@ -498,9 +502,21 @@ export default {
     //   );
     // }
     changeZhibosrc(){
-      this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
-      console.log(this.zhiboSrc);
-    }
+      let myPlayer = this.$refs.videoPlayer.player;
+      console.log(myPlayer);
+      myPlayer.src("rtmp://202.69.69.180:443/webcast/bshdlive-pc")
+    // this.url = this.zhiboSrc;
+    //  this.playerOptions['sources'][0]['src'] =this.zhiboSrc;
+      // this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
+      console.log(this.playerOptions);
+    },
+    // initZhibosrc(){
+    //  this.playerOptions['sources'][0]['src'] ="rtmp://139.224.68.139:1935/play/mask.mp4";
+     
+    //   this.test()
+    // },
+  
+    
   }
 };
 </script>
