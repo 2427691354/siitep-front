@@ -5,7 +5,7 @@
       <ul class="clearfix">
         <li style="width: 20%;">
           <div class="boxall" style="height: 3.7rem">
-            <div class="alltitle">发烧/隔离人数趋势变化（一周）</div>
+            <div class="alltitle">发烧/隔离人数趋势变化</div>
             <div id="all_Num"></div>
             <div class="boxfoot"></div>
           </div>
@@ -15,7 +15,7 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 3.0rem;">
-            <div class="alltitle">返校/返苏人数趋势变化（一周）</div>
+            <div class="alltitle">返校/返苏人数趋势变化</div>
             <div id="allLine"></div>
             <div class="boxfoot"></div>
           </div>
@@ -42,9 +42,9 @@
             <div class="barbox2">
               <ul class="clearfix">
                 <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left" style="width:30%;">返苏人数（江苏-苏州）</li>
+                <li class="pulll_left" style="width:30%;">返校人数（江苏-苏州）</li>
                 <li class="pulll_left" style="width:10%;">隔离人数</li>
-                <li class="pulll_left" style="width:30%;">发烧人数</li>
+                <li class="pulll_left" style="width:30%;">今日检测人数</li>
               </ul>
             </div>
             <!-- <div class="boxfoot"></div> -->
@@ -160,10 +160,8 @@
           </div>
         </li>
         <li style="width: 30%;">
-          <div class="boxall"
-               style="height: 3.7rem">
-            <div class="alltitle"
-                >实时监控</div>
+          <div class="boxall" style="height: 3.7rem">
+            <div class="alltitle">实时监控</div>
             <div class="jiankong">
               <video-player
                 class="video-player vjs-custom-skin"
@@ -180,19 +178,21 @@
           </div>
           <div class="boxall" style="height: 4.7rem;">
             <div class="alltitle">发烧学生信息表</div>
-            <el-table
-              :data="stuInfo"
-              stripe
-              style="font-size: 10%"
-              :row-style="{ height: '0.4rem' }"
-              :cell-style="{ padding: '0px' }"
-            >
-              <el-table-column prop="name" label="姓名"></el-table-column>
-              <el-table-column prop="class" label="班级"></el-table-column>
-              <el-table-column prop="tem" label="体温(℃)"></el-table-column>
-              <el-table-column prop="status" label="状态"></el-table-column>
-              <el-table-column prop="address" label="隔离地点"></el-table-column>
-            </el-table>
+            <div class="allnav" style="height:4rem">
+              <el-table
+                :data="stuInfo"
+                stripe
+                style="font-size: 10%"
+                :row-style="{ height: '0.4rem' }"
+                :cell-style="{ padding: '0px' }"
+              >
+                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column prop="class" label="班级"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
+              </el-table>
+            </div>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -212,9 +212,9 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data() {
     return {
-      tianchouSrc:"rtmp://202.69.69.180:443/webcast/bshdlive-pc",
-      tianzhangSrc:" rtmp://58.200.131.2:1935/livetv/hunantv",
-     
+      tianchouSrc: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+      tianzhangSrc: " rtmp://58.200.131.2:1935/livetv/hunantv",
+
       // "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       //视频流配置
       playerOptions: {
@@ -238,7 +238,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/mp4",
-            src: "rtmp://139.224.68.139:1935/play/mask.mp4"//默认播放地址
+            src: "rtmp://139.224.68.139:1935/play/mask.mp4" //默认播放地址
           }
         ],
         poster: "", //你的封面地址
@@ -257,9 +257,9 @@ export default {
       //重点关注学生信息
       stuInfo: [],
 
-      //上课平台
+      //苏城码
       pingtai: [[12, 13, 11, 7, 9, 11, 4]],
-
+      //宏观信息
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
@@ -291,9 +291,17 @@ export default {
     this.drawLeida();
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
+
+    this.resizeFontsize();
+    //改变横屏竖屏执行效果更换
+    window.addEventListener("orientationchange", this.resizeFontsize());
+    //改变手机大小执行效果更换
+    window.addEventListener("resize", this.resizeFontsize());
+
+    this.canves();
   },
   methods: {
-    mapInit () {
+    mapInit() {
       var self = this;
       var green = "#7ce757";
       var orange = "#ffb034";
@@ -511,7 +519,7 @@ export default {
         console.log("俯视视角" + map.getPitch());
       });
 
-      // AMap.event.addListener(map,'click',function (e) { 
+      // AMap.event.addListener(map,'click',function (e) {
       //   //添加点击事件,传入对象名，事件名，回调函数
       //     // alert('click');
       //      console.log("x：" + e.lnglat.getLng());
@@ -629,10 +637,10 @@ export default {
         series: series
       });
       //点击散点切换视频流
-      myChart.on('click', function (params) {
+      myChart.on("click", function(params) {
         console.log(params.name);
         //逻辑控制
-        switch(params.name){
+        switch (params.name) {
           case "天筹楼":
             self.changeZhibosrc(self.tianchouSrc);
             break;
@@ -641,8 +649,7 @@ export default {
             break;
           default:
             self.changeZhibosrc(self.tianchouSrc);
-        }  
-         
+        }
       });
 
       //下面是确保高德地图渲染的时候，echarts同时也需要再次渲染一次，保持位置的同步
@@ -671,42 +678,12 @@ export default {
         };
       }
     },
-    // mapInit() {
-    //   var map;
-    //   map = new AMap.Map("container", {
-    //     resizeEnable: true,
-    //     //通过rotateEnable和 pitchEnable 控制地图是否可以旋转和倾斜
-    //     rotateEnable: true,
-    //     pitchEnable: true,
-    //     zoom: 17,
-    //     pitch: 80,
-    //     rotation: -15,
-    //     viewMode: "3D", //开启3D视图,默认为关闭
-    //     buildingAnimation: true, //楼块出现是否带动画
-    //     expandZoomRange: true,
-    //     zooms: [3, 20],
-    //     center: [120.5905, 31.22063]
-    //   });
-    //   map.addControl(
-    //     new AMap.ControlBar({
-    //       showZoomBar: false,
-    //       showControlButton: true,
-    //       position: {
-    //         right: "10px",
-    //         top: "10px"
-    //       }
-    //     })
-    //   );
-    // }
-    changeZhibosrc(src){
-      // let myPlayer = this.$refs.videoPlayer.player;
-      // console.log(myPlayer);
-      // myPlayer.src("rtmp://202.69.69.180:443/webcast/bshdlive-pc")
-    // this.url = this.zhiboSrc;
-     this.playerOptions['sources'][0]['src'] = src;
-    //  myPlayer.play();
-    console.log(this.playerOptions)
-  
+    setSize: function() {
+      // 通过浏览器宽度(图片宽度)计算高度
+      this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
+    changeZhibosrc(src) {
+      this.playerOptions["sources"][0]["src"] = src;
     },
     trendNum() {
       var self = this;
@@ -757,7 +734,7 @@ export default {
         grid: {
           left: 0,
           right: 0,
-          top: "10%",
+          top: "20%",
           bottom: "5%",
           containLabel: true
         },
@@ -881,7 +858,7 @@ export default {
         grid: {
           left: 0,
           right: 0,
-          top: "10%",
+          top: "20%",
           bottom: "3%",
           // padding: "0 0 10 0",
           containLabel: true
@@ -898,30 +875,12 @@ export default {
             type: "category",
             boundaryGap: true, //坐标轴两边留白
             data: this.days,
-            axisLabel: {
-              //坐标轴刻度标签的相关设置。
-              interval: 0, //设置为 1，表示『隔一个标签显示一个标签』
-              margin: 15,
-              textStyle: {
-                color: "#03C5BC",
-                fontStyle: "normal",
-                fontFamily: "微软雅黑",
-                fontSize: "150%"
+            axisLine: {
+              lineStyle: {
+                color: "#03C5BC"
               }
             },
             axisTick: {
-              //坐标轴刻度相关设置。
-              show: true
-            },
-            axisLine: {
-              //坐标轴轴线相关设置
-              lineStyle: {
-                color: "#03C5BC"
-                //	opacity:0.5
-              }
-            },
-            splitLine: {
-              //坐标轴在 grid 区域中的分隔线。
               show: false
             }
           }
@@ -1128,14 +1087,20 @@ export default {
     drawLeida() {
       var leida = echarts.init(document.getElementById("main8"));
       const option = {
-        grid: {},
-
+        grid: {
+          left: 0,
+          right: 0,
+          top: "10%",
+          bottom: "2%",
+          // padding: "0 0 10 0",
+          containLabel: true
+        },
         legend: {
-          bottom: 5,
+          bottom: "5%",
           itemGap: 20,
           textStyle: {
             color: "#fff",
-            fontSize: 14
+            fontSize: "150%"
           },
           selectedMode: "single"
         },
@@ -1204,13 +1169,15 @@ export default {
         ]
       };
       leida.setOption(option);
+      window.addEventListener("resize", function() {
+        leida.resize();
+      });
     },
-    
-    initSum () {
+    initSum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/sum")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.statistics.sumAll = res.sum;
           self.statistics.sumIsolated = res.sumisolated;
@@ -1219,10 +1186,400 @@ export default {
           self.statistics.stuinJiang = res.stuinJiang;
           // window.location.reload();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
+    },
+    setSize: function() {
+      // 通过浏览器宽度(图片宽度)计算高度
+      this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
+    resizeFontsize() {
+      var width = document.documentElement.clientWidth;
+      document.documentElement.style.fontSize = width / 20 + "px";
+      //width/(效果图片宽度/文本字体大小(100))
+    },
+    canves() {
+      var num = 200;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var max = 100;
+      var _x = 0;
+      var _y = 0;
+      var _z = 150;
+      var dtr = function(d) {
+        return (d * Math.PI) / 180;
+      };
+
+      var rnd = function() {
+        return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
+      };
+      var dist = function(p1, p2, p3) {
+        return Math.sqrt(
+          Math.pow(p2.x - p1.x, 2) +
+            Math.pow(p2.y - p1.y, 2) +
+            Math.pow(p2.z - p1.z, 2)
+        );
+      };
+
+      var cam = {
+        obj: {
+          x: _x,
+          y: _y,
+          z: _z
+        },
+        dest: {
+          x: 0,
+          y: 0,
+          z: 1
+        },
+        dist: {
+          x: 0,
+          y: 0,
+          z: 200
+        },
+        ang: {
+          cplane: 0,
+          splane: 0,
+          ctheta: 0,
+          stheta: 0
+        },
+        zoom: 1,
+        disp: {
+          x: w / 2,
+          y: h / 2,
+          z: 0
+        },
+        upd: function() {
+          cam.dist.x = cam.dest.x - cam.obj.x;
+          cam.dist.y = cam.dest.y - cam.obj.y;
+          cam.dist.z = cam.dest.z - cam.obj.z;
+          cam.ang.cplane =
+            -cam.dist.z /
+            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+          cam.ang.splane =
+            cam.dist.x /
+            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+          cam.ang.ctheta =
+            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
+            Math.sqrt(
+              cam.dist.x * cam.dist.x +
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
+            );
+          cam.ang.stheta =
+            -cam.dist.y /
+            Math.sqrt(
+              cam.dist.x * cam.dist.x +
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
+            );
+        }
+      };
+
+      var trans = {
+        parts: {
+          sz: function(p, sz) {
+            return {
+              x: p.x * sz.x,
+              y: p.y * sz.y,
+              z: p.z * sz.z
+            };
+          },
+          rot: {
+            x: function(p, rot) {
+              return {
+                x: p.x,
+                y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
+                z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
+              };
+            },
+            y: function(p, rot) {
+              return {
+                x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
+                y: p.y,
+                z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
+              };
+            },
+            z: function(p, rot) {
+              return {
+                x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
+                y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
+                z: p.z
+              };
+            }
+          },
+          pos: function(p, pos) {
+            return {
+              x: p.x + pos.x,
+              y: p.y + pos.y,
+              z: p.z + pos.z
+            };
+          }
+        },
+        pov: {
+          plane: function(p) {
+            return {
+              x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
+              y: p.y,
+              z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
+            };
+          },
+          theta: function(p) {
+            return {
+              x: p.x,
+              y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
+              z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
+            };
+          },
+          set: function(p) {
+            return {
+              x: p.x - cam.obj.x,
+              y: p.y - cam.obj.y,
+              z: p.z - cam.obj.z
+            };
+          }
+        },
+        persp: function(p) {
+          return {
+            x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
+            y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
+            z: p.z * cam.zoom,
+            p: cam.dist.z / p.z
+          };
+        },
+        disp: function(p, disp) {
+          return {
+            x: p.x + disp.x,
+            y: -p.y + disp.y,
+            z: p.z + disp.z,
+            p: p.p
+          };
+        },
+        steps: function(_obj_, sz, rot, pos, disp) {
+          var _args = trans.parts.sz(_obj_, sz);
+          _args = trans.parts.rot.x(_args, rot);
+          _args = trans.parts.rot.y(_args, rot);
+          _args = trans.parts.rot.z(_args, rot);
+          _args = trans.parts.pos(_args, pos);
+          _args = trans.pov.plane(_args);
+          _args = trans.pov.theta(_args);
+          _args = trans.pov.set(_args);
+          _args = trans.persp(_args);
+          _args = trans.disp(_args, disp);
+          return _args;
+        }
+      };
+
+      (function() {
+        "use strict";
+        var threeD = function(param) {
+          this.transIn = {};
+          this.transOut = {};
+          this.transIn.vtx = param.vtx;
+          this.transIn.sz = param.sz;
+          this.transIn.rot = param.rot;
+          this.transIn.pos = param.pos;
+        };
+
+        threeD.prototype.vupd = function() {
+          this.transOut = trans.steps(
+            this.transIn.vtx,
+            this.transIn.sz,
+            this.transIn.rot,
+            this.transIn.pos,
+            cam.disp
+          );
+        };
+
+        var Build = function() {
+          this.vel = 0.04;
+          this.lim = 360;
+          this.diff = 200;
+          this.initPos = 100;
+          this.toX = _x;
+          this.toY = _y;
+          this.go();
+        };
+
+        Build.prototype.go = function() {
+          this.canvas = document.getElementById("canv");
+          this.canvas.width = window.innerWidth;
+          this.canvas.height = window.innerHeight;
+          this.$ = canv.getContext("2d");
+          this.$.globalCompositeOperation = "source-over";
+          this.varr = [];
+          this.dist = [];
+          this.calc = [];
+
+          for (var i = 0, len = num; i < len; i++) {
+            this.add();
+          }
+
+          this.rotObj = {
+            x: 0,
+            y: 0,
+            z: 0
+          };
+          this.objSz = {
+            x: w / 5,
+            y: h / 5,
+            z: w / 5
+          };
+        };
+
+        Build.prototype.add = function() {
+          this.varr.push(
+            new threeD({
+              vtx: {
+                x: rnd(),
+                y: rnd(),
+                z: rnd()
+              },
+              sz: {
+                x: 0,
+                y: 0,
+                z: 0
+              },
+              rot: {
+                x: 20,
+                y: -20,
+                z: 0
+              },
+              pos: {
+                x: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
+                y: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
+                z: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180)
+              }
+            })
+          );
+          this.calc.push({
+            x: 360 * Math.random(),
+            y: 360 * Math.random(),
+            z: 360 * Math.random()
+          });
+        };
+
+        Build.prototype.upd = function() {
+          cam.obj.x += (this.toX - cam.obj.x) * 0.05;
+          cam.obj.y += (this.toY - cam.obj.y) * 0.05;
+        };
+
+        Build.prototype.draw = function() {
+          this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          cam.upd();
+          this.rotObj.x += 0.1;
+          this.rotObj.y += 0.1;
+          this.rotObj.z += 0.1;
+
+          for (var i = 0; i < this.varr.length; i++) {
+            for (var val in this.calc[i]) {
+              if (this.calc[i].hasOwnProperty(val)) {
+                this.calc[i][val] += this.vel;
+                if (this.calc[i][val] > this.lim) this.calc[i][val] = 0;
+              }
+            }
+
+            this.varr[i].transIn.pos = {
+              x: this.diff * Math.cos((this.calc[i].x * Math.PI) / 180),
+              y: this.diff * Math.sin((this.calc[i].y * Math.PI) / 180),
+              z: this.diff * Math.sin((this.calc[i].z * Math.PI) / 180)
+            };
+            this.varr[i].transIn.rot = this.rotObj;
+            this.varr[i].transIn.sz = this.objSz;
+            this.varr[i].vupd();
+            if (this.varr[i].transOut.p < 0) continue;
+            var g = this.$.createRadialGradient(
+              this.varr[i].transOut.x,
+              this.varr[i].transOut.y,
+              this.varr[i].transOut.p,
+              this.varr[i].transOut.x,
+              this.varr[i].transOut.y,
+              this.varr[i].transOut.p * 2
+            );
+            this.$.globalCompositeOperation = "lighter";
+            g.addColorStop(0, "hsla(255, 255%, 255%, 1)");
+            g.addColorStop(0.5, "hsla(" + (i + 2) + ",85%, 40%,1)");
+            g.addColorStop(1, "hsla(" + i + ",85%, 40%,.5)");
+            this.$.fillStyle = g;
+            this.$.beginPath();
+            this.$.arc(
+              this.varr[i].transOut.x,
+              this.varr[i].transOut.y,
+              this.varr[i].transOut.p * 2,
+              0,
+              Math.PI * 2,
+              false
+            );
+            this.$.fill();
+            this.$.closePath();
+          }
+        };
+        Build.prototype.anim = function() {
+          window.requestAnimationFrame = (function() {
+            return (
+              window.requestAnimationFrame ||
+              function(callback, element) {
+                window.setTimeout(callback, 1000 / 60);
+              }
+            );
+          })();
+          var anim = function() {
+            this.upd();
+            this.draw();
+            window.requestAnimationFrame(anim);
+          }.bind(this);
+          window.requestAnimationFrame(anim);
+        };
+
+        Build.prototype.run = function() {
+          this.anim();
+
+          window.addEventListener(
+            "mousemove",
+            function(e) {
+              this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
+              this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
+            }.bind(this)
+          );
+          window.addEventListener(
+            "touchmove",
+            function(e) {
+              e.preventDefault();
+              this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
+              this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
+            }.bind(this)
+          );
+          window.addEventListener(
+            "mousedown",
+            function(e) {
+              for (var i = 0; i < 100; i++) {
+                this.add();
+              }
+            }.bind(this)
+          );
+          window.addEventListener(
+            "touchstart",
+            function(e) {
+              e.preventDefault();
+              for (var i = 0; i < 100; i++) {
+                this.add();
+              }
+            }.bind(this)
+          );
+        };
+        var app = new Build();
+        app.run();
+      })();
+      window.addEventListener(
+        "resize",
+        function() {
+          canvas.width = w = window.innerWidth;
+          canvas.height = h = window.innerHeight;
+        },
+        false
+      );
     }
   }
 };
@@ -1257,7 +1614,7 @@ export default {
   height: 2.5rem;
 }
 .el-table {
-  height: 4rem;
+  height: inherit;
   width: 100% !important;
   background-color: transparent !important;
   color: #00d4c7 !important;
@@ -1351,5 +1708,19 @@ export default {
   color: #ffeb7b;
   font-family: electronicFont;
   font-weight: bold;
+}
+element.style {
+  /* width: 400px; */
+}
+.el-table__header {
+  padding: 0;
+  height: 5%;
+}
+.el-table__body,
+.el-table__footer,
+.el-table__header {
+  table-layout: fixed;
+  border-collapse: separate;
+  width: auto !important;
 }
 </style>

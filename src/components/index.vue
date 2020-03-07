@@ -4886,6 +4886,7 @@ export default {
         false
       );
     },
+
     //change,play实现表格自动滚动
     change() {
       //把第一条数据插入数组最后一条
