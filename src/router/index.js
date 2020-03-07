@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Index from "@/components/index";
 import Video from "@/components/video";
 import onlineCourse from "@/components/onlineCourse";
-import xx from "@/components/xx";
+import campus from "@/components/campus";
 import epidemic from "@/components/epidemic";
 
 Vue.use(Router);
@@ -26,11 +26,12 @@ export default new Router({
       component: onlineCourse
     },
     {
-      path: "/xx",
-      name: "xx",
-      component: xx
-    },{
-      path: "/e",
+      path: "/campus",
+      name: "campus",
+      component: campus
+    },
+    {
+      path: "/epidemic",
       name: "epidemic",
       component: epidemic
     }

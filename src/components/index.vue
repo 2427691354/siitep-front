@@ -3392,9 +3392,9 @@ export default {
     initzhiban () {
       var self = this;
       self.$http
-        .get(this.baseUrl + "/duty/dutyteacher")
+        .get(this.baseUrl + "/lineclass/dutyteacher")
         .then(function (response) {
-          self.zhiban = response.data;
+          self.zhiban = response.data[0].t_name;
         })
         .catch(function (error) {
           console.log(error);
@@ -4116,7 +4116,7 @@ export default {
           }
           self.map(dd);
         });
-        //重点疫区
+      //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
         .then(function (response) {
