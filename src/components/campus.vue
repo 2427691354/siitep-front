@@ -172,7 +172,23 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 1.2rem">
-            <div class="alltitle">未带口罩截图</div>
+            <div id="demo">
+              <div id="indemo">
+                <div id="demo1">
+                  <img :src="staticUrl2 + item.img" v-for="item in this.noMask" :key="item.title" />
+
+                  <!-- <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />
+                  <img src="../assets/picture/未带口罩.png" />-->
+                </div>
+                <div id="demo2">
+                  <img :src="staticUrl2  + item.img" v-for="item in this.noMask" :key="item.title" />
+                </div>
+              </div>
+            </div>
 
             <div class="boxfoot"></div>
           </div>
@@ -212,6 +228,9 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data() {
     return {
+      staticUrl2: this.staticUrl2,
+       noMask: [],
+      noMaskCount: null,
       tianchouSrc: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       tianzhangSrc: " rtmp://58.200.131.2:1935/livetv/hunantv",
 
@@ -276,6 +295,8 @@ export default {
   created() {
     //表格自动滚动
     this.play();
+    // 获取未带口罩的图片
+    this.noMaskList();
   },
   mounted() {
     this.mapInit();
@@ -299,6 +320,7 @@ export default {
     window.addEventListener("resize", this.resizeFontsize());
 
     this.canves();
+    
   },
   methods: {
     mapInit() {
@@ -1557,7 +1579,48 @@ export default {
         },
         false
       );
-    }
+    },
+    gundong1() {
+      var speed = 8;
+      var tab = document.getElementById("demo");
+      var tab1 = document.getElementById("demo1");
+      var tab2 = document.getElementById("demo2");
+      tab2.innerHTML = tab1.innerHTML;
+      // console.log(tab.offsetHeight);
+      tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
+      // console.log(this.noMaskCount)
+      // console.log(this.noMaskCount*(tab.offsetHeight+3))
+      function Marquee() {
+        // console.log(tab2.offsetWidth)
+        // console.log(tab.scrollLeft)
+        if (tab2.offsetWidth - tab.scrollLeft <= 0)
+          tab.scrollLeft -= tab1.offsetWidth;
+        else {
+          tab.scrollLeft++;
+        }
+      }
+      var MyMar = setInterval(Marquee, speed);
+      tab.onmouseover = function() {
+        clearInterval(MyMar);
+      };
+      tab.onmouseout = function() {
+        MyMar = setInterval(Marquee, speed);
+      };
+    },
+    noMaskList() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/pictures/selectByType?type=3")
+        .then(function(response) {
+          var res = response.data;
+          self.noMask = res;
+          self.noMaskCount = res.length;
+          self.gundong1();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
   }
 };
 </script>
@@ -1710,5 +1773,33 @@ element.style {
   font-size: 0.1rem;
   color: rgba(255, 255, 255, 0.7);
   /* padding-top: 0.0rem; */
+}
+#demo {
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+}
+
+#demo img {
+  height: 100%;
+  margin-right: 3px;
+}
+
+#indemo {
+  float: left;
+  width: 800%;
+  height: 100%;
+}
+
+#demo1 {
+  float: left;
+  height: 100%;
+}
+
+#demo2 {
+  float: left;
+
+  height: 100%;
 }
 </style>

@@ -83,8 +83,8 @@
           </div>
         </li>
         <li style="width:40%">
-          <div class="bar" style="height: 1.6rem;margin-bottom:0.15rem;">
-            <div class="barbox" style="height: 1rem">
+          <div class="bar" style="height: 1.45rem;margin-bottom:0.15rem;">
+            <div class="barbox" style="height: 0.85rem">
               <ul class="clearfix">
                 <li class="pulll_left counter" style="width:15%;">{{this.sumAll}}</li>
                 <li
@@ -107,18 +107,42 @@
               </ul>
             </div>
           </div>
-          <div class="boxall" style="height: 5rem;">
+          <div class="boxall" style="height: 5.1rem;">
             <div class="alltitle">课程直播</div>
-            <div class="allnav">
-              <video-player
+            <div class="allnav zhibo">
+              <div class="zhibobox">
+                <video-player
                 class="video-player vjs-custom-skin"
                 ref="videoPlayer"
-                :options="playerOptions"
+                :options="playerOptions1"
               ></video-player>
+              </div>
+              <div class="zhibobox">
+                  <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions2"
+              ></video-player>
+              </div>
+              <div class="zhibobox">
+                  <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions3"
+              ></video-player>
+              </div>
+              <div class="zhibobox">
+                  <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions4"
+              ></video-player>
+              </div>
+              
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.85rem;">
+          <div class="boxall" style="height: 2.9rem;">
             <div class="alltitle">辅导员信息</div>
             <div class="allnav">
               <div id="lunbo">
@@ -275,7 +299,106 @@ export default {
       currentTime: null,
 
       //直播配置
-      playerOptions: {
+      playerOptions1: {
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: true, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+        // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        techOrder: ["flash", "html5"], // 兼容顺序
+        flash: {
+          hls: { withCredentials: false },
+          swf: "static/video-js.swf" // 引入静态文件swf
+        },
+        html5: { hls: { withCredentials: false } },
+        sources: [
+          {
+            // 流配置，数组形式，会根据兼容顺序自动切换
+            type: "video/mp4",
+            src: this.staticUrl + "/video/1.mp4" //url地址
+          }
+        ],
+        poster: "", //你的封面地址
+        // width: document.documentElement.clientWidth,
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true //全屏按钮
+        }
+      },
+      playerOptions2: {
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: true, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+        // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        techOrder: ["flash", "html5"], // 兼容顺序
+        flash: {
+          hls: { withCredentials: false },
+          swf: "static/video-js.swf" // 引入静态文件swf
+        },
+        html5: { hls: { withCredentials: false } },
+        sources: [
+          {
+            // 流配置，数组形式，会根据兼容顺序自动切换
+            type: "video/mp4",
+            src: this.staticUrl + "/video/1.mp4" //url地址
+          }
+        ],
+        poster: "", //你的封面地址
+        // width: document.documentElement.clientWidth,
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true //全屏按钮
+        }
+      },
+      playerOptions3: {
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: true, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+        // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        techOrder: ["flash", "html5"], // 兼容顺序
+        flash: {
+          hls: { withCredentials: false },
+          swf: "static/video-js.swf" // 引入静态文件swf
+        },
+        html5: { hls: { withCredentials: false } },
+        sources: [
+          {
+            // 流配置，数组形式，会根据兼容顺序自动切换
+            type: "video/mp4",
+            src: this.staticUrl + "/video/1.mp4" //url地址
+          }
+        ],
+        poster: "", //你的封面地址
+        // width: document.documentElement.clientWidth,
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true //全屏按钮
+        }
+      },
+      playerOptions4: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
@@ -3297,21 +3420,22 @@ export default {
       zhibanInfo: [],
       //词云
       ciyun: [
-        { name: "讲的太快", value: 16 },
-        { name: "崩溃", value: 17 },
-        { name: "网好卡", value: 18 },
-        { name: "老师你麦没开", value: 19 },
-        { name: "网络平台又进不了了", value: 20 },
-        { name: "我又掉出去了", value: 21 },
-        { name: "网课期间千万别闭眼", value: 7 },
-        { name: "钉钉", value: 8 },
-        { name: "鹊桥系列", value: 9 },
-        { name: "啥时候开学", value: 10 },
-        { name: "迷惑发言", value: 11 },
-        { name: "眯眼打卡", value: 12 },
-        { name: "频频翻车", value: 13 },
-        { name: "老师别点我", value: 14 },
-        { name: "忘记闭麦", value: 15 }
+        { name: "讲的太快", value: 1600 },
+        { name: "崩溃", value: 1702 },
+        { name: "网好卡", value: 1105 },
+        { name: "老师你麦没开", value: 1324 },
+        { name: "网络平台又进不了了", value: 1205 },
+        { name: "我又掉出去了", value: 1560 },
+        { name: "网课期间千万别闭眼", value: 1340 },
+        { name: "钉钉", value: 1300 },
+        { name: "鹊桥系列", value: 1160 },
+        { name: "啥时候开学", value: 1145 },
+        { name: "迷惑发言", value: 1100 },
+        { name: "眯眼打卡", value: 1200 },
+        { name: "频频翻车", value: 1300 },
+        { name: "老师别点我", value: 1400 },
+        { name: "忘记闭麦", value: 1500 },
+       
       ],
       //上课平台
       pingtai: [[12, 13, 11, 7, 9, 11, 4]]
@@ -3807,7 +3931,7 @@ export default {
         series: [
           // 主要展示层的
           {
-            radius: ["55%", "75%"],
+            radius: ["60%", "80%"],
             center: ["28%", "50%"],
             type: "pie",
             label: {
@@ -3840,12 +3964,12 @@ export default {
                 label: {
                   normal: {
                     formatter: function(params) {
-                      return params.percent;
+                      return params.percent+"%";
                     },
                     position: "center",
                     show: false,
                     textStyle: {
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }
                   },
                   emphasis: {
@@ -3863,7 +3987,7 @@ export default {
                 label: {
                   normal: {
                     formatter: function(params) {
-                      return params.percent;
+                      return params.percent+"%";
                     },
                     position: "center",
                     show: true,
@@ -3876,7 +4000,7 @@ export default {
             ]
           }, // 边框的设置
           {
-            radius: ["75%", "73%"],
+            radius: ["80%", "78%"],
             center: ["28%", "50%"],
             type: "pie",
             hoverAnimation: false,
@@ -4204,7 +4328,7 @@ export default {
             // maskImage: maskImage,
             // width:'100%',
             // height:'100%',
-
+            max_font_size:1,
             textStyle: {
               normal: {
                 color: function() {
@@ -4459,13 +4583,13 @@ export default {
   top: 25%;
 }
 .barbox li {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
 }
 .todayteacher {
-  height: 6%;
+  height: 5%;
   padding-right: 2%;
   text-align: right;
-  font-size: 0.17rem;
+  font-size: 0.15rem;
 }
 .todayteacher span {
   color: #519aae;
@@ -4524,7 +4648,7 @@ export default {
 .el-table .cell {
   line-height: 100% !important;
   padding-left: 0 !important;
-  font-size: 0.15rem !important;
+  font-size: 0.16rem !important;
 }
 #kebiao {
   padding-bottom: 0.2rem;
@@ -4556,7 +4680,7 @@ export default {
   font-size: 12px;
 }
 .queqinrenshu {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
   width: 40%;
   float: left;
   color: #ffeb7b;
@@ -4566,7 +4690,7 @@ export default {
 #queqin {
   width: 60%;
   float: left;
-  height: 1rem;
+  height: 0.85rem;
 }
 #lunbo {
   overflow: hidden;
@@ -4611,5 +4735,15 @@ export default {
   float: left;
   font-size: 0.19rem;
   color: #519ebe;
+}
+.zhibobox{
+  width: 48%;
+  float: left;
+  height: 48%;
+  margin: 1%;
+
+}
+.zhibo {
+  padding-bottom: 0.2rem;
 }
 </style>
