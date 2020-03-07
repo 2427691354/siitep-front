@@ -48,7 +48,7 @@
           <div class="boxall"
                style="height: 3.7rem">
             <div class="alltitle"
-                @click="changeZhibosrc">实时监控</div>
+                >实时监控</div>
             <div class="jiankong">
               <video-player class="video-player vjs-custom-skin"
                             ref="videoPlayer"
@@ -85,7 +85,9 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data () {
     return {
-      zhiboSrc:"rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+      tianchouSrc:"rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+      tianzhangSrc:" rtmp://58.200.131.2:1935/livetv/hunantv",
+      zhiboSrc:null,
       // "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       //视频流配置
        playerOptions: {
@@ -109,7 +111,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/mp4",
-            src: "rtmp://139.224.68.139:1935/play/mask.mp4"
+            src: "rtmp://139.224.68.139:1935/play/mask.mp4"//默认播放地址
           }
         ],
         poster: "", //你的封面地址
@@ -130,6 +132,7 @@ export default {
   },
   methods: {
     mapInit () {
+      var self = this;
       var green = "#7ce757";
       var orange = "#ffb034";
       var blue = "#3fbeff";
@@ -344,6 +347,13 @@ export default {
         console.log("俯视视角" + map.getPitch());
       });
 
+      // AMap.event.addListener(map,'click',function (e) { 
+      //   //添加点击事件,传入对象名，事件名，回调函数
+      //     // alert('click');
+      //      console.log("x：" + e.lnglat.getLng());
+      //      console.log("y：" + e.lnglat.getLat());
+      //   })
+
       var series = [
         {
           type: "effectScatter",
@@ -454,6 +464,23 @@ export default {
       myChart.setOption({
         series: series
       });
+      //点击散点切换视频流
+      myChart.on('click', function (params) {
+        console.log(params.name);
+        //逻辑控制
+        switch(params.name){
+          case "天筹楼":
+            self.changeZhibosrc(self.tianchouSrc);
+            break;
+          case "天章楼":
+            self.changeZhibosrc(self.tianzhangSrc);
+            break;
+          default:
+            self.changeZhibosrc(self.tianchouSrc);
+        }  
+         
+      });
+
       //下面是确保高德地图渲染的时候，echarts同时也需要再次渲染一次，保持位置的同步
       layer.render = function () {
         myChart.setOption({
@@ -507,12 +534,12 @@ export default {
     //     })
     //   );
     // }
-    changeZhibosrc(){
+    changeZhibosrc(zhiboSrc){
       // let myPlayer = this.$refs.videoPlayer.player;
       // console.log(myPlayer);
       // myPlayer.src("rtmp://202.69.69.180:443/webcast/bshdlive-pc")
     // this.url = this.zhiboSrc;
-     this.playerOptions['sources'][0]['src'] =this.zhiboSrc;
+     this.playerOptions['sources'][0]['src'] = zhiboSrc;
     //  myPlayer.play();
       // this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
       console.log(this.playerOptions);
