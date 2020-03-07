@@ -9,8 +9,8 @@
   text-color="#1bb4f6"
   active-text-color="#5bc0de">
   <el-menu-item index="/">首页</el-menu-item>
-  <el-menu-item index="/onlineCourse">网课</el-menu-item>
   <el-menu-item index="/campus">苏工院</el-menu-item>
+  <el-menu-item index="/onlineCourse">网课</el-menu-item>
   <el-menu-item index="/epidemic">疫情</el-menu-item>
 </el-menu>
 
@@ -42,18 +42,16 @@ export default {
 .el-menu.el-menu--horizontal{
   z-index: 9999;
   padding-left: 15px;
-  height: 0.75rem;
   background: #030e38 ;
-
   border-bottom:none;
 
-}
-.el-menu--horizontal>.el-menu-item{
-  height: calc(0.75rem - 1px);
-  font-size: 0.23rem;
+
 }
 .el-menu-item{
   padding: 0 25px;
+}
+.el-menu--horizontal>.el-menu-item{
+  font-size: 16px;
 }
 .el-menu-item:hover{
   background-color: rgba(14, 221, 240, 0.32) !important;
@@ -61,4 +59,5 @@ export default {
 .el-menu--horizontal>.el-menu-item.is-active{
   background-color:#030e38 !important;
 }
+
 </style>
