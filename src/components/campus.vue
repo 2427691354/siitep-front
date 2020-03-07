@@ -48,7 +48,7 @@
           <div class="boxall"
                style="height: 3.7rem">
             <div class="alltitle"
-                ><span  @click="changeZhibosrc">实时监控</span><span  @click="changeZhibosrc1">点击切换</span></div>
+                @click="changeZhibosrc">实时监控</div>
             <div class="jiankong">
               <video-player class="video-player vjs-custom-skin"
                             ref="videoPlayer"
@@ -508,26 +508,16 @@ export default {
     //   );
     // }
     changeZhibosrc(){
-      let myPlayer = this.$refs.videoPlayer.player;
-      console.log(myPlayer);
+      // let myPlayer = this.$refs.videoPlayer.player;
+      // console.log(myPlayer);
       // myPlayer.src("rtmp://202.69.69.180:443/webcast/bshdlive-pc")
     // this.url = this.zhiboSrc;
-     this.playerOptions['sources'][0]['src'] ="rtmp://202.69.69.180:443/webcast/bshdlive-pc";
+     this.playerOptions['sources'][0]['src'] =this.zhiboSrc;
     //  myPlayer.play();
       // this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
       console.log(this.playerOptions);
-    },
-    changeZhibosrc1(){
-      let myPlayer = this.$refs.videoPlayer.player;
-      console.log(myPlayer);
-     this.playerOptions['sources'][0]['src'] ="rtmp://139.224.68.139:1935/play/mask.mp4";
-      console.log(this.playerOptions);
-    },
-    // initZhibosrc(){
-    //  this.playerOptions['sources'][0]['src'] ="rtmp://139.224.68.139:1935/play/mask.mp4";
-     
-    //   this.test()
-    // },
+    }
+   
   
     
   }
