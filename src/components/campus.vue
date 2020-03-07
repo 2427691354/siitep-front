@@ -136,8 +136,10 @@
           </div>
         </li>
         <li style="width: 30%;">
-          <div class="boxall" style="height: 3.7rem">
-            <div class="alltitle" @click="changeZhibosrc">实时监控</div>
+          <div class="boxall"
+               style="height: 3.7rem">
+            <div class="alltitle"
+                ><span  @click="changeZhibosrc">实时监控</span><span  @click="changeZhibosrc1">点击切换</span></div>
             <div class="jiankong">
               <video-player
                 class="video-player vjs-custom-skin"
@@ -186,14 +188,16 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data() {
     return {
-      zhiboSrc: "rtmp://139.224.68.139:1935/play/mask.mp4",
+      zhiboSrc:"rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+      // "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       //视频流配置
-      playerOptions: {
-        // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+       playerOptions: {
+         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
         loop: false, // 导致视频一结束就重新开始。
         preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        isVideo:true,//强制刷新使用 
         language: "zh-CN",
         aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
@@ -251,6 +255,8 @@ export default {
     this.gundong();
     //绘制雷达图
     this.drawLeida();
+    // this.initZhibosrc();
+    // this.test();
   },
   methods: {
     mapInit() {
@@ -1075,12 +1081,12 @@ export default {
         radar: {
           center: ["50%", "50%"], //偏移位置
           indicator: [
-            { name: "职教云", max: 15 },
-            { name: "腾讯会议", max: 15 },
-            { name: "企业微信", max: 15 },
-            { name: "蓝墨云班课", max: 15 },
-            { name: "QQ直播", max: 15 },
-            { name: "教学平台", max: 15 }
+            { name: "绿码", max: 15 },
+            { name: "黄码", max: 15 },
+            { name: "红码", max: 15 },
+            { name: "未注册", max: 15 },
+            // { name: "QQ直播", max: 15 },
+            // { name: "教学平台", max: 15 }
           ],
 
           shape: "circle",
@@ -1134,6 +1140,29 @@ export default {
       };
       leida.setOption(option);
     },
+    changeZhibosrc(){
+      let myPlayer = this.$refs.videoPlayer.player;
+      console.log(myPlayer);
+      // myPlayer.src("rtmp://202.69.69.180:443/webcast/bshdlive-pc")
+    // this.url = this.zhiboSrc;
+     this.playerOptions['sources'][0]['src'] =this.zhiboSrc;
+    //  myPlayer.play();
+      // this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
+      console.log(this.playerOptions);
+    },
+    changeZhibosrc1(){
+      let myPlayer = this.$refs.videoPlayer.player;
+      console.log(myPlayer);
+     this.playerOptions['sources'][0]['src'] ="rtmp://139.224.68.139:1935/play/mask.mp4";
+      console.log(this.playerOptions);
+    },
+    // initZhibosrc(){
+    //  this.playerOptions['sources'][0]['src'] ="rtmp://139.224.68.139:1935/play/mask.mp4";
+     
+    //   this.test()
+    // },
+  
+    
   }
 };
 </script>
