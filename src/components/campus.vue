@@ -1087,8 +1087,14 @@ export default {
     drawLeida() {
       var leida = echarts.init(document.getElementById("main8"));
       const option = {
-        grid: {},
-
+        grid: {
+          left: 0,
+          right: 0,
+          top: "10%",
+          bottom: "2%",
+          // padding: "0 0 10 0",
+          containLabel: true
+        },
         legend: {
           bottom: "5%",
           itemGap: 20,
@@ -1704,6 +1710,7 @@ export default {
   font-weight: bold;
 }
 element.style {
+  /* width: 400px; */
 }
 .el-table__header {
   padding: 0;
