@@ -16,28 +16,28 @@
               <span>{{this.zhibantel}}</span>
             </div>
             <div class="allnav">
-                 <div class="zhibantable">
-              <el-table
-                :data="zhibanInfo"
-                stripe
-                style="font-size: 10%"
-                :row-style="{ height: '0.45rem' }"
-                :cell-style="{ padding: '0px' }"
-              >
-                <el-table-column prop="dutydate" label="值班日期"></el-table-column>
-                <el-table-column prop="t_name" label="教师姓名"></el-table-column>
-                <el-table-column prop="t_tel" label="联系方式"></el-table-column>
-                <el-table-column prop="department" label="部门"></el-table-column>
-              </el-table>
-            </div>
+              <div class="zhibantable">
+                <el-table
+                  :data="zhibanInfo"
+                  stripe
+                  style="font-size: 10%"
+                  :row-style="{ height: '0.45rem' }"
+                  :cell-style="{ padding: '0px' }"
+                >
+                  <el-table-column prop="dutydate" label="值班日期"></el-table-column>
+                  <el-table-column prop="t_name" label="教师姓名"></el-table-column>
+                  <el-table-column prop="t_tel" label="联系方式"></el-table-column>
+                  <el-table-column prop="department" label="部门"></el-table-column>
+                </el-table>
+              </div>
             </div>
             <div class="boxfoot"></div>
           </div>
 
           <div class="boxall" style="height: 4.8rem;">
             <div class="alltitle" style="height: 12%;">
-                <div class="kebiaotitle">{{this.class}}课程信息</div>
-                <div class="select">
+              <div class="kebiaotitle">{{this.class}}课程信息</div>
+              <div class="select">
                 <el-dropdown @command="handleCommand1">
                   <span class="el-dropdown-link">
                     18级
@@ -76,22 +76,25 @@
                     <el-dropdown-item command="jqr19c2">机器人19C2</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
-                </div>
-                </div>
+              </div>
+            </div>
             <div class="allnav" id="kebiao"></div>
             <div class="boxfoot"></div>
           </div>
-        </li >
+        </li>
         <li style="width:40%">
           <div class="bar" style="height: 1.6rem;margin-bottom:0.15rem;">
             <div class="barbox" style="height: 1rem">
               <ul class="clearfix">
                 <li class="pulll_left counter" style="width:15%;">{{this.sumAll}}</li>
-                <li class="pulll_left counter" style="width:35%;">{{this.sumYingdao}}-{{this.sumShidao}}</li>
+                <li
+                  class="pulll_left counter"
+                  style="width:35%;"
+                >{{this.sumYingdao}}-{{this.sumShidao}}</li>
                 <li class="pulll_left counter" style="width:15%;">{{this.sumChidao}}</li>
                 <li class="pulll_left counter" style="width:35%;">
-                 <div class="queqinrenshu"> {{this.sumQueqin}}</div>
-                 <div id="queqin"></div>
+                  <div class="queqinrenshu">{{this.sumQueqin}}</div>
+                  <div id="queqin"></div>
                 </li>
               </ul>
             </div>
@@ -107,7 +110,7 @@
           <div class="boxall" style="height: 5rem;">
             <div class="alltitle">课程直播</div>
             <div class="allnav">
-                <video-player
+              <video-player
                 class="video-player vjs-custom-skin"
                 ref="videoPlayer"
                 :options="playerOptions"
@@ -118,102 +121,102 @@
           <div class="boxall" style="height: 2.85rem;">
             <div class="alltitle">辅导员信息</div>
             <div class="allnav">
-                 <div id="lunbo">
-              <div id="inlunbo">
-                <div id="inlunbo1">
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+              <div id="lunbo">
+                <div id="inlunbo">
+                  <div id="inlunbo1">
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        居晓玮
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                    <div class="lunbotext">
-                      居晓玮
-                      <br />19级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        韩雪芳
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                  </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        彭 薇
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                    <div class="lunbotext">
-                      韩雪芳
-                      <br />19级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
-                    </div>
-                  </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
-                    </div>
-                    <div class="lunbotext">
-                      彭 薇
-                      <br />18级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
-                    </div>
-                  </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
-                    </div>
-                    <div class="lunbotext">
-                      薛慧敏
-                      <br />18级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
-                    </div>
-                  </div>
-                </div>
-                <div id="inlunbo2">
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
-                    </div>
-                    <div class="lunbotext">
-                      居晓玮
-                      <br />19级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        薛慧敏
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
                   </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                  <div id="inlunbo2">
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        居晓玮
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                    <div class="lunbotext">
-                      韩雪芳
-                      <br />19级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        韩雪芳
+                        <br />19级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                  </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        彭 薇
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
-                    <div class="lunbotext">
-                      彭 薇
-                      <br />18级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
-                    </div>
-                  </div>
-                  <div class="lunboborder">
-                    <div class="lunboimg">
-                      <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
-                    </div>
-                    <div class="lunbotext">
-                      薛慧敏
-                      <br />18级辅导员
-                      <br />联系方式：
-                      <br />188-xxxx-xxxx
+                    <div class="lunboborder">
+                      <div class="lunboimg">
+                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                      </div>
+                      <div class="lunbotext">
+                        薛慧敏
+                        <br />18级辅导员
+                        <br />联系方式：
+                        <br />188-xxxx-xxxx
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -4136,6 +4139,7 @@ export default {
         MyMar = setInterval(Marquee, speed);
       };
     },
+
     //获取当日值班教师信息
     todayzhiban() {
       var self = this;
@@ -4313,6 +4317,7 @@ export default {
       };
       leida.setOption(option);
     },
+    
     //绘制出勤率top5
     drawTop5() {
       var chuqin = echarts.init(document.getElementById("main10"));
@@ -4465,148 +4470,146 @@ export default {
 .todayteacher span {
   color: #519aae;
 }
-.zhibantable{
-	height: 85.3%;
+.zhibantable {
+  height: 85.3%;
 }
 .el-table {
-	height: 100%;
-	width: 100% !important;
-	background-color: transparent !important;
-	color: #51bede !important;
-	font-size: 130% !important;
-  }
-  
-  .el-table thead {
-	color: #dcdcdc !important;
-	background-color: #1b3565;
-	
-  }
-  /* 设置table header的背景颜色 */
-  .el-table th,
-  .el-table tr,
-  .el-table td {
-	background-color: transparent !important;
-	padding:2px 0 5px 0 !important;
-	text-align: center !important;
-  }
-  .el-table th{
-	  width: 100% !important;
-  }
-  .el-table td,
-  .el-table th.is-leaf {
-	border-bottom: 0px solid #05a4b8 !important;
-  }
-  /* .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+  height: 100%;
+  width: 100% !important;
+  background-color: transparent !important;
+  color: #51bede !important;
+  font-size: 130% !important;
+}
+
+.el-table thead {
+  color: #dcdcdc !important;
+  background-color: #1b3565;
+}
+/* 设置table header的背景颜色 */
+.el-table th,
+.el-table tr,
+.el-table td {
+  background-color: transparent !important;
+  padding: 2px 0 5px 0 !important;
+  text-align: center !important;
+}
+.el-table th {
+  width: 100% !important;
+}
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: 0px solid #05a4b8 !important;
+}
+/* .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
 	border-right: 1px solid #05a4b8!important;
   } */
-  .el-table--border,
-  .el-table--group {
-	border: 1px solid #05a4b8 !important;
-  }
-  /* .el-table--group::after{
+.el-table--border,
+.el-table--group {
+  border: 1px solid #05a4b8 !important;
+}
+/* .el-table--group::after{
 	content: '';
 	position: absolute;
 	background-color: #05a4b8!important;
 	/* z-index: 1; */
-  /* } */
-  .el-table::after {
-	width: 0% !important;
-	height: 0% !important;
-  }
-  .el-table::before {
-	width: 0% !important;
-	height: 0% !important;
-  }
-  .el-table .cell {
-	line-height: 100% !important;
-	padding-left: 0 !important;
-	font-size: 0.18rem !important;
-  }
-  #kebiao
-  {
-      padding-bottom: 0.2rem;
-  }
-  #main8{
-       padding-bottom: 0.2rem;
-  }
-  #main9{
-      padding-bottom: 0.2rem;
-  }
-   #main10{
-      padding-bottom: 0.2rem;
-  }
-  .kebiaotitle{
-      width: 68%;
-      text-align: right;
-      float: left;
-  }
-  .select{
-      width: 32%;
-      float: left;
-  }
-  .el-dropdown-link {
-	cursor: pointer;
-	color: #1bb4f6;
-	font-size: 0.15rem;
+/* } */
+.el-table::after {
+  width: 0% !important;
+  height: 0% !important;
+}
+.el-table::before {
+  width: 0% !important;
+  height: 0% !important;
+}
+.el-table .cell {
+  line-height: 100% !important;
+  padding-left: 0 !important;
+  font-size: 0.18rem !important;
+}
+#kebiao {
+  padding-bottom: 0.2rem;
+}
+#main8 {
+  padding-bottom: 0.2rem;
+}
+#main9 {
+  padding-bottom: 0.2rem;
+}
+#main10 {
+  padding-bottom: 0.2rem;
+}
+.kebiaotitle {
+  width: 68%;
+  text-align: right;
+  float: left;
+}
+.select {
+  width: 32%;
+  float: left;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #1bb4f6;
+  font-size: 0.15rem;
 }
 .el-icon-arrow-down {
-	font-size: 12px;
+  font-size: 12px;
 }
-.queqinrenshu{
-    font-size: 0.65rem;
-    width: 40%;
-    float: left;
+.queqinrenshu {
+  font-size: 0.65rem;
+  width: 40%;
+  float: left;
   color: #ffeb7b;
   font-family: electronicFont;
   font-weight: bold;
 }
-#queqin{
-    width: 60%;
-    float: left;
-    height: 1rem;
+#queqin {
+  width: 60%;
+  float: left;
+  height: 1rem;
 }
 #lunbo {
-	overflow: hidden;
-    margin-top: 3%;
-	width: 100%;
-	height: 72%;
-  }
+  overflow: hidden;
+  margin-top: 3%;
+  width: 100%;
+  height: 72%;
+}
 #inlunbo {
-	float: left;
-	width: 560%;
-	height: 100%;
+  float: left;
+  width: 560%;
+  height: 100%;
 }
-  
+
 #inlunbo1 {
-	float: left;
-	height: 100%;
-	width: 25%;
+  float: left;
+  height: 100%;
+  width: 25%;
 }
-  
+
 #inlunbo2 {
-	float: left;
-	height: 100%;
-	width: 25%;
+  float: left;
+  height: 100%;
+  width: 25%;
 }
-.lunboborder{
-	width: 32.5%;
-	height: 100%;
-	margin-right: 0.8%;
-	float: left;
-	background:rgba(16,54,87,0.5);
-	border:1px solid #345f92;
+.lunboborder {
+  width: 32.5%;
+  height: 100%;
+  margin-right: 0.8%;
+  float: left;
+  background: rgba(16, 54, 87, 0.5);
+  border: 1px solid #345f92;
 }
-.lunboimg{
-	width: 55%;
-	height: 100%;
-	float: left;
+.lunboimg {
+  width: 55%;
+  height: 100%;
+  float: left;
 }
-.lunbotext{
-	width: 45%;
-	height: 100%;
-	padding: 7% 3%;
-	float: left;
-	font-size: 0.19rem;
-	color: #519ebe;
+.lunbotext {
+  width: 45%;
+  height: 100%;
+  padding: 7% 3%;
+  float: left;
+  font-size: 0.19rem;
+  color: #519ebe;
 }
 </style>
