@@ -668,7 +668,11 @@ export default {
     //       }
     //     })
     //   );
-    // }
+    // }  
+    setSize: function() {
+      // 通过浏览器宽度(图片宽度)计算高度
+      this.bannerHeight = (400 / 1920) * this.screenWidth;
+    },
     changeZhibosrc() {
       this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
       console.log(this.zhiboSrc);
