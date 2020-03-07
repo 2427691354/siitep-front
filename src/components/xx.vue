@@ -103,7 +103,7 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
             type: "rtmp/mp4",
-            src: this.zhiboSrc
+            src: 'rtmp://139.224.68.139:1935/play/mask.mp4'
           }
         ],
         poster: "", //你的封面地址
