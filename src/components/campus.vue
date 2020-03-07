@@ -729,12 +729,12 @@ export default {
           textStyle: {
             color: "#B4B4B4"
           },
-          top: "1%"
+          top: "2%"
         },
         grid: {
           left: 0,
-          right: 0,
-          top: "20%",
+          right: "1%",
+          top: "15%",
           bottom: "5%",
           containLabel: true
         },
@@ -761,31 +761,53 @@ export default {
             axisLabel: {
               formatter: "{value} "
             }
-          },
-          {
-            splitLine: { show: false },
-            axisLine: {
-              lineStyle: {
-                color: "#03C5BC"
-              }
-            },
-            axisLabel: {
-              formatter: "{value} "
-            }
           }
+          // {
+          //   splitLine: { show: false },
+          //   axisLine: {
+          //     lineStyle: {
+          //       color: "#03C5BC"
+          //     }
+          //   },
+          //   axisLabel: {
+          //     formatter: "{value} "
+          //   }
+          // }
         ],
         series: [
           {
             name: "隔离人数趋势",
             type: "line",
-            smooth: true,
-            showAllSymbol: true,
-            symbol: "emptyCircle",
+            stack: "总量",
+            symbol: "circle",
             symbolSize: 8,
-            yAxisIndex: 1,
             itemStyle: {
               normal: {
-                color: "#F02FC2"
+                color: "#0092f6",
+                lineStyle: {
+                  color: "#0092f6",
+                  width: 1
+                },
+                areaStyle: {
+                  //color: '#94C9EC'
+                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "rgba(7,44,90,0.3)"
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(0,146,246,0.9)"
+                    }
+                  ])
+                }
+              }
+            },
+            markPoint: {
+              itemStyle: {
+                normal: {
+                  color: "red"
+                }
               }
             },
             data: this.Num_geli
@@ -793,15 +815,30 @@ export default {
 
           {
             name: "发烧人数趋势",
-            type: "bar",
-            barWidth: 10,
+            type: "line",
+            stack: "总量",
+            symbol: "circle",
+            symbolSize: 8,
             itemStyle: {
               normal: {
-                barBorderRadius: 5,
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: "#956FD4" },
-                  { offset: 1, color: "#3EACE5" }
-                ])
+                color: "#00d4c7",
+                lineStyle: {
+                  color: "#00d4c7",
+                  width: 1
+                },
+                areaStyle: {
+                  //color: '#94C9EC'
+                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "rgba(7,44,90,0.3)"
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(0,212,199,0.9)"
+                    }
+                  ])
+                }
               }
             },
             data: this.Num_fashao
@@ -1083,94 +1120,34 @@ export default {
         MyMar = setInterval(Marquee, speed);
       };
     },
-    //绘制雷达图
+    //苏城码
     drawLeida() {
-      var leida = echarts.init(document.getElementById("main8"));
+      var myChart = echarts.init(document.getElementById("main8"));
       const option = {
-        grid: {
-          left: 0,
-          right: 0,
-          top: "10%",
-          bottom: "2%",
-          // padding: "0 0 10 0",
-          containLabel: true
-        },
-        legend: {
-          bottom: "5%",
-          itemGap: 20,
-          textStyle: {
-            color: "#fff",
-            fontSize: "150%"
-          },
-          selectedMode: "single"
-        },
+        color: ["#eb2100", "#33FFCC", "#F8F106", "#33CCFF"],
         tooltip: {
           trigger: "item",
-          show: true
-        },
-        radar: {
-          center: ["50%", "50%"], //偏移位置
-          indicator: [
-            { name: "绿码", max: 15 },
-            { name: "黄码", max: 15 },
-            { name: "红码", max: 15 },
-            { name: "未注册", max: 15 }
-            // { name: "QQ直播", max: 15 },
-            // { name: "教学平台", max: 15 }
-          ],
-
-          shape: "circle",
-          splitNumber: 5,
-          name: {
-            textStyle: {
-              color: "#51cede",
-              padding: -10
-            }
-          },
-          splitLine: {
-            lineStyle: {
-              color: [
-                "rgba(20, 157, 192, 0.2)",
-                "rgba(20, 157, 192, 0.3)"
-              ].reverse()
-            }
-          },
-          splitArea: {
-            areaStyle: {
-              color: "transparent"
-            }
-          },
-
-          axisLine: {
-            lineStyle: {
-              color: "rgba(20, 127, 192, 0.4)"
-            }
-          }
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         series: [
           {
-            name: "授课平台",
-            type: "radar",
-            lineStyle: {
-              normal: {
-                width: 1,
-                opacity: 0.5
-              }
-            },
-            data: this.pingtai,
-            symbol: "none",
-            itemStyle: {
-              color: "#00CED1"
-            },
-            areaStyle: {
-              opacity: 0.15
-            }
+            name: "苏城码",
+            type: "pie",
+            radius: ['45%', '70%'],
+            center: ["50%", "50%"],
+            roseType: "angle",
+            data: [
+              { value: 10, name: "红码" },
+              { value: 20, name: "绿码" },
+              { value: 30, name: "黄码" },
+              { value: 25, name: "未注册" }
+            ]
           }
         ]
       };
-      leida.setOption(option);
+      myChart.setOption(option);
       window.addEventListener("resize", function() {
-        leida.resize();
+        myChart.resize();
       });
     },
     initSum() {
@@ -1685,7 +1662,7 @@ export default {
   margin-right: 0.8%;
   float: left;
   background: rgba(16, 54, 87, 0.5);
-  border: 1px solid #345f92;
+  border: 1px solid #05a4b8;
 }
 .lunboimg {
   width: 55%;
@@ -1697,8 +1674,9 @@ export default {
   height: 100%;
   padding: 7% 3%;
   float: left;
-  font-size: 0.19rem;
-  color: #519ebe;
+  font-size: 0.16rem;
+  color: #00d4c7;
+  text-align: left;
 }
 #main8 {
   padding-bottom: 0.2rem;
@@ -1722,5 +1700,15 @@ element.style {
   table-layout: fixed;
   border-collapse: separate;
   width: auto !important;
+}
+.barbox {
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  position: relative;
+  margin-top: 0.1rem;
+}
+.barbox2 li {
+  font-size: 0.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  /* padding-top: 0.0rem; */
 }
 </style>
