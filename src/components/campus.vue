@@ -3,48 +3,52 @@
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width: 20%;">
           <div class="boxall"
                style="height: 3.7rem">
-            <div class="alltitle">实时监控</div>
-
+            <div class="alltitle">发烧/隔离人数趋势变化（一周）</div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall"
                style="height: 2.9rem">
-            <div class="alltitle">实时监控</div>
-
+            <div class="alltitle">苏城码颜色占比（绿码、黄码、红码、未注册）</div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall"
                style="height: 3.0rem;">
-            <div class="alltitle">战“疫”频道</div>
+            <div class="alltitle">返校/返苏人数趋势变化（一周）</div>
 
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width: 50%;">
+          <div class="boxall"
+               style="height: 1rem;">
+            <div class="alltitle">宏观指标（全校人数 返校人数 隔离人数 今日检测人数）</div>
+            <div class="boxfoot"></div>
+          </div>
           <div style="height: 6.5rem;padding:0rem;margin-bottom:0.15rem">
             <div class="allnav"
                  style="height: 100%;"
                  id="echart1">
               <div id="container"
-                   style="width:100%;height: 100%;resize:both;opacity: .7"></div>
+                   style="width:100%;height: 100%;resize:both;"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
 
           <div class="boxall"
-               style="height: 3.25rem;">
-            <div class="alltitle">战“疫”频道</div>
+               style="height: 2.1rem;">
+            <div class="alltitle">辅导员信息滚动</div>
 
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width: 30%;">
           <div class="boxall"
                style="height: 3.7rem">
-            <div class="alltitle" @click="changeZhibosrc">实时监控</div>
+            <div class="alltitle"
+                 @click="changeZhibosrc">实时监控</div>
             <div class="jiankong">
               <video-player class="video-player vjs-custom-skin"
                             ref="videoPlayer"
@@ -54,13 +58,13 @@
           </div>
           <div class="boxall"
                style="height: 1.2rem">
-            <div class="alltitle">战“疫”频道</div>
+            <div class="alltitle">未带口罩截图</div>
 
             <div class="boxfoot"></div>
           </div>
           <div class="boxall"
                style="height: 4.7rem;">
-            <div class="alltitle">战“疫”频道</div>
+            <div class="alltitle">发烧学生信息表</div>
 
             <div class="boxfoot"></div>
           </div>
@@ -81,9 +85,9 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data () {
     return {
-      zhiboSrc:"rtmp://139.224.68.139:1935/play/mask.mp4",
+      zhiboSrc: "rtmp://139.224.68.139:1935/play/mask.mp4",
       //视频流配置
-       playerOptions: {
+      playerOptions: {
         // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
         autoplay: true, //如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
@@ -341,7 +345,8 @@ export default {
           type: "effectScatter",
           coordinateSystem: "amap",
           data: convertData(data),
-          symbolSize: 3,
+          symbol: 'image://static/img/ca_red.png',
+          symbolSize: 5,
           showEffectOn: "render",
           rippleEffect: {
             period: 4,
@@ -397,10 +402,11 @@ export default {
           zlevel: 1
         },
         {
-          type: "effectScatter",
+          type: "scatter",
           coordinateSystem: "amap",
           data: convertData(data1),
-          symbolSize: 3,
+          symbol: 'image://static/img/ca_green.png',
+          symbolSize: 20,
           showEffectOn: "render",
           rippleEffect: {
             period: 4,
@@ -497,7 +503,7 @@ export default {
     //     })
     //   );
     // }
-    changeZhibosrc(){
+    changeZhibosrc () {
       this.zhiboSrc = "rtmp://202.69.69.180:443/webcast/bshdlive-pc";
       console.log(this.zhiboSrc);
     }
@@ -510,15 +516,7 @@ export default {
   display: none;
   bottom: -1000px;
 } */
-.mainbox > ul > li:nth-child(1) {
-  width: 20%;
-}
-.mainbox > ul > li:nth-child(2) {
-  width: 50%;
-}
-.mainbox > ul > li:nth-child(3) {
-  width: 30%;
-}
+
 /* 定义 my-red 主题 */
 
 .amap-luopan,
@@ -529,7 +527,7 @@ export default {
   width: 94px !important;
   background: url(../assets/images/d1b1de.png) 7px 8px no-repeat !important;
 }
-.jiankong{
+.jiankong {
   height: 3rem;
   width: 100%;
 }
