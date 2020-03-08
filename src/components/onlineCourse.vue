@@ -4614,7 +4614,7 @@ export default {
 .el-table tr,
 .el-table td {
   background-color: transparent !important;
-  padding: 2px 0 5px 0 !important;
+  padding: 4px 0 !important;
   text-align: center !important;
 }
 .el-table th {
@@ -4629,7 +4629,7 @@ export default {
   } */
 .el-table--border,
 .el-table--group {
-  border: 1px solid #05a4b8 !important;
+  border: 0px solid #05a4b8 !important;
 }
 /* .el-table--group::after{
 	content: '';
