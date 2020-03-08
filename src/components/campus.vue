@@ -23,7 +23,7 @@
         <li style="width: 50%;">
           <div class="boxall1" style="height: 1rem;">
             <!-- <div class="alltitle">宏观指标（全校人数 返校人数 隔离人数 今日检测人数）</div> -->
-            <div class="barbox">
+            <div class="barbox4">
               <ul class="clearfix">
                 <li
                   class="pulll_left counter"
@@ -39,7 +39,7 @@
                 </li>
               </ul>
             </div>
-            <div class="barbox2">
+            <div class="barbox3">
               <ul class="clearfix">
                 <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
                 <li class="pulll_left" style="width:30%;">返校人数（江苏-苏州）</li>
@@ -1720,12 +1720,6 @@ export default {
   height: 90%;
   /* padding-bottom: 0.2rem; */
 }
-.barbox li {
-  font-size: 0.35rem;
-  color: #ffeb7b;
-  font-family: electronicFont;
-  font-weight: bold;
-}
 element.style {
   /* width: 400px; */
 }
@@ -1740,15 +1734,76 @@ element.style {
   border-collapse: separate;
   width: auto !important;
 }
-.barbox {
+.barbox4 li,
+.barbox3 li {
+  width: 25%;
+  text-align: center;
+  position: relative;
+  z-index: 100;
+}
+.barbox4:before,
+.barbox4:after {
+  position: absolute;
+  width: 0.3rem;
+  height: 0.1rem;
+  content: "";
+}
+.barbox4:before {
+  border-left: 2px solid #02a6b5;
+  left: 0;
+  border-top: 2px solid #02a6b5;
+}
+.barbox4:after {
+  border-right: 2px solid #02a6b5;
+  right: 0;
+  bottom: 0;
+  border-bottom: 2px solid #02a6b5;
+}
+
+.barbox4 li:nth-child(1):before {
+  position: absolute;
+  content: "";
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  right: 0;
+  top: 25%;
+}
+
+.barbox4 li:nth-child(2):before {
+  position: absolute;
+  content: "";
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  right: 0;
+  top: 25%;
+}
+.barbox4 li:nth-child(3):before {
+  position: absolute;
+  content: "";
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  right: 0;
+  top: 25%;
+}
+
+.barbox4 {
   border: 1px solid rgba(25, 186, 139, 0.17);
   position: relative;
   margin-top: 0.1rem;
 }
-.barbox2 li {
-  font-size: 0.05rem;
+.barbox4 li {
+  font-size: 0.35rem;
+  color: #ffeb7b;
+  font-family: electronicFont;
+  font-weight: bold;
+}
+.barbox3 li {
+  font-size: 0.1rem;
   color: rgba(255, 255, 255, 0.7);
-  /* padding-top: 0.1rem; */
+  padding-top: 0.1rem;
 }
 #demo {
   overflow: hidden;
