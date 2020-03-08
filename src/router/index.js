@@ -5,7 +5,6 @@ import Video from "@/components/video";
 import onlineCourse from "@/components/onlineCourse";
 import campus from "@/components/campus";
 import epidemic from "@/components/epidemic";
-import navs from "@/components/navs";
 
 Vue.use(Router);
 
@@ -35,10 +34,6 @@ export default new Router({
       path: "/epidemic",
       name: "epidemic",
       component: epidemic
-    },{
-      path: "/navs",
-      name: "navs",
-      component: navs
     }
   ]
 });
