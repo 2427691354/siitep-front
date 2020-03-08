@@ -11,7 +11,7 @@
           </div>
           <div class="boxall" style="height: 2.9rem">
             <div class="alltitle">苏城码颜色占比</div>
-            <div class="allnav" id="main8"></div>
+            <div id="main8"></div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 3.0rem;">
@@ -57,7 +57,7 @@
           </div>
 
           <div class="boxall" style="height: 2.1rem;">
-            <div class="alltitle">辅导员信息</div>
+            <div class="alltitle1">辅导员信息</div>
             <div class="allnav">
               <div id="lunbo">
                 <div id="inlunbo">
@@ -176,13 +176,6 @@
               <div id="indemo">
                 <div id="demo1">
                   <img :src="staticUrl2 + item.img" v-for="item in this.noMask" :key="item.title" />
-
-                  <!-- <img src="../assets/picture/未带口罩.png" />
-                  <img src="../assets/picture/未带口罩.png" />
-                  <img src="../assets/picture/未带口罩.png" />
-                  <img src="../assets/picture/未带口罩.png" />
-                  <img src="../assets/picture/未带口罩.png" />
-                  <img src="../assets/picture/未带口罩.png" />-->
                 </div>
                 <div id="demo2">
                   <img :src="staticUrl2  + item.img" v-for="item in this.noMask" :key="item.title" />
@@ -228,8 +221,9 @@ import { videoPlayer } from "vue-video-player";
 export default {
   data() {
     return {
+      animate:false,
       staticUrl2: this.staticUrl2,
-       noMask: [],
+      noMask: [],
       noMaskCount: null,
       tianchouSrc: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
       tianzhangSrc: " rtmp://58.200.131.2:1935/livetv/hunantv",
@@ -1119,6 +1113,7 @@ export default {
     play() {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
+      setInterval(this.gundong1, 500);
     },
     //辅导员信息滚动
     gundong() {
@@ -1128,9 +1123,9 @@ export default {
       var tab2 = document.getElementById("inlunbo1");
       tab2.innerHTML = tab1.innerHTML;
       function Marquee() {
-        if (tab2.offsetWidth - tab.scrollLeft <= 0)
+        if (tab2.offsetWidth - tab.scrollLeft <= 0){
           tab.scrollLeft -= tab1.offsetWidth;
-        else {
+        }else {
           tab.scrollLeft++;
         }
       }
@@ -1141,6 +1136,8 @@ export default {
       tab.onmouseout = function() {
         MyMar = setInterval(Marquee, speed);
       };
+
+
     },
     //苏城码
     drawLeida() {
@@ -1155,7 +1152,7 @@ export default {
           {
             name: "苏城码",
             type: "pie",
-            radius: ['45%', '70%'],
+            radius: ["45%", "70%"],
             center: ["50%", "50%"],
             roseType: "angle",
             data: [
@@ -1189,10 +1186,6 @@ export default {
           console.log(error);
           // window.location.reload();
         });
-    },
-    setSize: function() {
-      // 通过浏览器宽度(图片宽度)计算高度
-      this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
     resizeFontsize() {
       var width = document.documentElement.clientWidth;
@@ -1581,31 +1574,14 @@ export default {
       );
     },
     gundong1() {
-      var speed = 8;
-      var tab = document.getElementById("demo");
-      var tab1 = document.getElementById("demo1");
-      var tab2 = document.getElementById("demo2");
-      tab2.innerHTML = tab1.innerHTML;
-      // console.log(tab.offsetHeight);
-      tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
-      // console.log(this.noMaskCount)
-      // console.log(this.noMaskCount*(tab.offsetHeight+3))
-      function Marquee() {
-        // console.log(tab2.offsetWidth)
-        // console.log(tab.scrollLeft)
-        if (tab2.offsetWidth - tab.scrollLeft <= 0)
-          tab.scrollLeft -= tab1.offsetWidth;
-        else {
-          tab.scrollLeft++;
-        }
+      if(this.noMask.length>=this.noMaskCount){
+        this.animate = true
+        setTimeout(() =>{
+          this.noMask.push(this.noMask[0]);
+          this.noMask.shift();
+          this.animate = false;
+        },500)
       }
-      var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function() {
-        clearInterval(MyMar);
-      };
-      tab.onmouseout = function() {
-        MyMar = setInterval(Marquee, speed);
-      };
     },
     noMaskList() {
       var self = this;
@@ -1615,7 +1591,6 @@ export default {
           var res = response.data;
           self.noMask = res;
           self.noMaskCount = res.length;
-          self.gundong1();
         })
         .catch(function(error) {
           console.log(error);
@@ -1700,11 +1675,11 @@ export default {
   overflow: hidden;
   /* margin-top: 3%; */
   width: 100%;
-  height: 85%;
+  height: 100%;
 }
 #inlunbo {
   float: left;
-  width: 560%;
+  width: 400%;
   height: 100%;
 }
 
@@ -1720,12 +1695,12 @@ export default {
   width: 25%;
 }
 .lunboborder {
-  width: 32.5%;
+  width: 24%;
   height: 100%;
-  margin-right: 0.8%;
+  margin-right: 0.9%;
   float: left;
   background: rgba(16, 54, 87, 0.5);
-  border: 1px solid #05a4b8;
+  border: 1px solid #345f92;
 }
 .lunboimg {
   width: 55%;
@@ -1735,17 +1710,18 @@ export default {
 .lunbotext {
   width: 45%;
   height: 100%;
-  padding: 7% 3%;
+  padding: 15% 5%;
   float: left;
-  font-size: 0.16rem;
+  font-size: 0.15rem;
   color: #00d4c7;
-  text-align: left;
 }
 #main8 {
-  padding-bottom: 0.2rem;
+  width: 100%;
+  height: 90%;
+  /* padding-bottom: 0.2rem; */
 }
 .barbox li {
-  font-size: 0.4rem;
+  font-size: 0.35rem;
   color: #ffeb7b;
   font-family: electronicFont;
   font-weight: bold;
@@ -1770,9 +1746,9 @@ element.style {
   margin-top: 0.1rem;
 }
 .barbox2 li {
-  font-size: 0.1rem;
+  font-size: 0.05rem;
   color: rgba(255, 255, 255, 0.7);
-  /* padding-top: 0.0rem; */
+  /* padding-top: 0.1rem; */
 }
 #demo {
   overflow: hidden;
@@ -1801,5 +1777,11 @@ element.style {
   float: left;
 
   height: 100%;
+}
+.alltitle1 {
+  font-size: 0.2rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.3rem;
 }
 </style>
