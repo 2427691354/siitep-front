@@ -6,7 +6,7 @@
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width:30%">
           <div class="boxall" style="height: 3.7rem">
             <div class="alltitle">实时监控</div>
             <div class="allnav" id="echart1">
@@ -48,7 +48,7 @@
                 <TabPane label="辟　谣" name="name3" class="piyao">
                   <ul>
                     <li
-                      class="piyao_list"
+                      class="piyao_list1"
                       v-for="item in this.piyao"
                       :key="item.title"
                     >【谣】{{item.title}}</li>
@@ -59,7 +59,7 @@
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width:40%">
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
@@ -93,7 +93,7 @@
             <div class="cityNum" id="polo_2">
               <div class="boxfoot"></div>
             </div>
-            <div class="map4" id="map_1"></div>
+            <div class="map41" id="map_1"></div>
           </div>
           <div class="boxallcard" style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
@@ -107,7 +107,7 @@
             <div class="boxfootcard"></div>
           </div>
         </li>
-        <li>
+        <li style="width:30%">
           <div class="boxall" style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
             <div class="allnav" id="echart4">
@@ -121,7 +121,7 @@
           </div>
           <div class="boxallinfo" style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="echart5" style="height:2.4rem">
+            <div class="allnav" id="zhongdianstu" style="height:2.4rem">
               <el-table
                 :data="stuInfo"
                 stripe
@@ -5175,30 +5175,30 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" >
 .myvideo {
   width: 100%;
   height: 100%;
   object-fit: fill;
 }
 
-.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
-  width: 55.8%;
-  font-size: 0.183rem;
-  text-align: center;
-  border: 1px solid rgba(25, 186, 139, 0.17);
-  box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset;
-  background: rgba(255, 255, 255, 0.08) url("../assets/images/line.png");
+#echart3 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+  width: 55.8% !important;
+  font-size: 0.183rem !important;
+  text-align: center !important;
+  border: 1px solid rgba(25, 186, 139, 0.17) !important;
+  box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset !important;
+  background: rgba(255, 255, 255, 0.08) url("../assets/images/line.png") !important;
 }
 
-.ivu-tabs-tabpane {
+#echart3 .ivu-tabs-tabpane {
   width: 100%;
   height: 100%;
 }
-.ivu-tabs-content {
+#echart3 .ivu-tabs-content {
   height: calc(87% - 15px);
 }
-.ivu-tabs {
+#echart3 .ivu-tabs {
   height: 93%;
 }
 #resou {
@@ -5270,7 +5270,7 @@ export default {
   height: 100%;
   width: 100%;
 }
-.piyao_list {
+.piyao_list1 {
   height: calc(100% / 8);
   width: 100%;
   padding-left: 5px;
@@ -5330,10 +5330,13 @@ export default {
 // }
 
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-container {
-  height: 0.4rem;
+  height: 0.4rem !important;
 }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
-  height: 0.4rem;
+  height: 0.4rem !important;
+}
+.ivu-tabs-nav {
+    padding-left: 0 !important;
 }
 .el-table {
   height: inherit;
@@ -5386,5 +5389,16 @@ export default {
   line-height: 100% !important;
   padding-left: 0 !important;
 }
-
+.map41 {
+  width: 100%;
+  height: 4rem;
+  position: absolute;
+  left: -20%;
+  margin-top: 0.15rem;
+  /* padding-top: 1.5rem; */
+  z-index: 5;
+}
+#zhongdianstu .el-table th{
+  width: 20% !important;
+}
 </style>

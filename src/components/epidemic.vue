@@ -68,7 +68,7 @@
           </div>
           <div class="boxallinfo" style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="echart5" style="height:2.4rem">
+            <div class="allnav" id="zhongdianstu1" style="height:2.4rem">
               <el-table
                 :data="stuInfo"
                 stripe
@@ -85,9 +85,9 @@
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.85rem;">
+          <div class="boxall" style="height: 2.8rem;">
             <div class="alltitle">战“疫”频道</div>
-            <div class="allnav">
+            <div class="allnav zhanyi">
               <!-- <div id="word_zs"></div> -->
               <Tabs v-model="activename" type="card">
                 <TabPane label="诊　断" name="name1" id="resou"></TabPane>
@@ -2040,7 +2040,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" >
 @import "../assets/css/comon1.css";
 .myvideo {
   width: 100%;
@@ -2128,7 +2128,7 @@ export default {
 .piyao_list {
   height: calc(100% / 8);
   width: 100%;
-  padding-left: 2rem;
+  // padding-left: 2rem;
   font-size: 0.18rem;
   color: azure;
   margin-bottom: 0.1rem;
@@ -2226,13 +2226,30 @@ export default {
   border-bottom: 1px solid #00d4c7;
   // width: 5.1rem;
 }
-.ivu-tabs-nav {
-  padding-left: 2rem;
-}
+// .ivu-tabs-nav {
+//   padding-left: 2rem !important;
+
+// }
 .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused {
-  border-color: #00d4c7 !important;
+  border-color: #00d4c7 ;
 }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
   color: #00d4c7;
+}
+.map4 {
+  width: 100%;
+  height: 6rem;
+  position: absolute;
+  left: -20%;
+  margin-top: 0.01rem;
+  /* padding-top: 1.5rem; */
+  z-index: 5;
+}
+.zhanyi{
+  width: 80%;
+  margin-left: 10%;
+}
+#zhongdianstu1 .el-table th{
+  width: 20% !important;
 }
 </style>
