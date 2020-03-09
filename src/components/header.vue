@@ -1,23 +1,22 @@
 <template>
   <div class="head">
     <div class="nav">
-      <el-menu
-:default-active="this.$route.path"
-  class="el-menu-demo"
-  mode="horizontal"
-  @select="handleSelect"
-     
-  text-color="#1bb4f6"
-  active-text-color="#5bc0de">
-  <el-menu-item index="/">首页</el-menu-item>
-  <el-menu-item index="/campus">苏工院</el-menu-item>
-  <el-menu-item index="/onlineCourse">网课</el-menu-item>
-  <el-menu-item index="/epidemic">疫情</el-menu-item>
-</el-menu>
+      <el-menu :default-active="this.$route.path"
+               class="el-menu-demo"
+               mode="horizontal"
+               @select="handleSelect"
+               text-color="#1bb4f6"
+               active-text-color="#5bc0de">
+        <el-menu-item index="/">首页</el-menu-item>
+        <el-menu-item index="/campus">苏工院</el-menu-item>
+        <el-menu-item index="/onlineCourse">网课</el-menu-item>
+        <el-menu-item index="/epidemic">疫情</el-menu-item>
+      </el-menu>
     </div>
     <h1>校园疫情防控与网络教学可视化平台</h1>
     <div class="weather">
-      <img src="../assets/images/time4.png" alt="时间截止"/>
+      <img src="../assets/images/time4.png"
+           alt="时间截止" />
       <span>数据更新截止：</span>
       <span id="showTime">{{deadLine}}</span>
     </div>
@@ -26,7 +25,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       // headInfo: {
       //   weather: "",
@@ -36,7 +35,7 @@ export default {
       deadLine: ""
     };
   },
-  created() {
+  created () {
     // this.getWeather();
     // this.getTime();
     this.getDeadline();
@@ -71,26 +70,26 @@ export default {
     //       new Date().getSeconds();
     //   }, 1000);
     // },
-    getDeadline() {
+    getDeadline () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getNewTime")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.deadLine = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-     handleSelect(key, keyPath) {
-        // console.log(key);
-        this.$router.push(key);
-          
-      }
+    handleSelect (key, keyPath) {
+      // console.log(key);
+      this.$router.push(key);
+
+    }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -145,7 +144,7 @@ export default {
 }
 .weather span {
   /* color: rgba(255, 255, 255, 0.7); */
-  color: #00E6FD;
+  color: #00e6fd;
   font-size: 0.17rem;
   vertical-align: middle;
   padding-right: 0.01rem;
@@ -157,29 +156,27 @@ export default {
   line-height: 0.75rem;
   height: 65%;
 }
-.el-menu.el-menu--horizontal{
+.el-menu.el-menu--horizontal {
   z-index: 9999;
   /* padding-left: 15px; */
-  background: transparent ;
-  border-bottom:none;
+  background: transparent;
+  border-bottom: none;
   height: 100% !important;
-
-
 }
 /* .el-menu-item{
   padding: 0 25px;
   
 } */
-.el-menu--horizontal>.el-menu-item{
+.el-menu--horizontal > .el-menu-item {
   font-size: 0.2rem;
   height: 100% !important;
 }
-.el-menu-item:hover{
+.el-menu-item:hover {
   background-color: rgba(14, 221, 240, 0.32) !important;
-   height: 100% !important;
+  height: 100% !important;
 }
-.el-menu--horizontal>.el-menu-item.is-active{
-  background-color:transparent !important;
+.el-menu--horizontal > .el-menu-item.is-active {
+  background-color: transparent !important;
   height: 100%;
 }
 </style>
