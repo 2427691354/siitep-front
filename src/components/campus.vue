@@ -1717,7 +1717,7 @@ export default {
 }
 #main8 {
   width: 100%;
-  height: 90%;
+  height: 80%;
   /* padding-bottom: 0.2rem; */
 }
 element.style {
