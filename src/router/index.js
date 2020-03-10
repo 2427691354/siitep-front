@@ -5,6 +5,7 @@ import Video from "@/components/video";
 import onlineCourse from "@/components/onlineCourse";
 import campus from "@/components/campus";
 import epidemic from "@/components/epidemic";
+import networkTeaching from "@/components/networkTeaching";
 
 Vue.use(Router);
 
@@ -34,6 +35,10 @@ export default new Router({
       path: "/epidemic",
       name: "epidemic",
       component: epidemic
+    },{
+      path: "/networkTeaching",
+      name: "networkTeaching",
+      component: networkTeaching
     }
   ]
 });

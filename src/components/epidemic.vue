@@ -1,35 +1,34 @@
 <template>
   <div>
-    <div class="canvas" style="opacity: .2">
-      <canvas id="canv" width="1920" height="572"></canvas>
-    </div>
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width: 60%;">
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li
-                  class="pulll_left counter"
-                  style="width:30%;"
-                >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
-                <li
-                  class="pulll_left counter"
-                  style="width:30%;"
-                >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
-                <li class="pulll_left counter" style="width:10%;">{{ statistics.sumIsolated }}</li>
-                <li class="pulll_left counter" style="width:30%;">
+                <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
+                <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <li class="pulll_left counter"
+                    style="width:10%;">{{ statistics.sumIsolated }}</li>
+                <li class="pulll_left counter"
+                    style="width:30%;">
                   <div id="fashao"></div>
                 </li>
               </ul>
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left" style="width:30%;">返苏人数（江苏-苏州）</li>
-                <li class="pulll_left" style="width:10%;">隔离人数</li>
-                <li class="pulll_left" style="width:30%;">发烧人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">系部人数 - 上报人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">返苏人数（江苏-苏州）</li>
+                <li class="pulll_left"
+                    style="width:10%;">隔离人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">发烧人数</li>
               </ul>
             </div>
           </div>
@@ -38,15 +37,19 @@
                  id="polo_1">
               <div class="boxfoot"></div>
             </div>-->
-            <div class="city_Num" id="polo_2">
+            <div class="city_Num"
+                 id="polo_2">
               <div class="boxfoot"></div>
             </div>
-            <div class="map4" id="map_1"></div>
+            <div class="map4"
+                 id="map_1"></div>
           </div>
 
-          <div class="boxall" style="height: 2.6rem;margin-top:0.15rem">
+          <div class="boxall"
+               style="height: 2.6rem;margin-top:0.15rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
-            <div class="allnav" id="echart5">
+            <div class="allnav"
+                 id="echart5">
               <div id="all_Num"></div>
               <div id="allLine"></div>
             </div>
@@ -54,51 +57,63 @@
           </div>
         </li>
 
-        <li>
-          <div class="boxall" style="height:3.7rem">
+        <li style="width: 40%;">
+          <div class="boxall"
+               style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
-            <div class="allnav" id="echart4">
-              <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions2"
-              ></video-player>
+            <div class="allnav"
+                 id="echart4">
+              <video-player class="video-player vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions2"></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3rem;">
+          <div class="boxallinfo"
+               style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="zhongdianstu1" style="height:2.4rem">
-              <el-table
-                :data="stuInfo"
-                stripe
-                style="font-size: 10%"
-                :row-style="{ height: '0.4rem' }"
-                :cell-style="{ padding: '0px' }"
-              >
-                <el-table-column prop="name" label="姓名"></el-table-column>
-                <el-table-column prop="class" label="班级"></el-table-column>
-                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
-                <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column prop="address" label="隔离地点"></el-table-column>
+            <div class="allnav"
+                 id="zhongdianstu1"
+                 style="height:2.4rem">
+              <el-table :data="stuInfo"
+                        stripe
+                        style="font-size: 10%"
+                        :row-style="{ height: '0.4rem' }"
+                        :cell-style="{ padding: '0px' }">
+                <el-table-column prop="name"
+                                 label="姓名"></el-table-column>
+                <el-table-column prop="class"
+                                 label="班级"></el-table-column>
+                <el-table-column prop="tem"
+                                 label="体温(℃)"></el-table-column>
+                <el-table-column prop="status"
+                                 label="状态"></el-table-column>
+                <el-table-column prop="address"
+                                 label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.8rem;">
+          <div class="boxall"
+               style="height: 2.8rem;">
             <div class="alltitle">战“疫”频道</div>
             <div class="allnav zhanyi">
               <!-- <div id="word_zs"></div> -->
-              <Tabs v-model="activename" type="card">
-                <TabPane label="诊　断" name="name1" id="resou"></TabPane>
-                <TabPane label="知　识" name="name2" id="zhishi"></TabPane>
-                <TabPane label="辟　谣" name="name3" class="piyao">
+              <Tabs v-model="activename"
+                    type="card">
+                <TabPane label="诊　断"
+                         name="name1"
+                         id="resou"></TabPane>
+                <TabPane label="知　识"
+                         name="name2"
+                         id="zhishi"></TabPane>
+                <TabPane label="辟　谣"
+                         name="name3"
+                         class="piyao">
                   <ul>
-                    <li
-                      class="piyao_list"
-                      v-for="item in this.piyao"
-                      :key="item.title"
-                    >【谣】{{item.title}}</li>
+                    <li class="piyao_list"
+                        v-for="item in this.piyao"
+                        :key="item.title">【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -123,7 +138,7 @@ import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       staticUrl: this.staticUrl,
       staticUrl2: this.staticUrl2,
@@ -235,7 +250,7 @@ export default {
       provinces: [],
       //人数
       pronum: [],
-      Num_geli: [],
+      Num_geli: [0],
       Num_fashao: [],
       days2: []
     };
@@ -244,7 +259,7 @@ export default {
     Header,
     videoPlayer
   },
-  created() {
+  created () {
     //学生隔离人数
     this.insulateNum();
     //学生发烧人数
@@ -255,7 +270,7 @@ export default {
     // this.noMaskList();
     this.map();
   },
-  mounted() {
+  mounted () {
     this.$refs.videoPlayer.player.play();
     // this.$refs.videoPlayer1.player.play();
     // 宏观统计 总人数、隔离人数、发烧人数
@@ -265,8 +280,8 @@ export default {
     window.addEventListener("orientationchange", this.resizeFontsize());
     //改变手机大小执行效果更换
     window.addEventListener("resize", this.resizeFontsize());
-   
-    this.canves();
+
+    // this.canves();
     this.initwordcould1();
     this.initwordcould2();
     this.initwordcould3();
@@ -288,7 +303,7 @@ export default {
     this.trendNum();
   },
   methods: {
-    tabchange() {
+    tabchange () {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -297,21 +312,21 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan() {
+    tabxunhuan () {
       setInterval(this.tabchange, 8000);
     },
-    tabclear() {
+    tabclear () {
       clearInterval(this.tabxunhuan);
     },
-    setSize: function() {
+    setSize: function () {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    initHuan() {
+    initHuan () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.lowfever = res[0].lowfever;
           self.normal = res[0].normal;
@@ -319,12 +334,13 @@ export default {
           self.highfever = res[0].highfever;
           self.drawHuan();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    drawHuan() {
+    drawHuan () {
+      var self = this;
       var huan = echarts.init(document.getElementById("fashao"));
       const option = {
         color: ["#1ABDE6", "#EE6911", "#EE1111"],
@@ -385,7 +401,7 @@ export default {
             name: "体温等级比例",
             data: [
               {
-                value: this.lowfever,
+                value: self.lowfever,
                 name: "低热",
                 label: {
                   normal: {
@@ -403,12 +419,12 @@ export default {
                 }
               },
               {
-                value: this.moderatefever,
+                value: self.moderatefever,
                 name: "中热",
                 label: {
                   normal: {
-                    formatter: function(params) {
-                      return params.percent;
+                    formatter: function (params) {
+                      return self.statistics.sumHever;
                     },
                     position: "center",
                     show: true,
@@ -419,7 +435,7 @@ export default {
                 }
               },
               {
-                value: this.highfever,
+                value: self.highfever,
                 name: "高热",
                 label: {
                   normal: {
@@ -482,11 +498,11 @@ export default {
 
       huan.setOption(option);
     },
-    initSum() {
+    initSum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/sum")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.statistics.sumAll = res.sum;
           self.statistics.sumIsolated = res.sumisolated;
@@ -495,29 +511,29 @@ export default {
           self.statistics.stuinJiang = res.stuinJiang;
           // window.location.reload();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    slideShow() {
+    slideShow () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=1")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.img_list = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould1() {
+    initwordcould1 () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromDiagnosisTitle")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -537,16 +553,16 @@ export default {
           self.resou = newres.slice(0, 50);
           self.wordCould1();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould2() {
+    initwordcould2 () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromGuideTitle")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -566,16 +582,16 @@ export default {
           self.zhishi = newres.slice(0, 50);
           self.wordCould2();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould3() {
+    initwordcould3 () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectRumorTitle")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           // var newres = [];
           // res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -594,12 +610,12 @@ export default {
           self.piyao = res;
           // self.wordCould3();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    wordCould1() {
+    wordCould1 () {
       var wc = echarts.init(document.getElementById("resou"));
       var option = {
         series: [
@@ -633,7 +649,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function() {
+                color: function () {
                   // Random color
                   return (
                     "rgb(" +
@@ -653,11 +669,11 @@ export default {
       };
       wc.setOption(option);
 
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         wc.resize();
       });
     },
-    wordCould2() {
+    wordCould2 () {
       var wc = echarts.init(document.getElementById("zhishi"));
       var option = {
         series: [
@@ -691,7 +707,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function() {
+                color: function () {
                   // Random color
                   return (
                     "rgb(" +
@@ -710,11 +726,11 @@ export default {
         ]
       };
       wc.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         wc.resize();
       });
     },
-    wordCould3() {
+    wordCould3 () {
       var wordcould = echarts.init(document.getElementById("piyao"));
       const option = {
         series: [
@@ -748,7 +764,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function() {
+                color: function () {
                   // Random color
                   return (
                     "rgb(" +
@@ -767,16 +783,16 @@ export default {
         ]
       };
       wordcould.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         wordcould.resize();
       });
     },
-    allNum() {
+    allNum () {
       var self = this;
       var dd = [];
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             dd.push({
@@ -789,7 +805,7 @@ export default {
       //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             if (
@@ -807,11 +823,11 @@ export default {
           self.map(dd);
         });
     },
-    eachpro() {
+    eachpro () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           //冒泡排序根据count从大到小
           var res = response.data;
           var j, k, temp;
@@ -838,7 +854,7 @@ export default {
           self.proBar();
         });
     },
-    proBar() {
+    proBar () {
       var myChart = echarts.init(document.getElementById("polo_2"));
       var color = [
         "#2EC7E6",
@@ -869,7 +885,7 @@ export default {
           axisPointer: {
             type: "shadow"
           },
-          formatter: function(objs, index) {
+          formatter: function (objs, index) {
             let obj = objs[0];
             return `${obj.name}<br/>${obj.marker}${obj.seriesName} : ${obj.value}`;
           }
@@ -937,7 +953,7 @@ export default {
                 }
               }
             },
-            data: this.pronum.map(function(item, i) {
+            data: this.pronum.map(function (item, i) {
               return {
                 value: item,
                 itemStyle: {
@@ -960,45 +976,45 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    insulateNum() {
+    insulateNum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.data_gelilist = res;
         });
     },
-    feverNum() {
+    feverNum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.data_fashaolist = res;
         });
     },
-    resizeFontsize() {
+    resizeFontsize () {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    map(datalist) {
+    map (datalist) {
       var myChart = echarts.init(document.getElementById("map_1"));
       var geoCoordMap = {};
       var mapFeatures = echarts.getMap("china").geoJson.features;
-      mapFeatures.forEach(function(v) {
+      mapFeatures.forEach(function (v) {
         // 地区名称
         var name = v.properties.name;
         // console.log(name);
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-      var convertData = function(data) {
+      var convertData = function (data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].location_province];
@@ -1024,7 +1040,7 @@ export default {
         // },
         tooltip: {
           trigger: "item",
-          formatter: function(params) {
+          formatter: function (params) {
             if (typeof params.value[2] == "undefined") {
               return (
                 option.series[0].name +
@@ -1214,7 +1230,7 @@ export default {
       };
       myChart.setOption(option);
       var index = 0;
-      var myTime = setInterval(function() {
+      var myTime = setInterval(function () {
         myChart.dispatchAction({
           type: "showTip",
           seriesIndex: 0,
@@ -1225,407 +1241,407 @@ export default {
           index = 0;
         }
       }, 2000);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    canves() {
-      var num = 200;
-      var w = window.innerWidth;
-      var h = window.innerHeight;
-      var max = 100;
-      var _x = 0;
-      var _y = 0;
-      var _z = 150;
-      var dtr = function(d) {
-        return (d * Math.PI) / 180;
-      };
+    // canves () {
+    //   var num = 200;
+    //   var w = window.innerWidth;
+    //   var h = window.innerHeight;
+    //   var max = 100;
+    //   var _x = 0;
+    //   var _y = 0;
+    //   var _z = 150;
+    //   var dtr = function (d) {
+    //     return (d * Math.PI) / 180;
+    //   };
 
-      var rnd = function() {
-        return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
-      };
-      var dist = function(p1, p2, p3) {
-        return Math.sqrt(
-          Math.pow(p2.x - p1.x, 2) +
-            Math.pow(p2.y - p1.y, 2) +
-            Math.pow(p2.z - p1.z, 2)
-        );
-      };
+    //   var rnd = function () {
+    //     return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
+    //   };
+    //   var dist = function (p1, p2, p3) {
+    //     return Math.sqrt(
+    //       Math.pow(p2.x - p1.x, 2) +
+    //       Math.pow(p2.y - p1.y, 2) +
+    //       Math.pow(p2.z - p1.z, 2)
+    //     );
+    //   };
 
-      var cam = {
-        obj: {
-          x: _x,
-          y: _y,
-          z: _z
-        },
-        dest: {
-          x: 0,
-          y: 0,
-          z: 1
-        },
-        dist: {
-          x: 0,
-          y: 0,
-          z: 200
-        },
-        ang: {
-          cplane: 0,
-          splane: 0,
-          ctheta: 0,
-          stheta: 0
-        },
-        zoom: 1,
-        disp: {
-          x: w / 2,
-          y: h / 2,
-          z: 0
-        },
-        upd: function() {
-          cam.dist.x = cam.dest.x - cam.obj.x;
-          cam.dist.y = cam.dest.y - cam.obj.y;
-          cam.dist.z = cam.dest.z - cam.obj.z;
-          cam.ang.cplane =
-            -cam.dist.z /
-            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
-          cam.ang.splane =
-            cam.dist.x /
-            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
-          cam.ang.ctheta =
-            Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
-            Math.sqrt(
-              cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
-            );
-          cam.ang.stheta =
-            -cam.dist.y /
-            Math.sqrt(
-              cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
-            );
-        }
-      };
+    //   var cam = {
+    //     obj: {
+    //       x: _x,
+    //       y: _y,
+    //       z: _z
+    //     },
+    //     dest: {
+    //       x: 0,
+    //       y: 0,
+    //       z: 1
+    //     },
+    //     dist: {
+    //       x: 0,
+    //       y: 0,
+    //       z: 200
+    //     },
+    //     ang: {
+    //       cplane: 0,
+    //       splane: 0,
+    //       ctheta: 0,
+    //       stheta: 0
+    //     },
+    //     zoom: 1,
+    //     disp: {
+    //       x: w / 2,
+    //       y: h / 2,
+    //       z: 0
+    //     },
+    //     upd: function () {
+    //       cam.dist.x = cam.dest.x - cam.obj.x;
+    //       cam.dist.y = cam.dest.y - cam.obj.y;
+    //       cam.dist.z = cam.dest.z - cam.obj.z;
+    //       cam.ang.cplane =
+    //         -cam.dist.z /
+    //         Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+    //       cam.ang.splane =
+    //         cam.dist.x /
+    //         Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+    //       cam.ang.ctheta =
+    //         Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
+    //         Math.sqrt(
+    //           cam.dist.x * cam.dist.x +
+    //           cam.dist.y * cam.dist.y +
+    //           cam.dist.z * cam.dist.z
+    //         );
+    //       cam.ang.stheta =
+    //         -cam.dist.y /
+    //         Math.sqrt(
+    //           cam.dist.x * cam.dist.x +
+    //           cam.dist.y * cam.dist.y +
+    //           cam.dist.z * cam.dist.z
+    //         );
+    //     }
+    //   };
 
-      var trans = {
-        parts: {
-          sz: function(p, sz) {
-            return {
-              x: p.x * sz.x,
-              y: p.y * sz.y,
-              z: p.z * sz.z
-            };
-          },
-          rot: {
-            x: function(p, rot) {
-              return {
-                x: p.x,
-                y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
-                z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
-              };
-            },
-            y: function(p, rot) {
-              return {
-                x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
-                y: p.y,
-                z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
-              };
-            },
-            z: function(p, rot) {
-              return {
-                x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
-                y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
-                z: p.z
-              };
-            }
-          },
-          pos: function(p, pos) {
-            return {
-              x: p.x + pos.x,
-              y: p.y + pos.y,
-              z: p.z + pos.z
-            };
-          }
-        },
-        pov: {
-          plane: function(p) {
-            return {
-              x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
-              y: p.y,
-              z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
-            };
-          },
-          theta: function(p) {
-            return {
-              x: p.x,
-              y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
-              z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
-            };
-          },
-          set: function(p) {
-            return {
-              x: p.x - cam.obj.x,
-              y: p.y - cam.obj.y,
-              z: p.z - cam.obj.z
-            };
-          }
-        },
-        persp: function(p) {
-          return {
-            x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
-            y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
-            z: p.z * cam.zoom,
-            p: cam.dist.z / p.z
-          };
-        },
-        disp: function(p, disp) {
-          return {
-            x: p.x + disp.x,
-            y: -p.y + disp.y,
-            z: p.z + disp.z,
-            p: p.p
-          };
-        },
-        steps: function(_obj_, sz, rot, pos, disp) {
-          var _args = trans.parts.sz(_obj_, sz);
-          _args = trans.parts.rot.x(_args, rot);
-          _args = trans.parts.rot.y(_args, rot);
-          _args = trans.parts.rot.z(_args, rot);
-          _args = trans.parts.pos(_args, pos);
-          _args = trans.pov.plane(_args);
-          _args = trans.pov.theta(_args);
-          _args = trans.pov.set(_args);
-          _args = trans.persp(_args);
-          _args = trans.disp(_args, disp);
-          return _args;
-        }
-      };
+    //   var trans = {
+    //     parts: {
+    //       sz: function (p, sz) {
+    //         return {
+    //           x: p.x * sz.x,
+    //           y: p.y * sz.y,
+    //           z: p.z * sz.z
+    //         };
+    //       },
+    //       rot: {
+    //         x: function (p, rot) {
+    //           return {
+    //             x: p.x,
+    //             y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
+    //             z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
+    //           };
+    //         },
+    //         y: function (p, rot) {
+    //           return {
+    //             x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
+    //             y: p.y,
+    //             z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
+    //           };
+    //         },
+    //         z: function (p, rot) {
+    //           return {
+    //             x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
+    //             y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
+    //             z: p.z
+    //           };
+    //         }
+    //       },
+    //       pos: function (p, pos) {
+    //         return {
+    //           x: p.x + pos.x,
+    //           y: p.y + pos.y,
+    //           z: p.z + pos.z
+    //         };
+    //       }
+    //     },
+    //     pov: {
+    //       plane: function (p) {
+    //         return {
+    //           x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
+    //           y: p.y,
+    //           z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
+    //         };
+    //       },
+    //       theta: function (p) {
+    //         return {
+    //           x: p.x,
+    //           y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
+    //           z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
+    //         };
+    //       },
+    //       set: function (p) {
+    //         return {
+    //           x: p.x - cam.obj.x,
+    //           y: p.y - cam.obj.y,
+    //           z: p.z - cam.obj.z
+    //         };
+    //       }
+    //     },
+    //     persp: function (p) {
+    //       return {
+    //         x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
+    //         y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
+    //         z: p.z * cam.zoom,
+    //         p: cam.dist.z / p.z
+    //       };
+    //     },
+    //     disp: function (p, disp) {
+    //       return {
+    //         x: p.x + disp.x,
+    //         y: -p.y + disp.y,
+    //         z: p.z + disp.z,
+    //         p: p.p
+    //       };
+    //     },
+    //     steps: function (_obj_, sz, rot, pos, disp) {
+    //       var _args = trans.parts.sz(_obj_, sz);
+    //       _args = trans.parts.rot.x(_args, rot);
+    //       _args = trans.parts.rot.y(_args, rot);
+    //       _args = trans.parts.rot.z(_args, rot);
+    //       _args = trans.parts.pos(_args, pos);
+    //       _args = trans.pov.plane(_args);
+    //       _args = trans.pov.theta(_args);
+    //       _args = trans.pov.set(_args);
+    //       _args = trans.persp(_args);
+    //       _args = trans.disp(_args, disp);
+    //       return _args;
+    //     }
+    //   };
 
-      (function() {
-        "use strict";
-        var threeD = function(param) {
-          this.transIn = {};
-          this.transOut = {};
-          this.transIn.vtx = param.vtx;
-          this.transIn.sz = param.sz;
-          this.transIn.rot = param.rot;
-          this.transIn.pos = param.pos;
-        };
+    //   (function () {
+    //     "use strict";
+    //     var threeD = function (param) {
+    //       this.transIn = {};
+    //       this.transOut = {};
+    //       this.transIn.vtx = param.vtx;
+    //       this.transIn.sz = param.sz;
+    //       this.transIn.rot = param.rot;
+    //       this.transIn.pos = param.pos;
+    //     };
 
-        threeD.prototype.vupd = function() {
-          this.transOut = trans.steps(
-            this.transIn.vtx,
-            this.transIn.sz,
-            this.transIn.rot,
-            this.transIn.pos,
-            cam.disp
-          );
-        };
+    //     threeD.prototype.vupd = function () {
+    //       this.transOut = trans.steps(
+    //         this.transIn.vtx,
+    //         this.transIn.sz,
+    //         this.transIn.rot,
+    //         this.transIn.pos,
+    //         cam.disp
+    //       );
+    //     };
 
-        var Build = function() {
-          this.vel = 0.04;
-          this.lim = 360;
-          this.diff = 200;
-          this.initPos = 100;
-          this.toX = _x;
-          this.toY = _y;
-          this.go();
-        };
+    //     var Build = function () {
+    //       this.vel = 0.04;
+    //       this.lim = 360;
+    //       this.diff = 200;
+    //       this.initPos = 100;
+    //       this.toX = _x;
+    //       this.toY = _y;
+    //       this.go();
+    //     };
 
-        Build.prototype.go = function() {
-          this.canvas = document.getElementById("canv");
-          this.canvas.width = window.innerWidth;
-          this.canvas.height = window.innerHeight;
-          this.$ = canv.getContext("2d");
-          this.$.globalCompositeOperation = "source-over";
-          this.varr = [];
-          this.dist = [];
-          this.calc = [];
+    //     Build.prototype.go = function () {
+    //       this.canvas = document.getElementById("canv");
+    //       this.canvas.width = window.innerWidth;
+    //       this.canvas.height = window.innerHeight;
+    //       this.$ = canv.getContext("2d");
+    //       this.$.globalCompositeOperation = "source-over";
+    //       this.varr = [];
+    //       this.dist = [];
+    //       this.calc = [];
 
-          for (var i = 0, len = num; i < len; i++) {
-            this.add();
-          }
+    //       for (var i = 0, len = num; i < len; i++) {
+    //         this.add();
+    //       }
 
-          this.rotObj = {
-            x: 0,
-            y: 0,
-            z: 0
-          };
-          this.objSz = {
-            x: w / 5,
-            y: h / 5,
-            z: w / 5
-          };
-        };
+    //       this.rotObj = {
+    //         x: 0,
+    //         y: 0,
+    //         z: 0
+    //       };
+    //       this.objSz = {
+    //         x: w / 5,
+    //         y: h / 5,
+    //         z: w / 5
+    //       };
+    //     };
 
-        Build.prototype.add = function() {
-          this.varr.push(
-            new threeD({
-              vtx: {
-                x: rnd(),
-                y: rnd(),
-                z: rnd()
-              },
-              sz: {
-                x: 0,
-                y: 0,
-                z: 0
-              },
-              rot: {
-                x: 20,
-                y: -20,
-                z: 0
-              },
-              pos: {
-                x: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
-                y: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
-                z: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180)
-              }
-            })
-          );
-          this.calc.push({
-            x: 360 * Math.random(),
-            y: 360 * Math.random(),
-            z: 360 * Math.random()
-          });
-        };
+    //     Build.prototype.add = function () {
+    //       this.varr.push(
+    //         new threeD({
+    //           vtx: {
+    //             x: rnd(),
+    //             y: rnd(),
+    //             z: rnd()
+    //           },
+    //           sz: {
+    //             x: 0,
+    //             y: 0,
+    //             z: 0
+    //           },
+    //           rot: {
+    //             x: 20,
+    //             y: -20,
+    //             z: 0
+    //           },
+    //           pos: {
+    //             x: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
+    //             y: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180),
+    //             z: this.diff * Math.sin((360 * Math.random() * Math.PI) / 180)
+    //           }
+    //         })
+    //       );
+    //       this.calc.push({
+    //         x: 360 * Math.random(),
+    //         y: 360 * Math.random(),
+    //         z: 360 * Math.random()
+    //       });
+    //     };
 
-        Build.prototype.upd = function() {
-          cam.obj.x += (this.toX - cam.obj.x) * 0.05;
-          cam.obj.y += (this.toY - cam.obj.y) * 0.05;
-        };
+    //     Build.prototype.upd = function () {
+    //       cam.obj.x += (this.toX - cam.obj.x) * 0.05;
+    //       cam.obj.y += (this.toY - cam.obj.y) * 0.05;
+    //     };
 
-        Build.prototype.draw = function() {
-          this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
-          cam.upd();
-          this.rotObj.x += 0.1;
-          this.rotObj.y += 0.1;
-          this.rotObj.z += 0.1;
+    //     Build.prototype.draw = function () {
+    //       this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //       cam.upd();
+    //       this.rotObj.x += 0.1;
+    //       this.rotObj.y += 0.1;
+    //       this.rotObj.z += 0.1;
 
-          for (var i = 0; i < this.varr.length; i++) {
-            for (var val in this.calc[i]) {
-              if (this.calc[i].hasOwnProperty(val)) {
-                this.calc[i][val] += this.vel;
-                if (this.calc[i][val] > this.lim) this.calc[i][val] = 0;
-              }
-            }
+    //       for (var i = 0; i < this.varr.length; i++) {
+    //         for (var val in this.calc[i]) {
+    //           if (this.calc[i].hasOwnProperty(val)) {
+    //             this.calc[i][val] += this.vel;
+    //             if (this.calc[i][val] > this.lim) this.calc[i][val] = 0;
+    //           }
+    //         }
 
-            this.varr[i].transIn.pos = {
-              x: this.diff * Math.cos((this.calc[i].x * Math.PI) / 180),
-              y: this.diff * Math.sin((this.calc[i].y * Math.PI) / 180),
-              z: this.diff * Math.sin((this.calc[i].z * Math.PI) / 180)
-            };
-            this.varr[i].transIn.rot = this.rotObj;
-            this.varr[i].transIn.sz = this.objSz;
-            this.varr[i].vupd();
-            if (this.varr[i].transOut.p < 0) continue;
-            var g = this.$.createRadialGradient(
-              this.varr[i].transOut.x,
-              this.varr[i].transOut.y,
-              this.varr[i].transOut.p,
-              this.varr[i].transOut.x,
-              this.varr[i].transOut.y,
-              this.varr[i].transOut.p * 2
-            );
-            this.$.globalCompositeOperation = "lighter";
-            g.addColorStop(0, "hsla(255, 255%, 255%, 1)");
-            g.addColorStop(0.5, "hsla(" + (i + 2) + ",85%, 40%,1)");
-            g.addColorStop(1, "hsla(" + i + ",85%, 40%,.5)");
-            this.$.fillStyle = g;
-            this.$.beginPath();
-            this.$.arc(
-              this.varr[i].transOut.x,
-              this.varr[i].transOut.y,
-              this.varr[i].transOut.p * 2,
-              0,
-              Math.PI * 2,
-              false
-            );
-            this.$.fill();
-            this.$.closePath();
-          }
-        };
-        Build.prototype.anim = function() {
-          window.requestAnimationFrame = (function() {
-            return (
-              window.requestAnimationFrame ||
-              function(callback, element) {
-                window.setTimeout(callback, 1000 / 60);
-              }
-            );
-          })();
-          var anim = function() {
-            this.upd();
-            this.draw();
-            window.requestAnimationFrame(anim);
-          }.bind(this);
-          window.requestAnimationFrame(anim);
-        };
+    //         this.varr[i].transIn.pos = {
+    //           x: this.diff * Math.cos((this.calc[i].x * Math.PI) / 180),
+    //           y: this.diff * Math.sin((this.calc[i].y * Math.PI) / 180),
+    //           z: this.diff * Math.sin((this.calc[i].z * Math.PI) / 180)
+    //         };
+    //         this.varr[i].transIn.rot = this.rotObj;
+    //         this.varr[i].transIn.sz = this.objSz;
+    //         this.varr[i].vupd();
+    //         if (this.varr[i].transOut.p < 0) continue;
+    //         var g = this.$.createRadialGradient(
+    //           this.varr[i].transOut.x,
+    //           this.varr[i].transOut.y,
+    //           this.varr[i].transOut.p,
+    //           this.varr[i].transOut.x,
+    //           this.varr[i].transOut.y,
+    //           this.varr[i].transOut.p * 2
+    //         );
+    //         this.$.globalCompositeOperation = "lighter";
+    //         g.addColorStop(0, "hsla(255, 255%, 255%, 1)");
+    //         g.addColorStop(0.5, "hsla(" + (i + 2) + ",85%, 40%,1)");
+    //         g.addColorStop(1, "hsla(" + i + ",85%, 40%,.5)");
+    //         this.$.fillStyle = g;
+    //         this.$.beginPath();
+    //         this.$.arc(
+    //           this.varr[i].transOut.x,
+    //           this.varr[i].transOut.y,
+    //           this.varr[i].transOut.p * 2,
+    //           0,
+    //           Math.PI * 2,
+    //           false
+    //         );
+    //         this.$.fill();
+    //         this.$.closePath();
+    //       }
+    //     };
+    //     Build.prototype.anim = function () {
+    //       window.requestAnimationFrame = (function () {
+    //         return (
+    //           window.requestAnimationFrame ||
+    //           function (callback, element) {
+    //             window.setTimeout(callback, 1000 / 60);
+    //           }
+    //         );
+    //       })();
+    //       var anim = function () {
+    //         this.upd();
+    //         this.draw();
+    //         window.requestAnimationFrame(anim);
+    //       }.bind(this);
+    //       window.requestAnimationFrame(anim);
+    //     };
 
-        Build.prototype.run = function() {
-          this.anim();
+    //     Build.prototype.run = function () {
+    //       this.anim();
 
-          window.addEventListener(
-            "mousemove",
-            function(e) {
-              this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
-              this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
-            }.bind(this)
-          );
-          window.addEventListener(
-            "touchmove",
-            function(e) {
-              e.preventDefault();
-              this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
-              this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
-            }.bind(this)
-          );
-          window.addEventListener(
-            "mousedown",
-            function(e) {
-              for (var i = 0; i < 100; i++) {
-                this.add();
-              }
-            }.bind(this)
-          );
-          window.addEventListener(
-            "touchstart",
-            function(e) {
-              e.preventDefault();
-              for (var i = 0; i < 100; i++) {
-                this.add();
-              }
-            }.bind(this)
-          );
-        };
-        var app = new Build();
-        app.run();
-      })();
-      window.addEventListener(
-        "resize",
-        function() {
-          canvas.width = w = window.innerWidth;
-          canvas.height = h = window.innerHeight;
-        },
-        false
-      );
-    },
+    //       window.addEventListener(
+    //         "mousemove",
+    //         function (e) {
+    //           this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
+    //           this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
+    //         }.bind(this)
+    //       );
+    //       window.addEventListener(
+    //         "touchmove",
+    //         function (e) {
+    //           e.preventDefault();
+    //           this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
+    //           this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
+    //         }.bind(this)
+    //       );
+    //       window.addEventListener(
+    //         "mousedown",
+    //         function (e) {
+    //           for (var i = 0; i < 100; i++) {
+    //             this.add();
+    //           }
+    //         }.bind(this)
+    //       );
+    //       window.addEventListener(
+    //         "touchstart",
+    //         function (e) {
+    //           e.preventDefault();
+    //           for (var i = 0; i < 100; i++) {
+    //             this.add();
+    //           }
+    //         }.bind(this)
+    //       );
+    //     };
+    //     var app = new Build();
+    //     app.run();
+    //   })();
+    //   window.addEventListener(
+    //     "resize",
+    //     function () {
+    //       canvas.width = w = window.innerWidth;
+    //       canvas.height = h = window.innerHeight;
+    //     },
+    //     false
+    //   );
+    // },
     //change,play实现表格自动滚动
-    change() {
+    change () {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    play() {
+    play () {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
     },
-    focusStu() {
+    focusStu () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFocusStu")
-        .then(function(response) {
+        .then(function (response) {
           var dd = [];
           var res = response.data;
           self.stuInfo = dd;
@@ -1652,11 +1668,11 @@ export default {
             });
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    gundong() {
+    gundong () {
       var speed = 8;
       var tab = document.getElementById("demo");
       var tab1 = document.getElementById("demo1");
@@ -1666,7 +1682,7 @@ export default {
       tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
       // console.log(this.noMaskCount)
       // console.log(this.noMaskCount*(tab.offsetHeight+3))
-      function Marquee() {
+      function Marquee () {
         // console.log(tab2.offsetWidth)
         // console.log(tab.scrollLeft)
         if (tab2.offsetWidth - tab.scrollLeft <= 0)
@@ -1676,18 +1692,18 @@ export default {
         }
       }
       var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function() {
+      tab.onmouseover = function () {
         clearInterval(MyMar);
       };
-      tab.onmouseout = function() {
+      tab.onmouseout = function () {
         MyMar = setInterval(Marquee, speed);
       };
     },
-    suzhouStu() {
+    suzhouStu () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?province=江苏")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
@@ -1696,7 +1712,7 @@ export default {
         });
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?city=苏州")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_suzhou.push(res[i].stuinSuZhou);
@@ -1705,7 +1721,7 @@ export default {
           self.stuInsz();
         });
     },
-    stuInsz() {
+    stuInsz () {
       var myChart = echarts.init(document.getElementById("allLine"));
       var option = {
         tooltip: {
@@ -1899,15 +1915,15 @@ export default {
       };
 
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    trendNum() {
+    trendNum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFeverTrend")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_fashao.push(res[i].stuFeverTrend);
@@ -1919,7 +1935,7 @@ export default {
 
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolated")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_geli.push(res[i].stuFeverTrend);
@@ -1927,7 +1943,7 @@ export default {
           self.totalNum();
         });
     },
-    totalNum() {
+    totalNum () {
       var myChart = echarts.init(document.getElementById("all_Num"));
       // Generate data
       var option = {
@@ -2027,12 +2043,12 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -2041,7 +2057,6 @@ export default {
 </script>
 
 <style lang="less" >
-@import "../assets/css/comon1.css";
 .myvideo {
   width: 100%;
   height: 100%;
@@ -2053,7 +2068,7 @@ export default {
   font-size: 0.15rem;
   text-align: center;
   border: 1px solid rgba(25, 186, 139, 0.17);
-  // box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset;
+  /* // box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset; */
   background: rgba(255, 255, 255, 0.08) url("../assets/images/line.png");
 }
 
@@ -2128,7 +2143,6 @@ export default {
 .piyao_list {
   height: calc(100% / 8);
   width: 100%;
-  // padding-left: 2rem;
   font-size: 0.18rem;
   color: azure;
   margin-bottom: 0.1rem;
@@ -2231,7 +2245,7 @@ export default {
 
 // }
 .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused {
-  border-color: #00d4c7 ;
+  border-color: #00d4c7;
 }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
   color: #00d4c7;
@@ -2245,11 +2259,43 @@ export default {
   /* padding-top: 1.5rem; */
   z-index: 5;
 }
-.zhanyi{
+.zhanyi {
   width: 80%;
   margin-left: 10%;
 }
-#zhongdianstu1 .el-table th{
+#zhongdianstu1 .el-table th {
   width: 20% !important;
+}
+.city_Num {
+  width: 2.73rem;
+  height: 5.54rem;
+  margin-left: 8rem;
+  margin-top: 0.15rem;
+  /* border: 1px solid rgba(25, 186, 139, 0.17); */
+  /* padding: 0 0.2rem 0rem 0.15rem; */
+  /* background: rgba(255, 255, 255, 0.08) url(../images/line.png);
+  background-size: 100% auto; */
+  position: absolute;
+  /* margin-bottom: 0.15rem; */
+  z-index: 10;
+}
+.city_Num:before,
+.city_Num:after {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  content: "";
+  /* border-top: 2px solid #02a6b5; */
+  top: 0;
+}
+.city_Num:before,
+.boxfoot:before {
+  /* border-left: 2px solid #02a6b5; */
+  left: 0;
+}
+.city_Num:after,
+.boxfoot:after {
+  /* border-right: 2px solid #02a6b5; */
+  right: 0;
 }
 </style>
