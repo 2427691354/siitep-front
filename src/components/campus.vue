@@ -302,7 +302,7 @@ export default {
         notSupportedMessage: "此视频暂无法播放，请稍后再试", // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: false
       },
-      Num_geli: [],
+      Num_geli: [0],
       Num_fashao: [],
       days2: [],
 
@@ -1199,10 +1199,10 @@ export default {
             center: ["50%", "50%"],
             roseType: "angle",
             data: [
-              { value: 10, name: "红码" },
-              { value: 20, name: "绿码" },
-              { value: 30, name: "黄码" },
-              { value: 25, name: "未注册" }
+              { value: 3, name: "红码" },
+              { value: 1061, name: "绿码" },
+              { value: 9, name: "黄码" },
+              { value: 146, name: "未注册" }
             ]
           }
         ]
