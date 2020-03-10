@@ -2062,7 +2062,7 @@ export default {
 };
 </script>
 
-<style lang="less" >
+<style>
 @import "../assets/css/comon1.css";
 .myvideo {
   width: 100%;
@@ -2075,7 +2075,7 @@ export default {
   font-size: 0.15rem;
   text-align: center;
   border: 1px solid rgba(25, 186, 139, 0.17);
-  // box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset;
+  /* // box-shadow: 0px 0px 10px rgba(25, 140, 186, 0.6) inset; */
   background: rgba(255, 255, 255, 0.08) url("../assets/images/line.png");
 }
 
@@ -2150,7 +2150,6 @@ export default {
 .piyao_list {
   height: calc(100% / 8);
   width: 100%;
-  // padding-left: 2rem;
   font-size: 0.18rem;
   color: azure;
   margin-bottom: 0.1rem;

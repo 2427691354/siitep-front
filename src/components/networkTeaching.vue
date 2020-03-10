@@ -570,7 +570,7 @@ export default {
             "国教",
             "汽车"
           ],
-          
+
           textStyle: {
             fontSize: 11,
             color: "#B4B4B4"
