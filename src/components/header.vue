@@ -13,6 +13,7 @@
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
           <el-menu-item index="/onlineCourse">停课不停学</el-menu-item>
           <el-menu-item index="/epidemic">疫情分析</el-menu-item>
+          <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
         </el-menu>
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>
