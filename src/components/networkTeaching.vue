@@ -84,6 +84,7 @@
 
 <script>
 import echarts from "echarts";
+import axios from "axios";
 import Header from "@/components/header";
 export default {
   data() {
@@ -546,18 +547,7 @@ export default {
           itemWidth: 10,
           itemHeight: 10,
           itemGap: 5,
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ],
+          data: [],
 
           textStyle: {
             fontSize: 11,
@@ -591,48 +581,7 @@ export default {
             type: "pie",
             radius: "50%",
             center: ["25%", "40%"],
-            data: [
-              {
-                value: 655,
-                name: "电信"
-              },
-              {
-                value: 123,
-                name: "经管"
-              },
-              {
-                value: 939,
-                name: "机电"
-              },
-              {
-                value: 1111,
-                name: "软件"
-              },
-              {
-                value: 65,
-                name: "建艺"
-              },
-              {
-                value: 1211,
-                name: "精密"
-              },
-              {
-                value: 3,
-                name: "体育"
-              },
-              {
-                value: 72,
-                name: "思政"
-              },
-              {
-                value: 85,
-                name: "国教"
-              },
-              {
-                value: 167,
-                name: "汽车"
-              }
-            ],
+            data: [],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -660,48 +609,7 @@ export default {
             type: "pie",
             radius: "50%",
             center: ["55%", "40%"],
-            data: [
-              {
-                value: 352,
-                name: "电信"
-              },
-              {
-                value: 0,
-                name: "经管"
-              },
-              {
-                value: 139,
-                name: "机电"
-              },
-              {
-                value: 16,
-                name: "软件"
-              },
-              {
-                value: 37,
-                name: "建艺"
-              },
-              {
-                value: 57,
-                name: "精密"
-              },
-              {
-                value: 0,
-                name: "体育"
-              },
-              {
-                value: 4,
-                name: "思政"
-              },
-              {
-                value: 113,
-                name: "国教"
-              },
-              {
-                value: 40,
-                name: "汽车"
-              }
-            ],
+            data: [],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -729,48 +637,7 @@ export default {
             type: "pie",
             radius: "50%",
             center: ["85%", "40%"],
-            data: [
-              {
-                value: 452,
-                name: "电信"
-              },
-              {
-                value: 0,
-                name: "经管"
-              },
-              {
-                value: 341,
-                name: "机电"
-              },
-              {
-                value: 29,
-                name: "软件"
-              },
-              {
-                value: 65,
-                name: "建艺"
-              },
-              {
-                value: 109,
-                name: "精密"
-              },
-              {
-                value: 0,
-                name: "体育"
-              },
-              {
-                value: 1,
-                name: "思政"
-              },
-              {
-                value: 125,
-                name: "国教"
-              },
-              {
-                value: 56,
-                name: "汽车"
-              }
-            ],
+            data: [],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -782,6 +649,28 @@ export default {
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          //json里数据
+          series: [
+            {
+              data: res.data.resource
+            },
+            {
+              data: res.data.video
+            },
+            {
+              data: res.data.unit
+            }
+          ],
+          legend: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -877,18 +766,7 @@ export default {
                 color: "#03C5BC"
               }
             },
-            data: [
-              "电信",
-              "经管",
-              "机电",
-              "软件",
-              "建艺",
-              "精密",
-              "体育",
-              "思政",
-              "国教",
-              "汽车"
-            ]
+            data: []
           }
         ],
         series: [
@@ -897,14 +775,14 @@ export default {
             type: "bar",
             stack: "sum",
             barWidth: 10,
-            data: [2075, 156, 2253, 1777, 177, 1208, 12, 227, 543, 397]
+            data: []
           },
           {
             name: "移动端教师",
             type: "bar",
             barWidth: 10,
             stack: "sum",
-            data: [493, 29, 353, 264, 24, 219, 0, 6, 168, 100]
+            data: []
           },
           {
             name: "学生",
@@ -913,18 +791,7 @@ export default {
             color: "#F6931C",
             stack: "sum1",
             barWidth: 10,
-            data: [
-              60771,
-              6338,
-              67862,
-              47567,
-              3893,
-              29922,
-              1023,
-              8183,
-              7723,
-              7548
-            ]
+            data: []
           },
           {
             name: "移动端学生",
@@ -933,22 +800,36 @@ export default {
             color: "#FFD52E",
             stack: "sum1",
             barWidth: 10,
-            data: [
-              33183,
-              2386,
-              44673,
-              11238,
-              1317,
-              21979,
-              659,
-              4016,
-              4260,
-              6115
-            ]
+            data: []
           }
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          //json里数据
+          series: [
+            {
+              data: res.data.teaenter
+            },
+            {
+              data: res.data.moveteaenter
+            },
+            {
+              data: res.data.stuenter
+            },
+            {
+              data: res.data.movestuenter
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1016,18 +897,7 @@ export default {
               color: "#03C5BC"
             }
           },
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ]
+          data: []
         },
         series: [
           {
@@ -1039,53 +909,33 @@ export default {
               }
             },
             barWidth: 13,
-            data: [
-              677434,
-              53258,
-              528380,
-              630601,
-              88018,
-              175304,
-              434,
-              27471,
-              78760,
-              48063
-            ]
-          },
-          {
-            name: "外框",
-            type: "bar",
-            itemStyle: {
-              normal: {
-                color: "#444a58"
-              }
-            },
-            barGap: "-100%",
-            barWidth: 15,
-            data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+            data: []
           }
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          //json里数据
+          series: [
+            {
+              data: res.data.studytime
+            }
+          ],
+          yAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
     coursevisit() {
       var myChart = echarts.init(document.getElementById("course"));
-      var data_val = [
-        62846,
-        6494,
-        70115,
-        49344,
-        4070,
-        31130,
-        1035,
-        8410,
-        8266,
-        7945
-      ];
-      var data_val1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       var option = {
         grid: {
           left: 10,
@@ -1104,18 +954,7 @@ export default {
         },
 
         xAxis: {
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ],
+          data: [],
           boundaryGap: false,
           axisLabel: {
             show: true,
@@ -1166,36 +1005,13 @@ export default {
         series: [
           {
             type: "line",
-            name: "距离",
-
-            animation: false,
-            symbol: "circle",
-
-            hoverAnimation: false,
-            data: data_val1,
-            itemStyle: {
-              normal: {
-                color: "#f17a52",
-                opacity: 0
-              }
-            },
-            lineStyle: {
-              normal: {
-                width: 1,
-                color: "#384157",
-                opacity: 1
-              }
-            }
-          },
-          {
-            type: "line",
             name: "课程访问",
             smooth: true,
             symbolSize: 10,
             animation: false,
             lineWidth: 1.2,
             hoverAnimation: false,
-            data: data_val,
+            data: [],
             symbol: "circle",
             lineStyle: {
               normal: {
@@ -1231,6 +1047,22 @@ export default {
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          //json里数据
+          series: [
+            {
+              data: res.data.data_val
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1253,18 +1085,7 @@ export default {
         xAxis: [
           {
             type: "category",
-            data: [
-              "电信",
-              "经管",
-              "机电",
-              "软件",
-              "建艺",
-              "精密",
-              "体育",
-              "思政",
-              "国教",
-              "汽车"
-            ],
+            data: [],
             axisLine: {
               lineStyle: {
                 color: "#00d4c7"
@@ -1304,18 +1125,7 @@ export default {
         series: [
           {
             type: "bar",
-            data: [
-              73803,
-              6934,
-              67757,
-              92995,
-              12417,
-              32715,
-              215,
-              3440,
-              3536,
-              12213
-            ],
+            data: [],
             barWidth: "30%",
             itemStyle: {
               normal: {
@@ -1376,6 +1186,21 @@ export default {
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.materialdata
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1429,18 +1254,7 @@ export default {
                 color: "#195384"
               }
             },
-            data: [
-              "电信",
-              "经管",
-              "机电",
-              "软件",
-              "建艺",
-              "精密",
-              "体育",
-              "思政",
-              "国教",
-              "汽车"
-            ]
+            data: []
           }
         ],
         yAxis: [
@@ -1526,7 +1340,7 @@ export default {
                 }
               }
             },
-            data: [8672, 791, 6854, 7418, 871, 5938, 9, 754, 567, 607]
+            data: []
           },
           {
             name: "批阅作业",
@@ -1558,7 +1372,7 @@ export default {
                 }
               }
             },
-            data: [5260, 349, 2796, 1476, 366, 2802, 0, 38, 176, 122]
+            data: []
           },
           {
             name: "测试提交",
@@ -1588,7 +1402,7 @@ export default {
                 }
               }
             },
-            data: [4169, 3, 4406, 3839, 2, 1813, 0, 3, 439, 151]
+            data: []
           },
           {
             name: "批阅测试",
@@ -1618,11 +1432,35 @@ export default {
                 }
               }
             },
-            data: [766, 0, 2400, 0, 0, 401, 0, 0, 50, 31]
+            data: []
           }
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.worksubmit
+            },
+            {
+              data: res.data.workread
+            },
+            {
+              data: res.data.testsubmit
+            },
+            {
+              data: res.data.testread
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1656,18 +1494,7 @@ export default {
         },
         xAxis: {
           type: "category",
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ],
+          data: [],
           axisLine: {
             lineStyle: {
               color: "#00d4c7"
@@ -1721,7 +1548,7 @@ export default {
                 color: "#1AFFFD"
               }
             },
-            data: [155, 2, 163, 154, 0, 108, 0, 5, 38, 12]
+            data: []
           },
           {
             name: "发布作业",
@@ -1732,11 +1559,29 @@ export default {
                 color: "#2E7CFF"
               }
             },
-            data: [252, 19, 207, 218, 16, 184, 1, 19, 27, 15]
+            data: []
           }
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.issuework
+            },
+            {
+              data: res.data.issuetest
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1776,18 +1621,7 @@ export default {
           show: false,
           orient: "vertical",
           left: "left",
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ]
+          data: []
         },
         series: [
           {
@@ -1795,18 +1629,7 @@ export default {
             type: "pie",
             radius: "50%",
             center: ["50%", "40%"],
-            data: [
-              { value: 25, name: "电信" },
-              { value: 2, name: "经管" },
-              { value: 35, name: "机电" },
-              { value: 44, name: "软件" },
-              { value: 9, name: "建艺" },
-              { value: 49, name: "精密" },
-              { value: 1, name: "体育" },
-              { value: 6, name: "思政" },
-              { value: 15, name: "国教" },
-              { value: 3, name: "汽车" }
-            ],
+            data: [],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -1818,6 +1641,21 @@ export default {
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.classtea
+            }
+          ],
+          legend: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1857,37 +1695,15 @@ export default {
           show: false,
           orient: "vertical",
           left: "left",
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ]
+          data: []
         },
         series: [
           {
-            name: "开课教师",
+            name: "选课学生",
             type: "pie",
             radius: "50%",
             center: ["50%", "40%"],
-            data: [
-              { value: 5232, name: "电信" },
-              { value: 3455, name: "经管" },
-              { value: 5832, name: "机电" },
-              { value: 7351, name: "软件" },
-              { value: 4513, name: "建艺" },
-              { value: 6206, name: "精密" },
-              { value: 5428, name: "体育" },
-              { value: 13910, name: "思政" },
-              { value: 3561, name: "国教" },
-              { value: 1437, name: "汽车" }
-            ],
+            data: [],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -1899,6 +1715,21 @@ export default {
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.classstu
+            }
+          ],
+          legend: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
@@ -1927,18 +1758,7 @@ export default {
           }
         },
         xAxis: {
-          data: [
-            "电信",
-            "经管",
-            "机电",
-            "软件",
-            "建艺",
-            "精密",
-            "体育",
-            "思政",
-            "国教",
-            "汽车"
-          ],
+          data: [],
           axisLine: {
             show: true, //隐藏X轴轴线
             lineStyle: {
@@ -2028,7 +1848,7 @@ export default {
             areaStyle: {
               color: "rgba(5,140,255, 0.2)"
             },
-            data: [4796, 16, 153, 94, 4, 118, 0, 16, 27, 16]
+            data: []
           },
           {
             name: "发文",
@@ -2048,11 +1868,29 @@ export default {
                 ])
               }
             },
-            data: [12139, 591, 1431, 4529, 5, 1282, 1, 66, 206, 182]
+            data: []
           }
         ]
       };
       myChart.setOption(option);
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+        myChart.setOption({
+          series: [
+            {
+              data: res.data.theme
+            },
+            {
+              data: res.data.article
+            }
+          ],
+          xAxis: [
+            {
+              data: res.data.department
+            }
+          ]
+        });
+      });
       window.addEventListener("resize", function() {
         myChart.resize();
       });
