@@ -36,8 +36,8 @@
 
           <div class="boxall" style="height: 4.8rem;">
             <div class="alltitle" style="height: 12%;">
-              <div class="kebiaotitle">{{this.class}}课程信息</div>
-              <div class="select">
+              <div class="kebiaotitle2">{{this.class}}课程信息</div>
+              <div class="select1">
                 <el-dropdown @command="handleCommand1">
                   <span class="el-dropdown-link">
                     18级
@@ -4597,7 +4597,7 @@ export default {
 .zhibantable {
   height: 85.3%;
 }
-.el-table {
+.zhibantable .el-table {
   height: 100%;
   width: 100% !important;
   background-color: transparent !important;
@@ -4662,12 +4662,12 @@ export default {
 #main10 {
   padding-bottom: 0.2rem;
 }
-.kebiaotitle {
+.kebiaotitle2 {
   width: 68%;
   text-align: right;
   float: left;
 }
-.select {
+.select1 {
   width: 32%;
   float: left;
 }
@@ -4745,5 +4745,8 @@ export default {
 }
 .zhibo {
   padding-bottom: 0.2rem;
+}
+.zhibantable .el-table th{
+  width: 25% !important;
 }
 </style>

@@ -313,15 +313,15 @@ a:hover {
   height: 5.7rem;
   z-index: 9;
 }
-.map4 {
+/* .map4 {
   width: 100%;
   height: 4rem;
   position: absolute;
   left: -20%;
   margin-top: 0.15rem;
-  /* padding-top: 1.5rem; */
+   padding-top: 1.5rem; 
   z-index: 5;
-}
+} */
 .suzhouNum {
   width: 5rem;
   height: 1.7rem;

@@ -1,5 +1,20 @@
 <template>
   <div class="head">
+    <div class="nav">
+      <el-menu
+:default-active="this.$route.path"
+  class="el-menu-demo"
+  mode="horizontal"
+  @select="handleSelect"
+     
+  text-color="#1bb4f6"
+  active-text-color="#5bc0de">
+  <el-menu-item index="/">首页</el-menu-item>
+  <el-menu-item index="/campus">苏工院</el-menu-item>
+  <el-menu-item index="/onlineCourse">网课</el-menu-item>
+  <el-menu-item index="/epidemic">疫情</el-menu-item>
+</el-menu>
+    </div>
     <h1>校园疫情防控与网络教学可视化平台</h1>
     <div class="weather">
       <img src="../assets/images/time4.png" alt="时间截止"/>
@@ -68,7 +83,12 @@ export default {
           console.log(error);
           // window.location.reload();
         });
-    }
+    },
+     handleSelect(key, keyPath) {
+        // console.log(key);
+        this.$router.push(key);
+          
+      }
   },
   beforeDestroy() {
     if (this.timer) {
@@ -129,5 +149,37 @@ export default {
   font-size: 0.17rem;
   vertical-align: middle;
   padding-right: 0.01rem;
+}
+.nav {
+  position: absolute;
+  left: 0.3rem;
+  top: 0;
+  line-height: 0.75rem;
+  height: 65%;
+}
+.el-menu.el-menu--horizontal{
+  z-index: 9999;
+  /* padding-left: 15px; */
+  background: transparent ;
+  border-bottom:none;
+  height: 100% !important;
+
+
+}
+/* .el-menu-item{
+  padding: 0 25px;
+  
+} */
+.el-menu--horizontal>.el-menu-item{
+  font-size: 0.2rem;
+  height: 100% !important;
+}
+.el-menu-item:hover{
+  background-color: rgba(14, 221, 240, 0.32) !important;
+   height: 100% !important;
+}
+.el-menu--horizontal>.el-menu-item.is-active{
+  background-color:transparent !important;
+  height: 100%;
 }
 </style>
