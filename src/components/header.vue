@@ -1,24 +1,27 @@
 <template>
-  <div class="head">
-    <div class="nav">
-      <el-menu :default-active="this.$route.path"
-               class="el-menu-demo"
-               mode="horizontal"
-               @select="handleSelect"
-               text-color="#1bb4f6"
-               active-text-color="#5bc0de">
-        <el-menu-item index="/">首页</el-menu-item>
-        <el-menu-item index="/campus">苏工院</el-menu-item>
-        <el-menu-item index="/onlineCourse">网课</el-menu-item>
-        <el-menu-item index="/epidemic">疫情</el-menu-item>
-      </el-menu>
-    </div>
-    <h1>校园疫情防控与网络教学可视化平台</h1>
-    <div class="weather">
-      <img src="../assets/images/time4.png"
-           alt="时间截止" />
-      <span>数据更新截止：</span>
-      <span id="showTime">{{deadLine}}</span>
+  <div>
+    <div class="head">
+      <div class="nav">
+        <el-menu :default-active="this.$route.path"
+                 class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="#1bb4f6"
+                 active-text-color="#5bc0de">
+          <el-menu-item index="/">首页</el-menu-item>
+          <el-menu-item index="/campus">苏工院</el-menu-item>
+          <el-menu-item index="/onlineCourse">网课</el-menu-item>
+          <el-menu-item index="/epidemic">疫情</el-menu-item>
+          <el-menu-item index="/video">管理</el-menu-item>
+        </el-menu>
+      </div>
+      <h1>校园疫情防控与网络教学可视化平台</h1>
+      <div class="weather">
+        <img src="../assets/images/time4.png"
+             alt="时间截止" />
+        <span>数据更新截止：</span>
+        <span id="showTime">{{deadLine}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -87,7 +90,8 @@ export default {
       // console.log(key);
       this.$router.push(key);
 
-    }
+    },
+
   },
   beforeDestroy () {
     if (this.timer) {
