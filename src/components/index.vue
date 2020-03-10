@@ -159,7 +159,8 @@
           <div class="boxall"
                style="height: 2.85rem;">
             <div class="kebiaotitle">
-              <div class="select">
+              <div class="select"
+                   style="width:25%;float:left">
                 <el-dropdown @command="handleCommand1">
                   <span class="el-dropdown-link">
                     18级
@@ -200,8 +201,9 @@
                 </el-dropdown>
               </div>
               <div class="select"
-                   style="width:51%;float:left">{{this.class}}课程情况（第三周）</div>
-              <div class="zhiban">
+                   style="width:55%;float:left">{{this.class}}课程情况（第三周）</div>
+              <div class="zhiban"
+                   style="width:20%;float:left">
                 值班&nbsp;: &nbsp;
                 <span style="font-weight:1000;">{{this.zhiban}}</span>
               </div>

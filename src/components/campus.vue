@@ -73,7 +73,7 @@
                   <div id="inlunbo1_2">
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 居老师.png"
+                        <img src="static/img/4.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -87,7 +87,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 韩老师.png"
+                        <img src="static/img/1.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -101,7 +101,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 彭书记.png"
+                        <img src="static/img/2.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -115,7 +115,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 薛老师.png"
+                        <img src="static/img/3.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -131,7 +131,7 @@
                   <div id="inlunbo2_2">
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 居老师.png"
+                        <img src="static/img/4.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -145,7 +145,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 韩老师.png"
+                        <img src="static/img/1.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -159,7 +159,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 彭书记.png"
+                        <img src="static/img/2.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -173,7 +173,7 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="../assets/picture/辅导员 薛老师.png"
+                        <img src="static/img/3.png"
                              alt
                              width="100%"
                              height="100%" />
@@ -590,7 +590,7 @@ export default {
           type: "effectScatter",
           coordinateSystem: "amap",
           data: convertData(data),
-          symbol: "image://static/img/ca_red.png",
+          symbol: "image:/static/img/ca_red.png",
           symbolSize: 5,
           showEffectOn: "render",
           rippleEffect: {
@@ -650,7 +650,7 @@ export default {
           type: "scatter",
           coordinateSystem: "amap",
           data: convertData(data1),
-          symbol: "image://static/img/ca_green.png",
+          symbol: "image:/static/img/ca_green.png",
           symbolSize: 20,
           showEffectOn: "render",
           rippleEffect: {

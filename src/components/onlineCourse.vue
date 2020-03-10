@@ -1,13 +1,17 @@
 <template>
   <div>
-    <div class="canvas" style="opacity: .2">
-      <canvas id="canv" width="1920" height="572"></canvas>
+    <div class="canvas"
+         style="opacity: .2">
+      <canvas id="canv"
+              width="1920"
+              height="572"></canvas>
     </div>
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width:30%">
-          <div class="boxall" style="height: 4.8rem">
+          <div class="boxall"
+               style="height: 4.8rem">
             <div class="alltitle">值班教师表</div>
             <div class="todayteacher">
               当日值班教师：
@@ -17,25 +21,29 @@
             </div>
             <div class="allnav">
               <div class="zhibantable">
-                <el-table
-                  :data="zhibanInfo"
-                  stripe
-                  style="font-size: 10%"
-                  :row-style="{ height: '0.45rem' }"
-                  :cell-style="{ padding: '0px' }"
-                >
-                  <el-table-column prop="dutydate" label="值班日期"></el-table-column>
-                  <el-table-column prop="t_name" label="教师姓名"></el-table-column>
-                  <el-table-column prop="t_tel" label="联系方式"></el-table-column>
-                  <el-table-column prop="department" label="部门"></el-table-column>
+                <el-table :data="zhibanInfo"
+                          stripe
+                          style="font-size: 10%"
+                          :row-style="{ height: '0.45rem' }"
+                          :cell-style="{ padding: '0px' }">
+                  <el-table-column prop="dutydate"
+                                   label="值班日期"></el-table-column>
+                  <el-table-column prop="t_name"
+                                   label="教师姓名"></el-table-column>
+                  <el-table-column prop="t_tel"
+                                   label="联系方式"></el-table-column>
+                  <el-table-column prop="department"
+                                   label="部门"></el-table-column>
                 </el-table>
               </div>
             </div>
             <div class="boxfoot"></div>
           </div>
 
-          <div class="boxall" style="height: 4.8rem;">
-            <div class="alltitle" style="height: 12%;">
+          <div class="boxall"
+               style="height: 4.8rem;">
+            <div class="alltitle"
+                 style="height: 12%;">
               <div class="kebiaotitle2">{{this.class}}课程信息</div>
               <div class="select1">
                 <el-dropdown @command="handleCommand1">
@@ -78,21 +86,25 @@
                 </el-dropdown>
               </div>
             </div>
-            <div class="allnav" id="kebiao"></div>
+            <div class="allnav"
+                 id="kebiao"></div>
             <div class="boxfoot"></div>
           </div>
         </li>
         <li style="width:40%">
-          <div class="bar" style="height: 1.45rem;margin-bottom:0.15rem;">
-            <div class="barbox" style="height: 0.85rem">
+          <div class="bar"
+               style="height: 1.45rem;margin-bottom:0.15rem;">
+            <div class="barbox"
+                 style="height: 0.85rem">
               <ul class="clearfix">
-                <li class="pulll_left counter" style="width:15%;">{{this.sumAll}}</li>
-                <li
-                  class="pulll_left counter"
-                  style="width:35%;"
-                >{{this.sumYingdao}}-{{this.sumShidao}}</li>
-                <li class="pulll_left counter" style="width:15%;">{{this.sumChidao}}</li>
-                <li class="pulll_left counter" style="width:35%;">
+                <li class="pulll_left counter"
+                    style="width:15%;">{{this.sumAll}}</li>
+                <li class="pulll_left counter"
+                    style="width:35%;">{{this.sumYingdao}}-{{this.sumShidao}}</li>
+                <li class="pulll_left counter"
+                    style="width:15%;">{{this.sumChidao}}</li>
+                <li class="pulll_left counter"
+                    style="width:35%;">
                   <div class="queqinrenshu">{{this.sumQueqin}}</div>
                   <div id="queqin"></div>
                 </li>
@@ -100,49 +112,47 @@
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left" style="width:15%;">系部人数</li>
-                <li class="pulll_left" style="width:35%;">当天上课-实际上课</li>
-                <li class="pulll_left" style="width:15%;">迟到人数</li>
-                <li class="pulll_left" style="width:35%;">缺勤人数</li>
+                <li class="pulll_left"
+                    style="width:15%;">系部人数</li>
+                <li class="pulll_left"
+                    style="width:35%;">当天上课-实际上课</li>
+                <li class="pulll_left"
+                    style="width:15%;">迟到人数</li>
+                <li class="pulll_left"
+                    style="width:35%;">缺勤人数</li>
               </ul>
             </div>
           </div>
-          <div class="boxall" style="height: 5.1rem;">
+          <div class="boxall"
+               style="height: 5.1rem;">
             <div class="alltitle">课程直播</div>
             <div class="allnav zhibo">
               <div class="zhibobox">
-                <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions1"
-              ></video-player>
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :options="playerOptions1"></video-player>
               </div>
               <div class="zhibobox">
-                  <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions2"
-              ></video-player>
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :options="playerOptions2"></video-player>
               </div>
               <div class="zhibobox">
-                  <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions3"
-              ></video-player>
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :options="playerOptions3"></video-player>
               </div>
               <div class="zhibobox">
-                  <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions4"
-              ></video-player>
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :options="playerOptions4"></video-player>
               </div>
-              
+
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.9rem;">
+          <div class="boxall"
+               style="height: 2.9rem;">
             <div class="alltitle">辅导员信息</div>
             <div class="allnav">
               <div id="lunbo">
@@ -150,7 +160,10 @@
                   <div id="inlunbo1">
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/4.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         居晓玮
@@ -161,7 +174,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/1.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         韩雪芳
@@ -172,7 +188,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                        <img src="static/img/2.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         彭 薇
@@ -183,7 +202,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/3.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         薛慧敏
@@ -196,7 +218,10 @@
                   <div id="inlunbo2">
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 居老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/4.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         居晓玮
@@ -207,7 +232,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 韩老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/1.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         韩雪芳
@@ -218,7 +246,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 彭书记.png" alt width="100%" height="100%" />
+                        <img src="static/img/2.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         彭 薇
@@ -229,7 +260,10 @@
                     </div>
                     <div class="lunboborder">
                       <div class="lunboimg">
-                        <img src="../assets/picture/辅导员 薛老师.png" alt width="100%" height="100%" />
+                        <img src="static/img/3.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext">
                         薛慧敏
@@ -246,19 +280,25 @@
           </div>
         </li>
         <li style="width:30%">
-          <div class="boxall" style="height:3.2rem">
+          <div class="boxall"
+               style="height:3.2rem">
             <div class="alltitle">授课平台分析</div>
-            <div class="allnav" id="main8"></div>
+            <div class="allnav"
+                 id="main8"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height:3.05rem">
+          <div class="boxall"
+               style="height:3.05rem">
             <div class="alltitle">网课初体验</div>
-            <div class="allnav" id="main9"></div>
+            <div class="allnav"
+                 id="main9"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height:3.2rem">
+          <div class="boxall"
+               style="height:3.2rem">
             <div class="alltitle">网课出勤Top5</div>
-            <div class="allnav" id="main10"></div>
+            <div class="allnav"
+                 id="main10"></div>
             <div class="boxfoot"></div>
           </div>
         </li>
@@ -278,7 +318,7 @@ import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       staticUrl: this.staticUrl,
       //学校总人数
@@ -3435,7 +3475,7 @@ export default {
         { name: "频频翻车", value: 1300 },
         { name: "老师别点我", value: 1400 },
         { name: "忘记闭麦", value: 1500 },
-       
+
       ],
       //上课平台
       pingtai: [[12, 13, 11, 7, 9, 11, 4]]
@@ -3445,8 +3485,8 @@ export default {
     Header,
     videoPlayer
   },
-  created() {},
-  mounted() {
+  created () { },
+  mounted () {
     //背景动画
     this.canves();
     //获取系部总人数
@@ -3472,7 +3512,7 @@ export default {
   },
   methods: {
     //动画
-    canves() {
+    canves () {
       var num = 200;
       var w = window.innerWidth;
       var h = window.innerHeight;
@@ -3480,18 +3520,18 @@ export default {
       var _x = 0;
       var _y = 0;
       var _z = 150;
-      var dtr = function(d) {
+      var dtr = function (d) {
         return (d * Math.PI) / 180;
       };
 
-      var rnd = function() {
+      var rnd = function () {
         return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
       };
-      var dist = function(p1, p2, p3) {
+      var dist = function (p1, p2, p3) {
         return Math.sqrt(
           Math.pow(p2.x - p1.x, 2) +
-            Math.pow(p2.y - p1.y, 2) +
-            Math.pow(p2.z - p1.z, 2)
+          Math.pow(p2.y - p1.y, 2) +
+          Math.pow(p2.z - p1.z, 2)
         );
       };
 
@@ -3523,7 +3563,7 @@ export default {
           y: h / 2,
           z: 0
         },
-        upd: function() {
+        upd: function () {
           cam.dist.x = cam.dest.x - cam.obj.x;
           cam.dist.y = cam.dest.y - cam.obj.y;
           cam.dist.z = cam.dest.z - cam.obj.z;
@@ -3537,22 +3577,22 @@ export default {
             Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
+              cam.dist.y * cam.dist.y +
+              cam.dist.z * cam.dist.z
             );
           cam.ang.stheta =
             -cam.dist.y /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
+              cam.dist.y * cam.dist.y +
+              cam.dist.z * cam.dist.z
             );
         }
       };
 
       var trans = {
         parts: {
-          sz: function(p, sz) {
+          sz: function (p, sz) {
             return {
               x: p.x * sz.x,
               y: p.y * sz.y,
@@ -3560,21 +3600,21 @@ export default {
             };
           },
           rot: {
-            x: function(p, rot) {
+            x: function (p, rot) {
               return {
                 x: p.x,
                 y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
                 z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
               };
             },
-            y: function(p, rot) {
+            y: function (p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
                 y: p.y,
                 z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
               };
             },
-            z: function(p, rot) {
+            z: function (p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
                 y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
@@ -3582,7 +3622,7 @@ export default {
               };
             }
           },
-          pos: function(p, pos) {
+          pos: function (p, pos) {
             return {
               x: p.x + pos.x,
               y: p.y + pos.y,
@@ -3591,21 +3631,21 @@ export default {
           }
         },
         pov: {
-          plane: function(p) {
+          plane: function (p) {
             return {
               x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
               y: p.y,
               z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
             };
           },
-          theta: function(p) {
+          theta: function (p) {
             return {
               x: p.x,
               y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
               z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
             };
           },
-          set: function(p) {
+          set: function (p) {
             return {
               x: p.x - cam.obj.x,
               y: p.y - cam.obj.y,
@@ -3613,7 +3653,7 @@ export default {
             };
           }
         },
-        persp: function(p) {
+        persp: function (p) {
           return {
             x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
             y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
@@ -3621,7 +3661,7 @@ export default {
             p: cam.dist.z / p.z
           };
         },
-        disp: function(p, disp) {
+        disp: function (p, disp) {
           return {
             x: p.x + disp.x,
             y: -p.y + disp.y,
@@ -3629,7 +3669,7 @@ export default {
             p: p.p
           };
         },
-        steps: function(_obj_, sz, rot, pos, disp) {
+        steps: function (_obj_, sz, rot, pos, disp) {
           var _args = trans.parts.sz(_obj_, sz);
           _args = trans.parts.rot.x(_args, rot);
           _args = trans.parts.rot.y(_args, rot);
@@ -3644,9 +3684,9 @@ export default {
         }
       };
 
-      (function() {
+      (function () {
         "use strict";
-        var threeD = function(param) {
+        var threeD = function (param) {
           this.transIn = {};
           this.transOut = {};
           this.transIn.vtx = param.vtx;
@@ -3655,7 +3695,7 @@ export default {
           this.transIn.pos = param.pos;
         };
 
-        threeD.prototype.vupd = function() {
+        threeD.prototype.vupd = function () {
           this.transOut = trans.steps(
             this.transIn.vtx,
             this.transIn.sz,
@@ -3665,7 +3705,7 @@ export default {
           );
         };
 
-        var Build = function() {
+        var Build = function () {
           this.vel = 0.04;
           this.lim = 360;
           this.diff = 200;
@@ -3675,7 +3715,7 @@ export default {
           this.go();
         };
 
-        Build.prototype.go = function() {
+        Build.prototype.go = function () {
           this.canvas = document.getElementById("canv");
           this.canvas.width = window.innerWidth;
           this.canvas.height = window.innerHeight;
@@ -3701,7 +3741,7 @@ export default {
           };
         };
 
-        Build.prototype.add = function() {
+        Build.prototype.add = function () {
           this.varr.push(
             new threeD({
               vtx: {
@@ -3733,12 +3773,12 @@ export default {
           });
         };
 
-        Build.prototype.upd = function() {
+        Build.prototype.upd = function () {
           cam.obj.x += (this.toX - cam.obj.x) * 0.05;
           cam.obj.y += (this.toY - cam.obj.y) * 0.05;
         };
 
-        Build.prototype.draw = function() {
+        Build.prototype.draw = function () {
           this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
           cam.upd();
           this.rotObj.x += 0.1;
@@ -3788,16 +3828,16 @@ export default {
             this.$.closePath();
           }
         };
-        Build.prototype.anim = function() {
-          window.requestAnimationFrame = (function() {
+        Build.prototype.anim = function () {
+          window.requestAnimationFrame = (function () {
             return (
               window.requestAnimationFrame ||
-              function(callback, element) {
+              function (callback, element) {
                 window.setTimeout(callback, 1000 / 60);
               }
             );
           })();
-          var anim = function() {
+          var anim = function () {
             this.upd();
             this.draw();
             window.requestAnimationFrame(anim);
@@ -3805,19 +3845,19 @@ export default {
           window.requestAnimationFrame(anim);
         };
 
-        Build.prototype.run = function() {
+        Build.prototype.run = function () {
           this.anim();
 
           window.addEventListener(
             "mousemove",
-            function(e) {
+            function (e) {
               this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
             }.bind(this)
           );
           window.addEventListener(
             "touchmove",
-            function(e) {
+            function (e) {
               e.preventDefault();
               this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
@@ -3825,7 +3865,7 @@ export default {
           );
           window.addEventListener(
             "mousedown",
-            function(e) {
+            function (e) {
               for (var i = 0; i < 100; i++) {
                 this.add();
               }
@@ -3833,7 +3873,7 @@ export default {
           );
           window.addEventListener(
             "touchstart",
-            function(e) {
+            function (e) {
               e.preventDefault();
               for (var i = 0; i < 100; i++) {
                 this.add();
@@ -3846,7 +3886,7 @@ export default {
       })();
       window.addEventListener(
         "resize",
-        function() {
+        function () {
           canvas.width = w = window.innerWidth;
           canvas.height = h = window.innerHeight;
         },
@@ -3854,25 +3894,25 @@ export default {
       );
     },
     //获取宏观信息
-    initSum() {
+    initSum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/lineclass/sum")
-        .then(function(response) {
+        .then(function (response) {
           self.sumAll = response.data.sum;
           self.sumYingdao = response.data.haveclass;
           self.sumShidao = response.data.haveclass - response.data.sumabsent;
           self.sumChidao = response.data.sumlate;
           self.sumQueqin = response.data.sumabsent;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
     //获取当前时间
-    getTime() {
+    getTime () {
       var self = this; //声明一个变量指向Vue实例this，保证作用域一致
-      this.timer = setInterval(function() {
+      this.timer = setInterval(function () {
         self.currentTime = //修改数据date
           new Date().getFullYear() +
           "-" +
@@ -3888,21 +3928,21 @@ export default {
       }, 1000);
     },
     //获取缺勤比例
-    initQueqin() {
+    initQueqin () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/lineclass/getMoM")
-        .then(function(response) {
+        .then(function (response) {
           self.sumQingjia = response.data.stuleave;
           self.sumKuangke = response.data.stuabsenteism;
           self.drawQueqin();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
     //缺勤比例
-    drawQueqin() {
+    drawQueqin () {
       var huan = echarts.init(document.getElementById("queqin"));
       const option = {
         color: ["#EE6911", "#1ABDE6"],
@@ -3963,8 +4003,8 @@ export default {
                 name: "旷课",
                 label: {
                   normal: {
-                    formatter: function(params) {
-                      return params.percent+"%";
+                    formatter: function (params) {
+                      return params.percent + "%";
                     },
                     position: "center",
                     show: false,
@@ -3986,8 +4026,8 @@ export default {
                 name: "请假",
                 label: {
                   normal: {
-                    formatter: function(params) {
-                      return params.percent+"%";
+                    formatter: function (params) {
+                      return params.percent + "%";
                     },
                     position: "center",
                     show: true,
@@ -4039,7 +4079,7 @@ export default {
       huan.setOption(option);
     },
     //课表
-    drawKebiao() {
+    drawKebiao () {
       var kebiao = echarts.init(document.getElementById("kebiao"));
 
       const option = {
@@ -4050,7 +4090,7 @@ export default {
         tooltip: {
           position: "right",
           trigger: "item",
-          formatter: function(value) {
+          formatter: function (value) {
             let res =
               "课程情况" +
               "<br/>课程名称：" +
@@ -4145,7 +4185,7 @@ export default {
             data: this.kebiaodata,
             label: {
               show: true,
-              formatter: function(value) {
+              formatter: function (value) {
                 let res = value.data[3];
                 return res;
               }
@@ -4163,7 +4203,7 @@ export default {
       kebiao.setOption(option);
     },
     //课表18级切换
-    handleCommand1(command) {
+    handleCommand1 (command) {
       this.kebiaodata = eval("this." + command);
       // if(command = "rj18c2")
       //   this.class = "软件18C2";
@@ -4199,7 +4239,7 @@ export default {
       this.drawKebiao();
     },
     //课表19级切换
-    handleCommand2(command) {
+    handleCommand2 (command) {
       this.kebiaodata = eval("this." + command);
       switch (command) {
         case "rj19c2":
@@ -4242,13 +4282,13 @@ export default {
       this.drawKebiao();
     },
     //辅导员信息滚动
-    gundong() {
+    gundong () {
       var speed = 12;
       var tab = document.getElementById("lunbo");
       var tab1 = document.getElementById("inlunbo1");
       var tab2 = document.getElementById("inlunbo1");
       tab2.innerHTML = tab1.innerHTML;
-      function Marquee() {
+      function Marquee () {
         if (tab2.offsetWidth - tab.scrollLeft <= 0)
           tab.scrollLeft -= tab1.offsetWidth;
         else {
@@ -4256,54 +4296,54 @@ export default {
         }
       }
       var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function() {
+      tab.onmouseover = function () {
         clearInterval(MyMar);
       };
-      tab.onmouseout = function() {
+      tab.onmouseout = function () {
         MyMar = setInterval(Marquee, speed);
       };
     },
 
     //获取当日值班教师信息
-    todayzhiban() {
+    todayzhiban () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/lineclass/dutyteacher")
-        .then(function(response) {
+        .then(function (response) {
           self.zhiban = response.data[0].t_name;
           self.zhibantel = response.data[0].t_tel;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
     //获取值班教师信息
-    initZhibanInfo() {
+    initZhibanInfo () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/lineclass/selectTeacher")
-        .then(function(response) {
+        .then(function (response) {
           self.zhibanInfo = response.data;
           self.play();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
     //change,play实现表格自动滚动
-    change() {
+    change () {
       //把第一条数据插入数组最后一条
       this.zhibanInfo.push(this.zhibanInfo[0]);
       //删除数组中第一条数据
       this.zhibanInfo.shift();
     },
-    play() {
+    play () {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
     },
     //绘制词云
-    drawCiyun() {
+    drawCiyun () {
       var wordcould = echarts.init(document.getElementById("main9"));
       const option = {
         // backgroundColor: "#fff",
@@ -4328,10 +4368,10 @@ export default {
             // maskImage: maskImage,
             // width:'100%',
             // height:'100%',
-            max_font_size:1,
+            max_font_size: 1,
             textStyle: {
               normal: {
-                color: function() {
+                color: function () {
                   return (
                     "rgb(" +
                     (Math.round(Math.random() * (255 - 170)) + 170) +
@@ -4361,7 +4401,7 @@ export default {
       wordcould.setOption(option);
     },
     //绘制雷达图
-    drawLeida() {
+    drawLeida () {
       var leida = echarts.init(document.getElementById("main8"));
       const option = {
         grid: {},
@@ -4441,9 +4481,9 @@ export default {
       };
       leida.setOption(option);
     },
-    
+
     //绘制出勤率top5
-    drawTop5() {
+    drawTop5 () {
       var chuqin = echarts.init(document.getElementById("main10"));
       const option = {
         grid: {
@@ -4545,7 +4585,7 @@ export default {
       chuqin.setOption(option);
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -4736,17 +4776,16 @@ export default {
   font-size: 0.19rem;
   color: #519ebe;
 }
-.zhibobox{
+.zhibobox {
   width: 48%;
   float: left;
   height: 48%;
   margin: 1%;
-
 }
 .zhibo {
   padding-bottom: 0.2rem;
 }
-.zhibantable .el-table th{
+.zhibantable .el-table th {
   width: 25% !important;
 }
 </style>
