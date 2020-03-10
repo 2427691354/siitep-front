@@ -594,11 +594,11 @@ export default {
             data: [
               {
                 value: 655,
-                name: "电子"
+                name: "电信"
               },
               {
                 value: 123,
-                name: "经贸"
+                name: "经管"
               },
               {
                 value: 939,
@@ -610,7 +610,7 @@ export default {
               },
               {
                 value: 65,
-                name: "建筑"
+                name: "建艺"
               },
               {
                 value: 1211,
@@ -663,11 +663,11 @@ export default {
             data: [
               {
                 value: 352,
-                name: "电子"
+                name: "电信"
               },
               {
                 value: 0,
-                name: "经贸"
+                name: "经管"
               },
               {
                 value: 139,
@@ -679,7 +679,7 @@ export default {
               },
               {
                 value: 37,
-                name: "建筑"
+                name: "建艺"
               },
               {
                 value: 57,
@@ -732,11 +732,11 @@ export default {
             data: [
               {
                 value: 452,
-                name: "电子"
+                name: "电信"
               },
               {
                 value: 0,
-                name: "经贸"
+                name: "经管"
               },
               {
                 value: 341,
@@ -748,7 +748,7 @@ export default {
               },
               {
                 value: 65,
-                name: "建筑"
+                name: "建艺"
               },
               {
                 value: 109,
