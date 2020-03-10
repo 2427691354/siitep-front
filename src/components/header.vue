@@ -9,9 +9,10 @@
                  text-color="#1bb4f6"
                  active-text-color="#5bc0de">
           <el-menu-item index="/">首页</el-menu-item>
-          <el-menu-item index="/campus">苏工院</el-menu-item>
-          <el-menu-item index="/onlineCourse">网课</el-menu-item>
-          <el-menu-item index="/epidemic">疫情</el-menu-item>
+          <el-menu-item index="/campus">校园防疫</el-menu-item>
+          <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
+          <el-menu-item index="/onlineCourse">停课不停学</el-menu-item>
+          <el-menu-item index="/epidemic">疫情分析</el-menu-item>
         </el-menu>
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>

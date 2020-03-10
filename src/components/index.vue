@@ -4054,7 +4054,6 @@ export default {
                     position: "center",
                     textStyle: {
                       color: "#fff",
-
                       fontSize: 10
                     }
                   },
