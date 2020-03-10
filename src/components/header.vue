@@ -11,7 +11,6 @@
           <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
-          <el-menu-item index="/onlineCourse">停课不停学</el-menu-item>
           <el-menu-item index="/epidemic">疫情分析</el-menu-item>
           <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
         </el-menu>
