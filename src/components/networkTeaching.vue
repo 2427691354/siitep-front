@@ -1039,7 +1039,7 @@ export default {
           //图表的位置
           top: "1%",
           left: "3%",
-          right: "3%",
+          right: "5%",
           bottom: "10%",
           containLabel: true
         },
@@ -1063,7 +1063,7 @@ export default {
               color: "#00d4c7"
             },
             formatter: function(val) {
-              return `${val / 1000}万`;
+              return `${val}`;
             }
           },
           axisLine: {
@@ -2049,10 +2049,13 @@ export default {
               show: false
             },
             axisTick: {
-              show: false
+              show: true
             },
             axisLine: {
-              show: false
+              show: true,
+              lineStyle: {
+                color: "#01FCE3"
+              }
             },
             axisLabel: {
               show: true,
