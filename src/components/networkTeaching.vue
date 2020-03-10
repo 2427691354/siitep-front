@@ -1,33 +1,27 @@
 <template>
   <div>
-    <div class="canvas"
-         style="opacity: .2">
-      <canvas id="canv"
-              width="1920"
-              height="572"></canvas>
+    <div class="canvas" style="opacity: .2">
+      <canvas id="canv" width="1920" height="572"></canvas>
     </div>
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width: 33%;">
-          <div class="boxall"
-               style="height: 3.6rem">
+          <div class="boxall" style="height: 3.6rem">
             <div class="alltitle">课程讨论区</div>
             <div class="allnav">
               <div id="viewclass"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3rem">
+          <div class="boxall" style="height: 3rem">
             <div class="alltitle">添加资源分析</div>
             <div class="allnav">
               <div id="ziyuan"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3rem;">
+          <div class="boxall" style="height: 3rem;">
             <div class="alltitle">进入课程总数</div>
             <div class="allnav">
               <div id="fangwen"></div>
@@ -36,24 +30,21 @@
           </div>
         </li>
         <li style="width:34%">
-          <div class="boxall"
-               style="height: 3.3rem;">
+          <div class="boxall" style="height: 3.3rem;">
             <div class="alltitle">学习时长</div>
             <div class="allnav">
               <div id="duration"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3.3rem;">
+          <div class="boxall" style="height: 3.3rem;">
             <div class="alltitle">课程被访问总数</div>
             <div class="allnav">
               <div id="course"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3rem">
+          <div class="boxall" style="height: 3rem">
             <div class="alltitle">阅读教学材料总数</div>
             <div class="allnav">
               <div id="material"></div>
@@ -62,24 +53,21 @@
           </div>
         </li>
         <li style="width: 33%;">
-          <div class="boxall"
-               style="height:3.4rem">
+          <div class="boxall" style="height:3.4rem">
             <div class="alltitle">作业\测试分析</div>
             <div class="allnav">
               <div id="task"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 3.3rem;">
+          <div class="boxall" style="height: 3.3rem;">
             <div class="alltitle">发布情况分析</div>
             <div class="allnav">
               <div id="release"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 2.9rem;">
+          <div class="boxall" style="height: 2.9rem;">
             <div class="alltitle">开课教师\选课学生总数</div>
             <div class="allnav">
               <div id="starttea"></div>
@@ -98,7 +86,7 @@
 import echarts from "echarts";
 import Header from "@/components/header";
 export default {
-  data () {
+  data() {
     return {
       // 图片父容器高度
       bannerHeight: 1000,
@@ -109,8 +97,8 @@ export default {
   components: {
     Header
   },
-  created () { },
-  mounted () {
+  created() {},
+  mounted() {
     this.resizeFontsize();
     //改变横屏竖屏执行效果更换
     window.addEventListener("orientationchange", this.resizeFontsize());
@@ -139,16 +127,16 @@ export default {
     this.courseview();
   },
   methods: {
-    setSize: function () {
+    setSize: function() {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    resizeFontsize () {
+    resizeFontsize() {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    canves () {
+    canves() {
       var num = 200;
       var w = window.innerWidth;
       var h = window.innerHeight;
@@ -156,18 +144,18 @@ export default {
       var _x = 0;
       var _y = 0;
       var _z = 150;
-      var dtr = function (d) {
+      var dtr = function(d) {
         return (d * Math.PI) / 180;
       };
 
-      var rnd = function () {
+      var rnd = function() {
         return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
       };
-      var dist = function (p1, p2, p3) {
+      var dist = function(p1, p2, p3) {
         return Math.sqrt(
           Math.pow(p2.x - p1.x, 2) +
-          Math.pow(p2.y - p1.y, 2) +
-          Math.pow(p2.z - p1.z, 2)
+            Math.pow(p2.y - p1.y, 2) +
+            Math.pow(p2.z - p1.z, 2)
         );
       };
 
@@ -199,7 +187,7 @@ export default {
           y: h / 2,
           z: 0
         },
-        upd: function () {
+        upd: function() {
           cam.dist.x = cam.dest.x - cam.obj.x;
           cam.dist.y = cam.dest.y - cam.obj.y;
           cam.dist.z = cam.dest.z - cam.obj.z;
@@ -213,22 +201,22 @@ export default {
             Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-              cam.dist.y * cam.dist.y +
-              cam.dist.z * cam.dist.z
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
             );
           cam.ang.stheta =
             -cam.dist.y /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-              cam.dist.y * cam.dist.y +
-              cam.dist.z * cam.dist.z
+                cam.dist.y * cam.dist.y +
+                cam.dist.z * cam.dist.z
             );
         }
       };
 
       var trans = {
         parts: {
-          sz: function (p, sz) {
+          sz: function(p, sz) {
             return {
               x: p.x * sz.x,
               y: p.y * sz.y,
@@ -236,21 +224,21 @@ export default {
             };
           },
           rot: {
-            x: function (p, rot) {
+            x: function(p, rot) {
               return {
                 x: p.x,
                 y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
                 z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
               };
             },
-            y: function (p, rot) {
+            y: function(p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
                 y: p.y,
                 z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
               };
             },
-            z: function (p, rot) {
+            z: function(p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
                 y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
@@ -258,7 +246,7 @@ export default {
               };
             }
           },
-          pos: function (p, pos) {
+          pos: function(p, pos) {
             return {
               x: p.x + pos.x,
               y: p.y + pos.y,
@@ -267,21 +255,21 @@ export default {
           }
         },
         pov: {
-          plane: function (p) {
+          plane: function(p) {
             return {
               x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
               y: p.y,
               z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
             };
           },
-          theta: function (p) {
+          theta: function(p) {
             return {
               x: p.x,
               y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
               z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
             };
           },
-          set: function (p) {
+          set: function(p) {
             return {
               x: p.x - cam.obj.x,
               y: p.y - cam.obj.y,
@@ -289,7 +277,7 @@ export default {
             };
           }
         },
-        persp: function (p) {
+        persp: function(p) {
           return {
             x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
             y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
@@ -297,7 +285,7 @@ export default {
             p: cam.dist.z / p.z
           };
         },
-        disp: function (p, disp) {
+        disp: function(p, disp) {
           return {
             x: p.x + disp.x,
             y: -p.y + disp.y,
@@ -305,7 +293,7 @@ export default {
             p: p.p
           };
         },
-        steps: function (_obj_, sz, rot, pos, disp) {
+        steps: function(_obj_, sz, rot, pos, disp) {
           var _args = trans.parts.sz(_obj_, sz);
           _args = trans.parts.rot.x(_args, rot);
           _args = trans.parts.rot.y(_args, rot);
@@ -320,9 +308,9 @@ export default {
         }
       };
 
-      (function () {
+      (function() {
         "use strict";
-        var threeD = function (param) {
+        var threeD = function(param) {
           this.transIn = {};
           this.transOut = {};
           this.transIn.vtx = param.vtx;
@@ -331,7 +319,7 @@ export default {
           this.transIn.pos = param.pos;
         };
 
-        threeD.prototype.vupd = function () {
+        threeD.prototype.vupd = function() {
           this.transOut = trans.steps(
             this.transIn.vtx,
             this.transIn.sz,
@@ -341,7 +329,7 @@ export default {
           );
         };
 
-        var Build = function () {
+        var Build = function() {
           this.vel = 0.04;
           this.lim = 360;
           this.diff = 200;
@@ -351,7 +339,7 @@ export default {
           this.go();
         };
 
-        Build.prototype.go = function () {
+        Build.prototype.go = function() {
           this.canvas = document.getElementById("canv");
           this.canvas.width = window.innerWidth;
           this.canvas.height = window.innerHeight;
@@ -377,7 +365,7 @@ export default {
           };
         };
 
-        Build.prototype.add = function () {
+        Build.prototype.add = function() {
           this.varr.push(
             new threeD({
               vtx: {
@@ -409,12 +397,12 @@ export default {
           });
         };
 
-        Build.prototype.upd = function () {
+        Build.prototype.upd = function() {
           cam.obj.x += (this.toX - cam.obj.x) * 0.05;
           cam.obj.y += (this.toY - cam.obj.y) * 0.05;
         };
 
-        Build.prototype.draw = function () {
+        Build.prototype.draw = function() {
           this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
           cam.upd();
           this.rotObj.x += 0.1;
@@ -464,16 +452,16 @@ export default {
             this.$.closePath();
           }
         };
-        Build.prototype.anim = function () {
-          window.requestAnimationFrame = (function () {
+        Build.prototype.anim = function() {
+          window.requestAnimationFrame = (function() {
             return (
               window.requestAnimationFrame ||
-              function (callback, element) {
+              function(callback, element) {
                 window.setTimeout(callback, 1000 / 60);
               }
             );
           })();
-          var anim = function () {
+          var anim = function() {
             this.upd();
             this.draw();
             window.requestAnimationFrame(anim);
@@ -481,19 +469,19 @@ export default {
           window.requestAnimationFrame(anim);
         };
 
-        Build.prototype.run = function () {
+        Build.prototype.run = function() {
           this.anim();
 
           window.addEventListener(
             "mousemove",
-            function (e) {
+            function(e) {
               this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
             }.bind(this)
           );
           window.addEventListener(
             "touchmove",
-            function (e) {
+            function(e) {
               e.preventDefault();
               this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
@@ -501,7 +489,7 @@ export default {
           );
           window.addEventListener(
             "mousedown",
-            function (e) {
+            function(e) {
               for (var i = 0; i < 100; i++) {
                 this.add();
               }
@@ -509,7 +497,7 @@ export default {
           );
           window.addEventListener(
             "touchstart",
-            function (e) {
+            function(e) {
               e.preventDefault();
               for (var i = 0; i < 100; i++) {
                 this.add();
@@ -522,14 +510,14 @@ export default {
       })();
       window.addEventListener(
         "resize",
-        function () {
+        function() {
           canvas.width = w = window.innerWidth;
           canvas.height = h = window.innerHeight;
         },
         false
       );
     },
-    resources () {
+    resources() {
       var myChart = echarts.init(document.getElementById("ziyuan"));
       var option = {
         color: [
@@ -554,23 +542,23 @@ export default {
           left: 0,
           right: 0,
           icon: "circle",
-          bottom: '25%',
+          bottom: "25%",
           itemWidth: 10,
           itemHeight: 10,
           itemGap: 5,
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
             "国教",
             "汽车"
           ],
-          
+
           textStyle: {
             fontSize: 11,
             color: "#B4B4B4"
@@ -794,11 +782,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    courseall () {
+    courseall() {
       var myChart = echarts.init(document.getElementById("fangwen"));
       var option = {
         color: ["#388BFF", "#05C3FA", "#F6931C", "#FFD52E"],
@@ -890,11 +878,11 @@ export default {
               }
             },
             data: [
-              "电子",
-              "经贸",
+              "电信",
+              "经管",
               "机电",
               "软件",
-              "建筑",
+              "建艺",
               "精密",
               "体育",
               "思政",
@@ -961,11 +949,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    studytime () {
+    studytime() {
       var myChart = echarts.init(document.getElementById("duration"));
       var option = {
         grid: {
@@ -995,7 +983,7 @@ export default {
             textStyle: {
               color: "#00d4c7"
             },
-            formatter: function (val) {
+            formatter: function(val) {
               return `${val}`;
             }
           },
@@ -1029,11 +1017,11 @@ export default {
             }
           },
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -1079,11 +1067,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    coursevisit () {
+    coursevisit() {
       var myChart = echarts.init(document.getElementById("course"));
       var data_val = [
         62846,
@@ -1117,11 +1105,11 @@ export default {
 
         xAxis: {
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -1243,11 +1231,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    materialcount () {
+    materialcount() {
       var myChart = echarts.init(document.getElementById("material"));
       var option = {
         tooltip: {
@@ -1266,11 +1254,11 @@ export default {
           {
             type: "category",
             data: [
-              "电子",
-              "经贸",
+              "电信",
+              "经管",
               "机电",
               "软件",
-              "建筑",
+              "建艺",
               "精密",
               "体育",
               "思政",
@@ -1388,11 +1376,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    marking () {
+    marking() {
       var myChart = echarts.init(document.getElementById("task"));
       var option = {
         grid: {
@@ -1442,11 +1430,11 @@ export default {
               }
             },
             data: [
-              "电子",
-              "经贸",
+              "电信",
+              "经管",
               "机电",
               "软件",
-              "建筑",
+              "建艺",
               "精密",
               "体育",
               "思政",
@@ -1635,11 +1623,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    releasework () {
+    releasework() {
       var myChart = echarts.init(document.getElementById("release"));
       var option = {
         tooltip: {
@@ -1669,11 +1657,11 @@ export default {
         xAxis: {
           type: "category",
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -1749,11 +1737,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    selecttea () {
+    selecttea() {
       var myChart = echarts.init(document.getElementById("starttea"));
       var option = {
         color: [
@@ -1789,11 +1777,11 @@ export default {
           orient: "vertical",
           left: "left",
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -1808,11 +1796,11 @@ export default {
             radius: "50%",
             center: ["50%", "40%"],
             data: [
-              { value: 25, name: "电子" },
-              { value: 2, name: "经贸" },
+              { value: 25, name: "电信" },
+              { value: 2, name: "经管" },
               { value: 35, name: "机电" },
               { value: 44, name: "软件" },
-              { value: 9, name: "建筑" },
+              { value: 9, name: "建艺" },
               { value: 49, name: "精密" },
               { value: 1, name: "体育" },
               { value: 6, name: "思政" },
@@ -1830,11 +1818,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    selectstu () {
+    selectstu() {
       var myChart = echarts.init(document.getElementById("startstu"));
       var option = {
         color: [
@@ -1870,11 +1858,11 @@ export default {
           orient: "vertical",
           left: "left",
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -1889,11 +1877,11 @@ export default {
             radius: "50%",
             center: ["50%", "40%"],
             data: [
-              { value: 5232, name: "电子" },
-              { value: 3455, name: "经贸" },
+              { value: 5232, name: "电信" },
+              { value: 3455, name: "经管" },
               { value: 5832, name: "机电" },
               { value: 7351, name: "软件" },
-              { value: 4513, name: "建筑" },
+              { value: 4513, name: "建艺" },
               { value: 6206, name: "精密" },
               { value: 5428, name: "体育" },
               { value: 13910, name: "思政" },
@@ -1911,11 +1899,11 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    courseview () {
+    courseview() {
       var myChart = echarts.init(document.getElementById("viewclass"));
       var option = {
         grid: {
@@ -1940,11 +1928,11 @@ export default {
         },
         xAxis: {
           data: [
-            "电子",
-            "经贸",
+            "电信",
+            "经管",
             "机电",
             "软件",
-            "建筑",
+            "建艺",
             "精密",
             "体育",
             "思政",
@@ -2065,12 +2053,12 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
