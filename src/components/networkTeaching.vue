@@ -18,8 +18,6 @@
             <div class="alltitle">添加资源分析</div>
             <div class="allnav">
               <div id="ziyuan"></div>
-              <div id="shipin"></div>
-              <div id="unit"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
@@ -109,10 +107,6 @@ export default {
     this.canves();
     //添加资源总数
     this.resources();
-    //添加播课单元数
-    this.classunit();
-    //添加播课单元视频数
-    this.videos();
     //进入课程总数
     this.courseall();
     //学习总时长
@@ -526,31 +520,49 @@ export default {
     resources() {
       var myChart = echarts.init(document.getElementById("ziyuan"));
       var option = {
-        color: ['#FFCB89', '#005EA1', '#0AD5FF', '#1AFFFD','#2E7CFF','#FEB602','#FF81CB','#E15828','#0AFF6C','#FF7D0A'],
-        title : {
-            subtext: '添加资源总数',
-            bottom:0,
-            left:'center'
-        },
+        color: [
+          "#FFCB89",
+          "#005EA1",
+          "#0AD5FF",
+          "#1AFFFD",
+          "#2E7CFF",
+          "#FEB602",
+          "#FF81CB",
+          "#E15828",
+          "#0AFF6C",
+          "#FF7D0A"
+        ],
         tooltip: {
           trigger: "item",
           formatter: "   {a} <br/>{b} : {c} ({d}%)"
         },
-        legend: { // 图例-图上面的分类
-            orient: 'vertical',
-            left: 40,
-            //   icon: 'rect',//长方形
-            icon: 'circle',
-            bottom: "center",
-            itemWidth: 8,
-            itemHeight: 8,
-            itemGap: 5,
-            data: ['电子', '经贸', '机电', '软件', '建筑','精密','体育','思政','国教','汽车'],
-            right: '10%',
-            textStyle: {
-                fontSize: 10,
-                color: '#B4B4B4',
-            }
+        legend: {
+          // 图例-图上面的分类
+          orient: "vertical",
+          left: 0,
+          right: 0,
+          icon: "circle",
+          bottom: '25%',
+          itemWidth: 10,
+          itemHeight: 10,
+          itemGap: 5,
+          data: [
+            "电子",
+            "经贸",
+            "机电",
+            "软件",
+            "建筑",
+            "精密",
+            "体育",
+            "思政",
+            "国教",
+            "汽车"
+          ],
+          
+          textStyle: {
+            fontSize: 11,
+            color: "#B4B4B4"
+          }
         },
         grid: {
           top: "1%",
@@ -575,10 +587,10 @@ export default {
                 show: false
               }
             },
-            name: "苏工院",
+            name: "添加资源总数",
             type: "pie",
-            radius: "70%",
-            center: ["50%", "50%"],
+            radius: "50%",
+            center: ["25%", "40%"],
             data: [
               {
                 value: 655,
@@ -628,53 +640,7 @@ export default {
                 shadowColor: "rgba(0, 0, 0, 0.5)"
               }
             }
-          }
-        ]
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function() {
-        myChart.resize();
-      });
-    },
-    classunit() {
-      var myChart = echarts.init(document.getElementById("unit"));
-      var option = {
-        color: ['#FFCB89', '#005EA1', '#0AD5FF', '#1AFFFD','#2E7CFF','#FEB602','#FF81CB','#E15828','#0AFF6C','#FF7D0A'],
-        title : {
-            subtext: '添加播课单元数',
-            bottom:0,
-            left:'center'
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "   {a} <br/>{b} : {c} ({d}%)"
-          // formatter: "   企业数：{c}"
-        },
-        legend: { // 图例-图上面的分类
-            orient: 'vertical',
-            left: 40,
-            //   icon: 'rect',//长方形
-            icon: 'circle',
-            bottom: "center",
-            itemWidth: 8,
-            itemHeight: 8,
-            itemGap: 5,
-            data: ['电子', '经贸', '机电', '软件', '建筑','精密','体育','思政','国教','汽车'],
-            right: '16%',
-            textStyle: {
-                fontSize: 10,
-                color: '#B4B4B4',
-            }
-        },
-        grid: {
-          top: "1%",
-          left: "1%",
-          right: "1%",
-          bottom: "1%",
-          containLabel: true
-        },
-
-        series: [
+          },
           {
             label: {
               normal: {
@@ -690,10 +656,10 @@ export default {
                 show: false
               }
             },
-            name: "苏工院",
+            name: "添加播课单元视频数",
             type: "pie",
-            radius: "70%",
-            center: ["50%", "50%"],
+            radius: "50%",
+            center: ["55%", "40%"],
             data: [
               {
                 value: 352,
@@ -743,52 +709,7 @@ export default {
                 shadowColor: "rgba(0, 0, 0, 0.5)"
               }
             }
-          }
-        ]
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function() {
-        myChart.resize();
-      });
-    },
-    videos() {
-      var myChart = echarts.init(document.getElementById("shipin"));
-      var option = {
-        color: ['#FFCB89', '#005EA1', '#0AD5FF', '#1AFFFD','#2E7CFF','#FEB602','#FF81CB','#E15828','#0AFF6C','#FF7D0A'],
-        title : {
-            subtext: '添加播课单元视频数',
-            bottom:0,
-            left:'center'
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "   {a} <br/>{b} : {c} ({d}%)"
-          // formatter: "   企业数：{c}"
-        },
-        legend: { // 图例-图上面的分类
-            orient: 'vertical',
-            left: 40,
-            //   icon: 'rect',//长方形
-            icon: 'circle',
-            bottom: "center",
-            itemWidth: 8,
-            itemHeight: 8,
-            itemGap: 5,
-            data: ['电子', '经贸', '机电', '软件', '建筑','精密','体育','思政','国教','汽车'],
-            right: '16%',
-            textStyle: {
-                fontSize: 10,
-                color: '#B4B4B4',
-            }
-        },
-        grid: {
-          top: "1%",
-          left: "1%",
-          right: "1%",
-          bottom: "1%",
-          containLabel: true
-        },
-        series: [
+          },
           {
             label: {
               normal: {
@@ -804,10 +725,10 @@ export default {
                 show: false
               }
             },
-            name: "苏工院",
+            name: "添加播课单元课",
             type: "pie",
-            radius: "70%",
-            center: ["50%", "50%"],
+            radius: "50%",
+            center: ["85%", "40%"],
             data: [
               {
                 value: 452,
@@ -1756,7 +1677,7 @@ export default {
             margin: 15,
             textStyle: {
               fontFamily: "Microsoft YaHei",
-              color: "#00d4c7",
+              color: "#00d4c7"
               // fontSize: 10
             }
           },
@@ -1782,7 +1703,7 @@ export default {
           },
           axisLabel: {
             textStyle: {
-              color: "#00d4c7",
+              color: "#00d4c7"
               // fontSize: 10
             }
           },
@@ -1797,7 +1718,7 @@ export default {
             barWidth: "20",
             itemStyle: {
               normal: {
-                color: '#1AFFFD'
+                color: "#1AFFFD"
               }
             },
             data: [155, 2, 163, 154, 0, 108, 0, 5, 38, 12]
@@ -1808,7 +1729,7 @@ export default {
             barWidth: "20",
             itemStyle: {
               normal: {
-                color: '#2E7CFF'
+                color: "#2E7CFF"
               }
             },
             data: [252, 19, 207, 218, 16, 184, 1, 19, 27, 15]
@@ -1823,11 +1744,22 @@ export default {
     selecttea() {
       var myChart = echarts.init(document.getElementById("starttea"));
       var option = {
-        color: ['#FEB602','#FF81CB','#E15828','#0AFF6C','#FF7D0A','#FFCB89', '#005EA1', '#0AD5FF', '#1AFFFD','#2E7CFF'],
-        title : {
-            subtext: '开课教师人数',
-            bottom:'10%',
-            left:'center'
+        color: [
+          "#FEB602",
+          "#FF81CB",
+          "#E15828",
+          "#0AFF6C",
+          "#FF7D0A",
+          "#FFCB89",
+          "#005EA1",
+          "#0AD5FF",
+          "#1AFFFD",
+          "#2E7CFF"
+        ],
+        title: {
+          subtext: "开课教师人数",
+          bottom: "10%",
+          left: "center"
         },
         tooltip: {
           trigger: "item",
@@ -1893,11 +1825,22 @@ export default {
     selectstu() {
       var myChart = echarts.init(document.getElementById("startstu"));
       var option = {
-        color: ['#1AFFFD','#2E7CFF','#FEB602','#FF81CB','#FFCB89', '#005EA1', '#0AD5FF', '#E15828','#0AFF6C','#FF7D0A'],
-        title : {
-            subtext: '选课学生人数',
-            bottom:'10%',
-            left:'center'
+        color: [
+          "#1AFFFD",
+          "#2E7CFF",
+          "#FEB602",
+          "#FF81CB",
+          "#FFCB89",
+          "#005EA1",
+          "#0AD5FF",
+          "#E15828",
+          "#0AFF6C",
+          "#FF7D0A"
+        ],
+        title: {
+          subtext: "选课学生人数",
+          bottom: "10%",
+          left: "center"
         },
         tooltip: {
           trigger: "item",
@@ -2125,26 +2068,13 @@ export default {
 
 <style lang="less">
 @import "../assets/css/comon2.css";
-#viewclass{
+#viewclass {
   width: 6rem;
   height: 100%;
 }
 #ziyuan {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-}
-#shipin {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  margin-left: 2rem;
-}
-#unit {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  margin-left: 4rem;
+  width: 6rem;
+  height: 100%;
 }
 #fangwen {
   width: 6rem;
