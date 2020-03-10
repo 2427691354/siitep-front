@@ -9,7 +9,7 @@
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width: 60%;">
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
@@ -63,7 +63,7 @@
           </div>
         </li>
 
-        <li>
+        <li style="width: 40%;">
           <div class="boxall"
                style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
@@ -2062,8 +2062,7 @@ export default {
 };
 </script>
 
-<style>
-@import "../assets/css/comon1.css";
+<style lang="less" >
 .myvideo {
   width: 100%;
   height: 100%;
@@ -2272,5 +2271,37 @@ export default {
 }
 #zhongdianstu1 .el-table th {
   width: 20% !important;
+}
+.city_Num {
+  width: 2.73rem;
+  height: 5.54rem;
+  margin-left: 8rem;
+  margin-top: 0.15rem;
+  /* border: 1px solid rgba(25, 186, 139, 0.17); */
+  /* padding: 0 0.2rem 0rem 0.15rem; */
+  /* background: rgba(255, 255, 255, 0.08) url(../images/line.png);
+  background-size: 100% auto; */
+  position: absolute;
+  /* margin-bottom: 0.15rem; */
+  z-index: 10;
+}
+.city_Num:before,
+.city_Num:after {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  content: "";
+  /* border-top: 2px solid #02a6b5; */
+  top: 0;
+}
+.city_Num:before,
+.boxfoot:before {
+  /* border-left: 2px solid #02a6b5; */
+  left: 0;
+}
+.city_Num:after,
+.boxfoot:after {
+  /* border-right: 2px solid #02a6b5; */
+  right: 0;
 }
 </style>

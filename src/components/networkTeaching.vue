@@ -9,7 +9,7 @@
     <Header></Header>
     <div class="mainbox">
       <ul class="clearfix">
-        <li>
+        <li style="width: 33%;">
           <div class="boxall"
                style="height: 3.6rem">
             <div class="alltitle">课程讨论区</div>
@@ -35,7 +35,7 @@
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width:34%">
           <div class="boxall"
                style="height: 3.3rem;">
             <div class="alltitle">学习时长</div>
@@ -61,7 +61,7 @@
             <div class="boxfoot"></div>
           </div>
         </li>
-        <li>
+        <li style="width: 33%;">
           <div class="boxall"
                style="height:3.4rem">
             <div class="alltitle">作业\测试分析</div>
@@ -2079,7 +2079,6 @@ export default {
 </script>
 
 <style lang="less">
-@import "../assets/css/comon2.css";
 #viewclass {
   width: 6rem;
   height: 100%;
