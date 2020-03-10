@@ -256,7 +256,7 @@ export default {
       provinces: [],
       //人数
       pronum: [],
-      Num_geli: [],
+      Num_geli: [0],
       Num_fashao: [],
       days2: []
     };
