@@ -2240,15 +2240,15 @@ export default {
   border-bottom: 1px solid #00d4c7;
   // width: 5.1rem;
 }
-// .ivu-tabs-nav {
-//   padding-left: 2rem !important;
-
-// }
 .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused {
   border-color: #00d4c7;
 }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
   color: #00d4c7;
+}
+.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-wrap {
+    margin-bottom: 0;
+    margin-left: 28%;
 }
 .map4 {
   width: 100%;
@@ -2260,8 +2260,8 @@ export default {
   z-index: 5;
 }
 .zhanyi {
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
+  // margin-left: 10%;
 }
 #zhongdianstu1 .el-table th {
   width: 20% !important;
