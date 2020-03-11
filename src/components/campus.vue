@@ -382,8 +382,8 @@ export default {
             //围栏1
             //visible:false,//是否可见
             rejectTexture: true, //是否屏蔽自定义地图的纹理
-            color1: "ffffff00", //楼顶颜色
-            color2: "ffffcc00", //楼面颜色
+            color1: "ffaaaaaa", //楼顶颜色
+            color2: "ff3B3338", //楼面颜色
             path: [
               [120.58580875, 31.22204565],
               [120.58564246, 31.22120155],
@@ -401,8 +401,8 @@ export default {
           },
           {
             //围栏2
-            color1: "ff99ff00",
-            color2: "ff999900",
+             color1: "ffaaaaaa", //楼顶颜色
+            color2: "ff3B3338", //楼面颜色
             path: [
               [120.5883944, 31.21815081],
               [120.58918834, 31.21804071],
@@ -558,16 +558,23 @@ export default {
       map.add(buildingLayer);
       new AMap.Polygon({
         bubble: true,
-        fillOpacity: 0.4,
-        strokeWeight: 1,
+        fillColor: "#02a6d5",
+        fillOpacity: 0.2,
+        strokeColor: "#0893e2",//线颜色
+        strokeOpacity: 1,//线透明度
+        strokeWeight: 1.5,//线宽
+        strokeStyle: "solid",//线样式
         path: options.areas[0].path,
         map: map
       });
       new AMap.Polygon({
         bubble: true,
-        fillColor: "green",
+        fillColor: "#10c8e0",
         fillOpacity: 0.2,
-        strokeWeight: 1,
+        strokeColor: "#16a1b1",//线颜色
+        strokeOpacity: 1,//线透明度
+        strokeWeight: 1.5,//线宽
+        strokeStyle: "solid",//线样式
         path: options.areas[1].path,
         map: map
       });
@@ -581,6 +588,7 @@ export default {
       // AMap.event.addListener(map,'click',function (e) {
       //   //添加点击事件,传入对象名，事件名，回调函数
       //     // alert('click');
+      //     console.log(e);
       //      console.log("x：" + e.lnglat.getLng());
       //      console.log("y：" + e.lnglat.getLat());
       //   })
