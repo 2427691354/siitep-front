@@ -571,7 +571,7 @@ export default {
 
         xAxis: {
           data: [],
-          boundaryGap: false,
+          boundaryGap: true,
           axisLabel: {
             show: true,
             interval: "auto",
@@ -1158,7 +1158,7 @@ export default {
           {
             name: "发布测试",
             type: "bar",
-            barWidth: "20",
+            barWidth: "15",
             itemStyle: {
               normal: {
                 color: "#1AFFFD"
@@ -1169,7 +1169,7 @@ export default {
           {
             name: "发布作业",
             type: "bar",
-            barWidth: "20",
+            barWidth: "15",
             itemStyle: {
               normal: {
                 color: "#2E7CFF"
