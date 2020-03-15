@@ -7,28 +7,26 @@
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
-                <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
-                <li class="pulll_left counter"
-                    style="width:10%;">{{ statistics.sumIsolated }}</li>
-                <li class="pulll_left counter"
-                    style="width:30%;">
+                <li
+                  class="pulll_left counter"
+                  style="width:30%;"
+                >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
+                <li
+                  class="pulll_left counter"
+                  style="width:30%;"
+                >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <li class="pulll_left counter" style="width:10%;">{{ statistics.sumIsolated }}</li>
+                <li class="pulll_left counter" style="width:30%;">
                   <div id="fashao"></div>
                 </li>
               </ul>
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left"
-                    style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left"
-                    style="width:30%;">返苏人数（江苏-苏州）</li>
-                <li class="pulll_left"
-                    style="width:10%;">隔离人数</li>
-                <li class="pulll_left"
-                    style="width:30%;">发烧人数</li>
+                <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
+                <li class="pulll_left" style="width:30%;">返苏人数（江苏-苏州）</li>
+                <li class="pulll_left" style="width:10%;">隔离人数</li>
+                <li class="pulll_left" style="width:30%;">发烧人数</li>
               </ul>
             </div>
           </div>
@@ -37,19 +35,15 @@
                  id="polo_1">
               <div class="boxfoot"></div>
             </div>-->
-            <div class="city_Num"
-                 id="polo_2">
+            <div class="city_Num" id="polo_2">
               <div class="boxfoot"></div>
             </div>
-            <div class="map4"
-                 id="map_1"></div>
+            <div class="map4" id="map_1"></div>
           </div>
 
-          <div class="boxall"
-               style="height: 2.6rem;margin-top:0.15rem">
+          <div class="boxall" style="height: 2.6rem;margin-top:0.15rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
-            <div class="allnav"
-                 id="echart5">
+            <div class="allnav" id="echart5">
               <div id="all_Num"></div>
               <div id="allLine"></div>
             </div>
@@ -58,62 +52,50 @@
         </li>
 
         <li style="width: 40%;">
-          <div class="boxall"
-               style="height:3.7rem">
+          <div class="boxall" style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
-            <div class="allnav"
-                 id="echart4">
-              <video-player class="video-player vjs-custom-skin"
-                            ref="videoPlayer"
-                            :options="playerOptions2"></video-player>
+            <div class="allnav" id="echart4">
+              <video-player
+                class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :options="playerOptions2"
+              ></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo"
-               style="height: 3rem;">
+          <div class="boxallinfo" style="height: 3rem;">
             <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav"
-                 id="zhongdianstu1"
-                 style="height:2.4rem">
-              <el-table :data="stuInfo"
-                        stripe
-                        style="font-size: 10%"
-                        :row-style="{ height: '0.4rem' }"
-                        :cell-style="{ padding: '0px' }">
-                <el-table-column prop="name"
-                                 label="姓名"></el-table-column>
-                <el-table-column prop="class"
-                                 label="班级"></el-table-column>
-                <el-table-column prop="tem"
-                                 label="体温(℃)"></el-table-column>
-                <el-table-column prop="status"
-                                 label="状态"></el-table-column>
-                <el-table-column prop="address"
-                                 label="隔离地点"></el-table-column>
+            <div class="allnav" id="zhongdianstu1" style="height:2.4rem">
+              <el-table
+                :data="stuInfo"
+                stripe
+                style="font-size: 10%"
+                :row-style="{ height: '0.4rem' }"
+                :cell-style="{ padding: '0px' }"
+              >
+                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column prop="class" label="班级"></el-table-column>
+                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="address" label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall"
-               style="height: 2.8rem;">
+          <div class="boxall" style="height: 2.8rem;">
             <div class="alltitle">战“疫”频道</div>
             <div class="allnav zhanyi">
               <!-- <div id="word_zs"></div> -->
-              <Tabs v-model="activename"
-                    type="card">
-                <TabPane label="诊　断"
-                         name="name1"
-                         id="resou"></TabPane>
-                <TabPane label="知　识"
-                         name="name2"
-                         id="zhishi"></TabPane>
-                <TabPane label="辟　谣"
-                         name="name3"
-                         class="piyao">
+              <Tabs v-model="activename" type="card">
+                <TabPane label="诊　断" name="name1" id="resou"></TabPane>
+                <TabPane label="知　识" name="name2" id="zhishi"></TabPane>
+                <TabPane label="辟　谣" name="name3" class="piyao">
                   <ul>
-                    <li class="piyao_list"
-                        v-for="item in this.piyao"
-                        :key="item.title">【谣】{{item.title}}</li>
+                    <li
+                      class="piyao_list"
+                      v-for="item in this.piyao"
+                      :key="item.title"
+                    >【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -138,7 +120,7 @@ import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
-  data () {
+  data() {
     return {
       staticUrl: this.staticUrl,
       staticUrl2: this.staticUrl2,
@@ -259,7 +241,7 @@ export default {
     Header,
     videoPlayer
   },
-  created () {
+  created() {
     //学生隔离人数
     this.insulateNum();
     //学生发烧人数
@@ -270,7 +252,7 @@ export default {
     // this.noMaskList();
     this.map();
   },
-  mounted () {
+  mounted() {
     this.$refs.videoPlayer.player.play();
     // this.$refs.videoPlayer1.player.play();
     // 宏观统计 总人数、隔离人数、发烧人数
@@ -303,7 +285,7 @@ export default {
     this.trendNum();
   },
   methods: {
-    tabchange () {
+    tabchange() {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -312,21 +294,21 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan () {
+    tabxunhuan() {
       setInterval(this.tabchange, 8000);
     },
-    tabclear () {
+    tabclear() {
       clearInterval(this.tabxunhuan);
     },
-    setSize: function () {
+    setSize: function() {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    initHuan () {
+    initHuan() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.lowfever = res[0].lowfever;
           self.normal = res[0].normal;
@@ -334,12 +316,12 @@ export default {
           self.highfever = res[0].highfever;
           self.drawHuan();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    drawHuan () {
+    drawHuan() {
       var self = this;
       var huan = echarts.init(document.getElementById("fashao"));
       const option = {
@@ -423,7 +405,7 @@ export default {
                 name: "中热",
                 label: {
                   normal: {
-                    formatter: function (params) {
+                    formatter: function(params) {
                       return self.statistics.sumHever;
                     },
                     position: "center",
@@ -498,11 +480,11 @@ export default {
 
       huan.setOption(option);
     },
-    initSum () {
+    initSum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/sum")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.statistics.sumAll = res.sum;
           self.statistics.sumIsolated = res.sumisolated;
@@ -511,29 +493,29 @@ export default {
           self.statistics.stuinJiang = res.stuinJiang;
           // window.location.reload();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    slideShow () {
+    slideShow() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=1")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.img_list = res;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould1 () {
+    initwordcould1() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromDiagnosisTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -553,16 +535,16 @@ export default {
           self.resou = newres.slice(0, 50);
           self.wordCould1();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould2 () {
+    initwordcould2() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectFromGuideTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -582,16 +564,16 @@ export default {
           self.zhishi = newres.slice(0, 50);
           self.wordCould2();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    initwordcould3 () {
+    initwordcould3() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectRumorTitle")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           // var newres = [];
           // res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -610,12 +592,12 @@ export default {
           self.piyao = res;
           // self.wordCould3();
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    wordCould1 () {
+    wordCould1() {
       var wc = echarts.init(document.getElementById("resou"));
       var option = {
         series: [
@@ -649,7 +631,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function () {
+                color: function() {
                   // Random color
                   return (
                     "rgb(" +
@@ -669,11 +651,11 @@ export default {
       };
       wc.setOption(option);
 
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         wc.resize();
       });
     },
-    wordCould2 () {
+    wordCould2() {
       var wc = echarts.init(document.getElementById("zhishi"));
       var option = {
         series: [
@@ -707,7 +689,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function () {
+                color: function() {
                   // Random color
                   return (
                     "rgb(" +
@@ -726,11 +708,11 @@ export default {
         ]
       };
       wc.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         wc.resize();
       });
     },
-    wordCould3 () {
+    wordCould3() {
       var wordcould = echarts.init(document.getElementById("piyao"));
       const option = {
         series: [
@@ -764,7 +746,7 @@ export default {
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
                 // Color can be a callback function or a color string
-                color: function () {
+                color: function() {
                   // Random color
                   return (
                     "rgb(" +
@@ -783,16 +765,16 @@ export default {
         ]
       };
       wordcould.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         wordcould.resize();
       });
     },
-    allNum () {
+    allNum() {
       var self = this;
       var dd = [];
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             dd.push({
@@ -805,7 +787,7 @@ export default {
       //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             if (
@@ -823,11 +805,11 @@ export default {
           self.map(dd);
         });
     },
-    eachpro () {
+    eachpro() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function (response) {
+        .then(function(response) {
           //冒泡排序根据count从大到小
           var res = response.data;
           var j, k, temp;
@@ -854,7 +836,7 @@ export default {
           self.proBar();
         });
     },
-    proBar () {
+    proBar() {
       var myChart = echarts.init(document.getElementById("polo_2"));
       var color = [
         "#2EC7E6",
@@ -885,7 +867,7 @@ export default {
           axisPointer: {
             type: "shadow"
           },
-          formatter: function (objs, index) {
+          formatter: function(objs, index) {
             let obj = objs[0];
             return `${obj.name}<br/>${obj.marker}${obj.seriesName} : ${obj.value}`;
           }
@@ -953,7 +935,7 @@ export default {
                 }
               }
             },
-            data: this.pronum.map(function (item, i) {
+            data: this.pronum.map(function(item, i) {
               return {
                 value: item,
                 itemStyle: {
@@ -976,45 +958,45 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    insulateNum () {
+    insulateNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.data_gelilist = res;
         });
     },
-    feverNum () {
+    feverNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           self.data_fashaolist = res;
         });
     },
-    resizeFontsize () {
+    resizeFontsize() {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    map (datalist) {
+    map(datalist) {
       var myChart = echarts.init(document.getElementById("map_1"));
       var geoCoordMap = {};
       var mapFeatures = echarts.getMap("china").geoJson.features;
-      mapFeatures.forEach(function (v) {
+      mapFeatures.forEach(function(v) {
         // 地区名称
         var name = v.properties.name;
         // console.log(name);
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-      var convertData = function (data) {
+      var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].location_province];
@@ -1040,7 +1022,7 @@ export default {
         // },
         tooltip: {
           trigger: "item",
-          formatter: function (params) {
+          formatter: function(params) {
             if (typeof params.value[2] == "undefined") {
               return (
                 option.series[0].name +
@@ -1230,7 +1212,7 @@ export default {
       };
       myChart.setOption(option);
       var index = 0;
-      var myTime = setInterval(function () {
+      var myTime = setInterval(function() {
         myChart.dispatchAction({
           type: "showTip",
           seriesIndex: 0,
@@ -1241,7 +1223,7 @@ export default {
           index = 0;
         }
       }, 2000);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
@@ -1627,21 +1609,21 @@ export default {
     //   );
     // },
     //change,play实现表格自动滚动
-    change () {
+    change() {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    play () {
+    play() {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
     },
-    focusStu () {
+    focusStu() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFocusStu")
-        .then(function (response) {
+        .then(function(response) {
           var dd = [];
           var res = response.data;
           self.stuInfo = dd;
@@ -1668,11 +1650,11 @@ export default {
             });
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     },
-    gundong () {
+    gundong() {
       var speed = 8;
       var tab = document.getElementById("demo");
       var tab1 = document.getElementById("demo1");
@@ -1682,7 +1664,7 @@ export default {
       tab1.style.width = this.noMaskCount * tab.offsetHeight + "px";
       // console.log(this.noMaskCount)
       // console.log(this.noMaskCount*(tab.offsetHeight+3))
-      function Marquee () {
+      function Marquee() {
         // console.log(tab2.offsetWidth)
         // console.log(tab.scrollLeft)
         if (tab2.offsetWidth - tab.scrollLeft <= 0)
@@ -1692,18 +1674,18 @@ export default {
         }
       }
       var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function () {
+      tab.onmouseover = function() {
         clearInterval(MyMar);
       };
-      tab.onmouseout = function () {
+      tab.onmouseout = function() {
         MyMar = setInterval(Marquee, speed);
       };
     },
-    suzhouStu () {
+    suzhouStu() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?province=江苏")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].stuinSuZhou);
@@ -1712,7 +1694,7 @@ export default {
         });
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInSuZhou?city=苏州")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_suzhou.push(res[i].stuinSuZhou);
@@ -1721,7 +1703,7 @@ export default {
           self.stuInsz();
         });
     },
-    stuInsz () {
+    stuInsz() {
       var myChart = echarts.init(document.getElementById("allLine"));
       var option = {
         tooltip: {
@@ -1756,39 +1738,17 @@ export default {
           },
           top: "1%"
         },
-        xAxis: [
-          {
-            type: "category",
-            boundaryGap: true, //坐标轴两边留白
-            data: this.days,
-            axisLabel: {
-              //坐标轴刻度标签的相关设置。
-              interval: 0, //设置为 1，表示『隔一个标签显示一个标签』
-              margin: 15,
-              textStyle: {
-                color: "#03C5BC",
-                fontStyle: "normal",
-                fontFamily: "微软雅黑",
-                fontSize: "150%"
-              }
-            },
-            axisTick: {
-              //坐标轴刻度相关设置。
-              show: true
-            },
-            axisLine: {
-              //坐标轴轴线相关设置
-              lineStyle: {
-                color: "#03C5BC"
-                //	opacity:0.5
-              }
-            },
-            splitLine: {
-              //坐标轴在 grid 区域中的分隔线。
-              show: false
+        xAxis: {
+          data: this.days,
+          axisLine: {
+            lineStyle: {
+              color: "#03C5BC"
             }
+          },
+          axisTick: {
+            show: false
           }
-        ],
+        },
         yAxis: [
           {
             splitLine: { show: false },
@@ -1915,15 +1875,15 @@ export default {
       };
 
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     },
-    trendNum () {
+    trendNum() {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFeverTrend")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_fashao.push(res[i].stuFeverTrend);
@@ -1935,7 +1895,7 @@ export default {
 
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolated")
-        .then(function (response) {
+        .then(function(response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_geli.push(res[i].stuFeverTrend);
@@ -1943,7 +1903,7 @@ export default {
           self.totalNum();
         });
     },
-    totalNum () {
+    totalNum() {
       var myChart = echarts.init(document.getElementById("all_Num"));
       // Generate data
       var option = {
@@ -2043,12 +2003,12 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function () {
+      window.addEventListener("resize", function() {
         myChart.resize();
       });
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -2089,17 +2049,6 @@ export default {
 #zhishi {
   width: 100%;
   height: 100%;
-}
-.el-table__header {
-  padding: 0;
-  height: 5%;
-}
-.el-table__body,
-.el-table__footer,
-.el-table__header {
-  table-layout: fixed;
-  border-collapse: separate;
-  width: auto !important;
 }
 #demo {
   overflow: hidden;
@@ -2169,15 +2118,17 @@ export default {
 }
 .el-table {
   height: inherit;
-  width: 100% !important;
+  width: 98% !important;
   background-color: transparent !important;
   color: #00d4c7 !important;
-  font-size: 150% !important;
+  font-size: 170% !important;
+  padding-left: 1%;
 }
 
 .el-table thead {
-  color: #dcdcdc !important;
+  color: #B4B4B4 !important;
   background-color: #1b3565;
+  padding:1%
   // font-weight: 500;
 }
 /* 设置table header的背景颜色 */
@@ -2246,9 +2197,9 @@ export default {
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
   color: #00d4c7;
 }
-.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-wrap {
-    margin-bottom: 0;
-    margin-left: 28%;
+.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-wrap {
+  margin-bottom: 0;
+  margin-left: 28%;
 }
 .map4 {
   width: 100%;
