@@ -5,7 +5,7 @@
       <ul class="clearfix">
         <li style="width: 33%;">
           <div class="boxall" style="height: 3.6rem">
-            <div class="alltitle">课程讨论区</div>
+            <div class="alltitle">课程讨论分析</div>
             <div class="allnav">
               <div id="viewclass"></div>
             </div>
@@ -28,7 +28,7 @@
         </li>
         <li style="width:34%">
           <div class="boxall" style="height: 3.3rem;">
-            <div class="alltitle">学习时长</div>
+            <div class="alltitle">学习总时长</div>
             <div class="allnav">
               <div id="duration"></div>
             </div>
@@ -159,10 +159,10 @@ export default {
           left: 0,
           right: 0,
           icon: "circle",
-          bottom: "25%",
+          bottom: "20%",
           itemWidth: 10,
           itemHeight: 10,
-          itemGap: 5,
+          itemGap: 3,
           data: [],
 
           textStyle: {
@@ -825,9 +825,9 @@ export default {
       var myChart = echarts.init(document.getElementById("task"));
       var option = {
         grid: {
-          left: "3%",
-          right: "3%",
-          top: "5%",
+          left: "2%",
+          right: "2%",
+          top: "12%",
           bottom: "10%",
           containLabel: true
         },
@@ -875,6 +875,7 @@ export default {
         ],
         yAxis: [
           {
+            name:"作业",
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -897,15 +898,16 @@ export default {
             }
           },
           {
+            name:"测试",
             axisLabel: {
               formatter: "{value}",
               textStyle: {
-                color: "#186afe"
+                color: "#2ad1d2"
               }
             },
             axisLine: {
               lineStyle: {
-                color: "#186afe"
+                color: "#27b4c2"
               }
             },
             axisTick: {
@@ -924,7 +926,6 @@ export default {
             name: "作业提交",
             type: "line",
             stack: "总量",
-            yAxisIndex: 1,
             symbol: "circle",
             symbolSize: 8,
             itemStyle: {
@@ -962,10 +963,8 @@ export default {
             name: "批阅作业",
             type: "line",
             stack: "总量",
-            yAxisIndex: 1,
             symbol: "circle",
             symbolSize: 8,
-
             itemStyle: {
               normal: {
                 color: "#00d4c7",
@@ -992,6 +991,7 @@ export default {
           },
           {
             name: "测试提交",
+            yAxisIndex: 1,
             type: "line",
             stack: "总量",
             symbol: "circle",
@@ -1022,6 +1022,7 @@ export default {
           },
           {
             name: "批阅测试",
+            yAxisIndex: 1,
             type: "line",
             stack: "总量",
             symbol: "circle",
