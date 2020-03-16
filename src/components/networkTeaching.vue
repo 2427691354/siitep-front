@@ -4,21 +4,24 @@
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width: 33%;">
-          <div class="boxall" style="height: 3.6rem">
+          <div class="boxall"
+               style="height: 3.6rem">
             <div class="alltitle">课程讨论区</div>
             <div class="allnav">
               <div id="viewclass"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3rem">
+          <div class="boxall"
+               style="height: 3rem">
             <div class="alltitle">添加资源分析</div>
             <div class="allnav">
               <div id="ziyuan"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3rem;">
+          <div class="boxall"
+               style="height: 3rem;">
             <div class="alltitle">进入课程总数</div>
             <div class="allnav">
               <div id="fangwen"></div>
@@ -27,21 +30,24 @@
           </div>
         </li>
         <li style="width:34%">
-          <div class="boxall" style="height: 3.3rem;">
+          <div class="boxall"
+               style="height: 3.3rem;">
             <div class="alltitle">学习时长</div>
             <div class="allnav">
               <div id="duration"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3.3rem;">
+          <div class="boxall"
+               style="height: 3.3rem;">
             <div class="alltitle">课程被访问总数</div>
             <div class="allnav">
               <div id="course"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3rem">
+          <div class="boxall"
+               style="height: 3rem">
             <div class="alltitle">阅读教学材料总数</div>
             <div class="allnav">
               <div id="material"></div>
@@ -50,21 +56,24 @@
           </div>
         </li>
         <li style="width: 33%;">
-          <div class="boxall" style="height:3.4rem">
+          <div class="boxall"
+               style="height:3.4rem">
             <div class="alltitle">作业\测试分析</div>
             <div class="allnav">
               <div id="task"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3.3rem;">
+          <div class="boxall"
+               style="height: 3.3rem;">
             <div class="alltitle">发布情况分析</div>
             <div class="allnav">
               <div id="release"></div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.9rem;">
+          <div class="boxall"
+               style="height: 2.9rem;">
             <div class="alltitle">开课教师\选课学生总数</div>
             <div class="allnav">
               <div id="starttea"></div>
@@ -84,7 +93,7 @@ import echarts from "echarts";
 import axios from "axios";
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       // 图片父容器高度
       bannerHeight: 1000,
@@ -95,8 +104,8 @@ export default {
   components: {
     Header
   },
-  created() {},
-  mounted() {
+  created () { },
+  mounted () {
     this.resizeFontsize();
     //改变横屏竖屏执行效果更换
     window.addEventListener("orientationchange", this.resizeFontsize());
@@ -125,16 +134,16 @@ export default {
     this.courseview();
   },
   methods: {
-    setSize: function() {
+    setSize: function () {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    resizeFontsize() {
+    resizeFontsize () {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    resources() {
+    resources () {
       var myChart = echarts.init(document.getElementById("ziyuan"));
       var option = {
         color: [
@@ -266,7 +275,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           //json里数据
           series: [
@@ -287,11 +296,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    courseall() {
+    courseall () {
       var myChart = echarts.init(document.getElementById("fangwen"));
       var option = {
         color: ["#388BFF", "#05C3FA", "#F6931C", "#FFD52E"],
@@ -422,7 +431,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           //json里数据
           series: [
@@ -446,11 +455,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    studytime() {
+    studytime () {
       var myChart = echarts.init(document.getElementById("duration"));
       var option = {
         grid: {
@@ -480,7 +489,7 @@ export default {
             textStyle: {
               color: "#00d4c7"
             },
-            formatter: function(val) {
+            formatter: function (val) {
               return `${val}`;
             }
           },
@@ -531,7 +540,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           //json里数据
           series: [
@@ -546,11 +555,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    coursevisit() {
+    coursevisit () {
       var myChart = echarts.init(document.getElementById("course"));
       var option = {
         grid: {
@@ -664,7 +673,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           //json里数据
           series: [
@@ -679,11 +688,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    materialcount() {
+    materialcount () {
       var myChart = echarts.init(document.getElementById("material"));
       var option = {
         tooltip: {
@@ -803,7 +812,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -817,11 +826,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    marking() {
+    marking () {
       var myChart = echarts.init(document.getElementById("task"));
       var option = {
         grid: {
@@ -1054,7 +1063,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -1077,11 +1086,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    releasework() {
+    releasework () {
       var myChart = echarts.init(document.getElementById("release"));
       var option = {
         tooltip: {
@@ -1181,7 +1190,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -1198,11 +1207,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    selecttea() {
+    selecttea () {
       var myChart = echarts.init(document.getElementById("starttea"));
       var option = {
         color: [
@@ -1258,7 +1267,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -1272,11 +1281,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    selectstu() {
+    selectstu () {
       var myChart = echarts.init(document.getElementById("startstu"));
       var option = {
         color: [
@@ -1332,7 +1341,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -1346,11 +1355,11 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    courseview() {
+    courseview () {
       var myChart = echarts.init(document.getElementById("viewclass"));
       var option = {
         grid: {
@@ -1490,7 +1499,7 @@ export default {
       };
       myChart.setOption(option);
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         myChart.setOption({
           series: [
             {
@@ -1507,12 +1516,12 @@ export default {
           ]
         });
       });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
