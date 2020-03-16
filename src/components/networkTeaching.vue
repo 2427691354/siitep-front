@@ -6,7 +6,7 @@
         <li style="width: 33%;">
           <div class="boxall"
                style="height: 3.6rem">
-            <div class="alltitle">课程讨论区</div>
+            <div class="alltitle">课程讨论分析</div>
             <div class="allnav">
               <div id="viewclass"></div>
             </div>
@@ -30,9 +30,11 @@
           </div>
         </li>
         <li style="width:34%">
+
           <div class="boxall"
                style="height: 3.3rem;">
-            <div class="alltitle">学习时长</div>
+            <div class="alltitle">学习总时长</div>
+            >>>>>>> ac8334ced52570181d389aa22205ad76a858099c
             <div class="allnav">
               <div id="duration"></div>
             </div>
@@ -168,10 +170,10 @@ export default {
           left: 0,
           right: 0,
           icon: "circle",
-          bottom: "25%",
+          bottom: "20%",
           itemWidth: 10,
           itemHeight: 10,
-          itemGap: 5,
+          itemGap: 3,
           data: [],
 
           textStyle: {
@@ -580,7 +582,7 @@ export default {
 
         xAxis: {
           data: [],
-          boundaryGap: false,
+          boundaryGap: true,
           axisLabel: {
             show: true,
             interval: "auto",
@@ -834,9 +836,9 @@ export default {
       var myChart = echarts.init(document.getElementById("task"));
       var option = {
         grid: {
-          left: "3%",
-          right: "3%",
-          top: "5%",
+          left: "2%",
+          right: "2%",
+          top: "12%",
           bottom: "10%",
           containLabel: true
         },
@@ -884,6 +886,7 @@ export default {
         ],
         yAxis: [
           {
+            name: "作业",
             axisLabel: {
               formatter: "{value}",
               textStyle: {
@@ -906,15 +909,16 @@ export default {
             }
           },
           {
+            name: "测试",
             axisLabel: {
               formatter: "{value}",
               textStyle: {
-                color: "#186afe"
+                color: "#2ad1d2"
               }
             },
             axisLine: {
               lineStyle: {
-                color: "#186afe"
+                color: "#27b4c2"
               }
             },
             axisTick: {
@@ -933,7 +937,6 @@ export default {
             name: "作业提交",
             type: "line",
             stack: "总量",
-            yAxisIndex: 1,
             symbol: "circle",
             symbolSize: 8,
             itemStyle: {
@@ -971,10 +974,8 @@ export default {
             name: "批阅作业",
             type: "line",
             stack: "总量",
-            yAxisIndex: 1,
             symbol: "circle",
             symbolSize: 8,
-
             itemStyle: {
               normal: {
                 color: "#00d4c7",
@@ -1001,6 +1002,7 @@ export default {
           },
           {
             name: "测试提交",
+            yAxisIndex: 1,
             type: "line",
             stack: "总量",
             symbol: "circle",
@@ -1031,6 +1033,7 @@ export default {
           },
           {
             name: "批阅测试",
+            yAxisIndex: 1,
             type: "line",
             stack: "总量",
             symbol: "circle",
@@ -1167,7 +1170,7 @@ export default {
           {
             name: "发布测试",
             type: "bar",
-            barWidth: "20",
+            barWidth: "15",
             itemStyle: {
               normal: {
                 color: "#1AFFFD"
@@ -1178,7 +1181,7 @@ export default {
           {
             name: "发布作业",
             type: "bar",
-            barWidth: "20",
+            barWidth: "15",
             itemStyle: {
               normal: {
                 color: "#2E7CFF"

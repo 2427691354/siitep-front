@@ -1020,7 +1020,7 @@ export default {
             type: "line",
             smooth: true,
             showAllSymbol: true,
-            symbol: "emptyCircle",
+            symbol: "circle",
             symbolSize: 8,
             itemStyle: {
               //图形样式
@@ -1035,14 +1035,6 @@ export default {
                     {
                       offset: 1,
                       color: "rgba(127, 128, 225, 0.7)"
-                    },
-                    {
-                      offset: 0.9,
-                      color: "rgba(72, 73, 181, 0.7)"
-                    },
-                    {
-                      offset: 0.25,
-                      color: "rgba(226, 99, 74, 0.7)"
                     },
                     {
                       offset: 0,
@@ -1079,35 +1071,16 @@ export default {
               //图形样式
               normal: {
                 barBorderRadius: [5, 5, 0, 0],
-                color: new echarts.graphic.LinearGradient(
-                  0,
-                  0,
-                  0,
-                  1,
-                  [
-                    {
-                      offset: 1,
-                      color: "rgba(127, 128, 225, 0.7)"
-                    },
-                    {
-                      offset: 0.9,
-                      color: "rgba(72, 73, 181, 0.7)"
-                    },
-                    {
-                      offset: 0.31,
-                      color: "rgba(0, 208, 208, 0.7)"
-                    },
-                    {
-                      offset: 0.15,
-                      color: "rgba(0, 208, 208, 0.7)"
-                    },
-                    {
-                      offset: 0,
-                      color: "rgba(104, 253, 255, 0.7)"
-                    }
-                  ],
-                  false
-                )
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "#00FFE3"
+                  },
+                  {
+                    offset: 1,
+                    color: "#4693EC"
+                  }
+                ])
               }
             }
           }
@@ -1688,7 +1661,7 @@ export default {
 }
 
 .el-table thead {
-  color: #dcdcdc !important;
+  color: #B4B4B4 !important;
   background-color: #1b3565;
 }
 /* 设置table header的背景颜色 */

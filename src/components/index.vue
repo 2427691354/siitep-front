@@ -4320,7 +4320,7 @@ export default {
             axisLabel: {
               show: true,
               textStyle: {
-                color: "#ebf8ac" //X轴文字颜色
+                color: "#2ad1d2" //X轴文字颜色
               }
             },
             axisLine: {
@@ -4683,6 +4683,19 @@ export default {
 .ivu-tabs-nav {
   padding-left: 0 !important;
 }
+.ivu-tabs-nav-container:focus .ivu-tabs-tab-focused {
+  border-color: #00d4c7;
+}
+.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
+  color: #00d4c7;
+}
+.ivu-tabs-bar {
+  margin-bottom: 5%;
+  border-bottom: 1px solid #00d4c7;
+}
+.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-wrap {
+    margin-left: 0;
+}
 .el-table {
   height: inherit;
   width: 100% !important;
@@ -4692,7 +4705,7 @@ export default {
 }
 
 .el-table thead {
-  color: #dcdcdc !important;
+  color: #B4B4B4 !important;
   background-color: #1b3565;
   // font-weight: 500;
 }
