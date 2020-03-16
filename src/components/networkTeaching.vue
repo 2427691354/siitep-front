@@ -669,7 +669,7 @@ export default {
           //json里数据
           series: [
             {
-              data: res.data.data_val
+              data: res.data.classvisit
             }
           ],
           xAxis: [
