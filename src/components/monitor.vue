@@ -5,7 +5,7 @@
       <ul class="clearfix">
         <li style="width: 58%;height: 5.2rem">
           <div class="boxall" style="height: 5.2rem">
-            <div class="alltitle">口罩检测</div>
+            <div class="alltitle" >口罩检测</div>
             <div class="allnav" style="padding-bottom:0.2rem">
               <div class="maskVideo">
                 <video-player
@@ -281,6 +281,7 @@ export default {
     this.play();
     this.gundongRes();
     this.gundongRes_1();
+    // this.speak('测试');
   },
   methods: {
     //获取未带口罩图片
@@ -345,6 +346,17 @@ export default {
       tab.onmouseout = function() {
         MyMar = setInterval(Marquee, speed);
       };
+    },
+    //调用百度api接口实现文字合成语音的方法
+    speak(str){
+        var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&vol=15&per=3&spd=6&text="+encodeURI(str);
+        var n= new Audio(url);
+        n.src = url;
+        if(str){
+            n.play();
+        }else{
+            n.pause();
+        }
     }
   },
   beforeDestroy() {
