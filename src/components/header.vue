@@ -21,7 +21,7 @@
         <img src="../assets/images/time4.png"
              alt="时间截止" />
         <span>数据更新截止：</span>
-        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">2020年3月8日</span>
+        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">2020年3月15日</span>
          <span id="showTime" v-else>{{deadLine}}</span>
       </div>
     </div>
