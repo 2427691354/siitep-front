@@ -693,10 +693,10 @@ export default {
           }
         },
         grid: {
-          top: "20%",
-          right: "8%",
-          left: "10%",
-          bottom: "20%"
+          top: "25%",
+          right: "10%",
+          left: "13%",
+          bottom: "15%"
         },
         xAxis: [
           {
@@ -708,10 +708,13 @@ export default {
               }
             },
             axisLabel: {
-              margin: 10,
-              color: "#00d4c7",
-              textStyle: {
-                fontSize: 14
+              // margin: 10,
+              color: "#00d4c7"
+            },
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: "#00d4c7"
               }
             }
           }
