@@ -706,7 +706,7 @@ export default {
           top: "25%",
           right: "10%",
           left: "13%",
-          bottom: "15%"
+          bottom: "20%"
         },
         xAxis: [
           {
