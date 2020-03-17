@@ -4642,9 +4642,6 @@ export default {
   color: #1bb4f6;
   font-size: 0.15rem;
 }
-.el-icon-arrow-down {
-  font-size: 12px;
-}
 .select {
   width: 25%;
   float: left;
@@ -4761,9 +4758,9 @@ export default {
 }
 
 .el-dropdown-link {
-  font-size: 0.15rem;
+  font-size: 0.15rem !important;
 }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-wrap {
-  margin-left: 0%;
+  margin-left: 0% !important;
 }
 </style>
