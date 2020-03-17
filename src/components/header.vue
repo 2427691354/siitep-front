@@ -21,7 +21,7 @@
         <img src="../assets/images/time4.png"
              alt="时间截止" />
         <span>数据更新截止：</span>
-        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">2020年3月15日</span>
+        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">{{dateline}}</span>
          <span id="showTime" v-else>{{deadLine}}</span>
       </div>
     </div>
@@ -29,14 +29,20 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data () {
     return {
       deadLine: "",
+      dateline:""
     };
   },
   created () {
     this.getDeadline();
+
+  },
+  mounted(){
+        this.date()
   },
   methods: {
     getDeadline () {
@@ -57,7 +63,14 @@ export default {
       this.$router.push(key);
 
     },
-
+    date(){
+      //获取数据
+      axios.get("../../../static/json/data.json").then(res => {
+          console.log(res.data.deadline);
+          this.dateline = res.data.deadline;
+          
+      });
+    }
   },
   beforeDestroy () {
     if (this.timer) {
