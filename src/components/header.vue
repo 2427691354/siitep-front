@@ -11,7 +11,7 @@
           <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
-          <el-menu-item index="/epidemic">疫情分析</el-menu-item>
+          <!-- <el-menu-item index="/epidemic">疫情分析</el-menu-item> -->
           <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
           <el-menu-item index="/monitor">实时监控</el-menu-item>
         </el-menu>
@@ -21,8 +21,10 @@
         <img src="../assets/images/time4.png"
              alt="时间截止" />
         <span>数据更新截止：</span>
-        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">2020年3月8日</span>
-         <span id="showTime" v-else>{{deadLine}}</span>
+        <span id="showTime"
+              v-if="this.$route.path=='/networkTeaching'">2020年3月8日</span>
+        <span id="showTime"
+              v-else>{{deadLine}}</span>
       </div>
     </div>
   </div>
@@ -45,7 +47,7 @@ export default {
         .get(this.baseUrl + "/dayrpt/getNewTime")
         .then(function (response) {
           var res = response.data;
-            self.deadLine = res
+          self.deadLine = res
         })
         .catch(function (error) {
           console.log(error);
