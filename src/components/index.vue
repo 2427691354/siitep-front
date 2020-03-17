@@ -160,7 +160,7 @@
                style="height: 2.85rem;">
             <div class="kebiaotitle">
               <div class="select"
-                   style="width:25%;float:left">
+                   style="width:25%;float:left;">
                 <el-dropdown @command="handleCommand1">
                   <span class="el-dropdown-link">
                     18级
@@ -4693,8 +4693,8 @@ export default {
   margin-bottom: 5%;
   border-bottom: 1px solid #00d4c7;
 }
-.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-wrap {
-    margin-left: 0;
+.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-wrap {
+  margin-left: 0;
 }
 .el-table {
   height: inherit;
@@ -4705,7 +4705,7 @@ export default {
 }
 
 .el-table thead {
-  color: #B4B4B4 !important;
+  color: #b4b4b4 !important;
   background-color: #1b3565;
   // font-weight: 500;
 }
@@ -4758,5 +4758,12 @@ export default {
 }
 #zhongdianstu .el-table th {
   width: 20% !important;
+}
+
+.el-dropdown-link {
+  font-size: 0.15rem;
+}
+.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-wrap {
+  margin-left: 0%;
 }
 </style>
