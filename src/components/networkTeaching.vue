@@ -30,7 +30,6 @@
           </div>
         </li>
         <li style="width:34%">
-
           <div class="boxall"
                style="height: 3.3rem;">
             <div class="alltitle">学习总时长</div>
