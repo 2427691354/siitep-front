@@ -111,22 +111,8 @@
             <div class="boxfoot"></div>
           </div>
           <div class="boxallinfo" style="height: 3rem;">
-            <div class="alltitle">重点关注学生信息表</div>
-            <div class="allnav" id="zhongdianstu" style="height:2.4rem">
-              <el-table
-                :data="stuInfo"
-                stripe
-                style="font-size: 10%"
-                :row-style="{ height: '0.4rem' }"
-                :cell-style="{ padding: '0px' }"
-              >
-                <el-table-column prop="name" label="姓名"></el-table-column>
-                <el-table-column prop="class" label="班级"></el-table-column>
-                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
-                <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column prop="address" label="隔离地点"></el-table-column>
-              </el-table>
-            </div>
+            <div class="alltitle">苏城码颜色占比</div>
+            <div class="allnav" id="main8" style="height:2.4rem"></div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 2.85rem;">
@@ -212,6 +198,8 @@ export default {
       stuInfo: [],
       //轮播图图片
       img_list: [],
+      //苏城码占比
+      sucityNum: [],
       // 口罩图片列表
       noMask: [],
       // 静态资源地址
@@ -3304,7 +3292,7 @@ export default {
     //Top10
     this.proBar();
     // 发烧占比
-    // this.drawHuan();
+    this.leidaInfo();
     //选项卡自动播放
     this.tabxunhuan();
     //返苏人数折线图
@@ -3639,17 +3627,6 @@ export default {
             }
           }
         },
-        legend: {
-          data: ["隔离人数", "发烧人数", "重点疫区"],
-          icon: "pin", //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，
-          orient: "vertical",
-          right: "15%",
-          bottom: "40%",
-          textStyle: {
-            color: "#dcdcdc",
-            fontSize: "150%"
-          }
-        },
         //是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
         visualMap: {
           show: false,
@@ -3715,61 +3692,6 @@ export default {
             data: []
           },
           {
-            name: "隔离人数",
-            type: "scatter",
-            coordinateSystem: "geo",
-            symbol: "pin", //气泡
-            symbolSize: 25,
-            label: {
-              normal: {
-                show: false,
-                textStyle: {
-                  color: "#fff",
-                  fontSize: 9
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#AD45F2" //标志颜色
-              }
-            },
-            zlevel: 6,
-            data: []
-          },
-          {
-            name: "发烧人数",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            data: [],
-            symbolSize: 10,
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "right",
-                show: false,
-                textStyle: {
-                  color: "#fff"
-                },
-                backgroundColor: "rgba(0,0,0,0.5)"
-              }
-            },
-            itemStyle: {
-              show: true,
-              normal: {
-                color: "yellow",
-                shadowBlur: 10,
-                shadowColor: "yellow"
-              }
-            },
-            zlevel: 1
-          },
-          {
             name: "重点疫区",
             type: "effectScatter",
             data: [],
@@ -3799,7 +3721,7 @@ export default {
                 shadowColor: "#FF5000"
               }
             },
-            zlevel: 10
+            zlevel: 1
           }
         ]
       };
@@ -3827,37 +3749,17 @@ export default {
           var keyarea = [];
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
-            if (
-              res[i].location_province == "湖北" ||
-              res[i].location_province == "河南" ||
-              res[i].location_province == "浙江" ||
-              res[i].location_province == "安徽"
-            ) {
+            if (res[i].location_province == "湖北") {
               keyarea.push({
                 location_province: res[i].location_province,
                 count: res[i].count
               });
             }
           }
-          option.series[3].data = convertData(keyarea);
+          option.series[1].data = convertData(keyarea);
           myChart.setOption(option);
         });
 
-      self.$http
-        .get(this.baseUrl + "/dayrpt/getStuIsolatedInProvince")
-        .then(function(response) {
-          var res = response.data;
-          option.series[1].data = convertData(res);
-          myChart.setOption(option);
-        });
-
-      self.$http
-        .get(this.baseUrl + "/dayrpt/getStuHotInProvince")
-        .then(function(response) {
-          var res = response.data;
-          option.series[2].data = convertData(res);
-          myChart.setOption(option);
-        });
       var index = 0;
       self.timer = setInterval(function() {
         myChart.dispatchAction({
@@ -3958,175 +3860,6 @@ export default {
       }
       this.drawKebiao();
     },
-    // drawHuan() {
-    //   var self = this;
-    //   var huan = echarts.init(document.getElementById("fashao"));
-    //   const option = {
-    //     // color: ["#23649e", "#2e7bad", "#1dc499", "#4da7c1", "#65b5c2"],
-    //     color: ["#1ABDE6", "#EE6911", "#EE1111"],
-    //     data: ["低热", "中热", "高热"],
-    //     tooltip: {
-    //       trigger: "item",
-    //       formatter: "{a} <br/>{b}: {c} ({d}%)"
-    //     },
-    //     grid: {
-    //       left: 0, // right: 0,
-    //       bottom: 0,
-    //       top: 0,
-    //       containLabel: true
-    //     },
-    //     legend: {
-    //       orient: "vertical",
-    //       top: "15%",
-    //       bottom: "15%",
-    //       right: "10%",
-    //       textStyle: {
-    //         color: "rgba(255, 255, 255, 0.7)",
-    //         fontSize: "10"
-    //       },
-    //       icon: "circle",
-    //       itemWidth: 8, // 设置宽度
-    //       itemHeight: 8, // 设置高度
-    //       itemGap: 1 // 设置间距
-    //     },
-    //     series: [
-    //       // 主要展示层的
-    //       {
-    //         radius: ["55%", "75%"],
-    //         center: ["28%", "50%"],
-    //         type: "pie",
-    //         label: {
-    //           normal: {
-    //             show: true,
-    //             position: "outside"
-    //           },
-    //           emphasis: {
-    //             show: true,
-    //             textStyle: {
-    //               fontSize: "15"
-    //               // fontWeight: 'bold'
-    //             }
-    //           }
-    //         },
-    //         labelLine: {
-    //           normal: {
-    //             show: true,
-    //             length: 20,
-    //             length2: 35
-    //           },
-    //           emphasis: {
-    //             show: true
-    //           }
-    //         },
-    //         name: "体温等级比例",
-    //         data: [
-    //           {
-    //             value: [],
-    //             name: "低热",
-    //             label: {
-    //               normal: {
-    //                 show: false,
-    //                 formatter: "低热\n{d}%",
-    //                 position: "center",
-    //                 textStyle: {
-    //                   color: "#fff",
-    //                   fontSize: 10
-    //                 }
-    //               },
-    //               emphasis: {
-    //                 show: true
-    //               }
-    //             }
-    //           },
-    //           {
-    //             value: [],
-    //             name: "中热",
-    //             label: {
-    //               normal: {
-    //                 formatter: function(params) {
-    //                   return self.statistics.sumHever;
-    //                 },
-    //                 position: "center",
-    //                 show: true,
-    //                 textStyle: {
-    //                   fontWeight: "bold"
-    //                 }
-    //               }
-    //             }
-    //           },
-    //           {
-    //             value: [],
-    //             name: "高热",
-    //             label: {
-    //               normal: {
-    //                 show: false,
-    //                 formatter: "高热\n{d}%",
-    //                 position: "center",
-    //                 textStyle: {
-    //                   color: "#fff",
-
-    //                   fontSize: 10
-    //                 }
-    //               },
-    //               emphasis: {
-    //                 show: true
-    //               }
-    //             }
-    //           }
-    //         ]
-    //       }, // 边框的设置
-    //       {
-    //         radius: ["75%", "73%"],
-    //         center: ["28%", "50%"],
-    //         type: "pie",
-    //         hoverAnimation: false,
-    //         label: {
-    //           normal: {
-    //             show: false
-    //           },
-    //           emphasis: {
-    //             show: false
-    //           }
-    //         },
-    //         labelLine: {
-    //           normal: {
-    //             show: false
-    //           },
-    //           emphasis: {
-    //             show: false
-    //           }
-    //         },
-    //         animation: true,
-    //         tooltip: {
-    //           show: false
-    //         },
-    //         data: [
-    //           {
-    //             value: 1,
-    //             itemStyle: {
-    //               color: "rgba(250,250,250,0.3)"
-    //             }
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   };
-
-    //   huan.setOption(option);
-
-    //   self.$http
-    //     .get(this.baseUrl + "/dayrpt/getTemperatureGradeRatio")
-    //     .then(function(response) {
-    //       var res = response.data;
-    //       option.series[0].data[0].value = res[0].lowfever;
-    //       option.series[0].data[1].value = res[0].moderatefever;
-    //       option.series[0].data[2].value = res[0].highfever;
-    //       huan.setOption(option);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // },
     proBar() {
       var myChart = echarts.init(document.getElementById("polo_2"));
       var color = [
@@ -4443,8 +4176,9 @@ export default {
           var days = [];
           for (var i = 0; i < res.length; i++) {
             Num_suzhou.push(res[i].CityCount);
-            days.push(res[i].upTime.slice(8,10) + "日");
+            days.push(res[i].upTime.slice(8, 10) + "日");
           }
+          days = days.reverse();
           option.series[0].data = Num_suzhou;
           option.xAxis[0].data = days;
           myChart.setOption(option);
@@ -4485,6 +4219,53 @@ export default {
     },
     tabxunhuan() {
       this.timer = setInterval(this.tabchange, 5000);
+    },
+    leidaInfo() {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/students/getCodeRegisterCount")
+        .then(function(response) {
+          var res = response.data.results;
+          for (var i = 0; i < res.length; i++) {
+            self.sucityNum.push({
+              value: res[i].持码人数,
+              name: res[i]._id
+            });
+          }
+          
+          self.sucityNum.push({value:0,name:'红码'},{value:0,name:'未注册'})
+
+          self.drawLeida();
+          // console.log(res);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    //苏城码
+    drawLeida() {
+      var myChart = echarts.init(document.getElementById("main8"));
+      const option = {
+        color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series: [
+          {
+            name: "苏城码",
+            type: "pie",
+            radius: ["45%", "65%"],
+            center: ["50%", "50%"],
+            roseType: "angle",
+            data: this.sucityNum
+          }
+        ]
+      };
+      myChart.setOption(option);
+      window.addEventListener("resize", function() {
+        myChart.resize();
+      });
     }
   },
   beforeDestroy() {
@@ -4667,57 +4448,6 @@ export default {
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-wrap {
   margin-left: 0;
 }
-.el-table {
-  height: inherit;
-  width: 100% !important;
-  background-color: transparent !important;
-  color: #00d4c7 !important;
-  font-size: 150% !important;
-}
-
-.el-table thead {
-  color: #b4b4b4 !important;
-  background-color: #1b3565;
-  // font-weight: 500;
-}
-/* 设置table header的背景颜色 */
-.el-table th,
-.el-table tr,
-.el-table td {
-  background-color: transparent !important;
-  padding: 4px 0 !important;
-  text-align: center !important;
-}
-
-.el-table td,
-.el-table th.is-leaf {
-  border-bottom: 0px solid #05a4b8 !important;
-}
-/* .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
-  border-right: 1px solid #05a4b8!important;
-} */
-.el-table--border,
-.el-table--group {
-  border: 1px solid #05a4b8 !important;
-}
-/* .el-table--group::after{
-  content: '';
-  position: absolute;
-  background-color: #05a4b8!important;
-  /* z-index: 1; */
-/* } */
-.el-table::after {
-  width: 0% !important;
-  height: 0% !important;
-}
-.el-table::before {
-  width: 0% !important;
-  height: 0% !important;
-}
-.el-table .cell {
-  line-height: 100% !important;
-  padding-left: 0 !important;
-}
 .map41 {
   width: 100%;
   height: 4rem;
@@ -4727,10 +4457,10 @@ export default {
   /* padding-top: 1.5rem; */
   z-index: 5;
 }
-#zhongdianstu .el-table th {
-  width: 20% !important;
+#main8 {
+  width: 100%;
+  height: inherit;
 }
-
 .el-dropdown-link {
   font-size: 0.15rem !important;
 }

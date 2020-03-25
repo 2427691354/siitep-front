@@ -890,6 +890,7 @@ export default {
             self.Num_suzhou.push(res[i].CityCount);
             self.days.push(res[i].upTime.slice(8,10) + "日");
           }
+          self.days = self.days.reverse();
           self.stuInsz();
         });
     },
@@ -1119,7 +1120,7 @@ export default {
     drawLeida() {
       var myChart = echarts.init(document.getElementById("main8"));
       const option = {
-        color: ["#F8F106", "#33FFCC", "#33CCFF","#eb2100"],
+        color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
         tooltip: {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -1128,7 +1129,7 @@ export default {
           {
             name: "苏城码",
             type: "pie",
-            radius: ["45%", "70%"],
+            radius: ["45%", "65%"],
             center: ["50%", "50%"],
             roseType: "angle",
             data: this.sucityNum
@@ -1577,13 +1578,16 @@ export default {
               name: res[i]._id
             });
           }
+          
+          self.sucityNum.push({value:0,name:'红码'},{value:0,name:'未注册'})
+
           self.drawLeida();
-          console.log(res)
+          // console.log(res);
         })
         .catch(function(error) {
           console.log(error);
         });
-    }
+    },
   }
 };
 </script>
