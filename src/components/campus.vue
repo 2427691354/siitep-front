@@ -11,7 +11,7 @@
           </div>
           <div class="boxall" style="height: 2.9rem">
             <div class="alltitle">苏城码颜色占比</div>
-            <div id="main8"></div>
+            <div id="main9"></div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall" style="height: 3.0rem;">
@@ -1118,7 +1118,7 @@ export default {
     },
     //苏城码
     drawLeida() {
-      var myChart = echarts.init(document.getElementById("main8"));
+      var myChart = echarts.init(document.getElementById("main9"));
       const option = {
         color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
         tooltip: {
@@ -1707,7 +1707,7 @@ export default {
   font-size: 0.15rem;
   color: #00d4c7;
 }
-#main8 {
+#main9 {
   width: 100%;
   height: 80%;
   /* padding-bottom: 0.2rem; */
