@@ -55,14 +55,14 @@
               <ul class="clearfix">
                 <li
                   class="pulll_left counter"
-                  style="width:30%;"
+                  style="width:40%;"
                 >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
                 <li
                   class="pulll_left counter"
-                  style="width:30%;"
+                  style="width:40%;"
                 >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
-                <li class="pulll_left counter" style="width:25%;">{{ statistics.upTime }}</li>
-                <li class="pulll_left counter" style="width:15%;">
+                <!-- <li class="pulll_left counter" style="width:25%;">{{ statistics.upTime }}</li> -->
+                <li class="pulll_left counter" style="width:20%;">
                   {{statistics.sumGreen}}
                   <!-- <div id="fashao"></div> -->
                 </li>
@@ -70,10 +70,10 @@
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left" style="width:30%;">返苏人数（江苏-苏州）</li>
-                <li class="pulll_left" style="width:25%;">更新时间</li>
-                <li class="pulll_left" style="width:15%;">绿码人数</li>
+                <li class="pulll_left" style="width:40%;">系部人数 - 上报人数</li>
+                <li class="pulll_left" style="width:40%;">返苏人数（江苏-苏州）</li>
+                <!-- <li class="pulll_left" style="width:25%;">更新时间</li> -->
+                <li class="pulll_left" style="width:20%;">绿码人数</li>
               </ul>
             </div>
           </div>
