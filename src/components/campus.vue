@@ -13,7 +13,7 @@
           <div class="boxall"
                style="height: 2.9rem">
             <div class="alltitle">苏城码颜色占比</div>
-            <div id="main8"></div>
+            <div id="main9"></div>
             <div class="boxfoot"></div>
           </div>
           <div class="boxall"
@@ -33,10 +33,14 @@
                     style="width:30%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
                 <li class="pulll_left counter"
                     style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <!-- <li class="pulll_left counter"
+                    style="width:10%;">{{ statistics.sumGreen }}</li> -->
                 <li class="pulll_left counter"
-                    style="width:10%;">{{ statistics.sumGreen }}</li>
+                    style="width:10%;">-</li>
                 <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.sumIsolated }}</li>
+                    style="width:30%;">-</li>
+                <!-- <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.sumIsolated }}</li> -->
               </ul>
             </div>
             <div class="barbox3">
@@ -46,7 +50,7 @@
                 <li class="pulll_left"
                     style="width:30%;">返校人数（江苏-苏州）</li>
                 <li class="pulll_left"
-                    style="width:10%;">绿码人数</li>
+                    style="width:10%;">发烧人数</li>
                 <li class="pulll_left"
                     style="width:30%;">今日检测人数</li>
               </ul>
@@ -58,9 +62,16 @@
                  style="height: 100%;"
                  id="echart1">
               <div id="container"
-                   style="width:100%;height: 100%;resize:both;"></div>
+                   style="width:100%;height: 100%;resize:both;">
+              </div>
+              <div id="xx"
+                   class='panel'
+                   style="width:18%;height:25%;resize:both;z-index:3000000;margin-top:-13%;margin-left:20px;position:absolute">
+                严格执行现行疫情防控管理规定，未经学校允许所有同学一律不得提前返校。
+              </div>
             </div>
-            <!-- <div class="boxfoot"></div> -->
+            <!-- <div class="
+                   boxfoot"></div> -->
           </div>
 
           <div class="boxall"
@@ -921,6 +932,7 @@ export default {
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].ProvinceCount);
           }
+          self.Num_js = self.Num_js.reverse()
           self.stuInsz();
         });
       self.$http
@@ -931,6 +943,9 @@ export default {
             self.Num_suzhou.push(res[i].CityCount);
             self.days.push(res[i].upTime.slice(8, 10) + "日");
           }
+
+          self.Num_suzhou = self.Num_suzhou.reverse()
+          self.days = self.days.reverse();
           self.stuInsz();
         });
     },
@@ -1158,20 +1173,52 @@ export default {
     },
     //苏城码
     drawLeida () {
-      var myChart = echarts.init(document.getElementById("main8"));
+      var myChart = echarts.init(document.getElementById("main9"));
       const option = {
-        color: ["#F8F106", "#33FFCC", "#33CCFF", "#eb2100"],
+        color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
         tooltip: {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        tooltip: {
+          show: false
         },
         series: [
           {
             name: "苏城码",
             type: "pie",
-            radius: ["45%", "70%"],
-            center: ["50%", "50%"],
-            roseType: "angle",
+            radius: ["45%", "55%"],
+            center: ["50%", "55%"],
+            clockWise: false,
+            hoverAnimation: false,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: 'outside',
+                  color: '#ddd',
+                  formatter: (params) => {
+                    var percent = 0;
+                    var total = 0;
+                    for (var i = 0; i < this.sucityNum.length; i++) {
+                      total += this.sucityNum[i].value;
+                    }
+                    percent = ((params.value / total) * 100).toFixed(0);
+                    if (params.name !== '') {
+                      return '\n' + params.name + ' ：' + params.value + '\n' + '\n' + '占百分比：' + percent + '%';
+                    } else {
+                      return '';
+                    }
+                  },
+                },
+                labelLine: {
+                  length: 10,
+                  length2: 10,
+                  show: true,
+                  color: '#00ffff'
+                }
+              }
+            },
             data: this.sucityNum
           }
         ]
@@ -1607,6 +1654,7 @@ export default {
         });
     },
     leidaInfo () {
+      var color = ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"]
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getCodeRegisterCount")
@@ -1615,16 +1663,27 @@ export default {
           for (var i = 0; i < res.length; i++) {
             self.sucityNum.push({
               value: res[i].持码人数,
-              name: res[i]._id
-            });
+              name: res[i]._id,
+              itemStyle: {
+                normal: {
+                  borderWidth: 2,
+                  shadowBlur: 10,
+                  borderColor: color[i],
+                  shadowColor: color[i]
+                }
+              }
+            })
           }
+
+          self.sucityNum.push({ value: 0, name: '红码' })
+
           self.drawLeida();
-          console.log(res)
+          // console.log(res);
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
+    },
   }
 };
 </script>
@@ -1744,7 +1803,7 @@ export default {
   font-size: 0.15rem;
   color: #00d4c7;
 }
-#main8 {
+#main9 {
   width: 100%;
   height: 80%;
   /* padding-bottom: 0.2rem; */
@@ -1870,5 +1929,20 @@ element.style {
 }
 #fashaostu .el-table th {
   width: 20% !important;
+}
+.panel {
+  font-size: 0.2rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1%;
+  line-height: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  border: 40px solid transparent;
+  font-size: 0.2rem;
+  box-shadow: 0 0 30px #00a2f7;
+  border: 4px solid #00a2f7;
+  transform: translate(0, -10%);
+  filter: brightness(1);
+  text-shadow: 0px 0px 8px #fff, 0px 0px 42px #f72, 0px 0px 72px #f84,
+    0px 0px 150px #fa5;
 }
 </style>
