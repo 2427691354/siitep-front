@@ -6,7 +6,7 @@
         <li style="width: 20%;">
           <div class="boxall"
                style="height: 3.7rem">
-            <div class="alltitle">发烧/隔离人数趋势变化</div>
+            <div class="alltitle">发烧/隔离人数趋势变化（模拟）</div>
             <div id="all_Num1"></div>
             <div class="boxfoot"></div>
           </div>
@@ -34,10 +34,9 @@
                 <li class="pulll_left counter"
                     style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
                 <li class="pulll_left counter"
-                    style="width:10%;">{{ statistics.sumIsolated }}</li>
+                    style="width:10%;">{{ statistics.sumGreen }}</li>
                 <li class="pulll_left counter"
-                    style="width:30%;">{{ statistics.sumIsolated }}
-                </li>
+                    style="width:30%;">{{ statistics.sumIsolated }}</li>
               </ul>
             </div>
             <div class="barbox3">
@@ -47,7 +46,7 @@
                 <li class="pulll_left"
                     style="width:30%;">返校人数（江苏-苏州）</li>
                 <li class="pulll_left"
-                    style="width:10%;">隔离人数</li>
+                    style="width:10%;">绿码人数</li>
                 <li class="pulll_left"
                     style="width:30%;">今日检测人数</li>
               </ul>
@@ -224,7 +223,7 @@
           </div>
           <div class="boxall"
                style="height: 4.7rem;">
-            <div class="alltitle">发烧学生信息表</div>
+            <div class="alltitle">发烧学生信息表（模拟）</div>
             <div class="allnav"
                  style="height:4rem"
                  id="fashaostu">
@@ -312,17 +311,17 @@ export default {
 
       //重点关注学生信息
       stuInfo: [],
-
-      //苏城码
-      pingtai: [[12, 13, 11, 7, 9, 11, 4]],
       //宏观信息
       statistics: {
         sumAll: 0,
         sumIsolated: 0,
         sumHever: 0,
         stuinSuzhou: 0,
-        stuinJiang: 0
-      }
+        stuinJiang: 0,
+        sumGreen: 0
+      },
+      //苏城码占比
+      sucityNum: []
     };
   },
   components: {
@@ -345,8 +344,8 @@ export default {
     this.focusStu();
     //辅导员信息滚动
     this.gundong();
-    //绘制雷达图
-    this.drawLeida();
+    //获取苏城码信息
+    this.leidaInfo();
     // 宏观统计 总人数、隔离人数、发烧人数
     this.initSum();
 
@@ -357,7 +356,6 @@ export default {
     window.addEventListener("resize", this.resizeFontsize());
 
     this.canves();
-
   },
   methods: {
     mapInit () {
@@ -561,10 +559,10 @@ export default {
         bubble: true,
         fillColor: "#02a6d5",
         fillOpacity: 0.2,
-        strokeColor: "#0893e2",//线颜色
-        strokeOpacity: 1,//线透明度
-        strokeWeight: 1.5,//线宽
-        strokeStyle: "solid",//线样式
+        strokeColor: "#0893e2", //线颜色
+        strokeOpacity: 1, //线透明度
+        strokeWeight: 1.5, //线宽
+        strokeStyle: "solid", //线样式
         path: options.areas[0].path,
         map: map
       });
@@ -572,10 +570,10 @@ export default {
         bubble: true,
         fillColor: "#10c8e0",
         fillOpacity: 0.2,
-        strokeColor: "#16a1b1",//线颜色
-        strokeOpacity: 1,//线透明度
-        strokeWeight: 1.5,//线宽
-        strokeStyle: "solid",//线样式
+        strokeColor: "#16a1b1", //线颜色
+        strokeOpacity: 1, //线透明度
+        strokeWeight: 1.5, //线宽
+        strokeStyle: "solid", //线样式
         path: options.areas[1].path,
         map: map
       });
@@ -611,22 +609,28 @@ export default {
           label: {
             normal: {
               formatter: function (params) {
-                // if (params.data.obj.elevatorBrakeList.length > 0) {
-                //   return (
-                //     "{fline| " + params.data.name + "  ! ! ! 检测到发烧人员}"
-                //   );
-                // } else {
-                //   return (
-                //     "{fline| " +
-                //     params.data.name +
-                //     "} {tline|累计检测人数：" +
-                //     params.data.value[2] +
-                //     "} "
-                //   );
-                // }
-                return (
-                  "{fline| " + params.data.name + "  暂未开放}"
-                );
+                if (params.data.obj.elevatorBrakeList.length > 0) {
+                  // return (
+                  //   "{fline| " +
+                  //   params.data.name +
+                  //   "} \n {tline| ! ! ! 检测到发烧人员 xxx" +
+                  //   params.data.obj.elevatorBrakeList[0].elevatorAddress +
+                  //   " ：" +
+                  //   params.data.obj.elevatorBrakeList[0].elevatorBrakeTypeName +
+                  //   " ℃} "
+                  // );
+                  return (
+                    "{fline| " + params.data.name + "  ! ! ! 检测到发烧人员}"
+                  );
+                } else {
+                  return (
+                    "{fline| " +
+                    params.data.name +
+                    "} {tline|累计检测人数：" +
+                    params.data.value[2] +
+                    "} "
+                  );
+                }
               },
               position: "top",
               backgroundColor: red,
@@ -665,13 +669,6 @@ export default {
           label: {
             normal: {
               formatter: function (params) {
-                // return (
-                //   "{fline| " +
-                //   params.data.name +
-                //   " 累计检测人数：" +
-                //   params.data.value[2] +
-                //   "} "
-                // );
                 return (
                   "{fline| " + params.data.name + "  暂未开放}"
                 );
@@ -918,21 +915,21 @@ export default {
     suzhouStu () {
       var self = this;
       self.$http
-        .get(this.baseUrl + "/dayrpt/getStuInSuZhou?province=江苏")
+        .get(this.baseUrl + "/students/getCityOrProvince?province=江苏")
         .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
-            self.Num_js.push(res[i].stuinSuZhou);
+            self.Num_js.push(res[i].ProvinceCount);
           }
           self.stuInsz();
         });
       self.$http
-        .get(this.baseUrl + "/dayrpt/getStuInSuZhou?city=苏州")
+        .get(this.baseUrl + "/students/getCityOrProvince?city=苏州")
         .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
-            self.Num_suzhou.push(res[i].stuinSuZhou);
-            self.days.push(res[i].time.substring(6) + "日");
+            self.Num_suzhou.push(res[i].CityCount);
+            self.days.push(res[i].upTime.slice(8, 10) + "日");
           }
           self.stuInsz();
         });
@@ -1158,14 +1155,12 @@ export default {
       tab.onmouseout = function () {
         MyMar = setInterval(Marquee, speed);
       };
-
-
     },
     //苏城码
     drawLeida () {
       var myChart = echarts.init(document.getElementById("main8"));
       const option = {
-        color: ["#eb2100", "#33FFCC", "#F8F106", "#33CCFF"],
+        color: ["#F8F106", "#33FFCC", "#33CCFF", "#eb2100"],
         tooltip: {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -1177,12 +1172,7 @@ export default {
             radius: ["45%", "70%"],
             center: ["50%", "50%"],
             roseType: "angle",
-            data: [
-              { value: 3, name: "红码" },
-              { value: 1061, name: "绿码" },
-              { value: 9, name: "黄码" },
-              { value: 146, name: "未注册" }
-            ]
+            data: this.sucityNum
           }
         ]
       };
@@ -1194,19 +1184,17 @@ export default {
     initSum () {
       var self = this;
       self.$http
-        .get(this.baseUrl + "/dayrpt/sum")
+        .get(this.baseUrl + "/students/sum")
         .then(function (response) {
           var res = response.data;
-          self.statistics.sumAll = res.sum;
-          self.statistics.sumIsolated = res.sumisolated;
-          self.statistics.sumHever = res.sumhever;
+          self.statistics.sumAll = res.sumAll;
+          self.statistics.upTime = res.upTime.slice(5);
+          self.statistics.sumGreen = res.sumGreen;
           self.statistics.stuinSuzhou = res.stuinSuzhou;
           self.statistics.stuinJiang = res.stuinJiang;
-          // window.location.reload();
         })
         .catch(function (error) {
           console.log(error);
-          // window.location.reload();
         });
     },
     resizeFontsize () {
@@ -1597,12 +1585,12 @@ export default {
     },
     gundong1 () {
       if (this.noMask.length >= this.noMaskCount) {
-        this.animate = true
+        this.animate = true;
         setTimeout(() => {
           this.noMask.push(this.noMask[0]);
           this.noMask.shift();
           this.animate = false;
-        }, 500)
+        }, 500);
       }
     },
     noMaskList () {
@@ -1618,6 +1606,25 @@ export default {
           console.log(error);
         });
     },
+    leidaInfo () {
+      var self = this;
+      self.$http
+        .get(this.baseUrl + "/students/getCodeRegisterCount")
+        .then(function (response) {
+          var res = response.data.results;
+          for (var i = 0; i < res.length; i++) {
+            self.sucityNum.push({
+              value: res[i].持码人数,
+              name: res[i]._id
+            });
+          }
+          self.drawLeida();
+          console.log(res)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
