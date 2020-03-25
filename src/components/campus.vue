@@ -401,7 +401,7 @@ export default {
           },
           {
             //围栏2
-             color1: "ffaaaaaa", //楼顶颜色
+            color1: "ffaaaaaa", //楼顶颜色
             color2: "ff3B3338", //楼面颜色
             path: [
               [120.5883944, 31.21815081],
@@ -420,7 +420,8 @@ export default {
 
       var d = [
         {
-          brakeType: "发烧",
+          // brakeType: "发烧",
+          brakeType: "正常",
           elevatorBrakeList: [
             {
               brakeCreateTime: "15:00:00",
@@ -610,28 +611,22 @@ export default {
           label: {
             normal: {
               formatter: function (params) {
-                if (params.data.obj.elevatorBrakeList.length > 0) {
-                  // return (
-                  //   "{fline| " +
-                  //   params.data.name +
-                  //   "} \n {tline| ! ! ! 检测到发烧人员 xxx" +
-                  //   params.data.obj.elevatorBrakeList[0].elevatorAddress +
-                  //   " ：" +
-                  //   params.data.obj.elevatorBrakeList[0].elevatorBrakeTypeName +
-                  //   " ℃} "
-                  // );
-                  return (
-                    "{fline| " + params.data.name + "  ! ! ! 检测到发烧人员}"
-                  );
-                } else {
-                  return (
-                    "{fline| " +
-                    params.data.name +
-                    "} {tline|累计检测人数：" +
-                    params.data.value[2] +
-                    "} "
-                  );
-                }
+                // if (params.data.obj.elevatorBrakeList.length > 0) {
+                //   return (
+                //     "{fline| " + params.data.name + "  ! ! ! 检测到发烧人员}"
+                //   );
+                // } else {
+                //   return (
+                //     "{fline| " +
+                //     params.data.name +
+                //     "} {tline|累计检测人数：" +
+                //     params.data.value[2] +
+                //     "} "
+                //   );
+                // }
+                return (
+                  "{fline| " + params.data.name + "  暂未开放}"
+                );
               },
               position: "top",
               backgroundColor: red,
@@ -670,12 +665,15 @@ export default {
           label: {
             normal: {
               formatter: function (params) {
+                // return (
+                //   "{fline| " +
+                //   params.data.name +
+                //   " 累计检测人数：" +
+                //   params.data.value[2] +
+                //   "} "
+                // );
                 return (
-                  "{fline| " +
-                  params.data.name +
-                  " 累计检测人数：" +
-                  params.data.value[2] +
-                  "} "
+                  "{fline| " + params.data.name + "  暂未开放}"
                 );
               },
               position: "top",
@@ -1661,7 +1659,7 @@ export default {
 }
 
 .el-table thead {
-  color: #B4B4B4 !important;
+  color: #b4b4b4 !important;
   background-color: #1b3565;
 }
 /* 设置table header的背景颜色 */

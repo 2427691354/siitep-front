@@ -179,7 +179,8 @@ export default {
       formData.append("date", this.tableSuffix);
       formData.append("date2", this.tableSuffix2);
       // xhr.open('post', "http://localhost:8089/import");
-      xhr.open('post', "http://47.101.33.200:8089/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
+      xhr.open('post', "http://localhost:8089/mongo/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
+      //xhr.open('post', "http://47.101.33.200:8089/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
       xhr.responseType = 'blob';
       xhr.onload = function (e) {
         if (this.status == 200) {
