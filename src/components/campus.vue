@@ -1942,7 +1942,7 @@ element.style {
   border: 4px solid #00a2f7;
   transform: translate(0, -10%);
   filter: brightness(1);
-  text-shadow: 0px 0px 8px #fff, 0px 0px 42px #f72, 0px 0px 72px #f84,
+  text-shadow: 0px 0px 8px red, 0px 0px 42px #f72, 0px 0px 72px #f84,
     0px 0px 150px #fa5;
 }
 </style>
