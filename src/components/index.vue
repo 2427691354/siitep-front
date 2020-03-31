@@ -3306,7 +3306,7 @@ export default {
     this.$refs.videoPlayer1.player.play();
     //重点关注学生表格、未带口罩的图片无缝滚动
     this.play();
-    // 诊　断
+    // // 诊　断
     this.WordCould("resou", "/prevent/selectFromDiagnosisTitle");
     // 知　识
     this.WordCould("zhishi", "/prevent/selectFromGuideTitle");
@@ -3318,9 +3318,9 @@ export default {
     this.map();
     //Top10
     this.proBar();
-    // 发烧占比
+    // // 发烧占比
     this.leidaInfo();
-    //选项卡自动播放
+    // //选项卡自动播放
     this.tabxunhuan();
     //返苏人数折线图
     this.stuInsz();
@@ -4267,29 +4267,52 @@ export default {
       self.$http
         .get(this.baseUrl + "/students/getCodeRegisterCount")
         .then(function (response) {
+          self.sucityNum = [{
+            value: 5,
+            name: "黄码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[0],
+                shadowColor: color[0]
+              }
+            }
+          }, {
+            value: 20,
+            name: "绿码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[1],
+                shadowColor: color[1]
+              }
+            }
+          }, {
+            value: 0,
+            name: "红码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[2],
+                shadowColor: color[2]
+              }
+            }
+          },]
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
-            self.sucityNum.push({
-              value: res[i].持码人数,
-              name: res[i]._id,
-              itemStyle: {
-                normal: {
-                  borderWidth: 2,
-                  shadowBlur: 10,
-                  borderColor: color[i],
-                  shadowColor: color[i]
-                }
-              }
-            })
-          }
-
-          for (var i = 0; i < self.sucityNum.length; i++) {
             if (self.sucityNum[i].name == "红码") {
-
+              self.sucityNum[2].value = res[i].持码人数
+            }
+            if (self.sucityNum[i].name == "黄码") {
+              self.sucityNum[0].value = res[i].持码人数
+            }
+            if (self.sucityNum[i].name == "绿码") {
+              self.sucityNum[1].value = res[i].持码人数
             }
           }
-
-          self.sucityNum.push({ value: 0, name: '红码' })
 
           self.drawLeida();
           // console.log(res);

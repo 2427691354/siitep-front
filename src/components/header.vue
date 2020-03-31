@@ -2,14 +2,12 @@
   <div>
     <div class="head">
       <div class="nav">
-        <el-menu
-          :default-active="this.$route.path"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          text-color="#1bb4f6"
-          active-text-color="#5bc0de"
-        >
+        <el-menu :default-active="this.$route.path"
+                 class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="#1bb4f6"
+                 active-text-color="#5bc0de">
           <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
@@ -20,10 +18,13 @@
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>
       <div class="weather">
-        <img src="../assets/images/time4.png" alt="时间截止" />
+        <img src="../assets/images/time4.png"
+             alt="时间截止" />
         <span>数据更新截止：</span>
-        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">{{dateline}}</span>
-        <span id="showTime" v-else>{{deadLine}}</span>
+        <span id="showTime"
+              v-if="this.$route.path=='/networkTeaching'">{{dateline}}</span>
+        <span id="showTime"
+              v-else>{{deadLine}}</span>
       </div>
     </div>
   </div>
@@ -32,45 +33,45 @@
 <script>
 import axios from "axios";
 export default {
-  data() {
+  data () {
     return {
       deadLine: "",
       dateline: ""
     };
   },
-  created() {
+  created () {
     this.getDeadline();
   },
-  mounted() {
+  mounted () {
     this.date();
   },
   methods: {
-    getDeadline() {
+    getDeadline () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getNewTime")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.deadLine = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           // window.location.reload();
         });
     },
-    handleSelect(key, keyPath) {
+    handleSelect (key, keyPath) {
       // console.log(key);
       this.$router.push(key);
     },
-    date() {
+    date () {
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         console.log(res.data.deadline);
         this.dateline = res.data.deadline;
       });
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
