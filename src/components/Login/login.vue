@@ -15,7 +15,9 @@
       </div>
       <div>
         <el-button @click="login" class="login_style">登录</el-button>
-        <p @click="enter" class="enter_style">直接进入</p>
+        <p>
+          <router-link to="/">返回</router-link>
+        </p>
       </div>
     </div>
   </div>
@@ -34,6 +36,8 @@ export default {
       }
     };
   },
+  mounted() {
+  },
   methods: {
     check(name, pwd) {
       if (!name) {
@@ -50,27 +54,25 @@ export default {
         alert("浏览器不支持localStorage");
       } else {
         var storage = window.localStorage;
-        storage.setItem("name", this.name);
         
-        if (this.name == "admin" && this.pwd == "123") {
-          this.$router.push({ name: "Index" });
-        } 
-        else if(this.name=="user" && this.pwd == "1234"){
-          this.$router.push({ name: "Index" });
-        }
-        else {
-          alert("用户名或密码错误");
-        }
-        console.log(typeof storage["name"]);
-      }
-    },
-    enter(){
-      if (!window.localStorage) {
-        alert("浏览器不支持localStorage");
-      } else {
-        var storage = window.localStorage;
-        storage.setItem("name", "");
-        this.$router.push({ name: "Index" });
+        var self = this;
+        self.$http
+          .get(this.baseUrl + "/teacher/teacherLogin", {
+            params: {
+              teacher_id: self.name,
+              password: self.pwd
+            }
+          })
+          .then(function(response) {
+            var res = response.data;
+            storage.setItem("res", res);
+            if (res == "存在") {
+              self.$router.push({ name: "Index" });
+            } else {
+              alert("用户名或密码错误");
+            }
+            console.log(res);
+          });
       }
     }
   }
@@ -136,9 +138,7 @@ i {
   color: crimson;
   font-size: 0.1rem;
 }
-.enter_style{
-  color: #1834ec;
+.page p {
   font-size: 0.2rem;
-  cursor: pointer;
 }
 </style>

@@ -5,7 +5,6 @@
     <div class="checkform">
       <el-form
         :model="ruleForm"
-        :rules="rules"
         ref="ruleForm"
         label-width="100px"
         class="demo-ruleForm"
@@ -15,14 +14,24 @@
         </el-form-item>
         <el-form-item label="日期">
           <el-col :span="11">
-            <el-form-item prop="date1">
-              <el-date-picker type="date" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+            <el-form-item prop="starttime">
+              <el-date-picker
+                type="datetime"
+                v-model="ruleForm.starttime"
+                style="width: 100%;"
+                value-format="yyyy-MM-dd HH:mm:ss"
+              ></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col class="line" :span="0.5">—</el-col>
           <el-col :span="11">
-            <el-form-item prop="date2">
-              <el-date-picker type="date" v-model="ruleForm.date2" style="width: 100%;"></el-date-picker>
+            <el-form-item prop="endtime">
+              <el-date-picker
+                type="datetime"
+                v-model="ruleForm.endtime"
+                style="width: 100%;"
+                value-format="yyyy-MM-dd HH:mm:ss"
+              ></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -37,9 +46,9 @@
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
-            <span>学号</span>
-            <span>同学</span>
-            <span>日行程如下：</span>
+            <span>学号{{this.ruleForm.xuehao}},</span>
+            <span>同学{{this.ruleForm.student}},</span>
+            <span>{{this.ruleForm.day}}日行程如下：</span>
           </div>
           <!--时间线-->
           <div class="timeLine">
@@ -73,102 +82,15 @@ export default {
   data() {
     return {
       ruleForm: {
-        name: "",
-        date1: "",
-        date2: ""
-      },
-      rules: {
-        name: [
-          { required: true, message: "请输入学生学号", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 0 到 20 个字符", trigger: "blur" }
-        ],
-        date1: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择日期",
-            trigger: "change"
-          }
-        ]
+        name: "1924031116",
+        starttime: "2020-04-01 00:00:00",
+        endtime: "2020-04-13 24:00:00",
+        xuehao: "",
+        student: "",
+        day: ""
       },
       timeIndex: 2,
-      timeLineList: [
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        },
-        {
-          timestamp: "4.1",
-          tem: "36.5",
-          city: "泰州市"
-        }
-      ]
+      timeLineList: []
     };
   },
   components: {
@@ -178,7 +100,31 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          var self = this;
+          self.$http
+            .get(this.baseUrl + "/teacher/getStudentTrip", {
+              params: {
+                endtime: self.ruleForm.endtime,
+                sId: self.ruleForm.name,
+                starttime: self.ruleForm.starttime,
+              }
+            })
+            .then(function(response) {
+              var res = response.data[0].result;
+              self.ruleForm.xuehao = res[0].sid;
+              self.ruleForm.student = res[0].sname;
+              self.ruleForm.day = res.length;
+              // console.log(res[0].sid);
+              // console.log(self.ruleForm.endtime);
+              // console.log(res.length);
+              for(var i=0;i<res.length;i++){
+                self.timeLineList.push({
+                  timestamp:res[i].upTime.slice(6,7)+"."+res[i].upTime.slice(9,10),
+                  tem:res[i].temperature,
+                  city:res[i].locationCity+"市"
+                })
+              }
+            });
         } else {
           console.log("error submit!!");
           return false;
@@ -248,7 +194,7 @@ export default {
   position: absolute;
   width: 50%;
   height: 5%;
-  margin-top: 15%;
+  margin-top: 22%;
   margin-left: 25%;
 }
 .ul_box {
@@ -278,7 +224,7 @@ export default {
   cursor: pointer;
 }
 .my_timeline_node.active {
-  background-color: #ff0000 !important;
+  /* background-color: #ff0000 !important; */
   /* border: 3px solid #f68720; */
 }
 .my_timeline_item_line {
@@ -296,7 +242,7 @@ export default {
 .my_timeline_item_content_2 {
   width: 100%;
   color: aqua;
-  font-size: 0.2rem;
+  font-size: 0.1rem;
   margin: -40px 0 0 0;
 }
 .studentInfo {
