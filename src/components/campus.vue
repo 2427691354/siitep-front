@@ -4,57 +4,78 @@
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width: 20%;">
-          <div class="boxall" style="height: 3.7rem">
-            <div class="alltitle">发烧/隔离人数趋势变化</div>
+          <div class="boxall"
+               style="height: 3.7rem">
+            <div class="alltitle">发烧/隔离人数趋势变化（模拟）</div>
             <div id="all_Num1"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.9rem">
+          <div class="boxall"
+               style="height: 2.9rem">
             <div class="alltitle">苏城码颜色占比</div>
             <div id="main9"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 3.0rem;">
+          <div class="boxall"
+               style="height: 3.0rem;">
             <div class="alltitle">返校/返苏人数趋势变化</div>
             <div id="allLine1"></div>
             <div class="boxfoot"></div>
           </div>
         </li>
         <li style="width: 50%;">
-          <div class="boxall1" style="height: 1rem;">
+          <div class="boxall1"
+               style="height: 1rem;">
             <!-- <div class="alltitle">宏观指标（全校人数 返校人数 隔离人数 今日检测人数）</div> -->
             <div class="barbox4">
               <ul class="clearfix">
-                <li
-                  class="pulll_left counter"
-                  style="width:30%;"
-                >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
-                <li
-                  class="pulll_left counter"
-                  style="width:30%;"
-                >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
-                <li class="pulll_left counter" style="width:10%;">{{ statistics.sumGreen }}</li>
-                <li class="pulll_left counter" style="width:30%;">{{ statistics.sumIsolated }}</li>
+                <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
+                <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <!-- <li class="pulll_left counter"
+                    style="width:10%;">{{ statistics.sumGreen }}</li> -->
+                <li class="pulll_left counter"
+                    style="width:10%;">-</li>
+                <li class="pulll_left counter"
+                    style="width:30%;">-</li>
+                <!-- <li class="pulll_left counter"
+                    style="width:30%;">{{ statistics.sumIsolated }}</li> -->
               </ul>
             </div>
             <div class="barbox3">
               <ul class="clearfix">
-                <li class="pulll_left" style="width:30%;">系部人数 - 上报人数</li>
-                <li class="pulll_left" style="width:30%;">返校人数（江苏-苏州）</li>
-                <li class="pulll_left" style="width:10%;">绿码人数</li>
-                <li class="pulll_left" style="width:30%;">今日检测人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">系部人数 - 上报人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">返校人数（江苏-苏州）</li>
+                <li class="pulll_left"
+                    style="width:10%;">发烧人数</li>
+                <li class="pulll_left"
+                    style="width:30%;">今日检测人数</li>
               </ul>
             </div>
             <!-- <div class="boxfoot"></div> -->
           </div>
           <div style="height: 6.5rem;padding:0rem;margin-bottom:0.15rem">
-            <div class="allnav" style="height: 100%;" id="echart1">
-              <div id="container" style="width:100%;height: 100%;resize:both;"></div>
+            <div class="allnav"
+                 style="height: 100%;"
+                 id="echart1">
+              <div id="container"
+                   style="width:100%;height: 100%;resize:both;">
+              </div>
+              <div id="xx"
+                   class='panel'
+                   style="width:18%;height:25%;resize:both;z-index:3000000;margin-top:-13%;margin-left:20px;position:absolute">
+                严格执行现行疫情防控管理规定，未经学校允许所有同学一律不得提前返校。
+              </div>
             </div>
-            <!-- <div class="boxfoot"></div> -->
+            <!-- <div class="
+                   boxfoot"></div> -->
           </div>
 
-          <div class="boxall" style="height: 2.1rem;">
+          <div class="boxall"
+               style="height: 2.1rem;">
             <div class="alltitle1">辅导员信息</div>
             <div class="allnav">
               <div id="lunbo_2">
@@ -62,7 +83,10 @@
                   <div id="inlunbo1_2">
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/4.png" alt width="100%" height="100%" />
+                        <img src="static/img/4.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         居晓玮
@@ -73,7 +97,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/1.png" alt width="100%" height="100%" />
+                        <img src="static/img/1.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         韩雪芳
@@ -84,7 +111,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/2.png" alt width="100%" height="100%" />
+                        <img src="static/img/2.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         彭 薇
@@ -95,7 +125,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/3.png" alt width="100%" height="100%" />
+                        <img src="static/img/3.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         薛慧敏
@@ -108,7 +141,10 @@
                   <div id="inlunbo2_2">
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/4.png" alt width="100%" height="100%" />
+                        <img src="static/img/4.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         居晓玮
@@ -119,7 +155,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/1.png" alt width="100%" height="100%" />
+                        <img src="static/img/1.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         韩雪芳
@@ -130,7 +169,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/2.png" alt width="100%" height="100%" />
+                        <img src="static/img/2.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         彭 薇
@@ -141,7 +183,10 @@
                     </div>
                     <div class="lunboborder_2">
                       <div class="lunboimg_2">
-                        <img src="static/img/3.png" alt width="100%" height="100%" />
+                        <img src="static/img/3.png"
+                             alt
+                             width="100%"
+                             height="100%" />
                       </div>
                       <div class="lunbotext_2">
                         薛慧敏
@@ -158,46 +203,56 @@
           </div>
         </li>
         <li style="width: 30%;">
-          <div class="boxall" style="height: 3.7rem">
+          <div class="boxall"
+               style="height: 3.7rem">
             <div class="alltitle">实时监控</div>
             <div class="jiankong">
-              <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions"
-              ></video-player>
+              <video-player class="video-player vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions"></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 1.2rem">
+          <div class="boxall"
+               style="height: 1.2rem">
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img :src="staticUrl2 + item.img" v-for="item in this.noMask" :key="item.title" />
+                  <img :src="staticUrl2 + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
                 </div>
                 <div id="demo2">
-                  <img :src="staticUrl2  + item.img" v-for="item in this.noMask" :key="item.title" />
+                  <img :src="staticUrl2  + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
                 </div>
               </div>
             </div>
 
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 4.7rem;">
-            <div class="alltitle">发烧学生信息表</div>
-            <div class="allnav" style="height:4rem" id="fashaostu">
-              <el-table
-                :data="stuInfo"
-                stripe
-                style="font-size: 10%"
-                :row-style="{ height: '0.4rem' }"
-                :cell-style="{ padding: '0px' }"
-              >
-                <el-table-column prop="name" label="姓名"></el-table-column>
-                <el-table-column prop="class" label="班级"></el-table-column>
-                <el-table-column prop="tem" label="体温(℃)"></el-table-column>
-                <el-table-column prop="status" label="状态"></el-table-column>
-                <el-table-column prop="address" label="隔离地点"></el-table-column>
+          <div class="boxall"
+               style="height: 4.7rem;">
+            <div class="alltitle">发烧学生信息表（模拟）</div>
+            <div class="allnav"
+                 style="height:4rem"
+                 id="fashaostu">
+              <el-table :data="stuInfo"
+                        stripe
+                        style="font-size: 10%"
+                        :row-style="{ height: '0.4rem' }"
+                        :cell-style="{ padding: '0px' }">
+                <el-table-column prop="name"
+                                 label="姓名"></el-table-column>
+                <el-table-column prop="class"
+                                 label="班级"></el-table-column>
+                <el-table-column prop="tem"
+                                 label="体温(℃)"></el-table-column>
+                <el-table-column prop="status"
+                                 label="状态"></el-table-column>
+                <el-table-column prop="address"
+                                 label="隔离地点"></el-table-column>
               </el-table>
             </div>
             <div class="boxfoot"></div>
@@ -217,7 +272,7 @@ import "video.js/dist/video-js.css";
 import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 export default {
-  data() {
+  data () {
     return {
       animate: false,
       staticUrl2: this.staticUrl2,
@@ -274,7 +329,7 @@ export default {
         sumHever: 0,
         stuinSuzhou: 0,
         stuinJiang: 0,
-        sumGreen:0
+        sumGreen: 0
       },
       //苏城码占比
       sucityNum: []
@@ -284,13 +339,13 @@ export default {
     Header,
     videoPlayer
   },
-  created() {
+  created () {
     //表格自动滚动
     this.play();
     // 获取未带口罩的图片
     this.noMaskList();
   },
-  mounted() {
+  mounted () {
     this.mapInit();
     //隔离、发烧人数趋势
     this.trendNum();
@@ -314,7 +369,7 @@ export default {
     this.canves();
   },
   methods: {
-    mapInit() {
+    mapInit () {
       var self = this;
       var green = "#7ce757";
       var orange = "#ffb034";
@@ -374,7 +429,8 @@ export default {
 
       var d = [
         {
-          brakeType: "发烧",
+          // brakeType: "发烧",
+          brakeType: "正常",
           elevatorBrakeList: [
             {
               brakeCreateTime: "15:00:00",
@@ -448,7 +504,7 @@ export default {
           parseFloat(d[p].housingLatitude)
         ];
       }
-      var convertData = function(data) {
+      var convertData = function (data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].name];
@@ -533,7 +589,7 @@ export default {
         map: map
       });
 
-      AMap.event.addListener(map, "zoomend", function() {
+      AMap.event.addListener(map, "zoomend", function () {
         console.log("当前缩放级别：" + map.getZoom());
         console.log("俯视视角" + map.getPitch());
         console.log("俯视视角" + map.getPitch());
@@ -563,7 +619,7 @@ export default {
           hoverAnimation: true,
           label: {
             normal: {
-              formatter: function(params) {
+              formatter: function (params) {
                 if (params.data.obj.elevatorBrakeList.length > 0) {
                   // return (
                   //   "{fline| " +
@@ -623,13 +679,9 @@ export default {
           hoverAnimation: true,
           label: {
             normal: {
-              formatter: function(params) {
+              formatter: function (params) {
                 return (
-                  "{fline| " +
-                  params.data.name +
-                  " 累计检测人数：" +
-                  params.data.value[2] +
-                  "} "
+                  "{fline| " + params.data.name + "  暂未开放}"
                 );
               },
               position: "top",
@@ -658,7 +710,7 @@ export default {
         series: series
       });
       //点击散点切换视频流
-      myChart.on("click", function(params) {
+      myChart.on("click", function (params) {
         console.log(params.name);
         //逻辑控制
         switch (params.name) {
@@ -674,7 +726,7 @@ export default {
       });
 
       //下面是确保高德地图渲染的时候，echarts同时也需要再次渲染一次，保持位置的同步
-      layer.render = function() {
+      layer.render = function () {
         myChart.setOption({
           series: series
         });
@@ -685,7 +737,7 @@ export default {
        * @param gg_lat
        * @returns {{bd_lat: number, bd_lng: number}}
        */
-      function bd_encrypt(gg_lng, gg_lat) {
+      function bd_encrypt (gg_lng, gg_lat) {
         var X_PI = (Math.PI * 3000.0) / 180.0;
         var x = gg_lng,
           y = gg_lat;
@@ -699,18 +751,18 @@ export default {
         };
       }
     },
-    setSize: function() {
+    setSize: function () {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-    changeZhibosrc(src) {
+    changeZhibosrc (src) {
       this.playerOptions["sources"][0]["src"] = src;
     },
-    trendNum() {
+    trendNum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFeverTrend")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_fashao.push(res[i].stuFeverTrend);
@@ -722,7 +774,7 @@ export default {
 
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuIsolated")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_geli.push(res[i].stuFeverTrend);
@@ -730,7 +782,7 @@ export default {
           self.totalNum();
         });
     },
-    totalNum() {
+    totalNum () {
       var myChart = echarts.init(document.getElementById("all_Num1"));
       // Generate data
       var option = {
@@ -867,34 +919,37 @@ export default {
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    suzhouStu() {
+    suzhouStu () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getCityOrProvince?province=江苏")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_js.push(res[i].ProvinceCount);
           }
+          self.Num_js = self.Num_js.reverse()
           self.stuInsz();
         });
       self.$http
         .get(this.baseUrl + "/students/getCityOrProvince?city=苏州")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
             self.Num_suzhou.push(res[i].CityCount);
-            self.days.push(res[i].upTime.slice(8,10) + "日");
+            self.days.push(res[i].upTime.slice(8, 10) + "日");
           }
+
+          self.Num_suzhou = self.Num_suzhou.reverse()
           self.days = self.days.reverse();
           self.stuInsz();
         });
     },
-    stuInsz() {
+    stuInsz () {
       var myChart = echarts.init(document.getElementById("allLine1"));
       var option = {
         tooltip: {
@@ -1043,15 +1098,15 @@ export default {
       };
 
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    focusStu() {
+    focusStu () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFocusStu")
-        .then(function(response) {
+        .then(function (response) {
           var dd = [];
           var res = response.data;
           self.stuInfo = dd;
@@ -1078,30 +1133,30 @@ export default {
             });
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
     //change,play实现表格自动滚动
-    change() {
+    change () {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    play() {
+    play () {
       //每两秒执行一次插入删除操作
       setInterval(this.change, 1000);
       setInterval(this.gundong1, 500);
     },
     //辅导员信息滚动
-    gundong() {
+    gundong () {
       var speed = 12;
       var tab = document.getElementById("lunbo_2");
       var tab1 = document.getElementById("inlunbo1_2");
       var tab2 = document.getElementById("inlunbo1_2");
       tab2.innerHTML = tab1.innerHTML;
-      function Marquee() {
+      function Marquee () {
         if (tab2.offsetWidth - tab.scrollLeft <= 0) {
           tab.scrollLeft -= tab1.offsetWidth;
         } else {
@@ -1109,15 +1164,15 @@ export default {
         }
       }
       var MyMar = setInterval(Marquee, speed);
-      tab.onmouseover = function() {
+      tab.onmouseover = function () {
         clearInterval(MyMar);
       };
-      tab.onmouseout = function() {
+      tab.onmouseout = function () {
         MyMar = setInterval(Marquee, speed);
       };
     },
     //苏城码
-    drawLeida() {
+    drawLeida () {
       var myChart = echarts.init(document.getElementById("main9"));
       const option = {
         color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
@@ -1125,27 +1180,59 @@ export default {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
+        tooltip: {
+          show: false
+        },
         series: [
           {
             name: "苏城码",
             type: "pie",
-            radius: ["45%", "65%"],
-            center: ["50%", "50%"],
-            roseType: "angle",
+            radius: ["45%", "55%"],
+            center: ["50%", "55%"],
+            clockWise: false,
+            hoverAnimation: false,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: 'outside',
+                  color: '#ddd',
+                  formatter: (params) => {
+                    var percent = 0;
+                    var total = 0;
+                    for (var i = 0; i < this.sucityNum.length; i++) {
+                      total += this.sucityNum[i].value;
+                    }
+                    percent = ((params.value / total) * 100).toFixed(0);
+                    if (params.name !== '') {
+                      return '\n' + params.name + ' ：' + params.value + '\n' + '\n' + '占百分比：' + percent + '%';
+                    } else {
+                      return '';
+                    }
+                  },
+                },
+                labelLine: {
+                  length: 10,
+                  length2: 10,
+                  show: true,
+                  color: '#00ffff'
+                }
+              }
+            },
             data: this.sucityNum
           }
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    initSum() {
+    initSum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/sum")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.statistics.sumAll = res.sumAll;
           self.statistics.upTime = res.upTime.slice(5);
@@ -1153,16 +1240,16 @@ export default {
           self.statistics.stuinSuzhou = res.stuinSuzhou;
           self.statistics.stuinJiang = res.stuinJiang;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    resizeFontsize() {
+    resizeFontsize () {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
       //width/(效果图片宽度/文本字体大小(100))
     },
-    canves() {
+    canves () {
       var num = 200;
       var w = window.innerWidth;
       var h = window.innerHeight;
@@ -1170,18 +1257,18 @@ export default {
       var _x = 0;
       var _y = 0;
       var _z = 150;
-      var dtr = function(d) {
+      var dtr = function (d) {
         return (d * Math.PI) / 180;
       };
 
-      var rnd = function() {
+      var rnd = function () {
         return Math.sin((Math.floor(Math.random() * 360) * Math.PI) / 180);
       };
-      var dist = function(p1, p2, p3) {
+      var dist = function (p1, p2, p3) {
         return Math.sqrt(
           Math.pow(p2.x - p1.x, 2) +
-            Math.pow(p2.y - p1.y, 2) +
-            Math.pow(p2.z - p1.z, 2)
+          Math.pow(p2.y - p1.y, 2) +
+          Math.pow(p2.z - p1.z, 2)
         );
       };
 
@@ -1213,7 +1300,7 @@ export default {
           y: h / 2,
           z: 0
         },
-        upd: function() {
+        upd: function () {
           cam.dist.x = cam.dest.x - cam.obj.x;
           cam.dist.y = cam.dest.y - cam.obj.y;
           cam.dist.z = cam.dest.z - cam.obj.z;
@@ -1227,22 +1314,22 @@ export default {
             Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
+              cam.dist.y * cam.dist.y +
+              cam.dist.z * cam.dist.z
             );
           cam.ang.stheta =
             -cam.dist.y /
             Math.sqrt(
               cam.dist.x * cam.dist.x +
-                cam.dist.y * cam.dist.y +
-                cam.dist.z * cam.dist.z
+              cam.dist.y * cam.dist.y +
+              cam.dist.z * cam.dist.z
             );
         }
       };
 
       var trans = {
         parts: {
-          sz: function(p, sz) {
+          sz: function (p, sz) {
             return {
               x: p.x * sz.x,
               y: p.y * sz.y,
@@ -1250,21 +1337,21 @@ export default {
             };
           },
           rot: {
-            x: function(p, rot) {
+            x: function (p, rot) {
               return {
                 x: p.x,
                 y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
                 z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
               };
             },
-            y: function(p, rot) {
+            y: function (p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
                 y: p.y,
                 z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
               };
             },
-            z: function(p, rot) {
+            z: function (p, rot) {
               return {
                 x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
                 y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
@@ -1272,7 +1359,7 @@ export default {
               };
             }
           },
-          pos: function(p, pos) {
+          pos: function (p, pos) {
             return {
               x: p.x + pos.x,
               y: p.y + pos.y,
@@ -1281,21 +1368,21 @@ export default {
           }
         },
         pov: {
-          plane: function(p) {
+          plane: function (p) {
             return {
               x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
               y: p.y,
               z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
             };
           },
-          theta: function(p) {
+          theta: function (p) {
             return {
               x: p.x,
               y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
               z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
             };
           },
-          set: function(p) {
+          set: function (p) {
             return {
               x: p.x - cam.obj.x,
               y: p.y - cam.obj.y,
@@ -1303,7 +1390,7 @@ export default {
             };
           }
         },
-        persp: function(p) {
+        persp: function (p) {
           return {
             x: ((p.x * cam.dist.z) / p.z) * cam.zoom,
             y: ((p.y * cam.dist.z) / p.z) * cam.zoom,
@@ -1311,7 +1398,7 @@ export default {
             p: cam.dist.z / p.z
           };
         },
-        disp: function(p, disp) {
+        disp: function (p, disp) {
           return {
             x: p.x + disp.x,
             y: -p.y + disp.y,
@@ -1319,7 +1406,7 @@ export default {
             p: p.p
           };
         },
-        steps: function(_obj_, sz, rot, pos, disp) {
+        steps: function (_obj_, sz, rot, pos, disp) {
           var _args = trans.parts.sz(_obj_, sz);
           _args = trans.parts.rot.x(_args, rot);
           _args = trans.parts.rot.y(_args, rot);
@@ -1334,9 +1421,9 @@ export default {
         }
       };
 
-      (function() {
+      (function () {
         "use strict";
-        var threeD = function(param) {
+        var threeD = function (param) {
           this.transIn = {};
           this.transOut = {};
           this.transIn.vtx = param.vtx;
@@ -1345,7 +1432,7 @@ export default {
           this.transIn.pos = param.pos;
         };
 
-        threeD.prototype.vupd = function() {
+        threeD.prototype.vupd = function () {
           this.transOut = trans.steps(
             this.transIn.vtx,
             this.transIn.sz,
@@ -1355,7 +1442,7 @@ export default {
           );
         };
 
-        var Build = function() {
+        var Build = function () {
           this.vel = 0.04;
           this.lim = 360;
           this.diff = 200;
@@ -1365,7 +1452,7 @@ export default {
           this.go();
         };
 
-        Build.prototype.go = function() {
+        Build.prototype.go = function () {
           this.canvas = document.getElementById("canv");
           this.canvas.width = window.innerWidth;
           this.canvas.height = window.innerHeight;
@@ -1391,7 +1478,7 @@ export default {
           };
         };
 
-        Build.prototype.add = function() {
+        Build.prototype.add = function () {
           this.varr.push(
             new threeD({
               vtx: {
@@ -1423,12 +1510,12 @@ export default {
           });
         };
 
-        Build.prototype.upd = function() {
+        Build.prototype.upd = function () {
           cam.obj.x += (this.toX - cam.obj.x) * 0.05;
           cam.obj.y += (this.toY - cam.obj.y) * 0.05;
         };
 
-        Build.prototype.draw = function() {
+        Build.prototype.draw = function () {
           this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
           cam.upd();
           this.rotObj.x += 0.1;
@@ -1478,16 +1565,16 @@ export default {
             this.$.closePath();
           }
         };
-        Build.prototype.anim = function() {
-          window.requestAnimationFrame = (function() {
+        Build.prototype.anim = function () {
+          window.requestAnimationFrame = (function () {
             return (
               window.requestAnimationFrame ||
-              function(callback, element) {
+              function (callback, element) {
                 window.setTimeout(callback, 1000 / 60);
               }
             );
           })();
-          var anim = function() {
+          var anim = function () {
             this.upd();
             this.draw();
             window.requestAnimationFrame(anim);
@@ -1495,19 +1582,19 @@ export default {
           window.requestAnimationFrame(anim);
         };
 
-        Build.prototype.run = function() {
+        Build.prototype.run = function () {
           this.anim();
 
           window.addEventListener(
             "mousemove",
-            function(e) {
+            function (e) {
               this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
             }.bind(this)
           );
           window.addEventListener(
             "touchmove",
-            function(e) {
+            function (e) {
               e.preventDefault();
               this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
               this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
@@ -1515,7 +1602,7 @@ export default {
           );
           window.addEventListener(
             "mousedown",
-            function(e) {
+            function (e) {
               for (var i = 0; i < 100; i++) {
                 this.add();
               }
@@ -1523,7 +1610,7 @@ export default {
           );
           window.addEventListener(
             "touchstart",
-            function(e) {
+            function (e) {
               e.preventDefault();
               for (var i = 0; i < 100; i++) {
                 this.add();
@@ -1536,14 +1623,14 @@ export default {
       })();
       window.addEventListener(
         "resize",
-        function() {
+        function () {
           canvas.width = w = window.innerWidth;
           canvas.height = h = window.innerHeight;
         },
         false
       );
     },
-    gundong1() {
+    gundong1 () {
       if (this.noMask.length >= this.noMaskCount) {
         this.animate = true;
         setTimeout(() => {
@@ -1553,38 +1640,47 @@ export default {
         }, 500);
       }
     },
-    noMaskList() {
+    noMaskList () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=3")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.noMask = res;
           self.noMaskCount = res.length;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    leidaInfo() {
+    leidaInfo () {
+      var color = ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"]
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getCodeRegisterCount")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
             self.sucityNum.push({
               value: res[i].持码人数,
-              name: res[i]._id
-            });
+              name: res[i]._id,
+              itemStyle: {
+                normal: {
+                  borderWidth: 2,
+                  shadowBlur: 10,
+                  borderColor: color[i],
+                  shadowColor: color[i]
+                }
+              }
+            })
           }
-          
-          self.sucityNum.push({value:0,name:'红码'},{value:0,name:'未注册'})
+
+          self.sucityNum.push({ value: 0, name: '红码' })
 
           self.drawLeida();
           // console.log(res);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
@@ -1833,5 +1929,20 @@ element.style {
 }
 #fashaostu .el-table th {
   width: 20% !important;
+}
+.panel {
+  font-size: 0.2rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1%;
+  line-height: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  border: 40px solid transparent;
+  font-size: 0.2rem;
+  box-shadow: 0 0 30px #00a2f7;
+  border: 4px solid #00a2f7;
+  transform: translate(0, -10%);
+  filter: brightness(1);
+  text-shadow: 0px 0px 8px red, 0px 0px 42px #f72, 0px 0px 72px #f84,
+    0px 0px 150px #fa5;
 }
 </style>

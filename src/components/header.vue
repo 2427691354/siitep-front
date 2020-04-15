@@ -10,16 +10,31 @@
           text-color="#1bb4f6"
           active-text-color="#5bc0de"
         >
-          <el-menu-item index="/index">首页</el-menu-item>
+          <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
           <!-- <el-menu-item index="/epidemic">疫情分析</el-menu-item> -->
           <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
           <el-menu-item index="/monitor">实时监控</el-menu-item>
-          <el-menu-item index="/studentstrajectory" v-show="showmeauinfo">学生轨迹</el-menu-item>
         </el-menu>
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>
+      <div class="botton" v-show="bottonenter">
+        <el-button @click="userlogin">登录</el-button>
+      </div>
+      <div class="showdropmenu" v-show="showmeauinfo">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            更多菜单
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="showMenus">学生轨迹</el-dropdown-item>
+            <el-dropdown-item @click.native="loginout">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+
       <div class="weather">
         <img src="../assets/images/time4.png" alt="时间截止" />
         <span>数据更新截止：</span>
@@ -37,15 +52,16 @@ export default {
     return {
       deadLine: "",
       dateline: "",
-      showmeauinfo:""
+      showmeauinfo: "",
+      bottonenter: ""
     };
   },
   created() {
     this.getDeadline();
+    this.showmeau();
   },
   mounted() {
     this.date();
-    this.showMenus();
   },
   methods: {
     getDeadline() {
@@ -67,19 +83,35 @@ export default {
     },
     date() {
       //获取数据
-      axios.get("../../../static/json/data.json").then(res => {
+      axios.get("static/json/data.json").then(res => {
         console.log(res.data.deadline);
         this.dateline = res.data.deadline;
       });
     },
-    showMenus(){
-      var menu = localStorage.getItem("name")
-      if(menu == 'admin'){
-        this.showmeauinfo = true
-      }else{
-        this.showmeauinfo = false
+    showmeau() {
+      if (
+        localStorage.getItem("res") != "存在" ||
+        localStorage.getItem("res") == ""
+      ) {
+        this.bottonenter = true;
+        this.showmeauinfo = false;
+      } else {
+        this.bottonenter = false;
+        this.showmeauinfo = true;
       }
-      console.log(menu)
+    },
+    userlogin() {
+      this.$router.push({ name: "login" });
+    },
+    showMenus() {
+      this.$router.push({ name: "studentstrajectory" });
+    },
+    loginout() {
+      localStorage.removeItem("res");
+      this.$router.replace({
+        path: "/",
+        name: "Index"
+      });
     }
   },
   beforeDestroy() {
@@ -128,6 +160,17 @@ export default {
   top: 0;
   line-height: 0.75rem;
 }
+.botton {
+  position: absolute;
+  top: 0.25rem;
+  right: 3rem;
+}
+.botton .el-button {
+  line-height: 0.5;
+  border: 0;
+  background: #051994;
+  color: #fff;
+}
 .weather img {
   width: 0.3rem;
   display: inline-block;
@@ -171,5 +214,18 @@ export default {
 .el-menu--horizontal > .el-menu-item.is-active {
   background-color: transparent !important;
   height: 100%;
+}
+.showdropmenu {
+  position: absolute;
+  top: 0.25rem;
+  right: 3rem;
+}
+.showdropmenu .el-dropdown-link {
+  cursor: pointer;
+  color: #00e6fd;
+}
+.showdropmenu .el-icon-arrow-down {
+  font-size: 0.1rem;
+  color: #00e6fd;
 }
 </style>

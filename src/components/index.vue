@@ -4,44 +4,56 @@
     <div class="mainbox">
       <ul class="clearfix">
         <li style="width:30%">
-          <div class="boxall" style="height: 3.7rem">
+          <div class="boxall"
+               style="height: 3.7rem">
             <div class="alltitle">实时监控</div>
-            <div class="allnav" id="echart1">
-              <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer1"
-                :options="playerOptions1"
-              ></video-player>
+            <div class="allnav"
+                 id="echart1">
+              <video-player class="video-player vjs-custom-skin"
+                            ref="videoPlayer1"
+                            :options="playerOptions1"></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 1.2rem">
+          <div class="boxall"
+               style="height: 1.2rem">
             <!-- <div class="alltitle">未带口罩人员截图区域</div> -->
             <div id="demo">
               <div id="indemo">
                 <div id="demo1">
-                  <img :src="staticUrl2 + item.img" v-for="item in this.noMask" :key="item.title" />
+                  <img :src="staticUrl2 + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
                 </div>
                 <div id="demo2">
-                  <img :src="staticUrl2  + item.img" v-for="item in this.noMask" :key="item.title" />
+                  <img :src="staticUrl2  + item.img"
+                       v-for="item in this.noMask"
+                       :key="item.title" />
                 </div>
               </div>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 4.7rem;">
+          <div class="boxall"
+               style="height: 4.7rem;">
             <div class="alltitle">战“疫”频道</div>
-            <div class="allnav" id="echart3">
-              <Tabs v-model="activename" type="card">
-                <TabPane label="诊　断" name="name1" id="resou"></TabPane>
-                <TabPane label="知　识" name="name2" id="zhishi"></TabPane>
-                <TabPane label="辟　谣" name="name3" class="piyao">
+            <div class="allnav"
+                 id="echart3">
+              <Tabs v-model="activename"
+                    type="card">
+                <TabPane label="诊　断"
+                         name="name1"
+                         id="resou"></TabPane>
+                <TabPane label="知　识"
+                         name="name2"
+                         id="zhishi"></TabPane>
+                <TabPane label="辟　谣"
+                         name="name3"
+                         class="piyao">
                   <ul>
-                    <li
-                      class="piyao_list1"
-                      v-for="item in this.piyao"
-                      :key="item.title"
-                    >【谣】{{item.title}}</li>
+                    <li class="piyao_list1"
+                        v-for="item in this.piyao"
+                        :key="item.title">【谣】{{item.title}}</li>
                   </ul>
                 </TabPane>
               </Tabs>
@@ -53,16 +65,13 @@
           <div class="bar">
             <div class="barbox">
               <ul class="clearfix">
-                <li
-                  class="pulll_left counter"
-                  style="width:40%;"
-                >{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
-                <li
-                  class="pulll_left counter"
-                  style="width:40%;"
-                >{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
+                <li class="pulll_left counter"
+                    style="width:40%;">{{ statistics.sumAll }} - {{ statistics.sumAll }}</li>
+                <li class="pulll_left counter"
+                    style="width:40%;">{{ statistics.stuinJiang }} - {{ statistics.stuinSuzhou }}</li>
                 <!-- <li class="pulll_left counter" style="width:25%;">{{ statistics.upTime }}</li> -->
-                <li class="pulll_left counter" style="width:20%;">
+                <li class="pulll_left counter"
+                    style="width:20%;">
                   {{statistics.sumGreen}}
                   <!-- <div id="fashao"></div> -->
                 </li>
@@ -70,27 +79,38 @@
             </div>
             <div class="barbox2">
               <ul class="clearfix">
-                <li class="pulll_left" style="width:40%;">系部人数 - 上报人数</li>
-                <li class="pulll_left" style="width:40%;">返苏人数（江苏-苏州）</li>
+                <li class="pulll_left"
+                    style="width:40%;">系部人数 - 上报人数</li>
+                <li class="pulll_left"
+                    style="width:40%;">返苏人数（江苏-苏州）</li>
                 <!-- <li class="pulll_left" style="width:25%;">更新时间</li> -->
-                <li class="pulll_left" style="width:20%;">绿码人数</li>
+                <li class="pulll_left"
+                    style="width:20%;">绿码人数</li>
               </ul>
             </div>
           </div>
           <div class="map">
-            <div class="suzhouNum" id="polo_1">
+            <div class="suzhouNum"
+                 id="polo_1">
               <div class="boxfoot"></div>
             </div>
-            <div class="cityNum" id="polo_2">
+            <div class="cityNum"
+                 id="polo_2">
               <div class="boxfoot"></div>
             </div>
-            <div class="map41" id="map_1"></div>
+            <div class="map41"
+                 id="map_1"></div>
           </div>
-          <div class="boxallcard" style="height: 2.6rem">
+          <div class="boxallcard"
+               style="height: 2.6rem">
             <!-- <div class="alltitle">停课不停学图片走马灯卡片式轮播</div> -->
-            <div class="allnav" id="echart5">
-              <el-carousel :interval="2000" type="card" height="2rem">
-                <el-carousel-item v-for="item in this.img_list" :key="item.img">
+            <div class="allnav"
+                 id="echart5">
+              <el-carousel :interval="2000"
+                           type="card"
+                           height="2rem">
+                <el-carousel-item v-for="item in this.img_list"
+                                  :key="item.img">
                   <img :src="staticUrl + '/img/' + item.img" />
                 </el-carousel-item>
               </el-carousel>
@@ -99,25 +119,30 @@
           </div>
         </li>
         <li style="width:30%">
-          <div class="boxall" style="height:3.7rem">
+          <div class="boxall"
+               style="height:3.7rem">
             <div class="alltitle">防疫宣传视频</div>
-            <div class="allnav" id="echart4">
-              <video-player
-                class="video-player vjs-custom-skin"
-                ref="videoPlayer"
-                :options="playerOptions2"
-              ></video-player>
+            <div class="allnav"
+                 id="echart4">
+              <video-player class="video-player vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions2"></video-player>
             </div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxallinfo" style="height: 3rem;">
+          <div class="boxallinfo"
+               style="height: 3rem;">
             <div class="alltitle">苏城码颜色占比</div>
-            <div class="allnav" id="main8" style="height:2.4rem"></div>
+            <div class="allnav"
+                 id="main8"
+                 style="height:2.4rem"></div>
             <div class="boxfoot"></div>
           </div>
-          <div class="boxall" style="height: 2.85rem;">
+          <div class="boxall"
+               style="height: 2.85rem;">
             <div class="kebiaotitle">
-              <div class="select" style="width:25%;float:left">
+              <div class="select"
+                   style="width:25%;float:left">
                 <el-dropdown @command="handleCommand1">
                   <span class="el-dropdown-link">
                     18级
@@ -157,8 +182,10 @@
                   </el-dropdown-menu>
                 </el-dropdown>
               </div>
-              <div class="select" style="width:55%;float:left">{{this.class}}课程情况（第三周）</div>
-              <div class="zhiban" style="width:20%;float:left">
+              <div class="select"
+                   style="width:55%;float:left">{{this.class}}课程情况（第三周）</div>
+              <div class="zhiban"
+                   style="width:20%;float:left">
                 值班&nbsp;: &nbsp;
                 <span style="font-weight:1000;">{{this.zhiban}}</span>
               </div>
@@ -183,7 +210,7 @@ import "vue-video-player/src/custom-theme.css";
 import { videoPlayer } from "vue-video-player";
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       activename: "name1",
       // 宏观指数 系部（上报）、返苏（江苏-苏州）、隔离、发烧人数
@@ -3255,7 +3282,7 @@ export default {
     Header,
     videoPlayer
   },
-  created() {
+  created () {
     this.resizeFontsize();
     //改变横屏竖屏执行效果更换
     window.addEventListener("orientationchange", this.resizeFontsize());
@@ -3273,13 +3300,13 @@ export default {
     // 获取当日值班老师
     this.initzhiban();
   },
-  mounted() {
+  mounted () {
     //播放器自动播放
     this.$refs.videoPlayer.player.play();
     this.$refs.videoPlayer1.player.play();
     //重点关注学生表格、未带口罩的图片无缝滚动
     this.play();
-    // 诊　断
+    // // 诊　断
     this.WordCould("resou", "/prevent/selectFromDiagnosisTitle");
     // 知　识
     this.WordCould("zhishi", "/prevent/selectFromGuideTitle");
@@ -3291,19 +3318,19 @@ export default {
     this.map();
     //Top10
     this.proBar();
-    // 发烧占比
+    // // 发烧占比
     this.leidaInfo();
-    //选项卡自动播放
+    // //选项卡自动播放
     this.tabxunhuan();
     //返苏人数折线图
     this.stuInsz();
   },
   methods: {
-    initSum() {
+    initSum () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/sum")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.statistics.sumAll = res.sumAll;
           self.statistics.upTime = res.upTime.slice(5);
@@ -3311,15 +3338,15 @@ export default {
           self.statistics.stuinSuzhou = res.stuinSuzhou;
           self.statistics.stuinJiang = res.stuinJiang;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    focusStu() {
+    focusStu () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getFocusStu")
-        .then(function(response) {
+        .then(function (response) {
           self.stuInfo = [];
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
@@ -3344,46 +3371,46 @@ export default {
             });
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    slideShow() {
+    slideShow () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=1")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.img_list = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    noMaskList() {
+    noMaskList () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/pictures/selectByType?type=3")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.noMask = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    initzhiban() {
+    initzhiban () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/lineclass/dutyteacher")
-        .then(function(response) {
+        .then(function (response) {
           self.zhiban = response.data[0].t_name;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    WordCould(id, url) {
+    WordCould (id, url) {
       var wordcould = echarts.init(document.getElementById(id));
       const option = {
         series: [
@@ -3400,7 +3427,7 @@ export default {
             height: "100%",
             textStyle: {
               normal: {
-                color: function() {
+                color: function () {
                   return (
                     "rgb(" +
                     [
@@ -3426,7 +3453,7 @@ export default {
       var self = this;
       self.$http
         .get(this.baseUrl + url)
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var newres = [];
           res = JSON.parse(JSON.stringify(res).replace(/title/g, "name"));
@@ -3446,23 +3473,23 @@ export default {
           option.series[0].data = newres.slice(0, 50);
           wordcould.setOption(option);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    selectRumorTitle() {
+    selectRumorTitle () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/prevent/selectRumorTitle")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.piyao = res.slice(0, 20);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
-    drawKebiao() {
+    drawKebiao () {
       var kebiao = echarts.init(document.getElementById("echart6"));
 
       const option = {
@@ -3473,7 +3500,7 @@ export default {
         tooltip: {
           position: "top",
           trigger: "item",
-          formatter: function(value) {
+          formatter: function (value) {
             let res =
               "课程情况" +
               "<br/>课程名称：" +
@@ -3554,7 +3581,7 @@ export default {
             data: [],
             label: {
               show: true,
-              formatter: function(value) {
+              formatter: function (value) {
                 let res = value.data[3];
                 return res;
               }
@@ -3576,18 +3603,18 @@ export default {
       option.series[0].data = this.kebiaodata;
       kebiao.setOption(option);
     },
-    map() {
+    map () {
       var myChart = echarts.init(document.getElementById("map_1"));
       var geoCoordMap = {};
       var mapFeatures = echarts.getMap("china").geoJson.features;
-      mapFeatures.forEach(function(v) {
+      mapFeatures.forEach(function (v) {
         // 地区名称
         var name = v.properties.name;
         // console.log(name);
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
       });
-      var convertData = function(data) {
+      var convertData = function (data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var geoCoord = geoCoordMap[data[i].location_province];
@@ -3613,7 +3640,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: function(params) {
+          formatter: function (params) {
             if (typeof params.value[2] == "undefined") {
               return (
                 option.series[0].name +
@@ -3730,7 +3757,7 @@ export default {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var dd = [];
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
@@ -3745,7 +3772,7 @@ export default {
       //重点疫区
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var keyarea = [];
           var res = response.data;
           for (var i = 0; i < res.length; i++) {
@@ -3761,7 +3788,7 @@ export default {
         });
 
       var index = 0;
-      self.timer = setInterval(function() {
+      self.timer = setInterval(function () {
         myChart.dispatchAction({
           type: "showTip",
           seriesIndex: 0,
@@ -3772,18 +3799,18 @@ export default {
           index = 0;
         }
       }, 2000);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    handleClick(tab, event) {
+    handleClick (tab, event) {
       // console.log(tab, event);
     },
-    handleClick2(row) {
+    handleClick2 (row) {
       alert(row);
     },
     // 切换班级课表
-    handleCommand1(command) {
+    handleCommand1 (command) {
       this.kebiaodata = eval("this." + command);
       // if(command = "rj18c2")
       //   this.class = "软件18C2";
@@ -3818,7 +3845,7 @@ export default {
       }
       this.drawKebiao();
     },
-    handleCommand2(command) {
+    handleCommand2 (command) {
       this.kebiaodata = eval("this." + command);
       switch (command) {
         case "rj19c2":
@@ -3860,7 +3887,7 @@ export default {
       }
       this.drawKebiao();
     },
-    proBar() {
+    proBar () {
       var myChart = echarts.init(document.getElementById("polo_2"));
       var color = [
         "#2EC7E6",
@@ -3890,7 +3917,7 @@ export default {
           axisPointer: {
             type: "shadow"
           },
-          formatter: function(objs, index) {
+          formatter: function (objs, index) {
             let obj = objs[0];
             return `${obj.name}<br/>${obj.marker}${obj.seriesName} : ${obj.value}`;
           }
@@ -3966,7 +3993,7 @@ export default {
       var self = this;
       self.$http
         .get(this.baseUrl + "/dayrpt/getStuInProvince")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var provinces = [];
           var pronum = [];
@@ -3976,7 +4003,7 @@ export default {
           }
           //取前十
           option.yAxis.data = provinces.slice(0, 10);
-          option.series[0].data = pronum.slice(0, 10).map(function(item, i) {
+          option.series[0].data = pronum.slice(0, 10).map(function (item, i) {
             return {
               value: item,
               itemStyle: {
@@ -3986,11 +4013,11 @@ export default {
           });
           myChart.setOption(option);
         });
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    stuInsz() {
+    stuInsz () {
       var myChart = echarts.init(document.getElementById("polo_1"));
       var option = {
         grid: {
@@ -4159,18 +4186,18 @@ export default {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getCityOrProvince?province=江苏")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var Num_js = [];
           for (var i = 0; i < res.length; i++) {
             Num_js.push(res[i].ProvinceCount);
           }
-          option.series[1].data = Num_js;
+          option.series[1].data = Num_js.reverse();;
           myChart.setOption(option);
         });
       self.$http
         .get(this.baseUrl + "/students/getCityOrProvince?city=苏州")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           var Num_suzhou = [];
           var days = [];
@@ -4179,36 +4206,36 @@ export default {
             days.push(res[i].upTime.slice(8, 10) + "日");
           }
           days = days.reverse();
-          option.series[0].data = Num_suzhou;
+          option.series[0].data = Num_suzhou.reverse();;
           option.xAxis[0].data = days;
           myChart.setOption(option);
         });
 
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     },
-    resizeFontsize() {
+    resizeFontsize () {
       var width = document.documentElement.clientWidth;
       document.documentElement.style.fontSize = width / 20 + "px";
     },
     //change,play实现表格自动滚动
-    play() {
+    play () {
       //每两秒执行一次插入删除操作
       this.timer = setInterval(this.change, 1000);
       this.timer = setInterval(this.gundong, 1000);
     },
-    change() {
+    change () {
       //把第一条数据插入数组最后一条
       this.stuInfo.push(this.stuInfo[0]);
       //删除数组中第一条数据
       this.stuInfo.shift();
     },
-    gundong() {
+    gundong () {
       this.noMask.push(this.noMask[0]);
       this.noMask.shift();
     },
-    tabchange() {
+    tabchange () {
       if (this.activename == "name1") {
         this.activename = "name2";
       } else if (this.activename == "name2") {
@@ -4217,36 +4244,85 @@ export default {
         this.activename = "name1";
       }
     },
-    tabxunhuan() {
+    tabxunhuan () {
       this.timer = setInterval(this.tabchange, 5000);
     },
-    leidaInfo() {
+    leidaInfo () {
       var self = this;
+      var placeHolderStyle = {
+        normal: {
+          label: {
+            show: false
+          },
+          labelLine: {
+            show: false
+          },
+          color: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          borderWidth: 0
+        }
+      };
+
+      var color = ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"]
       self.$http
         .get(this.baseUrl + "/students/getCodeRegisterCount")
-        .then(function(response) {
+        .then(function (response) {
+          self.sucityNum = [{
+            value: 5,
+            name: "黄码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[0],
+                shadowColor: color[0]
+              }
+            }
+          }, {
+            value: 20,
+            name: "绿码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[1],
+                shadowColor: color[1]
+              }
+            }
+          }, {
+            value: 0,
+            name: "红码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[2],
+                shadowColor: color[2]
+              }
+            }
+          },]
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
-            self.sucityNum.push({
-              value: res[i].持码人数,
-              name: res[i]._id
-            });
+            if (self.sucityNum[i].name == "红码") {
+              self.sucityNum[2].value = res[i].持码人数
+            }
+            if (self.sucityNum[i].name == "黄码") {
+              self.sucityNum[0].value = res[i].持码人数
+            }
+            if (self.sucityNum[i].name == "绿码") {
+              self.sucityNum[1].value = res[i].持码人数
+            }
           }
-
-          self.sucityNum.push(
-            { value: 0, name: "红码" },
-            { value: 0, name: "未注册" }
-          );
 
           self.drawLeida();
           // console.log(res);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },
     //苏城码
-    drawLeida() {
+    drawLeida () {
       var myChart = echarts.init(document.getElementById("main8"));
       const option = {
         color: ["#F8F106", "#33FFCC", "#eb2100", "#33CCFF"],
@@ -4254,24 +4330,56 @@ export default {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
+        tooltip: {
+          show: false
+        },
         series: [
           {
             name: "苏城码",
             type: "pie",
-            radius: ["45%", "65%"],
-            center: ["50%", "50%"],
-            roseType: "angle",
+            radius: ["45%", "55%"],
+            center: ["50%", "65%"],
+            clockWise: false,
+            hoverAnimation: false,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: 'outside',
+                  color: '#ddd',
+                  formatter: (params) => {
+                    var percent = 0;
+                    var total = 0;
+                    for (var i = 0; i < this.sucityNum.length; i++) {
+                      total += this.sucityNum[i].value;
+                    }
+                    percent = ((params.value / total) * 100).toFixed(0);
+                    if (params.name !== '') {
+                      return '\n' + params.name + ' ：' + params.value + '\n' + '\n' + '占百分比：' + percent + '%';
+                    } else {
+                      return '';
+                    }
+                  },
+                },
+                labelLine: {
+                  length: 10,
+                  length2: 50,
+                  show: true,
+                  color: '#00ffff'
+                }
+              }
+            },
             data: this.sucityNum
           }
         ]
       };
       myChart.setOption(option);
-      window.addEventListener("resize", function() {
+      window.addEventListener("resize", function () {
         myChart.resize();
       });
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     clearInterval(this.timer); // 清除定时器
     this.timer = null;
   }
