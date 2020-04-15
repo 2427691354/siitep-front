@@ -4232,8 +4232,11 @@ export default {
               name: res[i]._id
             });
           }
-          
-          self.sucityNum.push({value:0,name:'红码'},{value:0,name:'未注册'})
+
+          self.sucityNum.push(
+            { value: 0, name: "红码" },
+            { value: 0, name: "未注册" }
+          );
 
           self.drawLeida();
           // console.log(res);

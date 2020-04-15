@@ -10,12 +10,13 @@
           text-color="#1bb4f6"
           active-text-color="#5bc0de"
         >
-          <el-menu-item index="/">首页</el-menu-item>
+          <el-menu-item index="/index">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
           <!-- <el-menu-item index="/epidemic">疫情分析</el-menu-item> -->
           <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
           <el-menu-item index="/monitor">实时监控</el-menu-item>
+          <el-menu-item index="/studentstrajectory" v-show="showmeauinfo">学生轨迹</el-menu-item>
         </el-menu>
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>
@@ -35,7 +36,8 @@ export default {
   data() {
     return {
       deadLine: "",
-      dateline: ""
+      dateline: "",
+      showmeauinfo:""
     };
   },
   created() {
@@ -43,6 +45,7 @@ export default {
   },
   mounted() {
     this.date();
+    this.showMenus();
   },
   methods: {
     getDeadline() {
@@ -68,6 +71,15 @@ export default {
         console.log(res.data.deadline);
         this.dateline = res.data.deadline;
       });
+    },
+    showMenus(){
+      var menu = localStorage.getItem("name")
+      if(menu == 'admin'){
+        this.showmeauinfo = true
+      }else{
+        this.showmeauinfo = false
+      }
+      console.log(menu)
     }
   },
   beforeDestroy() {
