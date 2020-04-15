@@ -46,9 +46,9 @@
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
-            <span>学号{{this.ruleForm.xuehao}},</span>
-            <span>同学{{this.ruleForm.student}},</span>
-            <span>{{this.ruleForm.day}}日行程如下：</span>
+            <span><span class="font_style">学号为</span>{{this.ruleForm.xuehao}}</span>
+            <span><span class="font_style">,同学</span>{{this.ruleForm.student}}</span>
+            <span>{{this.ruleForm.day}}<span class="font_style">日行程如下：</span></span>
           </div>
           <!--时间线-->
           <div class="timeLine">
@@ -113,13 +113,13 @@ export default {
               var res = response.data[0].result;
               self.ruleForm.xuehao = res[0].sid;
               self.ruleForm.student = res[0].sname;
-              self.ruleForm.day = res.length;
+              self.ruleForm.day = res.length+1;
               // console.log(res[0].sid);
               // console.log(self.ruleForm.endtime);
               // console.log(res.length);
               for(var i=0;i<res.length;i++){
                 self.timeLineList.push({
-                  timestamp:res[i].upTime.slice(6,7)+"."+res[i].upTime.slice(9,10),
+                  timestamp:res[i].upTime.slice(6,7)+"月"+res[i].upTime.slice(9,10)+"日",
                   tem:res[i].temperature,
                   city:res[i].locationCity+"市"
                 })
@@ -236,13 +236,13 @@ export default {
 }
 .my_timeline_item_content {
   color: aqua;
-  font-size: 0.2rem;
-  margin: 25px 0 0 1px;
+  font-size: 0.15rem;
+  margin: 30px 0 0 1px;
 }
 .my_timeline_item_content_2 {
   width: 100%;
   color: aqua;
-  font-size: 0.1rem;
+  font-size: 0.15rem;
   margin: -40px 0 0 0;
 }
 .studentInfo {
@@ -251,5 +251,8 @@ export default {
   /* padding-top: 2%; */
   /* margin-top: -5%; */
   margin-bottom: 2%;
+}
+.font_style{
+  color: #ffffff;
 }
 </style>
