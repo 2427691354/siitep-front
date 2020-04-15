@@ -1,0 +1,309 @@
+<template>
+  <div class="trajectory">
+    <Header></Header>
+    <h3 class="title_3">学生轨迹查询</h3>
+    <div class="checkform">
+      <el-form
+        :model="ruleForm"
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item label="学生学号">
+          <el-input v-model="ruleForm.name"></el-input>
+        </el-form-item>
+        <el-form-item label="日期">
+          <el-col :span="11">
+            <el-form-item prop="date1">
+              <el-date-picker type="date" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col class="line" :span="0.5">—</el-col>
+          <el-col :span="11">
+            <el-form-item prop="date2">
+              <el-date-picker type="date" v-model="ruleForm.date2" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="checksearch" @click="submitForm('ruleForm')">查询</el-button>
+          <el-button class="checksearch" @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="stuinfos">
+      <div class="boxall" style="height: 4rem">
+        <div class="allnav">
+          <!-- 搜索学生信息 -->
+          <div class="studentInfo">
+            <span>学号</span>
+            <span>同学</span>
+            <span>日行程如下：</span>
+          </div>
+          <!--时间线-->
+          <div class="timeLine">
+            <div class="ul_box">
+              <ul class="my_timeline">
+                <li class="my_timeline_item" v-for="(item,index) in timeLineList" :key="index">
+                  <!--圈圈节点-->
+                  <div
+                    class="my_timeline_node"
+                    @click="changeActive(index)"
+                    :class="{active: index == timeIndex}"
+                  ></div>
+                  <!--线-->
+                  <div class="my_timeline_item_line"></div>
+                  <!--标注-->
+                  <div class="my_timeline_item_content_2">{{item.city}}{{item.tem}}</div>
+                  <div class="my_timeline_item_content">{{item.timestamp}}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import Header from "@/components/header";
+export default {
+  data() {
+    return {
+      ruleForm: {
+        name: "",
+        date1: "",
+        date2: ""
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入学生学号", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 0 到 20 个字符", trigger: "blur" }
+        ],
+        date1: [
+          {
+            type: "date",
+            required: true,
+            message: "请选择日期",
+            trigger: "change"
+          }
+        ]
+      },
+      timeIndex: 2,
+      timeLineList: [
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        },
+        {
+          timestamp: "4.1",
+          tem: "36.5",
+          city: "泰州市"
+        }
+      ]
+    };
+  },
+  components: {
+    Header
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    changeActive(index) {
+      this.timeIndex = index;
+    }
+  }
+};
+</script>
+<style>
+.trajectory {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.checkform {
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  margin-left: 30%;
+  margin-top: -1.5%;
+  /* margin-bottom: 3%; */
+}
+.title_3 {
+  text-align: center;
+  font-size: 0.4rem;
+  margin-bottom: 2%;
+  padding-top: 1%;
+  color: #9ba1b2;
+}
+.el-input__inner {
+  border: 1px solid #051994;
+  border-radius: 0px;
+  background-color: transparent;
+}
+.el-form-item__label {
+  text-align: right;
+  color: #9ba1b2;
+}
+.checksearch {
+  margin-left: 25%;
+  margin-top: 1%;
+}
+.line {
+  color: #051994;
+}
+.el-button:nth-child(1) {
+  border-radius: 0px;
+  background: #051994;
+  border: 0px;
+  color: #9ba1b2;
+}
+.el-button:nth-child(2) {
+  border-radius: 0px;
+  border: 0px;
+  color: #9ba1b2;
+}
+.stuinfos {
+  position: absolute;
+  width: 50%;
+  height: 5%;
+  margin-top: 15%;
+  margin-left: 25%;
+}
+.ul_box {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  float: left;
+  margin-top: 2%;
+  /* overflow: auto; */
+}
+.my_timeline li {
+  width: 10%;
+  height: 1rem;
+  margin-top: 3%;
+}
+.my_timeline_item {
+  display: inline-block;
+  width: 20%;
+  margin-left: 2%;
+}
+.my_timeline_node {
+  /* box-sizing: border-box; */
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background-color: #87fe02;
+  cursor: pointer;
+}
+.my_timeline_node.active {
+  background-color: #ff0000 !important;
+  /* border: 3px solid #f68720; */
+}
+.my_timeline_item_line {
+  width: 100%;
+  height: 0.06rem;
+  margin: -12% 0 0 35%;
+  border-top: 1px solid #ffffff;
+  border-left: none;
+}
+.my_timeline_item_content {
+  color: aqua;
+  font-size: 0.2rem;
+  margin: 25px 0 0 1px;
+}
+.my_timeline_item_content_2 {
+  width: 100%;
+  color: aqua;
+  font-size: 0.2rem;
+  margin: -40px 0 0 0;
+}
+.studentInfo {
+  color: aqua;
+  font-size: 0.25rem;
+  /* padding-top: 2%; */
+  /* margin-top: -5%; */
+  margin-bottom: 2%;
+}
+</style>

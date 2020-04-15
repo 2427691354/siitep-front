@@ -12,6 +12,8 @@ import App from "./App";
 import router from "./router";
 // import AMap from "vue-amap";
 
+import './assets/icon/iconfont.css'
+
 // Vue.use(AMap);
 // AMap.initAMapApiLoader({
 //   key: "e2086e71a75a5ee57a2c1f6a155d2e51", //刚刚开发者申请哪里的key
@@ -44,3 +46,6 @@ new Vue({
   components: { App },
   template: "<App/>"
 });
+
+
+
