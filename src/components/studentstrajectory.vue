@@ -44,17 +44,24 @@
         <div class="allnav">
           <div class="detailsStu">
             <p>
-              <span class="font_style2">所属系部：</span><br />
+              <span class="font_style2">所属系部：</span>
+              <br />
               <!-- 软件与服务外部学院 -->
-              <!-- {{this.ruleForm.xuehao}} -->
-            </p>
-            <p>
-              <span class="font_style2">所属班级：</span><br />
-              <!-- {{this.ruleForm.student}} -->
+              {{this.ruleForm.department}}
             </p>
             <p>
               <span class="font_style2">学生姓名：</span><br />
-              <!-- {{this.ruleForm.day}} -->
+              {{this.ruleForm.student}}
+            </p>
+            <p>
+              <span class="font_style2">所属班级：</span>
+              <br />
+              {{this.ruleForm.class}}
+            </p>
+            <p>
+              <span class="font_style2">苏城码</span>
+              <br />
+              {{this.ruleForm.color}}
             </p>
           </div>
         </div>
@@ -67,12 +74,9 @@
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
+
             <span>
-              <span class="font_style">学号为</span>
-              {{this.ruleForm.xuehao}}
-            </span>
-            <span>
-              <span class="font_style">,同学</span>
+              <span class="font_style"></span>
               {{this.ruleForm.student}}
             </span>
             <span>
@@ -116,7 +120,10 @@ export default {
         endtime: "",
         xuehao: "",
         student: "",
-        day: ""
+        day: "",
+        department: "",
+        class: "",
+        color: ""
       },
       timeIndex: 2,
       timeLineList: []
@@ -145,32 +152,32 @@ export default {
               }
             })
             .then(function (response) {
-              var stuInfo = response.data.stuInfo;
               var res = response.data.trip;
-              self.ruleForm.xuehao = stuInfo[0].sid;
-              self.ruleForm.student = stuInfo[0].sname;
+              var res2 = response.data.stuInfo[0];
+              self.ruleForm.xuehao = res2.sid;
+              self.ruleForm.student = res2.sname;
               self.ruleForm.day = 14;
-              // console.log(res[0].sid);
-
-              // console.log(res.length);
+              self.ruleForm.department = res2.deptName;
+              self.ruleForm.class = res2.cname;
+              self.ruleForm.color = res2.codeColor;
               self.timeLineList = [];
               for (var i = 0; i < res.length; i++) {
                 if (res[i].temperature == "未上报") {
-
                   self.timeLineList.push({
                     timestamp: res[i].upTime,
                     tem: res[i].temperature,
-                    city: res[i].locationCity + "市"
                   });
                 }
                 else {
                   self.timeLineList.push({
                     timestamp: res[i].upTime,
                     tem: res[i].temperature,
+                    city: res[i].locationCity + "市"
                   });
                 }
-              };
-            })
+
+              }
+            });
         } else {
           return false;
         }
@@ -182,6 +189,8 @@ export default {
       this.ruleForm.xuehao = "";
       this.ruleForm.student = "";
       this.ruleForm.day = "";
+      this.ruleForm.department = "";
+      this.ruleForm.class = "";
     },
     changeActive (index) {
       this.timeIndex = index;
