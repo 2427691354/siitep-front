@@ -1659,23 +1659,52 @@ export default {
       self.$http
         .get(this.baseUrl + "/students/getCodeRegisterCount")
         .then(function (response) {
+          self.sucityNum = [{
+            value: 0,
+            name: "黄码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[0],
+                shadowColor: color[0]
+              }
+            }
+          }, {
+            value: 0,
+            name: "绿码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[1],
+                shadowColor: color[1]
+              }
+            }
+          }, {
+            value: 0,
+            name: "红码",
+            itemStyle: {
+              normal: {
+                borderWidth: 2,
+                shadowBlur: 10,
+                borderColor: color[2],
+                shadowColor: color[2]
+              }
+            }
+          },]
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
-            self.sucityNum.push({
-              value: res[i].持码人数,
-              name: res[i]._id,
-              itemStyle: {
-                normal: {
-                  borderWidth: 2,
-                  shadowBlur: 10,
-                  borderColor: color[i],
-                  shadowColor: color[i]
-                }
-              }
-            })
+            if (res[0]["_id"] == "红码") {
+              self.sucityNum[2].value = res[i].持码人数
+            }
+            if (res[0]["_id"] == "黄码") {
+              self.sucityNum[0].value = res[i].持码人数
+            }
+            if (res[0]["_id"] == "绿码") {
+              self.sucityNum[1].value = res[i].持码人数
+            }
           }
-
-          self.sucityNum.push({ value: 0, name: '红码' })
 
           self.drawLeida();
           // console.log(res);

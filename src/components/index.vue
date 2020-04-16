@@ -3992,15 +3992,16 @@ export default {
       myChart.setOption(option);
       var self = this;
       self.$http
-        .get(this.baseUrl + "/dayrpt/getStuInProvince")
+        .get(this.baseUrl + "/students/getStuInProvince")
         .then(function (response) {
-          var res = response.data;
+          var res = self.bubbleSort(response.data.results);
           var provinces = [];
           var pronum = [];
           for (var i = 0; i < res.length; i++) {
-            provinces.push(res[i].location_province);
-            pronum.push(res[i].count);
+            provinces.push(res[i]._id);
+            pronum.push(res[i].总人数);
           }
+          // var list = this.quickSort(res)
           //取前十
           option.yAxis.data = provinces.slice(0, 10);
           option.series[0].data = pronum.slice(0, 10).map(function (item, i) {
@@ -4016,6 +4017,19 @@ export default {
       window.addEventListener("resize", function () {
         myChart.resize();
       });
+    },
+    bubbleSort (arr) {
+      var len = arr.length;
+      for (var i = 0; i < len; i++) {
+        for (var j = 0; j < len - 1 - i; j++) {
+          if (arr[j].总人数 < arr[j + 1].总人数) {//相邻元素两两对比
+            var temp = arr[j + 1];//元素交换
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+          }
+        }
+      }
+      return arr;
     },
     stuInsz () {
       var myChart = echarts.init(document.getElementById("polo_1"));
@@ -4268,7 +4282,7 @@ export default {
         .get(this.baseUrl + "/students/getCodeRegisterCount")
         .then(function (response) {
           self.sucityNum = [{
-            value: 5,
+            value: 0,
             name: "黄码",
             itemStyle: {
               normal: {
@@ -4279,7 +4293,7 @@ export default {
               }
             }
           }, {
-            value: 20,
+            value: 0,
             name: "绿码",
             itemStyle: {
               normal: {
@@ -4303,13 +4317,13 @@ export default {
           },]
           var res = response.data.results;
           for (var i = 0; i < res.length; i++) {
-            if (self.sucityNum[i].name == "红码") {
+            if (res[0]["_id"] == "红码") {
               self.sucityNum[2].value = res[i].持码人数
             }
-            if (self.sucityNum[i].name == "黄码") {
+            if (res[0]["_id"] == "黄码") {
               self.sucityNum[0].value = res[i].持码人数
             }
-            if (self.sucityNum[i].name == "绿码") {
+            if (res[0]["_id"] == "绿码") {
               self.sucityNum[1].value = res[i].持码人数
             }
           }

@@ -35,6 +35,10 @@
                            size="small"
                            type="success"
                            @click="submitUpload1">excel导入</el-button>
+                <el-button style="margin-left: 10px;"
+                           size="small"
+                           type="success"
+                           @click="submitUpload2">更新体温</el-button>
               </el-upload>
             </el-tab-pane>
             <el-tab-pane label="图片上传"
@@ -133,6 +137,12 @@ export default {
       // this.$refs.upload1.submit();
       this.$refs.upload1.clearFiles();
     },
+    submitUpload2 () {
+      this.uuu2();
+      this.fileList1 = [];
+      // this.$refs.upload1.submit();
+      this.$refs.upload1.clearFiles();
+    },
     handleClick (tab, event) {
       console.log(tab, event);
     },
@@ -180,6 +190,44 @@ export default {
       formData.append("date2", this.tableSuffix2);
       // xhr.open('post', "http://localhost:8089/import");
       xhr.open('post', "http://localhost:8089/mongo/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
+      //xhr.open('post', "http://47.101.33.200:8089/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
+      xhr.responseType = 'blob';
+      xhr.onload = function (e) {
+        if (this.status == 200) {
+          var blob = this.response;
+          var filename = "异常数据（修改重新再次上传）.xls";
+          if (window.navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, filename);
+          } else {
+            // 非IE下载
+            const elink = document.createElement("a");
+            elink.download = filename;
+            elink.style.display = "none";
+            elink.href = URL.createObjectURL(blob);
+            document.body.appendChild(elink);
+            elink.click();
+            URL.revokeObjectURL(elink.href); // 释放URL 对象
+            document.body.removeChild(elink);
+          }
+
+          this.$message({
+            message: `导入成功`,
+            type: "success"
+          });
+
+        }
+      };
+      xhr.send(formData);
+
+    },
+    uuu2 () {
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData();
+      formData.append("file", this.fileList1[0]);
+      formData.append("date", this.tableSuffix);
+      formData.append("date2", this.tableSuffix2);
+      // xhr.open('post', "http://localhost:8089/import");
+      xhr.open('post', "http://localhost:8089/mongo/updateTW");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
       //xhr.open('post', "http://47.101.33.200:8089/import");  //url填写后台的接口地址，如果是post，在formData append参数（参考原文地址）
       xhr.responseType = 'blob';
       xhr.onload = function (e) {
