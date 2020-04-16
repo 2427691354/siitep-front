@@ -2,44 +2,54 @@
   <div>
     <div class="head">
       <div class="nav">
-        <el-menu
-          :default-active="this.$route.path"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          text-color="#1bb4f6"
-          active-text-color="#5bc0de"
-        >
+        <el-menu :default-active="this.$route.path"
+                 class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="#1bb4f6"
+                 active-text-color="#5bc0de">
           <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/campus">校园防疫</el-menu-item>
           <!-- <el-menu-item index="/onlineCourse">停课不停学</el-menu-item> -->
           <!-- <el-menu-item index="/epidemic">疫情分析</el-menu-item> -->
           <el-menu-item index="/networkTeaching">网络教学</el-menu-item>
           <el-menu-item index="/monitor">实时监控</el-menu-item>
+          <el-menu-item index="/studentstrajectory"
+                        v-show="studentstrajectory">学生轨迹</el-menu-item>
         </el-menu>
       </div>
       <h1>校园疫情防控与网络教学可视化平台</h1>
-      <div class="botton" v-show="bottonenter">
-        <el-button @click="userlogin">登录</el-button>
+      <div class="nav2"
+           v-show="bottonenter">
+        <el-menu :default-active="this.$route.path"
+                 class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="#1bb4f6"
+                 active-text-color="#5bc0de">
+          <el-menu-item index="/login">教师登录</el-menu-item>
+        </el-menu>
       </div>
-      <div class="showdropmenu" v-show="showmeauinfo">
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            更多菜单
-            <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="showMenus">学生轨迹</el-dropdown-item>
-            <el-dropdown-item @click.native="loginout">退出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+      <div class="nav2"
+           v-show="showmeauinfo">
+        <el-menu class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="#1bb4f6"
+                 active-text-color="#5bc0de">
+          <el-menu-item index="/"
+                        @click.native="loginout">退出登录</el-menu-item>
+        </el-menu>
       </div>
 
       <div class="weather">
-        <img src="../assets/images/time4.png" alt="时间截止" />
+        <img src="../assets/images/time4.png"
+             alt="时间截止" />
         <span>数据更新截止：</span>
-        <span id="showTime" v-if="this.$route.path=='/networkTeaching'">{{dateline}}</span>
-        <span id="showTime" v-else>{{deadLine}}</span>
+        <span id="showTime"
+              v-if="this.$route.path=='/networkTeaching'">{{dateline}}</span>
+        <span id="showTime"
+              v-else>{{deadLine}}</span>
       </div>
     </div>
   </div>
@@ -48,47 +58,51 @@
 <script>
 import axios from "axios";
 export default {
-  data() {
+  data () {
     return {
       deadLine: "",
       dateline: "",
       showmeauinfo: "",
-      bottonenter: ""
+      bottonenter: "",
+      studentstrajectory: false,
+      res: localStorage.getItem("res")
     };
   },
-  created() {
+  created () {
     this.getDeadline();
     this.showmeau();
+    if (this.res != null) {
+      this.studentstrajectory = true
+    }
+    else {
+      this.studentstrajectory = false
+    }
   },
-  mounted() {
+  mounted () {
     this.date();
   },
   methods: {
-    getDeadline() {
+    getDeadline () {
       var self = this;
       self.$http
         .get(this.baseUrl + "/students/getNewTime")
-        .then(function(response) {
+        .then(function (response) {
           var res = response.data;
           self.deadLine = res;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
-          // window.location.reload();
         });
     },
-    handleSelect(key, keyPath) {
-      // console.log(key);
+    handleSelect (key, keyPath) {
       this.$router.push(key);
     },
-    date() {
-      //获取数据
+    date () {
       axios.get("static/json/data.json").then(res => {
-        console.log(res.data.deadline);
         this.dateline = res.data.deadline;
       });
     },
-    showmeau() {
+    showmeau () {
       if (
         localStorage.getItem("res") != "存在" ||
         localStorage.getItem("res") == ""
@@ -100,21 +114,16 @@ export default {
         this.showmeauinfo = true;
       }
     },
-    userlogin() {
-      this.$router.push({ name: "login" });
-    },
-    showMenus() {
+    showMenus () {
       this.$router.push({ name: "studentstrajectory" });
     },
-    loginout() {
+    loginout () {
       localStorage.removeItem("res");
-      this.$router.replace({
-        path: "/",
-        name: "Index"
-      });
+      this.bottonenter = true;
+      this.showmeauinfo = false;
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.timer) {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
@@ -156,7 +165,7 @@ export default {
 }
 .weather {
   position: absolute;
-  right: 0.3rem;
+  right: 1.3rem;
   top: 0;
   line-height: 0.75rem;
 }
@@ -188,6 +197,13 @@ export default {
 .nav {
   position: absolute;
   left: 0rem;
+  top: 0;
+  line-height: 0.75rem;
+  height: 65%;
+}
+.nav2 {
+  position: absolute;
+  right: 0rem;
   top: 0;
   line-height: 0.75rem;
   height: 65%;

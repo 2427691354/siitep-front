@@ -7,13 +7,13 @@ import campus from "@/components/campus";
 import epidemic from "@/components/epidemic";
 import networkTeaching from "@/components/networkTeaching";
 import monitor from "@/components/monitor";
-import login from "@/components/Login/login"
-import studentstrajectory from "@/components/studentstrajectory"
+import login from "@/components/Login/login";
+import studentstrajectory from "@/components/studentstrajectory";
 
 Vue.use(Router);
 
 export default new Router({
-  routes:[
+  routes: [
     {
       path: "/login",
       name: "login",
@@ -55,10 +55,10 @@ export default new Router({
       component: monitor
     },
     {
+      meta: { requireAuth: true },
       path: "/studentstrajectory",
       name: "studentstrajectory",
       component: studentstrajectory
     }
   ]
-})
-
+});

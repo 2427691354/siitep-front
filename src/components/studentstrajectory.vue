@@ -3,46 +3,44 @@
     <Header></Header>
     <h3 class="title_3">学生轨迹查询</h3>
     <div class="checkform">
-      <el-form
-        :model="ruleForm"
-        ref="ruleForm"
-        label-width="100px"
-        class="demo-ruleForm"
-      >
+      <el-form :model="ruleForm"
+               ref="ruleForm"
+               label-width="100px"
+               class="demo-ruleForm">
         <el-form-item label="学生学号">
           <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-col :span="11">
             <el-form-item prop="starttime">
-              <el-date-picker
-                type="datetime"
-                v-model="ruleForm.starttime"
-                style="width: 100%;"
-                value-format="yyyy-MM-dd HH:mm:ss"
-              ></el-date-picker>
+              <el-date-picker type="datetime"
+                              v-model="ruleForm.starttime"
+                              style="width: 100%;"
+                              value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col class="line" :span="0.5">—</el-col>
+          <el-col class="line"
+                  :span="0.5">—</el-col>
           <el-col :span="11">
             <el-form-item prop="endtime">
-              <el-date-picker
-                type="datetime"
-                v-model="ruleForm.endtime"
-                style="width: 100%;"
-                value-format="yyyy-MM-dd HH:mm:ss"
-              ></el-date-picker>
+              <el-date-picker type="datetime"
+                              v-model="ruleForm.endtime"
+                              style="width: 100%;"
+                              value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button class="checksearch" @click="submitForm('ruleForm')">查询</el-button>
-          <el-button class="checksearch" @click="resetForm('ruleForm')">重置</el-button>
+          <el-button class="checksearch"
+                     @click="submitForm('ruleForm')">查询</el-button>
+          <el-button class="checksearch"
+                     @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
     <div class="stuinfos">
-      <div class="boxall" style="height: 4rem">
+      <div class="boxall"
+           style="height: 4rem">
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
@@ -54,13 +52,13 @@
           <div class="timeLine">
             <div class="ul_box">
               <ul class="my_timeline">
-                <li class="my_timeline_item" v-for="(item,index) in timeLineList" :key="index">
+                <li class="my_timeline_item"
+                    v-for="(item,index) in timeLineList"
+                    :key="index">
                   <!--圈圈节点-->
-                  <div
-                    class="my_timeline_node"
-                    @click="changeActive(index)"
-                    :class="{active: index == timeIndex}"
-                  ></div>
+                  <div class="my_timeline_node"
+                       @click="changeActive(index)"
+                       :class="{active: index == timeIndex}"></div>
                   <!--线-->
                   <div class="my_timeline_item_line"></div>
                   <!--标注-->
@@ -79,7 +77,7 @@
 <script>
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       ruleForm: {
         name: "1924031116",
@@ -97,7 +95,7 @@ export default {
     Header
   },
   methods: {
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           var self = this;
@@ -109,19 +107,19 @@ export default {
                 starttime: self.ruleForm.starttime,
               }
             })
-            .then(function(response) {
+            .then(function (response) {
               var res = response.data[0].result;
               self.ruleForm.xuehao = res[0].sid;
               self.ruleForm.student = res[0].sname;
-              self.ruleForm.day = res.length+1;
+              self.ruleForm.day = res.length + 1;
               // console.log(res[0].sid);
               // console.log(self.ruleForm.endtime);
               // console.log(res.length);
-              for(var i=0;i<res.length;i++){
+              for (var i = 0; i < res.length; i++) {
                 self.timeLineList.push({
-                  timestamp:res[i].upTime.slice(6,7)+"月"+res[i].upTime.slice(9,10)+"日",
-                  tem:res[i].temperature,
-                  city:res[i].locationCity+"市"
+                  timestamp: res[i].upTime.slice(6, 7) + "月" + res[i].upTime.slice(9, 10) + "日",
+                  tem: res[i].temperature,
+                  city: res[i].locationCity + "市"
                 })
               }
             });
@@ -131,10 +129,10 @@ export default {
         }
       });
     },
-    resetForm(formName) {
+    resetForm (formName) {
       this.$refs[formName].resetFields();
     },
-    changeActive(index) {
+    changeActive (index) {
       this.timeIndex = index;
     }
   }
@@ -252,7 +250,7 @@ export default {
   /* margin-top: -5%; */
   margin-bottom: 2%;
 }
-.font_style{
+.font_style {
   color: #ffffff;
 }
 </style>

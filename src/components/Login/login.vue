@@ -5,19 +5,27 @@
       <h3 class="title_2">用户登录</h3>
       <div>
         <i class="iconfont icon-yonghuming1"></i>
-        <el-input placeholder="请输入用户名" v-model="name" clearable class="input_style"></el-input>
-        <span v-if="error.name" class="err-msg">{{error.name}}</span>
+        <el-input placeholder="请输入用户名"
+                  v-model="name"
+                  clearable
+                  class="input_style"></el-input>
+        <span v-if="error.name"
+              class="err-msg">{{error.name}}</span>
       </div>
       <div>
         <i class="iconfont icon-mima"></i>
-        <el-input placeholder="请输入密码" v-model="pwd" show-password class="input_style"></el-input>
-        <span v-if="error.pwd" class="err-msg">{{error.pwd}}</span>
+        <el-input placeholder="请输入密码"
+                  v-model="pwd"
+                  show-password
+                  class="input_style"></el-input>
+        <span v-if="error.pwd"
+              class="err-msg">{{error.pwd}}</span>
       </div>
-      <div>
-        <el-button @click="login" class="login_style">登录</el-button>
-        <p>
-          <router-link to="/">返回</router-link>
-        </p>
+      <div class="login_style">
+        <el-button @click="toindex"
+                   style="width:47%">返回主页</el-button>
+        <el-button @click="login"
+                   style="width:48%">登录</el-button>
       </div>
     </div>
   </div>
@@ -26,7 +34,7 @@
 <script>
 export default {
   name: "Login",
-  data() {
+  data () {
     return {
       name: "",
       pwd: "",
@@ -36,10 +44,10 @@ export default {
       }
     };
   },
-  mounted() {
+  mounted () {
   },
   methods: {
-    check(name, pwd) {
+    check (name, pwd) {
       if (!name) {
         this.error.name = "请输入姓名";
         return false;
@@ -49,12 +57,15 @@ export default {
         return false;
       }
     },
-    login() {
+    toindex () {
+      this.$router.push({ path: "/" });
+    },
+    login () {
       if (!window.localStorage) {
         alert("浏览器不支持localStorage");
       } else {
         var storage = window.localStorage;
-        
+
         var self = this;
         self.$http
           .get(this.baseUrl + "/teacher/teacherLogin", {
@@ -63,15 +74,14 @@ export default {
               password: self.pwd
             }
           })
-          .then(function(response) {
+          .then(function (response) {
             var res = response.data;
             storage.setItem("res", res);
             if (res == "存在") {
-              self.$router.push({ name: "Index" });
+              self.$router.push({ name: "studentstrajectory" });
             } else {
               alert("用户名或密码错误");
             }
-            console.log(res);
           });
       }
     }
@@ -125,7 +135,7 @@ i {
 }
 .login_style {
   width: 50%;
-  margin-left: 28%;
+  margin: 0 auto;
   margin-top: 2%;
 }
 .el-button {
@@ -140,5 +150,8 @@ i {
 }
 .page p {
   font-size: 0.2rem;
+}
+.el-input__inner {
+  color: #fff;
 }
 </style>
