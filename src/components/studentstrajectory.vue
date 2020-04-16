@@ -268,7 +268,7 @@ export default {
   position: absolute;
   width: 50%;
   height: 5%;
-  margin-top: 15%;
+  margin-top: 22%;
   margin-left: 30%;
 }
 .ul_box {
@@ -332,7 +332,7 @@ export default {
 .studetails {
   position: absolute;
   width: 12%;
-  margin-top: 15%;
+  margin-top: 22%;
   margin-left: 18%;
 }
 .detailsStu .font_style2 {
