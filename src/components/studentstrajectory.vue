@@ -3,62 +3,89 @@
     <Header></Header>
     <h3 class="title_3">学生轨迹查询</h3>
     <div class="checkform">
-      <el-form :model="ruleForm"
-               ref="ruleForm"
-               label-width="100px"
-               class="demo-ruleForm">
+      <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="学生学号">
           <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-col :span="11">
             <el-form-item prop="starttime">
-              <el-date-picker type="datetime"
-                              v-model="ruleForm.starttime"
-                              style="width: 100%;"
-                              value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+              <el-date-picker
+                type="date"
+                v-model="ruleForm.starttime"
+                style="width: 100%;"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col class="line"
-                  :span="0.5">—</el-col>
+          <el-col class="line" :span="0.5">—</el-col>
           <el-col :span="11">
             <el-form-item prop="endtime">
-              <el-date-picker type="datetime"
-                              v-model="ruleForm.endtime"
-                              style="width: 100%;"
-                              value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+              <el-date-picker
+                type="date"
+                v-model="ruleForm.endtime"
+                style="width: 100%;"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button class="checksearch"
-                     @click="submitForm('ruleForm')">查询</el-button>
-          <el-button class="checksearch"
-                     @click="resetForm('ruleForm')">重置</el-button>
+          <el-button class="checksearch" @click="submitForm('ruleForm')">查询</el-button>
+          <el-button class="checksearch" @click="resetForm">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
+    <div class="studetails">
+      <div class="boxall" style="height: 4rem">
+        <div class="allnav">
+          <div class="detailsStu">
+            <p>
+              <span class="font_style2">所属系部：</span><br/>
+              <!-- 软件与服务外部学院 -->
+              <!-- {{this.ruleForm.xuehao}} -->
+            </p>
+            <p>
+              <span class="font_style2">所属班级：</span><br/>
+              <!-- {{this.ruleForm.student}} -->
+            </p>
+            <p>
+              <span class="font_style2">学生姓名：</span><br/>
+              <!-- {{this.ruleForm.day}} -->
+            </p>
+          </div>
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+    </div>
     <div class="stuinfos">
-      <div class="boxall"
-           style="height: 4rem">
+      <div class="boxall" style="height: 4rem">
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
-            <span><span class="font_style">学号为</span>{{this.ruleForm.xuehao}}</span>
-            <span><span class="font_style">,同学</span>{{this.ruleForm.student}}</span>
-            <span>{{this.ruleForm.day}}<span class="font_style">日行程如下：</span></span>
+            <span>
+              <span class="font_style">学号为</span>
+              {{this.ruleForm.xuehao}}
+            </span>
+            <span>
+              <span class="font_style">,同学</span>
+              {{this.ruleForm.student}}
+            </span>
+            <span>
+              <span class="font_style">{{this.ruleForm.day}}日行程如下：</span>
+            </span>
           </div>
           <!--时间线-->
           <div class="timeLine">
             <div class="ul_box">
               <ul class="my_timeline">
-                <li class="my_timeline_item"
-                    v-for="(item,index) in timeLineList"
-                    :key="index">
+                <li class="my_timeline_item" v-for="(item,index) in timeLineList" :key="index">
                   <!--圈圈节点-->
-                  <div class="my_timeline_node"
-                       @click="changeActive(index)"
-                       :class="{active: index == timeIndex}"></div>
+                  <div
+                    class="my_timeline_node"
+                    @click="changeActive(index)"
+                    :class="{active: index == timeIndex}"
+                  ></div>
                   <!--线-->
                   <div class="my_timeline_item_line"></div>
                   <!--标注-->
@@ -77,12 +104,12 @@
 <script>
 import Header from "@/components/header";
 export default {
-  data () {
+  data() {
     return {
       ruleForm: {
-        name: "1924031116",
-        starttime: "2020-04-01 00:00:00",
-        endtime: "2020-04-13 24:00:00",
+        name: "",
+        starttime: "",
+        endtime: "",
         xuehao: "",
         student: "",
         day: ""
@@ -94,33 +121,44 @@ export default {
   components: {
     Header
   },
+  mounted() {
+    this.getTimeNow();
+  },
   methods: {
-    submitForm (formName) {
+    submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           var self = this;
+          self.ruleForm.starttime = self.ruleForm.starttime + " 12:00:00";
+          self.ruleForm.endtime = self.ruleForm.endtime + " 12:00:00";
+          console.log(self.ruleForm.endtime);
           self.$http
             .get(this.baseUrl + "/teacher/getStudentTrip", {
               params: {
                 endtime: self.ruleForm.endtime,
                 sId: self.ruleForm.name,
-                starttime: self.ruleForm.starttime,
+                starttime: self.ruleForm.starttime
               }
             })
-            .then(function (response) {
+            .then(function(response) {
               var res = response.data[0].result;
               self.ruleForm.xuehao = res[0].sid;
               self.ruleForm.student = res[0].sname;
-              self.ruleForm.day = res.length + 1;
+              self.ruleForm.day = 14;
               // console.log(res[0].sid);
-              // console.log(self.ruleForm.endtime);
+              console.log(self.ruleForm.endtime);
               // console.log(res.length);
+              self.timeLineList = [];
               for (var i = 0; i < res.length; i++) {
                 self.timeLineList.push({
-                  timestamp: res[i].upTime.slice(6, 7) + "月" + res[i].upTime.slice(9, 10) + "日",
+                  timestamp:
+                    res[i].upTime.slice(6, 7) +
+                    "月" +
+                    res[i].upTime.slice(8, 10) +
+                    "日",
                   tem: res[i].temperature,
                   city: res[i].locationCity + "市"
-                })
+                });
               }
             });
         } else {
@@ -129,11 +167,31 @@ export default {
         }
       });
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields();
+    resetForm() {
+      this.ruleForm.name = "";
+      this.timeLineList = [];
+      this.ruleForm.xuehao = "";
+      this.ruleForm.student = "";
+      this.ruleForm.day = "";
     },
-    changeActive (index) {
+    changeActive(index) {
       this.timeIndex = index;
+    },
+    getTimeNow() {
+      var now = new Date();
+      var year = now.getFullYear(); //得到年份
+      var month = now.getMonth(); //得到月份
+      var date = now.getDate(); //得到日期
+      var date2 = now.getDate() - 14; //得到日期
+      month = month + 1;
+      month = month.toString().padStart(2, "0");
+      date = date.toString().padStart(2, "0");
+      date2 = date2.toString().padStart(2, "0");
+      var defaultDate = `${year}-${month}-${date}`;
+      var defaultDate2 = `${year}-${month}-${date2}`;
+      //  console.log(defaultDate2)
+      this.ruleForm.endtime = defaultDate;
+      this.ruleForm.starttime = defaultDate2;
     }
   }
 };
@@ -192,8 +250,8 @@ export default {
   position: absolute;
   width: 50%;
   height: 5%;
-  margin-top: 22%;
-  margin-left: 25%;
+  margin-top: 15%;
+  margin-left: 30%;
 }
 .ul_box {
   width: 100%;
@@ -244,13 +302,28 @@ export default {
   margin: -40px 0 0 0;
 }
 .studentInfo {
-  color: aqua;
+  color: #ffffff;
   font-size: 0.25rem;
-  /* padding-top: 2%; */
+  padding-top: 2%;
   /* margin-top: -5%; */
   margin-bottom: 2%;
 }
 .font_style {
+  color: #9ba1b2;
+}
+.studetails {
+  position: absolute;
+  width: 12%;
+  margin-top: 15%;
+  margin-left: 18%;
+}
+.detailsStu .font_style2{
+  font-size: 0.2rem;
+  line-height: 0.5rem;
+  color: #9ba1b2;
+}
+.detailsStu p{
+  font-size: 0.2rem;
   color: #ffffff;
 }
 </style>
