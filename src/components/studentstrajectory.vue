@@ -142,7 +142,6 @@ export default {
           var self = this;
           self.ruleForm.starttime = self.ruleForm.starttime + " 12:00:00";
           self.ruleForm.endtime = self.ruleForm.endtime + " 12:00:00";
-          console.log(self.ruleForm.endtime);
           self.$http
             .get(this.baseUrl + "/teacher/getStudentTripBySID", {
               params: {

@@ -91,15 +91,17 @@ export default {
 
 <style>
 .page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  margin: 0 auto;
+  height: 11rem;
 }
 .title {
+  width: 100%;
+  height: 1rem;
+  float: left;
   text-align: center;
   font-size: 0.4rem;
-  margin-bottom: 2%;
-  padding-top: 12%;
+  margin-top: 3rem;
   color: #9ba1b2;
 }
 .title_2 {
@@ -108,13 +110,11 @@ export default {
   color: #9ba1b2;
 }
 .login {
-  position: absolute;
-  width: 40%;
-  height: 40%;
+  width: 100%;
+  height: 4rem;
   padding: 0.5rem;
+  float: left;
   background: rgba(0, 0, 0, 0.5);
-  margin-left: 30%;
-  margin-top: -1.5%;
 }
 i {
   width: 5%;
