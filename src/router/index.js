@@ -7,11 +7,18 @@ import campus from "@/components/campus";
 import epidemic from "@/components/epidemic";
 import networkTeaching from "@/components/networkTeaching";
 import monitor from "@/components/monitor";
+import login from "@/components/Login/login"
+import studentstrajectory from "@/components/studentstrajectory"
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
+  routes:[
+    {
+      path: "/login",
+      name: "login",
+      component: login
+    },
     {
       path: "/",
       name: "Index",
@@ -46,6 +53,12 @@ export default new Router({
       path: "/monitor",
       name: "monitor",
       component: monitor
+    },
+    {
+      path: "/studentstrajectory",
+      name: "studentstrajectory",
+      component: studentstrajectory
     }
   ]
-});
+})
+
