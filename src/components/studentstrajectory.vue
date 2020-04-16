@@ -41,17 +41,20 @@
         <div class="allnav">
           <div class="detailsStu">
             <p>
-              <span class="font_style2">所属系部：</span><br/>
+              <span class="font_style2">所属系部：</span>
+              <br />
               <!-- 软件与服务外部学院 -->
-              <!-- {{this.ruleForm.xuehao}} -->
+              {{this.ruleForm.department}}
             </p>
             <p>
-              <span class="font_style2">所属班级：</span><br/>
-              <!-- {{this.ruleForm.student}} -->
+              <span class="font_style2">所属班级：</span>
+              <br />
+              {{this.ruleForm.class}}
             </p>
             <p>
-              <span class="font_style2">学生姓名：</span><br/>
-              <!-- {{this.ruleForm.day}} -->
+              <span class="font_style2">学生姓名：</span>
+              <br />
+              {{this.ruleForm.student}}
             </p>
           </div>
         </div>
@@ -112,7 +115,9 @@ export default {
         endtime: "",
         xuehao: "",
         student: "",
-        day: ""
+        day: "",
+        department: "",
+        class: ""
       },
       timeIndex: 2,
       timeLineList: []
@@ -133,7 +138,7 @@ export default {
           self.ruleForm.endtime = self.ruleForm.endtime + " 12:00:00";
           console.log(self.ruleForm.endtime);
           self.$http
-            .get(this.baseUrl + "/teacher/getStudentTrip", {
+            .get(this.baseUrl + "/teacher/getStudentTripBySID", {
               params: {
                 endtime: self.ruleForm.endtime,
                 sId: self.ruleForm.name,
@@ -141,21 +146,22 @@ export default {
               }
             })
             .then(function(response) {
-              var res = response.data[0].result;
-              self.ruleForm.xuehao = res[0].sid;
-              self.ruleForm.student = res[0].sname;
+              var res = response.data.trip;
+              var res2 = response.data.stuInfo[0];
+              self.ruleForm.xuehao = res2.sid;
+              self.ruleForm.student = res2.sname;
               self.ruleForm.day = 14;
-              // console.log(res[0].sid);
-              console.log(self.ruleForm.endtime);
-              // console.log(res.length);
+              self.ruleForm.department = res2.deptName;
+              self.ruleForm.class = res2.cname;
+              // // console.log(res[0].sid);
+              // console.log(res);
+              console.log(res2);
+              console.log(res2.sid);
+              // // console.log(res.length);
               self.timeLineList = [];
               for (var i = 0; i < res.length; i++) {
                 self.timeLineList.push({
-                  timestamp:
-                    res[i].upTime.slice(6, 7) +
-                    "月" +
-                    res[i].upTime.slice(8, 10) +
-                    "日",
+                  timestamp: res[i].upTime,
                   tem: res[i].temperature,
                   city: res[i].locationCity + "市"
                 });
@@ -173,6 +179,8 @@ export default {
       this.ruleForm.xuehao = "";
       this.ruleForm.student = "";
       this.ruleForm.day = "";
+      this.ruleForm.department = "";
+      this.ruleForm.class = "";
     },
     changeActive(index) {
       this.timeIndex = index;
@@ -317,12 +325,12 @@ export default {
   margin-top: 15%;
   margin-left: 18%;
 }
-.detailsStu .font_style2{
+.detailsStu .font_style2 {
   font-size: 0.2rem;
   line-height: 0.5rem;
   color: #9ba1b2;
 }
-.detailsStu p{
+.detailsStu p {
   font-size: 0.2rem;
   color: #ffffff;
 }
