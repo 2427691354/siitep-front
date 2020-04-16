@@ -3,54 +3,57 @@
     <Header></Header>
     <h3 class="title_3">学生轨迹查询</h3>
     <div class="checkform">
-      <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+      <el-form :model="ruleForm"
+               ref="ruleForm"
+               label-width="100px"
+               class="demo-ruleForm">
         <el-form-item label="学生学号">
           <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-col :span="11">
             <el-form-item prop="starttime">
-              <el-date-picker
-                type="date"
-                v-model="ruleForm.starttime"
-                style="width: 100%;"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
+              <el-date-picker type="date"
+                              v-model="ruleForm.starttime"
+                              style="width: 100%;"
+                              value-format="yyyy-MM-dd"></el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col class="line" :span="0.5">—</el-col>
+          <el-col class="line"
+                  :span="0.5">—</el-col>
           <el-col :span="11">
             <el-form-item prop="endtime">
-              <el-date-picker
-                type="date"
-                v-model="ruleForm.endtime"
-                style="width: 100%;"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
+              <el-date-picker type="date"
+                              v-model="ruleForm.endtime"
+                              style="width: 100%;"
+                              value-format="yyyy-MM-dd"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button class="checksearch" @click="submitForm('ruleForm')">查询</el-button>
-          <el-button class="checksearch" @click="resetForm">重置</el-button>
+          <el-button class="checksearch"
+                     @click="submitForm('ruleForm')">查询</el-button>
+          <el-button class="checksearch"
+                     @click="resetForm">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
     <div class="studetails">
-      <div class="boxall" style="height: 4rem">
+      <div class="boxall"
+           style="height: 4rem">
         <div class="allnav">
           <div class="detailsStu">
             <p>
-              <span class="font_style2">所属系部：</span><br/>
+              <span class="font_style2">所属系部：</span><br />
               <!-- 软件与服务外部学院 -->
               <!-- {{this.ruleForm.xuehao}} -->
             </p>
             <p>
-              <span class="font_style2">所属班级：</span><br/>
+              <span class="font_style2">所属班级：</span><br />
               <!-- {{this.ruleForm.student}} -->
             </p>
             <p>
-              <span class="font_style2">学生姓名：</span><br/>
+              <span class="font_style2">学生姓名：</span><br />
               <!-- {{this.ruleForm.day}} -->
             </p>
           </div>
@@ -59,7 +62,8 @@
       </div>
     </div>
     <div class="stuinfos">
-      <div class="boxall" style="height: 4rem">
+      <div class="boxall"
+           style="height: 4rem">
         <div class="allnav">
           <!-- 搜索学生信息 -->
           <div class="studentInfo">
@@ -79,13 +83,13 @@
           <div class="timeLine">
             <div class="ul_box">
               <ul class="my_timeline">
-                <li class="my_timeline_item" v-for="(item,index) in timeLineList" :key="index">
+                <li class="my_timeline_item"
+                    v-for="(item,index) in timeLineList"
+                    :key="index">
                   <!--圈圈节点-->
-                  <div
-                    class="my_timeline_node"
-                    @click="changeActive(index)"
-                    :class="{active: index == timeIndex}"
-                  ></div>
+                  <div class="my_timeline_node"
+                       @click="changeActive(index)"
+                       :class="{active: index == timeIndex}"></div>
                   <!--线-->
                   <div class="my_timeline_item_line"></div>
                   <!--标注-->
@@ -104,7 +108,7 @@
 <script>
 import Header from "@/components/header";
 export default {
-  data() {
+  data () {
     return {
       ruleForm: {
         name: "",
@@ -121,11 +125,11 @@ export default {
   components: {
     Header
   },
-  mounted() {
+  mounted () {
     this.getTimeNow();
   },
   methods: {
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           var self = this;
@@ -133,51 +137,56 @@ export default {
           self.ruleForm.endtime = self.ruleForm.endtime + " 12:00:00";
           console.log(self.ruleForm.endtime);
           self.$http
-            .get(this.baseUrl + "/teacher/getStudentTrip", {
+            .get(this.baseUrl + "/teacher/getStudentTripBySID", {
               params: {
                 endtime: self.ruleForm.endtime,
                 sId: self.ruleForm.name,
                 starttime: self.ruleForm.starttime
               }
             })
-            .then(function(response) {
-              var res = response.data[0].result;
-              self.ruleForm.xuehao = res[0].sid;
-              self.ruleForm.student = res[0].sname;
+            .then(function (response) {
+              var stuInfo = response.data.stuInfo;
+              var res = response.data.trip;
+              self.ruleForm.xuehao = stuInfo[0].sid;
+              self.ruleForm.student = stuInfo[0].sname;
               self.ruleForm.day = 14;
               // console.log(res[0].sid);
-              console.log(self.ruleForm.endtime);
+
               // console.log(res.length);
               self.timeLineList = [];
               for (var i = 0; i < res.length; i++) {
-                self.timeLineList.push({
-                  timestamp:
-                    res[i].upTime.slice(6, 7) +
-                    "月" +
-                    res[i].upTime.slice(8, 10) +
-                    "日",
-                  tem: res[i].temperature,
-                  city: res[i].locationCity + "市"
-                });
-              }
-            });
+                if (res[i].temperature == "未上报") {
+
+                  self.timeLineList.push({
+                    timestamp: res[i].upTime,
+                    tem: res[i].temperature,
+                    city: res[i].locationCity + "市"
+                  });
+                }
+                else {
+                  self.timeLineList.push({
+                    timestamp: res[i].upTime,
+                    tem: res[i].temperature,
+                  });
+                }
+              };
+            })
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
     },
-    resetForm() {
+    resetForm () {
       this.ruleForm.name = "";
       this.timeLineList = [];
       this.ruleForm.xuehao = "";
       this.ruleForm.student = "";
       this.ruleForm.day = "";
     },
-    changeActive(index) {
+    changeActive (index) {
       this.timeIndex = index;
     },
-    getTimeNow() {
+    getTimeNow () {
       var now = new Date();
       var year = now.getFullYear(); //得到年份
       var month = now.getMonth(); //得到月份
@@ -317,12 +326,12 @@ export default {
   margin-top: 15%;
   margin-left: 18%;
 }
-.detailsStu .font_style2{
+.detailsStu .font_style2 {
   font-size: 0.2rem;
   line-height: 0.5rem;
   color: #9ba1b2;
 }
-.detailsStu p{
+.detailsStu p {
   font-size: 0.2rem;
   color: #ffffff;
 }
